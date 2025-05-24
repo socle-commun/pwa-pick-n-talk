@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+/* #region Theme */
+@theme {
+  --font-logo: "Gloria Hallelujah", "Nunito", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* #endregion */
+
+
+/* #region Base */
+@layer base {
+  :root {
+    @apply bg-zinc-100 text-zinc-950 dark:bg-zinc-900 dark:text-zinc-50;
+    @apply font-sans antialiased;
+  }
+
+  html {
+    @apply h-full;
+  }
+
+  body {
+    @apply h-screen;
+  }
+
+  #root {
+    @apply contents isolate;
+  }
+}
+
+/* #endregion */
