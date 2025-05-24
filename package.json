@@ -1,5 +1,5 @@
 {
-  "name": "pick-n-talk",
+  "name": "@socle-commun/pick-n-talk",
   "private": true,
   "version": "0.0.0",
   "type": "module",
