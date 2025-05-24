@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Outlet } from "react-router";
 
-import Cog8ToothIcon from "@heroicons/react/20/solid/Cog8ToothIcon";
+import Cog6ToothIcon from "@heroicons/react/20/solid/Cog6ToothIcon";
 
 import ResponsiveTopBar from "@/components/navigation/ResponsiveTopBar";
 import TopBarNavLink from "@/components/navigation/TopBarNavLink";
@@ -20,11 +20,11 @@ export default function Layout() {
     <>
       <ResponsiveTopBar
         isOpen={isOpen}
-        onClick={toggleOpen}
+        onToggle={toggleOpen}
         brand={<Brand />}>
-        <TopBarNavLink to="/settings" onClick={toggleOpen} className={cn("text-black fill-black dark:text-white dark:fill-white hover:text-blue-600 hover:fill-blue-600 dark:hover:text-blue-400 dark:hover:fill-blue-400")}>
-          <Cog8ToothIcon className={cn("size-4")} />
-          <span>Settings</span>
+        <TopBarNavLink to="/settings" onClick={toggleOpen} className={cn("text-zinc-600 dark:text-zinc-400 hover:text-inherit transition-colors")}>
+          <Cog6ToothIcon className={cn("size-5 fill-current")} />
+          <span className={cn("font-bold")}>Settings</span>
         </TopBarNavLink>
       </ResponsiveTopBar>
 

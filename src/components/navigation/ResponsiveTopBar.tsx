@@ -9,10 +9,10 @@ interface ResponsiveTopBarProps {
   brand: ReactNode;
   children: ReactNode;
   isOpen: boolean;
-  onClick: () => void;
+  onToggle: () => void;
 }
 
-export default function ResponsiveTopBar({ brand, children, isOpen, onClick }: ResponsiveTopBarProps) {
+export default function ResponsiveTopBar({ brand, children, isOpen, onToggle }: ResponsiveTopBarProps) {
   return (
     <header role="banner">
       <nav className={cn("w-full px-4 py-2")}>
@@ -22,7 +22,7 @@ export default function ResponsiveTopBar({ brand, children, isOpen, onClick }: R
               <span>{brand}</span>
               <button
                 className={cn("ml-auto p-2 h-min flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 text-black dark:text-white md:hidden")}
-                onClick={() => onClick()}
+                onClick={() => onToggle()}
               >
                 <span className={cn("sr-only")}>Toggle main menu</span>
                 <span aria-hidden="true" className={cn("size-4")}>{isOpen ? (<XMarkIcon />) : (<Bars3Icon />)}</span>
