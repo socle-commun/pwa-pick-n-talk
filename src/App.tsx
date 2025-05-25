@@ -8,6 +8,10 @@ import Layout from "@/routes/layout";
 import CatchAllPage from "@/routes/error";
 import IndexPage from "@/routes/page";
 
+import SignInPage from "@/routes/auth/sign-in/page";
+import SignOutPage from "@/routes/auth/sign-out/page";
+import SignUpPage from "@/routes/auth/sign-up/edit/page";
+
 import BindersPage from "@/routes/binders/page";
 import BinderPage from "@/routes/binders/[id]/page";
 import BinderEditPage from "@/routes/binders/[id]/edit/page";
@@ -27,6 +31,12 @@ function App() {
         <Routes>
           <Route path="" element={<Layout />}>
             <Route index element={<IndexPage />} />
+
+            <Route path="auth">
+              <Route path="sign-in" element={<SignInPage />} />
+              <Route path="sign-out" element={<SignOutPage />} />
+              <Route path="sign-up" element={<SignUpPage />} />
+            </Route>
 
             <Route path="binders">
               <Route index element={<BindersPage />} />
