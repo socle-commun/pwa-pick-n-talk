@@ -15,6 +15,8 @@ export default defineConfig({
           "react": ["react", "react-dom"],
           "react-router": ["react-router"],
           "cn": ["clsx", "tailwind-merge"],
+					"dexie": ["dexie", "dexie-react-hooks"],
+					"i18next": ["i18next", "react-i18next", "i18next-http-backend", "i18next-browser-languagedetector"],
           "headlessui": ["@headlessui/react"],
           "icons": ["@heroicons/react"]
         }
