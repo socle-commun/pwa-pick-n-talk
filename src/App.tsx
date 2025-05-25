@@ -10,7 +10,7 @@ import IndexPage from "@/routes/page";
 
 import SignInPage from "@/routes/auth/sign-in/page";
 import SignOutPage from "@/routes/auth/sign-out/page";
-import SignUpPage from "@/routes/auth/sign-up/edit/page";
+import SignUpPage from "@/routes/auth/sign-up/page";
 
 import BindersPage from "@/routes/binders/page";
 import BinderPage from "@/routes/binders/[id]/page";
