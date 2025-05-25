@@ -25,10 +25,8 @@ function App() {
     <AppProviders>
       <BrowserRouter basename={process.env.NODE_ENV === "production" ? "/pick-n-talk" : "/"}>
         <Routes>
-
           <Route path="" element={<Layout />}>
             <Route index element={<IndexPage />} />
-
 
             <Route path="binders">
               <Route index element={<BindersPage />} />
