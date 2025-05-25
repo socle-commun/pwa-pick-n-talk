@@ -1,7 +1,9 @@
 {
-    "recommendations": [
-        "editorconfig.editorconfig",
-        "redhat.vscode-xml",
-        "davidanson.vscode-markdownlint"
-    ]
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "redhat.vscode-xml",
+    "davidanson.vscode-markdownlint",
+    "formulahendry.auto-rename-tag",
+    "formulahendry.auto-close-tag"
+  ]
 }
