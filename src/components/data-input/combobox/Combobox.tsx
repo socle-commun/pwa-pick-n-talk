@@ -1,10 +1,16 @@
-'use client'
+import { useState, type ReactElement } from "react";
 
-import * as Headless from '@headlessui/react'
-import clsx from 'clsx'
-import { useState } from 'react'
+import {
+  type ComboboxProps as HeadlessComboboxProps,
+  Combobox as HeadlessCombobox,
+  ComboboxInput as HeadlessComboboxInput,
+  ComboboxButton as HeadlessComboboxButton,
+  ComboboxOptions as HeadlessComboboxOptions
+} from "@headlessui/react";
 
-export function Combobox<T>({
+import cn from "@/utilities/cn";
+
+export default function Combobox<T>({
   options,
   displayValue,
   filter,
@@ -23,8 +29,8 @@ export function Combobox<T>({
   placeholder?: string
   autoFocus?: boolean
   'aria-label'?: string
-  children: (value: NonNullable<T>) => React.ReactElement
-} & Omit<Headless.ComboboxProps<T, false>, 'as' | 'multiple' | 'children'> & { anchor?: 'top' | 'bottom' }) {
+  children: (value: NonNullable<T>) => ReactElement
+} & Omit<HeadlessComboboxProps<T, false>, 'as' | 'multiple' | 'children'> & { anchor?: 'top' | 'bottom' }) {
   const [query, setQuery] = useState('')
 
   const filteredOptions =
@@ -35,10 +41,10 @@ export function Combobox<T>({
         )
 
   return (
-    <Headless.Combobox {...props} multiple={false} virtual={{ options: filteredOptions }} onClose={() => setQuery('')}>
+    <HeadlessCombobox {...props} multiple={false} virtual={{ options: filteredOptions }} onClose={() => setQuery('')}>
       <span
         data-slot="control"
-        className={clsx([
+        className={cn([
           className,
           // Basic layout
           'relative block w-full',
@@ -54,14 +60,14 @@ export function Combobox<T>({
           'has-data-invalid:before:shadow-red-500/10',
         ])}
       >
-        <Headless.ComboboxInput
+        <HeadlessComboboxInput
           autoFocus={autoFocus}
           data-slot="control"
           aria-label={ariaLabel}
           displayValue={(option: T) => displayValue(option) ?? ''}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={placeholder}
-          className={clsx([
+          className={cn([
             className,
             // Basic layout
             'relative block w-full appearance-none rounded-lg py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
@@ -83,7 +89,7 @@ export function Combobox<T>({
             'dark:scheme-dark',
           ])}
         />
-        <Headless.ComboboxButton className="group absolute inset-y-0 right-0 flex items-center px-2">
+        <HeadlessComboboxButton className="group absolute inset-y-0 right-0 flex items-center px-2">
           <svg
             className="size-5 stroke-zinc-500 group-data-disabled:stroke-zinc-600 group-data-hover:stroke-zinc-700 sm:size-4 dark:stroke-zinc-400 dark:group-data-hover:stroke-zinc-300 forced-colors:stroke-[CanvasText]"
             viewBox="0 0 16 16"
@@ -93,12 +99,12 @@ export function Combobox<T>({
             <path d="M5.75 10.75L8 13L10.25 10.75" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
             <path d="M10.25 5.25L8 3L5.75 5.25" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </Headless.ComboboxButton>
+        </HeadlessComboboxButton>
       </span>
-      <Headless.ComboboxOptions
+      <HeadlessComboboxOptions
         transition
         anchor={anchor}
-        className={clsx(
+        className={cn(
           // Anchor positioning
           '[--anchor-gap:--spacing(2)] [--anchor-padding:--spacing(4)] sm:data-[anchor~=start]:[--anchor-offset:-4px]',
           // Base styles,
@@ -116,73 +122,7 @@ export function Combobox<T>({
         )}
       >
         {({ option }) => children(option)}
-      </Headless.ComboboxOptions>
-    </Headless.Combobox>
-  )
-}
-
-export function ComboboxOption<T>({
-  children,
-  className,
-  ...props
-}: { className?: string; children?: React.ReactNode } & Omit<
-  Headless.ComboboxOptionProps<'div', T>,
-  'as' | 'className'
->) {
-  let sharedClasses = clsx(
-    // Base
-    'flex min-w-0 items-center',
-    // Icons
-    '*:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 sm:*:data-[slot=icon]:size-4',
-    '*:data-[slot=icon]:text-zinc-500 group-data-focus/option:*:data-[slot=icon]:text-white dark:*:data-[slot=icon]:text-zinc-400',
-    'forced-colors:*:data-[slot=icon]:text-[CanvasText] forced-colors:group-data-focus/option:*:data-[slot=icon]:text-[Canvas]',
-    // Avatars
-    '*:data-[slot=avatar]:-mx-0.5 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:size-5'
-  )
-
-  return (
-    <Headless.ComboboxOption
-      {...props}
-      className={clsx(
-        // Basic layout
-        'group/option grid w-full cursor-default grid-cols-[1fr_--spacing(5)] items-baseline gap-x-2 rounded-lg py-2.5 pr-2 pl-3.5 sm:grid-cols-[1fr_--spacing(4)] sm:py-1.5 sm:pr-2 sm:pl-3',
-        // Typography
-        'text-base/6 text-zinc-950 sm:text-sm/6 dark:text-white forced-colors:text-[CanvasText]',
-        // Focus
-        'outline-hidden data-focus:bg-blue-500 data-focus:text-white',
-        // Forced colors mode
-        'forced-color-adjust-none forced-colors:data-focus:bg-[Highlight] forced-colors:data-focus:text-[HighlightText]',
-        // Disabled
-        'data-disabled:opacity-50'
-      )}
-    >
-      <span className={clsx(className, sharedClasses)}>{children}</span>
-      <svg
-        className="relative col-start-2 hidden size-5 self-center stroke-current group-data-selected/option:inline sm:size-4"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path d="M4 8.5l3 3L12 4" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </Headless.ComboboxOption>
-  )
-}
-
-export function ComboboxLabel({ className, ...props }: React.ComponentPropsWithoutRef<'span'>) {
-  return <span {...props} className={clsx(className, 'ml-2.5 truncate first:ml-0 sm:ml-2 sm:first:ml-0')} />
-}
-
-export function ComboboxDescription({ className, children, ...props }: React.ComponentPropsWithoutRef<'span'>) {
-  return (
-    <span
-      {...props}
-      className={clsx(
-        className,
-        'flex flex-1 overflow-hidden text-zinc-500 group-data-focus/option:text-white before:w-2 before:min-w-0 before:shrink dark:text-zinc-400'
-      )}
-    >
-      <span className="flex-1 truncate">{children}</span>
-    </span>
+      </HeadlessComboboxOptions>
+    </HeadlessCombobox>
   )
 }

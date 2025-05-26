@@ -5,9 +5,9 @@ import {
   Button as HeadlessButton
 } from "@headlessui/react";
 
-import TouchTarget from "@/components/actions/TouchTarget";
+import TouchTarget from "@/components/actions/button/TouchTarget";
+import Badge from "@/components/data-display/badge/Badge";
 import Link from "@/components/navigation/Link";
-import Badge from "@/components/data-display/Badge";
 
 import cn from "@/utilities/cn";
 

@@ -2,7 +2,7 @@ import { ArrowPathIcon, CloudArrowUpIcon, LockClosedIcon } from '@heroicons/reac
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 
 import cn from "@/utilities/cn";
-import Button from '@/components/actions/Button';
+import Button from '@/components/actions/button/Button';
 
 const features = [
   {

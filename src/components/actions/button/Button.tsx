@@ -3,7 +3,7 @@ import { forwardRef, type ForwardedRef } from "react";
 
 import { Button as HeadlessButton, type ButtonProps as HeadlessButtonProps } from "@headlessui/react";
 
-import TouchTarget from "@/components/actions/TouchTarget";
+import TouchTarget from "@/components/actions/button/TouchTarget";
 import Link from "@/components/navigation/Link";
 
 import cn from "@/utilities/cn";

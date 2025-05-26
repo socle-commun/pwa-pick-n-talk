@@ -1,4 +1,4 @@
-import Button from "@/components/actions/Button";
+import Button from "@/components/actions/button/Button";
 import Link from "@/components/navigation/Link";
 
 import cn from "@/utilities/cn";
