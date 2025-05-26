@@ -4,7 +4,7 @@ import * as Headless from '@headlessui/react'
 import clsx from 'clsx'
 import { LayoutGroup, motion } from 'framer-motion'
 import React, { forwardRef, useId } from 'react'
-import { TouchTarget } from './button'
+import { TouchTarget } from '../actions/Button'
 import { Link } from '../navigation/Link'
 
 export function Navbar({ className, ...props }: React.ComponentPropsWithoutRef<'nav'>) {

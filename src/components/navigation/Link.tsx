@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 
 import { DataInteractive } from "@headlessui/react";
 
-export const Link = forwardRef(function Link(
+export default forwardRef(function Link(
   props: { href: string } & ComponentPropsWithoutRef<"a">,
   ref: ForwardedRef<HTMLAnchorElement>
 ) {

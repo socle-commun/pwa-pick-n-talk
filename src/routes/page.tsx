@@ -2,6 +2,7 @@ import { ArrowPathIcon, CloudArrowUpIcon, LockClosedIcon } from '@heroicons/reac
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 
 import cn from "@/utilities/cn";
+import Button from '@/components/actions/Button';
 
 const features = [
   {
@@ -62,32 +63,32 @@ export default function IndexPage() {
           src="https://images.unsplash.com/photo-1635315619556-5826839a1bea?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           className={cn("absolute inset-0 -z-10 size-full object-cover")}
         />
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-              <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
+        <div className={cn("mx-auto max-w-7xl px-6 lg:px-8")}>
+          <div className={cn("mx-auto max-w-2xl py-32 sm:py-48 lg:py-56")}>
+            <div className={cn("hidden sm:mb-8 sm:flex sm:justify-center")}>
+              <div className={cn("relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20")}>
                 Announcing our next round of funding.{' '}
-                <a href="#" className="font-semibold text-white">
-                  <span aria-hidden="true" className="absolute inset-0" />
+                <a href="#" className={cn("font-semibold text-white")}>
+                  <span aria-hidden="true" className={cn("absolute inset-0")} />
                   Read more <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
             </div>
-            <div className="text-center">
-              <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
+            <div className={cn("text-center")}>
+              <h1 className={cn("text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl")}>
                 Data to enrich your online business
               </h1>
-              <p className="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
+              <p className={cn("mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8")}>
                 Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
                 fugiat veniam occaecat.
               </p>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a
-                  href="#"
-                  className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+              <div className={cn("mt-10 flex items-center justify-center gap-x-6")}>
+                <Button
+                  href="/binders"
+                  className={cn("rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400")}
                 >
                   Get started
-                </a>
+                </Button>
                 <a href="#" className="text-sm/6 font-semibold text-white">
                   Learn more <span aria-hidden="true">→</span>
                 </a>

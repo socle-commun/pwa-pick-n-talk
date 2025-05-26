@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 
-import { Link } from "@/components/navigation/Link";
+import Link from "@/components/navigation/Link";
 
 import cn from "@/utilities/cn";
 
