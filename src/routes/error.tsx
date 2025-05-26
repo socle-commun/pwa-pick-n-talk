@@ -1,3 +1,4 @@
+import Button from "@/components/actions/Button";
 import Link from "@/components/navigation/Link";
 
 import cn from "@/utilities/cn";
@@ -15,12 +16,12 @@ export default function ErrorPage() {
             Sorry, we couldn’t find the page you’re looking for.
           </p>
           <div className={cn("mt-10 flex items-center justify-center gap-x-6")}>
-            <Link
+            <Button
               href="/"
               className={cn("rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-xs bg-zinc-500 text-zinc-50 dark:bg-zinc-500 dark:text-zinc-50 hover:bg-zinc-900 dark:hover:bg-zinc-100 hover:text-zinc-50 dark:hover:text-zinc-950 transition-colors")}
             >
               Go back home
-            </Link>
+            </Button>
             <Link href="/support" className={cn("text-sm font-semibold")}>
               Contact support <span aria-hidden="true">&rarr;</span>
             </Link>
