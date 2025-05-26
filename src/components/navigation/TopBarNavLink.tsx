@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 
-import { NavLink } from "react-router";
+import { Link } from "@/components/navigation/Link";
 
 import cn from "@/utilities/cn";
 
@@ -8,15 +8,15 @@ interface TopBarNavLinkProps {
   children: ReactNode;
   className?: string;
   onClick: () => void;
-  to: string;
+  href: string;
 }
 
-export default function TopBarNavLink({ children, className = "", onClick, to }: TopBarNavLinkProps) {
+export default function TopBarNavLink({ children, className = "", onClick, href }: TopBarNavLinkProps) {
   return (
     <li>
-      <NavLink to={to} className={cn("flex items-center gap-2 text-center", className)} onClick={onClick}>
+      <Link href={href} className={cn("flex items-center gap-2 text-center", className)} onClick={onClick}>
         {children}
-      </NavLink>
+      </Link>
     </li>
   )
 }

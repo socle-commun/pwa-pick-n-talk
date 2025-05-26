@@ -1,4 +1,4 @@
-import { Link } from "./Link"
+import { Link } from "../navigation/Link"
 
 import cn from "@/utilities/cn"
 

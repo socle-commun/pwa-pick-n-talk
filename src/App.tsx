@@ -12,10 +12,12 @@ import SignInPage from "@/routes/auth/sign-in/page";
 import SignOutPage from "@/routes/auth/sign-out/page";
 import SignUpPage from "@/routes/auth/sign-up/page";
 
+import BindersLayout from "@/routes/binders/layout";
 import BindersPage from "@/routes/binders/page";
 import BinderPage from "@/routes/binders/[id]/page";
 import BinderEditPage from "@/routes/binders/[id]/edit/page";
 
+import SettingsLayout from "@/routes/settings/layout";
 import SettingsPage from "@/routes/settings/page";
 
 import toggleDarkClass from "@/utilities/toggleDarkClass";
@@ -38,7 +40,7 @@ function App() {
               <Route path="sign-up" element={<SignUpPage />} />
             </Route>
 
-            <Route path="binders">
+            <Route path="binders" element={<BindersLayout />}>
               <Route index element={<BindersPage />} />
               <Route path=":id">
                 <Route index element={<BinderPage />} />
@@ -46,7 +48,9 @@ function App() {
               </Route>
             </Route>
 
-            <Route path="settings" element={<SettingsPage />} />
+            <Route path="settings" element={<SettingsLayout />}>
+              <Route index element={<SettingsPage />} />
+            </Route>
 
             <Route path="*" element={<CatchAllPage />} />
           </Route>
