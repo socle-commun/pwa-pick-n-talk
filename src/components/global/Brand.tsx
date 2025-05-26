@@ -4,7 +4,7 @@ import cn from "@/utilities/cn";
 
 export default function Brand() {
   return (
-    <Link href="/" className={cn("flex items-center gap-1")}>
+    <div className={cn("w-content flex items-center gap-2")}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -33,6 +33,6 @@ export default function Brand() {
       </svg>
       <span className={cn("font-logo text-2xl")}>Pick'n'Talk</span>
       <span className={cn("px-2 text-sm self-end font-medium rounded-full bg-zinc-900 text-zinc-50 dark:bg-blue-100 dark:text-zinc-950")}>{__APP_VERSION__}</span>
-    </Link>
+    </div>
   )
 }
