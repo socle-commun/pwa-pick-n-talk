@@ -49,6 +49,7 @@ export function PaginationNext({
             strokeLinejoin="round"
           />
         </svg>
+        {children}
       </Button>
     </span>
   )
