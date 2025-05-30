@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router";
 
-import AppProviders from "@/components/global/AppProviders";
+import AppProviders from "@/components/partials/global/AppProviders";
 
 import Layout from "@/routes/layout";
 import CatchAllPage from "@/routes/error";

@@ -2,7 +2,7 @@ import { ArrowPathIcon, CloudArrowUpIcon, LockClosedIcon } from '@heroicons/reac
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 
 import cn from "@/utilities/cn";
-import Button from '@/components/actions/button/Button';
+import Button from '@/components/ui/actions/Button';
 
 const features = [
   {
@@ -85,7 +85,12 @@ export default function IndexPage() {
               <div className={cn("mt-10 flex items-center justify-center gap-x-6")}>
                 <Button
                   href="/binders"
-                  className={cn("rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400")}
+                >
+                  Get started
+                </Button>
+                <Button
+                  href="/settings"
+                  outline
                 >
                   Get started
                 </Button>

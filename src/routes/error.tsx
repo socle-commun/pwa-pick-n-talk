@@ -1,5 +1,5 @@
-import Button from "@/components/actions/button/Button";
-import Link from "@/components/navigation/Link";
+import Button from "@/components/ui/actions/Button";
+import Link from "@/components/ui/navigation/Link";
 
 import cn from "@/utilities/cn";
 
