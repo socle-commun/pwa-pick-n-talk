@@ -18,7 +18,7 @@ export default function ErrorPage() {
           <div className={cn("mt-10 flex items-center justify-center gap-x-6")}>
             <Button
               href="/"
-              className={cn("rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-xs bg-zinc-500 text-zinc-50 dark:bg-zinc-500 dark:text-zinc-50 hover:bg-zinc-900 dark:hover:bg-zinc-100 hover:text-zinc-50 dark:hover:text-zinc-950 transition-colors")}
+              color="dark/white"
             >
               Go back home
             </Button>

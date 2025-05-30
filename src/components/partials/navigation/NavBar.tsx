@@ -34,7 +34,7 @@ export default function NavBar() {
       <NavbarSection>
         <Dropdown>
           <DropdownButton as={NavbarItem}>
-            <Avatar square initials="MM" />
+            <Avatar initials="MM" />
           </DropdownButton>
           <DropdownMenu className="min-w-64" anchor="bottom end">
             <DropdownItem href="/my-profile">

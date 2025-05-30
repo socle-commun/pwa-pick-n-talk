@@ -33,9 +33,11 @@ export default function Avatar({
     >
       {initials && (
         <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
           className="size-full fill-current p-[5%] text-[48px] font-medium uppercase select-none"
           viewBox="0 0 100 100"
-          aria-hidden={alt ? "false" : "true"}
+        // aria-hidden={alt ? "false" : "true"}
         >
           {alt && <title>{alt}</title>}
           <text x="50%" y="50%" alignmentBaseline="middle" dominantBaseline="middle" textAnchor="middle" dy=".125em">
