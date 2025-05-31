@@ -36,7 +36,7 @@ function MobileSidebar({ open, close, children }: PropsWithChildren<{ open: bool
         transition
         className="fixed inset-y-0 w-full max-w-80 p-2 transition duration-300 ease-in-out data-closed:-translate-x-full"
       >
-        <div className="flex h-full flex-col rounded-lg bg-white shadow-xs ring-1 ring-zinc-950/5 dark:bg-zinc-900 dark:ring-white/10">
+        <div className="flex h-full flex-col rounded-lg shadow-xs ring-1 bg-zinc-50 ring-zinc-950/10 dark:bg-zinc-950 dark:ring-zinc-50/10">
           <div className="-mb-3 px-4 pt-3">
             <HeadlessCloseButton as={NavbarItem} aria-label="Close navigation">
               <CloseMenuIcon />
@@ -74,8 +74,8 @@ export default function StackedLayout({
       </header>
 
       {/* Content */}
-      <main className="flex flex-1 flex-col pb-2 lg:px-2">
-        <div className="grow p-6 lg:rounded-lg shadow-xs ring-1 bg-white ring-black/5 dark:bg-black dark:ring-white/5">
+      <main className="flex flex-1 flex-col lg:p-2">
+        <div className="grow p-6 lg:rounded-lg ring-1 ring-zinc-950/10 dark:ring-zinc-50/10">
           <div className="mx-auto max-w-6xl">
             {children}
           </div>

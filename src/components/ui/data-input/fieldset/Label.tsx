@@ -12,7 +12,7 @@ export default function Label({ className, ...props }: { className?: string } & 
       {...props}
       className={cn(
         className,
-        "text-base/6 text-zinc-950 select-none data-disabled:opacity-50 sm:text-sm/6 dark:text-white"
+        "text-base/6 select-none data-disabled:opacity-50 sm:text-sm/6"
       )}
     />
   )
