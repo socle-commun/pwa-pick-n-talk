@@ -37,13 +37,13 @@ function App() {
               <Route path="sign-up" element={<SignUpPage />} />
             </Route>
 
+            <Route path="settings" element={<SettingsLayout />}>
+              <Route index element={<SettingsPage />} />
+            </Route>
+
             <Route path=":uuid" element={<BinderLayout />}>
               <Route index element={<BinderPage />} />
               <Route path="edit" element={<BinderEditPage />} />
-            </Route>
-
-            <Route path="settings" element={<SettingsLayout />}>
-              <Route index element={<SettingsPage />} />
             </Route>
 
             <Route path="*" element={<CatchAllPage />} />
