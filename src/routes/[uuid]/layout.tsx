@@ -8,13 +8,13 @@ import NavBar from "@/components/partials/navigation/NavBar";
 import SideBar from "@/components/partials/navigation/SideBar";
 
 export default function Layout() {
-  // const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
 
-  // const toggleOpen = () => setIsOpen(!isOpen);
+    // const toggleOpen = () => setIsOpen(!isOpen);
 
-  return (
-    <StackedLayout navbar={<NavBar />} sidebar={<SideBar />}>
-      <Outlet />
-    </StackedLayout>
-  )
+    return (
+        <StackedLayout navbar={<NavBar />} sidebar={<SideBar />}>
+            <Outlet />
+        </StackedLayout>
+    )
 }

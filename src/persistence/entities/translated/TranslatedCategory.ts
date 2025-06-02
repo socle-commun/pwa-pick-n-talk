@@ -1,7 +1,7 @@
-export interface Category {
-	uuid: string;
+export interface TranslatedCategory {
+  uuid: string;
 
-	icon: Blob;
+  icon: Blob;
 
-  name:string;
+  name: string;
 }

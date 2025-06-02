@@ -1,10 +1,10 @@
-export interface Pictogram {
-	uuid: string;
+export interface TranslatedPictogram {
+  uuid: string;
 
-	blob?: Blob;
+  blob?: Blob;
 
-	binderUuid: string;
-	categoryUuid: string;
+  binderUuid: string;
+  categoryUuid: string;
 
-	word: string;
+  word: string;
 }

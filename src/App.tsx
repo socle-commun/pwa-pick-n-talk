@@ -9,13 +9,11 @@ import CatchAllPage from "@/routes/error";
 import IndexPage from "@/routes/page";
 
 import SignInPage from "@/routes/auth/sign-in/page";
-import SignOutPage from "@/routes/auth/sign-out/page";
 import SignUpPage from "@/routes/auth/sign-up/page";
 
-import BindersLayout from "@/routes/binders/layout";
-import BindersPage from "@/routes/binders/page";
-import BinderPage from "@/routes/binders/[id]/page";
-import BinderEditPage from "@/routes/binders/[id]/edit/page";
+import BinderLayout from "@/routes/[uuid]/layout";
+import BinderPage from "@/routes/[uuid]/page";
+import BinderEditPage from "@/routes/[uuid]/edit/page";
 
 import SettingsLayout from "@/routes/settings/layout";
 import SettingsPage from "@/routes/settings/page";
@@ -36,16 +34,12 @@ function App() {
 
             <Route path="auth">
               <Route path="sign-in" element={<SignInPage />} />
-              <Route path="sign-out" element={<SignOutPage />} />
               <Route path="sign-up" element={<SignUpPage />} />
             </Route>
 
-            <Route path="binders" element={<BindersLayout />}>
-              <Route index element={<BindersPage />} />
-              <Route path=":id">
-                <Route index element={<BinderPage />} />
-                <Route path="edit" element={<BinderEditPage />} />
-              </Route>
+            <Route path=":uuid" element={<BinderLayout />}>
+              <Route index element={<BinderPage />} />
+              <Route path="edit" element={<BinderEditPage />} />
             </Route>
 
             <Route path="settings" element={<SettingsLayout />}>
