@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef } from "react";
 
 import cn from "@/utilities/cn";
 
-export function Divider({
+export default function Divider({
   soft = false,
   className,
   ...props

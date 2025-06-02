@@ -1,10 +1,10 @@
 import { type PropsWithChildren } from "react";
 
-import Button from "@/components/actions/Button";
+import Button from "@/components/ui/actions/Button";
 
 import cn from "@/utilities/cn";
 
-export function PaginationPage({
+export default function PaginationPage({
   href,
   className,
   current = false,

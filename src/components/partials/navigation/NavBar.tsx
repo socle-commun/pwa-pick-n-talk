@@ -1,17 +1,11 @@
 import { UserIcon, Cog8ToothIcon, ShieldCheckIcon, LightBulbIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/20/solid";
 
-import Navbar from "@/components/ui/navigation/navbar/Navbar";
-import { Dropdown, DropdownButton, DropdownDivider, DropdownItem, DropdownLabel, DropdownMenu } from "@/components/ui/data-display/dropdown";
-import NavbarDivider from "@/components/ui/navigation/navbar/NavbarDivider";
-import NavbarSection from "@/components/ui/navigation/navbar/NavbarSection";
-import NavbarItem from "@/components/ui/navigation/navbar/NavbarItem";
-import NavbarSpacer from "@/components/ui/navigation/navbar/NavbarSpacer";
-import { Avatar } from "@/components/ui/data-display/avatar";
+import { Avatar, Dropdown, DropdownButton, DropdownDivider, DropdownItem, DropdownLabel, DropdownMenu } from "@/components/ui/data-display";
+import { Navbar, NavbarDivider, NavbarSection, NavbarItem, NavbarSpacer, Link } from "@/components/ui/navigation";
 
 import Brand from "@/components/partials/global/Brand";
 
 import navItems from "./navItems";
-import Link from "@/components/ui/navigation/Link";
 
 export default function NavBar() {
 

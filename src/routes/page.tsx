@@ -3,8 +3,7 @@ import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/2
 
 import Button from '@/components/ui/actions/Button';
 import { Field, FieldGroup, Fieldset, Label } from '@/components/ui/data-input/fieldset';
-import { Input } from '@/components/ui/data-input/input';
-import Textarea from '@/components/ui/data-input/Textarea';
+import { Input, TextArea } from '@/components/ui/data-input';
 import Link from '@/components/ui/navigation/Link';
 
 import cn from "@/utilities/cn";
@@ -256,7 +255,7 @@ export default function IndexPage() {
                 </Field>
                 <Field className="sm:col-span-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea
+                  <TextArea
                     id="message"
                     name="message"
                     rows={4} />

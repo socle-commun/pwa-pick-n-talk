@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef } from "react";
 
 import cn from "@/utilities/cn";
 
-export function PaginationGap({
+export default function PaginationGap({
   className,
   children = <>&hellip;</>,
   ...props
