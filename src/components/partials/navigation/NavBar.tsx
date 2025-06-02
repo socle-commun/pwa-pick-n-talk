@@ -1,11 +1,9 @@
 import { UserIcon, Cog8ToothIcon, ShieldCheckIcon, LightBulbIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/20/solid";
 
 import { Avatar, Dropdown, DropdownButton, DropdownDivider, DropdownItem, DropdownLabel, DropdownMenu } from "@/components/ui/data-display";
-import { Navbar, NavbarDivider, NavbarSection, NavbarItem, NavbarSpacer, Link } from "@/components/ui/navigation";
+import { Navbar, NavbarSection, NavbarItem, NavbarSpacer, Link } from "@/components/ui/navigation";
 
 import Brand from "@/components/partials/global/Brand";
-
-import navItems from "./navItems";
 
 export default function NavBar() {
 
@@ -17,14 +15,6 @@ export default function NavBar() {
         </Link>
       </NavbarSection>
       <NavbarSpacer />
-      <NavbarSection className="max-lg:hidden">
-        {navItems.map(({ label, url }) => (
-          <NavbarItem key={label} href={url}>
-            {label}
-          </NavbarItem>
-        ))}
-      </NavbarSection>
-      <NavbarDivider className="max-lg:hidden" />
       <NavbarSection>
         <Dropdown>
           <DropdownButton as={NavbarItem}>
