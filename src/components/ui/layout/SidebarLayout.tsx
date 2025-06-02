@@ -7,7 +7,7 @@ import {
   CloseButton as HeadlessCloseButton,
 } from "@headlessui/react";
 
-import NavbarItem from "@/components/ui/navigation/navbar/NavbarItem"
+import { NavbarItem } from "@/components/ui/navigation"
 
 import cn from "@/utilities/cn";
 

@@ -5,9 +5,9 @@ import {
   Button as HeadlessButton
 } from "@headlessui/react";
 
-import TouchTarget from "@/components/ui/actions/TouchTarget";
-import Avatar from "@/components/ui/data-display/avatar/Avatar";
-import Link from "@/components/ui/navigation/Link";
+import { TouchTarget } from "@/components/ui/actions";
+import { Avatar } from "@/components/ui/data-display";
+import { Link } from "@/components/ui/navigation";
 
 import cn from "@/utilities/cn";
 

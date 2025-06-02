@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
-import TableContext from "@/components/ui/data-display/table/TableContext";
-import TableRowContext from "@/components/ui/data-display/table/TableRowContext";
+import { TableContext, TableRowContext } from "@/components/ui/data-display";
 
 import cn from "@/utilities/cn";
 

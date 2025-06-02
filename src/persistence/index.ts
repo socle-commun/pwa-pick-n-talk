@@ -30,7 +30,7 @@ export class PickNTalkDB extends Dexie {
     });
   }
 
-  // #region List
+  // #region Get
   private getPictogramsFromBinderUuid(binderUuid: string): PromiseExtended<Pictogram[]> {
     return this.pictograms.where({ binderUuid }).toArray();
   }
@@ -94,6 +94,28 @@ export class PickNTalkDB extends Dexie {
         });
       });
     });
+  }
+  // #endregion
+
+  // #region Create
+  public createBinder(binder: Binder) {
+    return this.binders.add(binder);
+  }
+
+  public createCategory(category: Category) {
+    return this.categories.add(category);
+  }
+
+  public createPictogram(pictogram: Pictogram) {
+    return this.pictograms.add(pictogram);
+  }
+
+  public createSetting(setting: Setting) {
+    return this.settings.add(setting);
+  }
+
+  public createTranslation(translation: Translation) {
+    return this.translations.add(translation);
   }
   // #endregion
 

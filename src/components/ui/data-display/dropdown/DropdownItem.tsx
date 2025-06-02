@@ -3,7 +3,7 @@ import {
   MenuItem as HeadlessMenuItem
 } from "@headlessui/react";
 
-import Link from "@/components/ui/navigation/Link";
+import { Link } from "@/components/ui/navigation";
 
 import cn from "@/utilities/cn";
 

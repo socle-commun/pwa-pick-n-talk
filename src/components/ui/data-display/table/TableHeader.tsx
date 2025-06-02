@@ -1,6 +1,6 @@
 import { useContext, type ComponentPropsWithoutRef } from "react";
 
-import TableContext from "@/components/ui/data-display/table/TableContext";
+import { TableContext } from "@/components/ui/data-display";
 
 import cn from "@/utilities/cn";
 
