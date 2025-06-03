@@ -7,7 +7,7 @@ interface ElementTranslation {
 }
 
 export async function populate() {
-  console.info("Populated database with initial data...");
+  console.info("Populate database with initial data...");
 
   // #region Binders
   await populateBinder([
@@ -64,7 +64,7 @@ export async function populate() {
 export async function populateBinder(translations: ElementTranslation[]) {
   const binderUuid = await db.createBinder({
     uuid: crypto.randomUUID(),
-    author: "SimplePicto"
+    author: "Socle Commun"
   });
 
   translations.forEach(async (translation) => {
