@@ -6,6 +6,24 @@ interface ElementTranslation {
   value: string;
 }
 
+async function populateBinder(translations: ElementTranslation[]) {
+  const binderUuid = await db.createBinder({
+    uuid: crypto.randomUUID(),
+    author: "Socle Commun"
+  });
+
+  translations.forEach(async (translation) => {
+    await db.createTranslation({
+      objectUuid: binderUuid,
+      language: translation.language,
+      key: translation.key,
+      value: translation.value
+    });
+  });
+
+  return binderUuid;
+}
+
 export async function populate() {
   console.info("Populate database with initial data...");
 
@@ -58,23 +76,4 @@ export async function populate() {
   // #endregion
 
   console.info("Database populated.");
-}
-
-
-export async function populateBinder(translations: ElementTranslation[]) {
-  const binderUuid = await db.createBinder({
-    uuid: crypto.randomUUID(),
-    author: "Socle Commun"
-  });
-
-  translations.forEach(async (translation) => {
-    await db.createTranslation({
-      objectUuid: binderUuid,
-      language: translation.language,
-      key: translation.key,
-      value: translation.value
-    });
-  });
-
-  return binderUuid;
 }
