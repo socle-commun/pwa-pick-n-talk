@@ -5,7 +5,6 @@ import Brand from "@/components/partials/global/Brand";
 import AuthManager from "@/components/partials/global/AuthManager";
 
 export default function NavBar() {
-
   return (
     <Navbar>
       <NavbarSection>

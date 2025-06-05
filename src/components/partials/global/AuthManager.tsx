@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 
-import { Cog8ToothIcon, ShieldCheckIcon, LightBulbIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/20/solid";
+import { UserIcon, Cog8ToothIcon, ShieldCheckIcon, LightBulbIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/20/solid";
 
 import { Button } from "@/components/ui/actions";
 import { Avatar, Dropdown, DropdownButton, DropdownDivider, DropdownItem, DropdownLabel, DropdownMenu } from "@/components/ui/data-display";
@@ -22,16 +22,20 @@ export default function AuthManager() {
         <Avatar initials={getInitials(user.name ? user.name : "")} />
       </DropdownButton>
       <DropdownMenu className="min-w-64" anchor="bottom end">
+        <DropdownItem href="/profile">
+          <UserIcon />
+          <DropdownLabel>Profile</DropdownLabel>
+        </DropdownItem>
         <DropdownItem href="/settings">
           <Cog8ToothIcon />
           <DropdownLabel>Settings</DropdownLabel>
         </DropdownItem>
         <DropdownDivider />
-        <DropdownItem href="/privacy-policy">
+        <DropdownItem href="/privacy">
           <ShieldCheckIcon />
           <DropdownLabel>Privacy policy</DropdownLabel>
         </DropdownItem>
-        <DropdownItem href="/share-feedback">
+        <DropdownItem href="/feedback">
           <LightBulbIcon />
           <DropdownLabel>Share feedback</DropdownLabel>
         </DropdownItem>

@@ -8,15 +8,17 @@ import Layout from "@/routes/layout";
 import CatchAllPage from "@/routes/error";
 import IndexPage from "@/routes/page";
 
+import ForgotPasswordPage from "@/routes/auth/forgot-password/page";
 import SignInPage from "@/routes/auth/sign-in/page";
 import SignUpPage from "@/routes/auth/sign-up/page";
 
-import BinderLayout from "@/routes/[uuid]/layout";
+import FeedbackPage from "@/routes/feedback/page";
+import PrivacyPage from "@/routes/privacy/page";
+import ProfilePage from "@/routes/profile/page";
+import SettingsPage from "@/routes/settings/page";
+
 import BinderPage from "@/routes/[uuid]/page";
 import BinderEditPage from "@/routes/[uuid]/edit/page";
-
-import SettingsLayout from "@/routes/settings/layout";
-import SettingsPage from "@/routes/settings/page";
 
 import toggleDarkClass from "@/utilities/toggleDarkClass";
 
@@ -33,15 +35,17 @@ function App() {
             <Route index element={<IndexPage />} />
 
             <Route path="auth">
+              <Route path="forgot-password" element={<ForgotPasswordPage />} />
               <Route path="sign-in" element={<SignInPage />} />
               <Route path="sign-up" element={<SignUpPage />} />
             </Route>
 
-            <Route path="settings" element={<SettingsLayout />}>
-              <Route index element={<SettingsPage />} />
-            </Route>
+            <Route path="feedback" element={<FeedbackPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="settings" element={<SettingsPage />} />
 
-            <Route path=":uuid" element={<BinderLayout />}>
+            <Route path=":uuid">
               <Route index element={<BinderPage />} />
               <Route path="edit" element={<BinderEditPage />} />
             </Route>
