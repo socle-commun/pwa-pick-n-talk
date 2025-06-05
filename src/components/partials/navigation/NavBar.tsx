@@ -15,11 +15,7 @@ export default function NavBar() {
       </NavbarSection>
       <NavbarSpacer />
       <NavbarSection>
-        <AuthManager user={{
-          uuid: crypto.randomUUID(),
-          name: "Michel Montejuado",
-          email: "michel.montejuado@example.com"
-        }} />
+        <AuthManager />
       </NavbarSection>
     </Navbar>
   );
