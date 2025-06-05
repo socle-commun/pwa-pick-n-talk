@@ -1,10 +1,14 @@
+import { type MouseEvent } from "react";
+
 import { useTranslation } from "react-i18next";
+// import { useNavigate } from "react-router";
+import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
 
 import { Divider } from "@/components/ui/layout";
-import { Link } from "@/components/ui/navigation";
 import { Button } from "@/components/ui/actions";
 
 import { type TranslatedBinder } from "@/persistence/entities/translated/TranslatedBinder";
+import { db } from "@/persistence";
 
 import cn from "@/utilities/cn";
 
@@ -15,24 +19,29 @@ export default function BinderCard({ binder, className, ...props }: {
   const { t } = useTranslation();
 
   return (
-    <Link href={binder.uuid} {...props} className={cn(className, "w-content h-content flex flex-col gap-2 p-4 bg-zinc-300 dark:bg-zinc-600 overflow-hidden rounded-md")}>
-      <div className={cn("flex flex-col md:flex-row items-baseline gap-1")}>
-        <div className={cn("text-lg font-bold")}>{binder.title}</div>
-        <div className={cn("text-sm italic pl-2 text-zinc-600 dark:text-zinc-500")}>{t("pages.settings.by")} {binder.author}</div>
-      </div>
-      <div className={cn("text-zinc-600 dark:text-zinc-500 mb-2")}>{binder.description}</div>
-      <Divider className={cn("border-zinc-600 dark:border-zinc-400 -mx-4")} />
-      <div className={cn("flex justify-end gap-2 -mx-4 px-2")}>
-        <Link href={`${binder.uuid}/edit`} className={cn("w-11 flex items-center justify-center gap-2 p-2 text-sm md:text-base bg-sky-500 text-sky-50 rounded-md cursor-pointer hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150")}>
-          <span className={cn("icon")}>edit</span>
-          <span className={cn("sr-only")}>{t("pages.settings.edit")}</span>
-        </Link>
+    <div {...props} className={cn(className, "w-content h-content flex flex-col bg-zinc-200 dark:bg-zinc-800 overflow-hidden rounded-md")}>
+      <Button href={`/${binder.uuid}`} plain className={cn("flex flex-col gap-1 bg-transparent rounded-b-none")}>
+        <div className={cn("text-2xl font-bold")}>{binder.title}</div>
+        <div className={cn("pl-1 text-sm italic text-zinc-700 dark:text-zinc-300")}>{t("by")} {binder.author}</div>
+        <div className={cn("text-lg text-zinc-800 dark:text-zinc-200 mb-2")}>{binder.description}</div>
+      </Button>
+      <Divider className={cn("border-zinc-600 dark:border-zinc-400")} />
+      <div className={cn("flex justify-end gap-1 px-2 py-1")}>
+        <Button href={`${binder.uuid}/edit`} color="sky" className={cn("hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150")}>
+          <PencilIcon className={cn("size-4")} />
+          <span className={cn("sr-only")}>{t("edit")}</span>
+        </Button>
         <Button
+          color="red"
+          onClick={(event: MouseEvent<HTMLButtonElement>) => {
+            event.preventDefault();
+            db.deleteBinder(binder.uuid);
+          }}
           className={cn("hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150")}>
-          <span className={cn("icon")}>delete</span>
-          <span className={cn("sr-only")}>{t("pages.settings.delete")}</span>
+          <TrashIcon className={cn("size-4")} />
+          <span className={cn("sr-only")}>{t("delete")}</span>
         </Button>
       </div>
-    </Link>
+    </div>
   )
 }

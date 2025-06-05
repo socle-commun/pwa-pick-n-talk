@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Pick'n'Talk documentation"
-  text: "The Pick'n'Talk technical documentation project"
+  name: Pick'n'Talk documentation
+  text: The Pick'n'Talk technical documentation
   tagline: My great project tagline
 
 features:

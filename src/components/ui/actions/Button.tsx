@@ -47,7 +47,7 @@ const styles = {
   ],
   outline: [
     // Base
-    "border-zinc-950/10 text-zinc-950 data-active:bg-zinc-950/2.5 data-hover:bg-zinc-950/2.5",
+    "border-2 border-zinc-950/10 text-zinc-950 data-active:bg-zinc-950/2.5 data-hover:bg-zinc-950/2.5",
     // Dark mode
     "dark:border-white/15 dark:text-white dark:[--btn-bg:transparent] dark:data-active:bg-white/5 dark:data-hover:bg-white/5",
     // Icon
@@ -177,9 +177,9 @@ export default forwardRef(function Button(
   ref: ForwardedRef<HTMLElement>
 ) {
   const classes = cn(
-    className,
     styles.base,
-    outline ? styles.outline : plain ? styles.plain : cn(styles.solid, styles.colors[color ?? "dark/zinc"])
+    className,
+    outline ? styles.outline : plain ? styles.plain : cn(styles.solid, styles.colors[color ?? "dark/zinc"]),
   )
 
   return "href" in props ? (
@@ -187,7 +187,7 @@ export default forwardRef(function Button(
       <TouchTarget>{children}</TouchTarget>
     </Link>
   ) : (
-    <HeadlessButton {...props} className={cn(classes, "cursor-default")} ref={ref as ForwardedRef<HTMLButtonElement>}>
+    <HeadlessButton {...props} className={cn(classes, "cursor-pointer")} ref={ref as ForwardedRef<HTMLButtonElement>}>
       <TouchTarget>{children}</TouchTarget>
     </HeadlessButton>
   )

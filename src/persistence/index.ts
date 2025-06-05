@@ -5,6 +5,7 @@ import { type Category } from "@/persistence/entities/data/Category";
 import { type Pictogram } from "@/persistence/entities/data/Pictogram";
 import { type Setting } from "@/persistence/entities/data/Setting";
 import { type Translation } from "@/persistence/entities/data/Translation";
+import type { User } from "@/persistence/entities/data/User";
 
 import { type TranslatedBinder } from "@/persistence/entities/translated/TranslatedBinder";
 import { type TranslatedCategory } from "@/persistence/entities/translated/TranslatedCategory";
@@ -18,6 +19,7 @@ export class PickNTalkDB extends Dexie {
   pictograms!: Table<Pictogram, string>;
   settings!: Table<Setting, string>;
   translations!: Table<Translation, number>;
+  users!: Table<User, string>;
 
   constructor() {
     super("PickNTalkDB");
@@ -28,9 +30,23 @@ export class PickNTalkDB extends Dexie {
       settings: "&key",
       translations: "++id, &[objectUuid+language+key]",
     });
+    this.version(2).stores({
+      users: "&uuid",
+    });
+    this.version(3).stores({
+      users: "&uuid, email",
+    });
   }
 
   // #region Get
+  public getUser(uuid: string): PromiseExtended<User | undefined> {
+    return this.users.get(uuid);
+  }
+
+  public getUserByEmail(email: string): PromiseExtended<User | undefined> {
+    return this.users.where({ email }).first();
+  }
+
   private getPictogramsFromBinderUuid(binderUuid: string): PromiseExtended<Pictogram[]> {
     return this.pictograms.where({ binderUuid }).toArray();
   }
@@ -117,6 +133,10 @@ export class PickNTalkDB extends Dexie {
   public createTranslation(translation: Translation) {
     return this.translations.add(translation);
   }
+
+  public createUser(user: User): PromiseExtended<string> {
+    return this.users.add(user);
+  }
   // #endregion
 
   // #region Update
@@ -140,6 +160,30 @@ export class PickNTalkDB extends Dexie {
       this.categories.update(category.uuid, category);
       this.translations.where({ objectUuid: category.uuid, language, key: "name" }).modify({ value: category.name });
     });
+  }
+  // #endregion
+
+  // #region Delete
+  public deleteBinder(binderUuid: string) {
+    return this.transaction("rw", this.pictograms, this.binders, () => {
+      this.pictograms.where({ binderUuid }).delete();
+      this.binders.delete(binderUuid);
+    });
+  }
+
+  public deleteCategory(uuid: string) {
+    return this.transaction("rw", this.pictograms, this.categories, () => {
+      this.pictograms.where({ categoryUuid: uuid }).delete();
+      this.categories.delete(uuid);
+    });
+  }
+
+  public deletePictogram(uuid: string) {
+    this.pictograms.delete(uuid);
+  }
+
+  public deleteUser(uuid: string) {
+    this.users.delete(uuid);
   }
   // #endregion
 }
