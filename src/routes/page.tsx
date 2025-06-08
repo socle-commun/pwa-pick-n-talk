@@ -1,5 +1,5 @@
 import { useLiveQuery } from "dexie-react-hooks";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import BinderCard from "@/components/partials/binders/BinderCard";
 import EmptyBindersList from "@/components/partials/binders/EmptyBindersList";

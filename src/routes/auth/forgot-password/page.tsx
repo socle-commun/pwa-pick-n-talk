@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 
-import Logo from "@/components/partials/global/Logo";
-
 import { Button } from "@/components/ui/actions";
 import { Field, Fieldset, Input, Label } from "@/components/ui/data-input";
 import { Link } from "@/components/ui/navigation";
 
-import useUserActions from "@/state/actions/useUserActions";
+import Logo from "@/components/partials/global/Logo";
+
+import useUserActions from "@/state/actions/_useUserActions";
 
 import cn from "@/utilities/cn";
 

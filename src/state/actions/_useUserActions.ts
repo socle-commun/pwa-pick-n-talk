@@ -25,17 +25,17 @@ export default function useUserActions() {
         throw new Error("Invalid password");
       }
 
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
-      navigate('/');
+      navigate("/");
     });
   }
 
   function logout() {
     // remove user from local storage, set auth state to null and redirect to login page
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     setUser(null);
-    navigate('/');
+    navigate("/");
   }
 
   async function register(email: string, password: string) {
@@ -53,9 +53,9 @@ export default function useUserActions() {
           throw new Error("User not found after registration");
         }
 
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
-        navigate('/');
+        navigate("/");
       });
     });
   }

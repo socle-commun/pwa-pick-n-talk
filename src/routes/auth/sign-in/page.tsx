@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/actions";
 import { Field, Fieldset, Input, Label } from "@/components/ui/data-input";
 import { Link } from "@/components/ui/navigation";
 
-import useUserActions from "@/state/actions/useUserActions";
+import useUserActions from "@/state/actions/_useUserActions";
 
 import cn from "@/utilities/cn";
 

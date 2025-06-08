@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/actions";
 import { Avatar, Dropdown, DropdownButton, DropdownDivider, DropdownItem, DropdownLabel, DropdownMenu } from "@/components/ui/data-display";
 import { NavbarItem } from "@/components/ui/navigation";
 
-import useUserActions from "@/state/actions/useUserActions";
+import useUserActions from "@/state/actions/_useUserActions";
 import { userAtom } from "@/state/atoms";
 
 import cn from "@/utilities/cn";

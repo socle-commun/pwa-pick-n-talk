@@ -15,8 +15,8 @@ export default defineConfig({
           "react": ["react", "react-dom"],
           "react-router": ["react-router"],
           "cn": ["clsx", "tailwind-merge"],
-					"dexie": ["dexie", "dexie-react-hooks"],
-					"i18next": ["i18next", "react-i18next", "i18next-http-backend", "i18next-browser-languagedetector"],
+          "dexie": ["dexie", "dexie-react-hooks"],
+          "i18next": ["i18next", "react-i18next", "i18next-http-backend", "i18next-browser-languagedetector"],
           "framer-motion": ["framer-motion"],
           "headlessui": ["@headlessui/react"],
           "icons": ["@heroicons/react"]
@@ -35,7 +35,7 @@ export default defineConfig({
     }
   },
   define: {
-    '__APP_VERSION__': JSON.stringify(process.env.npm_package_version),
+    "__APP_VERSION__": JSON.stringify(process.env.npm_package_version),
   },
   logLevel: "info",
   plugins: [react(), tailwindcss()],
