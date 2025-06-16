@@ -17,8 +17,9 @@ import PrivacyPage from "@/routes/privacy/page";
 import ProfilePage from "@/routes/profile/page";
 import SettingsPage from "@/routes/settings/page";
 
-import BinderPage from "@/routes/[uuid]/page";
-import BinderEditPage from "@/routes/[uuid]/edit/page";
+import BindersPage from "@/routes/binders/page";
+import BinderPage from "@/routes/binders/[uuid]/page";
+import BinderEditPage from "@/routes/binders/[uuid]/edit/page";
 
 import toggleDarkClass from "@/utilities/toggleDarkClass";
 
@@ -45,9 +46,12 @@ function App() {
             <Route path="profile" element={<ProfilePage />} />
             <Route path="settings" element={<SettingsPage />} />
 
-            <Route path=":uuid">
-              <Route index element={<BinderPage />} />
-              <Route path="edit" element={<BinderEditPage />} />
+            <Route path="binders">
+              <Route index element={<BindersPage />} />
+              <Route path=":uuid">
+                <Route index element={<BinderPage />} />
+                <Route path="edit" element={<BinderEditPage />} />
+              </Route>
             </Route>
 
             <Route path="*" element={<CatchAllPage />} />

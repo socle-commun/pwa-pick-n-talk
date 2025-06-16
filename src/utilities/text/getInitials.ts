@@ -1,4 +1,4 @@
-export function getInitials(name: string): string {
+export default function getInitials(name: string): string {
   const parts = name.split(" ");
   let initials = "";
   for (let i = 0; i < parts.length; i++) {

@@ -10,7 +10,7 @@ import useUserActions from "@/state/actions/_useUserActions";
 import { userAtom } from "@/state/atoms";
 
 import cn from "@/utilities/cn";
-import { getInitials } from "@/utilities/text";
+import getInitials from "@/utilities/text/getInitials";
 
 export default function AuthManager() {
   const userActions = useUserActions();
