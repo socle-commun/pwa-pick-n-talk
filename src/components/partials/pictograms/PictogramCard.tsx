@@ -94,7 +94,6 @@ export default function PictogramCard({
             isSpeaking ? "opacity-50 cursor-not-allowed" : ""
           )}
           color="blue"
-          plain
         >
           <SpeakerWaveIcon className={cn("size-5")} />
           <span className={cn("sr-only")}>
