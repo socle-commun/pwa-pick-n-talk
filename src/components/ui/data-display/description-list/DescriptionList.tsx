@@ -2,7 +2,10 @@ import { type ComponentPropsWithoutRef } from "react";
 
 import cn from "@/utils/cn";
 
-export default function DescriptionList({ className, ...props }: ComponentPropsWithoutRef<"dl">) {
+export default function DescriptionList({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"dl">) {
   return (
     <dl
       {...props}

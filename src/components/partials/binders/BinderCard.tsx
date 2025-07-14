@@ -12,22 +12,48 @@ import { db } from "@/db";
 
 import cn from "@/utils/cn";
 
-export default function BinderCard({ binder, className, ...props }: {
+export default function BinderCard({
+  binder,
+  className,
+  ...props
+}: {
   binder: TranslatedBinder;
   className?: string;
 }) {
   const { t } = useTranslation();
 
   return (
-    <div {...props} className={cn(className, "w-content h-content flex flex-col bg-zinc-200 dark:bg-zinc-800 overflow-hidden rounded-md")}>
-      <Button href={`/${binder.uuid}`} plain className={cn("flex flex-col gap-1 bg-transparent rounded-b-none")}>
+    <div
+      {...props}
+      className={cn(
+        className,
+        "w-content h-content flex flex-col bg-zinc-200 dark:bg-zinc-800 overflow-hidden rounded-md"
+      )}
+    >
+      <Button
+        href={`/${binder.uuid}`}
+        plain
+        className={cn("flex flex-col gap-1 bg-transparent rounded-b-none")}
+      >
         <div className={cn("text-2xl font-bold")}>{binder.title}</div>
-        <div className={cn("pl-1 text-sm italic text-zinc-700 dark:text-zinc-300")}>{t("by")} {binder.author}</div>
-        <div className={cn("text-lg text-zinc-800 dark:text-zinc-200 mb-2")}>{binder.description}</div>
+        <div
+          className={cn("pl-1 text-sm italic text-zinc-700 dark:text-zinc-300")}
+        >
+          {t("by")} {binder.author}
+        </div>
+        <div className={cn("text-lg text-zinc-800 dark:text-zinc-200 mb-2")}>
+          {binder.description}
+        </div>
       </Button>
       <Divider className={cn("border-zinc-600 dark:border-zinc-400")} />
       <div className={cn("flex justify-end gap-1 px-2 py-1")}>
-        <Button href={`${binder.uuid}/edit`} color="sky" className={cn("hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150")}>
+        <Button
+          href={`${binder.uuid}/edit`}
+          color="sky"
+          className={cn(
+            "hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150"
+          )}
+        >
           <PencilIcon className={cn("size-4")} />
           <span className={cn("sr-only")}>{t("edit")}</span>
         </Button>
@@ -37,11 +63,14 @@ export default function BinderCard({ binder, className, ...props }: {
             event.preventDefault();
             db.deleteBinder(binder.uuid);
           }}
-          className={cn("hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150")}>
+          className={cn(
+            "hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150"
+          )}
+        >
           <TrashIcon className={cn("size-4")} />
           <span className={cn("sr-only")}>{t("delete")}</span>
         </Button>
       </div>
     </div>
-  )
+  );
 }

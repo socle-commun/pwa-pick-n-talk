@@ -1,9 +1,23 @@
 import { useAtom } from "jotai";
 
-import { UserIcon, Cog8ToothIcon, ShieldCheckIcon, LightBulbIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/20/solid";
+import {
+  UserIcon,
+  Cog8ToothIcon,
+  ShieldCheckIcon,
+  LightBulbIcon,
+  ArrowRightStartOnRectangleIcon,
+} from "@heroicons/react/20/solid";
 
 import { Button } from "@/components/ui/actions";
-import { Avatar, Dropdown, DropdownButton, DropdownDivider, DropdownItem, DropdownLabel, DropdownMenu } from "@/components/ui/data-display";
+import {
+  Avatar,
+  Dropdown,
+  DropdownButton,
+  DropdownDivider,
+  DropdownItem,
+  DropdownLabel,
+  DropdownMenu,
+} from "@/components/ui/data-display";
 import { NavbarItem } from "@/components/ui/navigation";
 
 import useUserActions from "@/utils/state/actions/_useUserActions";
@@ -40,9 +54,11 @@ export default function AuthManager() {
           <DropdownLabel>Share feedback</DropdownLabel>
         </DropdownItem>
         <DropdownDivider />
-        <DropdownItem onClick={() => {
-          userActions.logout();
-        }}>
+        <DropdownItem
+          onClick={() => {
+            userActions.logout();
+          }}
+        >
           <ArrowRightStartOnRectangleIcon />
           <DropdownLabel>Sign out</DropdownLabel>
         </DropdownItem>
@@ -51,7 +67,9 @@ export default function AuthManager() {
   ) : (
     <div className={cn("flex items-center gap-2 max-lg:hidden")}>
       <Button href="/auth/sign-up">Sign Up</Button>
-      <Button href="/auth/sign-in" outline>Sign In</Button>
+      <Button href="/auth/sign-in" outline>
+        Sign In
+      </Button>
     </div>
-  )
+  );
 }

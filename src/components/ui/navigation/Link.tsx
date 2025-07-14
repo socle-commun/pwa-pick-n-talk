@@ -1,4 +1,8 @@
-import { forwardRef, type ComponentPropsWithoutRef, type ForwardedRef } from "react";
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ForwardedRef,
+} from "react";
 
 import { NavLink } from "react-router";
 
@@ -12,5 +16,5 @@ export default forwardRef(function Link(
     <DataInteractive>
       <NavLink {...props} to={props.href} ref={ref} />
     </DataInteractive>
-  )
+  );
 });

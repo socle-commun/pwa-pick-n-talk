@@ -1,5 +1,5 @@
 export interface Binder {
-	uuid: string;
+  uuid: string;
 
-	author: string;
+  author: string;
 }

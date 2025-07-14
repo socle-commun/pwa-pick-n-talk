@@ -21,5 +21,5 @@ export default function RadioGroup({
         "has-data-[slot=description]:space-y-6 has-data-[slot=description]:**:data-[slot=label]:font-medium"
       )}
     />
-  )
+  );
 }

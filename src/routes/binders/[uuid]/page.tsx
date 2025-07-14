@@ -10,18 +10,15 @@ export default function BinderPage() {
   const { uuid } = useParams<{ uuid: string }>();
   const { i18n } = useTranslation();
 
-  const binder = useLiveQuery(
-    async () => {
-      if (!uuid) return null;
-      try {
-        return await db.getTranslatedBinder(uuid, i18n.language);
-      } catch (error) {
-        console.error("Failed to load binder:", error);
-        return null;
-      }
-    },
-    [uuid, i18n.language]
-  );
+  const binder = useLiveQuery(async () => {
+    if (!uuid) return null;
+    try {
+      return await db.getTranslatedBinder(uuid, i18n.language);
+    } catch (error) {
+      console.error("Failed to load binder:", error);
+      return null;
+    }
+  }, [uuid, i18n.language]);
 
   if (!uuid) {
     return (
@@ -46,8 +43,14 @@ export default function BinderPage() {
   return (
     <div className={cn("min-h-full")}>
       {/* Binder Header */}
-      <div className={cn("bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 p-6")}>
-        <h1 className={cn("text-3xl font-bold text-zinc-900 dark:text-zinc-100")}>
+      <div
+        className={cn(
+          "bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 p-6"
+        )}
+      >
+        <h1
+          className={cn("text-3xl font-bold text-zinc-900 dark:text-zinc-100")}
+        >
           {binder.title}
         </h1>
         {binder.description && (

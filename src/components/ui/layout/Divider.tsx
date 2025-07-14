@@ -18,5 +18,5 @@ export default function Divider({
         !soft && "border-zinc-950/10 dark:border-white/10"
       )}
     />
-  )
+  );
 }

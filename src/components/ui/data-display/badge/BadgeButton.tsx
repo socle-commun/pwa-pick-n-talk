@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 
 import {
   type ButtonProps as HeadlessButtonProps,
-  Button as HeadlessButton
+  Button as HeadlessButton,
 } from "@headlessui/react";
 
 import { TouchTarget } from "@/components/ui/actions";
@@ -41,7 +41,7 @@ const colors = {
   zinc: "bg-zinc-600/10 text-zinc-700 group-data-hover:bg-zinc-600/20 dark:bg-white/5 dark:text-zinc-400 dark:group-data-hover:bg-white/10",
 };
 
-type BadgeProps = { color?: keyof typeof colors }
+type BadgeProps = { color?: keyof typeof colors };
 
 export default forwardRef(function BadgeButton(
   {
@@ -50,19 +50,23 @@ export default forwardRef(function BadgeButton(
     children,
     ...props
   }: BadgeProps & { className?: string; children: React.ReactNode } & (
-    | Omit<HeadlessButtonProps, "as" | "className">
-    | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
-  ),
+      | Omit<HeadlessButtonProps, "as" | "className">
+      | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
+    ),
   ref: React.ForwardedRef<HTMLElement>
 ) {
   const classes = cn(
     className,
     "group relative inline-flex rounded-md focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500",
     colors[color]
-  )
+  );
 
   return "href" in props ? (
-    <Link {...props} className={classes} ref={ref as React.ForwardedRef<HTMLAnchorElement>}>
+    <Link
+      {...props}
+      className={classes}
+      ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+    >
       <TouchTarget>
         <Badge color={color}>{children}</Badge>
       </TouchTarget>
@@ -73,5 +77,5 @@ export default forwardRef(function BadgeButton(
         <Badge color={color}>{children}</Badge>
       </TouchTarget>
     </HeadlessButton>
-  )
-})
+  );
+});

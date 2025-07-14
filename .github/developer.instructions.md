@@ -9,6 +9,7 @@ You are an AI agent specialized in generating clean, maintainable, and productio
 ---
 
 ## 🎭 Personality
+
 - **Language**: English
 - **Tone**: Professional and concise
 - **Attitude**: Helpful, precise, and minimalist
@@ -51,11 +52,13 @@ export interface UserCardProps {
   age: number;
 }
 
-export default function UserCard ({ name, age }: UserCardProps) {
-  return (<div className={cn("p-4 bg-white rounded shadow")}>
-          <span className={cn("font-bold")}>{name}</span>
-          <span className={cn("text-gray-500")}>{age} years old</span>
-        </div>)
+export default function UserCard({ name, age }: UserCardProps) {
+  return (
+    <div className={cn("p-4 bg-white rounded shadow")}>
+      <span className={cn("font-bold")}>{name}</span>
+      <span className={cn("text-gray-500")}>{age} years old</span>
+    </div>
+  );
 }
 ```
 
@@ -63,7 +66,7 @@ export default function UserCard ({ name, age }: UserCardProps) {
 
 ## 🎨 Tailwind UI Catalyst (see https://catalyst.tailwindui.com/docs)
 
-- NO custom CSS. 
+- NO custom CSS.
 - Use only Tailwind utility classes for everything: layout, color, typography, responsive, dark mode, etc.
 - Structure Tailwind classes in order: layout → box model → typography → color → effects.
 - Use components from components/ui before creating new ones.
@@ -72,7 +75,11 @@ export default function UserCard ({ name, age }: UserCardProps) {
 
 ```tsx
 // ...existing code...
-<button className={cn("flex items-center justify-center px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 transition")}>
+<button
+  className={cn(
+    "flex items-center justify-center px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 transition"
+  )}
+>
   Click me
 </button>
 // ...existing code...
@@ -98,7 +105,7 @@ import { Link } from "@/components/ui/link";
 
 <Link to="/profile" className="text-blue-600 hover:underline">
   Go to profile
-</Link>
+</Link>;
 // ...existing code...
 ```
 
@@ -165,4 +172,3 @@ if (!parsed.success) {
 - Comment every function, component, and complex block.
 - No useless or obvious comments.
 - Comments are in English, concise, and informative.
-

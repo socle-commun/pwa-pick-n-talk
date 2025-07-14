@@ -2,21 +2,29 @@ import { forwardRef, type ForwardedRef } from "react";
 
 import {
   type InputProps as HeadlessInputProps,
-  Input as HeadlessInput
+  Input as HeadlessInput,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
 
-const dateTypes = ["date", "datetime-local", "month", "time", "week"]
-type DateType = (typeof dateTypes)[number]
+const dateTypes = ["date", "datetime-local", "month", "time", "week"];
+type DateType = (typeof dateTypes)[number];
 
 export default forwardRef(function Input(
   {
     className,
     ...props
   }: {
-    className?: string
-    type?: "email" | "number" | "password" | "search" | "tel" | "text" | "url" | DateType
+    className?: string;
+    type?:
+      | "email"
+      | "number"
+      | "password"
+      | "search"
+      | "tel"
+      | "text"
+      | "url"
+      | DateType;
   } & Omit<HeadlessInputProps, "as" | "className">,
   ref: ForwardedRef<HTMLInputElement>
 ) {
@@ -78,5 +86,5 @@ export default forwardRef(function Input(
         ])}
       />
     </span>
-  )
-})
+  );
+});

@@ -1,6 +1,9 @@
 import cn from "@/utils/cn";
 
-export default function Code({ className, ...props }: React.ComponentPropsWithoutRef<"code">) {
+export default function Code({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<"code">) {
   return (
     <code
       className={cn(
@@ -9,5 +12,5 @@ export default function Code({ className, ...props }: React.ComponentPropsWithou
       )}
       {...props}
     />
-  )
+  );
 }

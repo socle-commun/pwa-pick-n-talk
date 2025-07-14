@@ -19,7 +19,8 @@ export default function SignInPage() {
   const userActions = useUserActions();
   const { register, handleSubmit } = useForm<SignInFormFields>({});
 
-  const onSubmit = ({ email, password }: SignInFormFields) => userActions.login(email, password);
+  const onSubmit = ({ email, password }: SignInFormFields) =>
+    userActions.login(email, password);
 
   return (
     <>
@@ -38,11 +39,15 @@ export default function SignInPage() {
                 <Field className={cn("mb-2")}>
                   <Label htmlFor="email">Email</Label>
                   <Input
-                    {...register("email", { required: true, pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/ })}
+                    {...register("email", {
+                      required: true,
+                      pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                    })}
                     id="email"
                     type="email"
                     required
-                    autoComplete="email" />
+                    autoComplete="email"
+                  />
                 </Field>
 
                 <Field className={cn("mb-2")}>
@@ -52,7 +57,8 @@ export default function SignInPage() {
                     id="password"
                     type="password"
                     required
-                    autoComplete="current-password" />
+                    autoComplete="current-password"
+                  />
                 </Field>
 
                 <div className="flex items-center justify-end">
@@ -68,5 +74,5 @@ export default function SignInPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

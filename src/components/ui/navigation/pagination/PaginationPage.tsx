@@ -24,5 +24,5 @@ export default function PaginationPage({
     >
       <span className="-mx-0.5">{children}</span>
     </Button>
-  )
+  );
 }

@@ -1,5 +1,9 @@
-
-import { Navbar, NavbarSection, NavbarSpacer, Link } from "@/components/ui/navigation";
+import {
+  Navbar,
+  NavbarSection,
+  NavbarSpacer,
+  Link,
+} from "@/components/ui/navigation";
 
 import Brand from "@/components/partials/global/Brand";
 import AuthManager from "@/components/partials/global/AuthManager";

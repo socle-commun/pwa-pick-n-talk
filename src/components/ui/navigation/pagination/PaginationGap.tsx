@@ -11,9 +11,12 @@ export default function PaginationGap({
     <span
       aria-hidden="true"
       {...props}
-      className={cn(className, "w-9 text-center text-sm/6 font-semibold text-zinc-950 select-none dark:text-white")}
+      className={cn(
+        className,
+        "w-9 text-center text-sm/6 font-semibold text-zinc-950 select-none dark:text-white"
+      )}
     >
       {children}
     </span>
-  )
+  );
 }

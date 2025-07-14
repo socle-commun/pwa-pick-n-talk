@@ -17,7 +17,8 @@ export default function SignUpPage() {
   const userActions = useUserActions();
   const { register, handleSubmit } = useForm<SignUpFormFields>({});
 
-  const onSubmit = ({ email, password }: SignUpFormFields) => userActions.register(email, password);
+  const onSubmit = ({ email, password }: SignUpFormFields) =>
+    userActions.register(email, password);
 
   return (
     <>
@@ -36,11 +37,15 @@ export default function SignUpPage() {
                 <Field className={cn("mb-2")}>
                   <Label htmlFor="email">Email</Label>
                   <Input
-                    {...register("email", { required: true, pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/ })}
+                    {...register("email", {
+                      required: true,
+                      pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                    })}
                     id="email"
                     type="email"
                     required
-                    autoComplete="email" />
+                    autoComplete="email"
+                  />
                 </Field>
 
                 <Field className={cn("mb-2")}>
@@ -50,7 +55,8 @@ export default function SignUpPage() {
                     id="password"
                     type="password"
                     required
-                    autoComplete="current-password" />
+                    autoComplete="current-password"
+                  />
                 </Field>
               </Fieldset>
 
@@ -62,5 +68,5 @@ export default function SignUpPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

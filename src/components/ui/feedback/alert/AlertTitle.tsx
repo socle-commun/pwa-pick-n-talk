@@ -5,11 +5,13 @@ import {
 
 import cn from "@/utils/cn";
 
-
 export default function AlertTitle({
   className,
   ...props
-}: { className?: string } & Omit<HeadlessDialogTitleProps, "as" | "className">) {
+}: { className?: string } & Omit<
+  HeadlessDialogTitleProps,
+  "as" | "className"
+>) {
   return (
     <HeadlessDialogTitle
       {...props}
@@ -18,5 +20,5 @@ export default function AlertTitle({
         "text-center text-base/6 font-semibold text-balance text-zinc-950 sm:text-left sm:text-sm/6 sm:text-wrap dark:text-white"
       )}
     />
-  )
+  );
 }

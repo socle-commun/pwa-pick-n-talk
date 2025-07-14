@@ -20,7 +20,7 @@ export default function useUserActions() {
         console.error("User not found");
         throw new Error("User not found");
       }
-      if (!user.hash || user.hash && !compareSync(password, user.hash)) {
+      if (!user.hash || (user.hash && !compareSync(password, user.hash))) {
         console.error("Invalid password");
         throw new Error("Invalid password");
       }
@@ -39,30 +39,32 @@ export default function useUserActions() {
   }
 
   async function register(email: string, password: string) {
-    if (!email || !password || await db.getUserByEmail(email)) {
+    if (!email || !password || (await db.getUserByEmail(email))) {
       throw new Error("Credentials invalid or user already exists");
     }
 
-    return db.createUser({
-      uuid: crypto.randomUUID(),
-      email,
-      hash: hashSync(password)
-    }).then((uuid) => {
-      db.getUser(uuid).then((user) => {
-        if (!user) {
-          throw new Error("User not found after registration");
-        }
+    return db
+      .createUser({
+        uuid: crypto.randomUUID(),
+        email,
+        hash: hashSync(password),
+      })
+      .then((uuid) => {
+        db.getUser(uuid).then((user) => {
+          if (!user) {
+            throw new Error("User not found after registration");
+          }
 
-        localStorage.setItem("user", JSON.stringify(user));
-        setUser(user);
-        navigate("/");
+          localStorage.setItem("user", JSON.stringify(user));
+          setUser(user);
+          navigate("/");
+        });
       });
-    });
   }
 
   return {
     login,
     logout,
-    register
-  }
+    register,
+  };
 }

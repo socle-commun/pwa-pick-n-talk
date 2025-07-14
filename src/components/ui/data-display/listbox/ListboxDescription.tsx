@@ -2,7 +2,11 @@ import { type ComponentPropsWithoutRef } from "react";
 
 import cn from "@/utils/cn";
 
-export default function ListboxDescription({ className, children, ...props }: ComponentPropsWithoutRef<"span">) {
+export default function ListboxDescription({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<"span">) {
   return (
     <span
       {...props}
@@ -13,5 +17,5 @@ export default function ListboxDescription({ className, children, ...props }: Co
     >
       <span className="flex-1 truncate">{children}</span>
     </span>
-  )
+  );
 }

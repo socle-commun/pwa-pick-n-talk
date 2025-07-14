@@ -2,7 +2,10 @@ import { type ComponentPropsWithoutRef } from "react";
 
 import cn from "@/utils/cn";
 
-export default function SidebarBody({ className, ...props }: ComponentPropsWithoutRef<"div">) {
+export default function SidebarBody({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"div">) {
   return (
     <div
       {...props}
@@ -11,5 +14,5 @@ export default function SidebarBody({ className, ...props }: ComponentPropsWitho
         "flex flex-1 flex-col overflow-y-auto p-4 [&>[data-slot=section]+[data-slot=section]]:mt-8"
       )}
     />
-  )
+  );
 }

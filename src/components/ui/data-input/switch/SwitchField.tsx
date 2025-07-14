@@ -27,5 +27,5 @@ export default function SwitchField({
         "has-data-[slot=description]:**:data-[slot=label]:font-medium"
       )}
     />
-  )
+  );
 }

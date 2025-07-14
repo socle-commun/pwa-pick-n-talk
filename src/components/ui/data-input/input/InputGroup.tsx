@@ -1,6 +1,8 @@
 import cn from "@/utils/cn";
 
-export default function InputGroup({ children }: React.ComponentPropsWithoutRef<"span">) {
+export default function InputGroup({
+  children,
+}: React.ComponentPropsWithoutRef<"span">) {
   return (
     <span
       data-slot="control"
@@ -14,5 +16,5 @@ export default function InputGroup({ children }: React.ComponentPropsWithoutRef<
     >
       {children}
     </span>
-  )
+  );
 }

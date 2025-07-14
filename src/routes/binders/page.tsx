@@ -17,7 +17,9 @@ export default function IndexPage() {
   );
 
   return binders && binders.length !== 0 ? (
-    <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4")}>
+    <div
+      className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4")}
+    >
       {binders.map((binder) => (
         <BinderCard key={binder.uuid} binder={binder} />
       ))}

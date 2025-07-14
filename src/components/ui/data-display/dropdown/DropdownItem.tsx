@@ -1,6 +1,6 @@
 import {
   type MenuItemProps as HeadlessMenuItemProps,
-  MenuItem as HeadlessMenuItem
+  MenuItem as HeadlessMenuItem,
 } from "@headlessui/react";
 
 import { Link } from "@/components/ui/navigation";
@@ -33,11 +33,16 @@ export default function DropdownItem({
     "*:data-[slot=icon]:text-zinc-500 data-focus:*:data-[slot=icon]:text-white dark:*:data-[slot=icon]:text-zinc-400 dark:data-focus:*:data-[slot=icon]:text-white",
     // Avatar
     "*:data-[slot=avatar]:mr-2.5 *:data-[slot=avatar]:-ml-1 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:mr-2 sm:*:data-[slot=avatar]:size-5"
-  )
+  );
 
   return "href" in props ? (
     <HeadlessMenuItem as={Link} {...props} className={classes} />
   ) : (
-    <HeadlessMenuItem as="button" type="button" {...props} className={classes} />
-  )
+    <HeadlessMenuItem
+      as="button"
+      type="button"
+      {...props}
+      className={classes}
+    />
+  );
 }

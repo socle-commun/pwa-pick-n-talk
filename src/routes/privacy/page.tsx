@@ -5,5 +5,5 @@ export default function PrivacyPage() {
     <>
       <h1 className={cn("")}>Privacy</h1>
     </>
-  )
+  );
 }

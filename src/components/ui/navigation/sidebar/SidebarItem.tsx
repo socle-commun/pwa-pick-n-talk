@@ -45,7 +45,7 @@ export default forwardRef(function SidebarItem(
     "dark:data-hover:bg-white/5 dark:data-hover:*:data-[slot=icon]:fill-white",
     "dark:data-active:bg-white/5 dark:data-active:*:data-[slot=icon]:fill-white",
     "dark:data-current:*:data-[slot=icon]:fill-white"
-  )
+  );
 
   return (
     <span className={cn(className, "relative")}>
@@ -76,5 +76,5 @@ export default forwardRef(function SidebarItem(
         </HeadlessButton>
       )}
     </span>
-  )
-})
+  );
+});

@@ -2,7 +2,7 @@ import { Fragment, type ReactNode } from "react";
 
 import {
   type ListboxOptionProps as HeadlessListboxOptionProps,
-  ListboxOption as HeadlessListboxOption
+  ListboxOption as HeadlessListboxOption,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
@@ -24,13 +24,13 @@ export default function ListboxOption<T>({
     "forced-colors:*:data-[slot=icon]:text-[CanvasText] forced-colors:group-data-focus/option:*:data-[slot=icon]:text-[Canvas]",
     // Avatars
     "*:data-[slot=avatar]:-mx-0.5 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:size-5"
-  )
+  );
 
   return (
     <HeadlessListboxOption as={Fragment} {...props}>
       {({ selectedOption }) => {
         if (selectedOption) {
-          return <div className={cn(className, sharedClasses)}>{children}</div>
+          return <div className={cn(className, sharedClasses)}>{children}</div>;
         }
 
         return (
@@ -54,12 +54,19 @@ export default function ListboxOption<T>({
               fill="none"
               aria-hidden="true"
             >
-              <path d="M4 8.5l3 3L12 4" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M4 8.5l3 3L12 4"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
-            <span className={cn(className, sharedClasses, "col-start-2")}>{children}</span>
+            <span className={cn(className, sharedClasses, "col-start-2")}>
+              {children}
+            </span>
           </div>
-        )
+        );
       }}
     </HeadlessListboxOption>
-  )
+  );
 }

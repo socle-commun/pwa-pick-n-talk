@@ -4,32 +4,33 @@ import {
   type DialogProps as HeadlessDialogProps,
   Dialog as HeadlessDialog,
   DialogBackdrop as HeadlessDialogBackdrop,
-  DialogPanel as HeadlessDialogPanel
+  DialogPanel as HeadlessDialogPanel,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
 
 const sizes = {
-  "xs": "sm:max-w-xs",
-  "sm": "sm:max-w-sm",
-  "md": "sm:max-w-md",
-  "lg": "sm:max-w-lg",
-  "xl": "sm:max-w-xl",
+  xs: "sm:max-w-xs",
+  sm: "sm:max-w-sm",
+  md: "sm:max-w-md",
+  lg: "sm:max-w-lg",
+  xl: "sm:max-w-xl",
   "2xl": "sm:max-w-2xl",
   "3xl": "sm:max-w-3xl",
   "4xl": "sm:max-w-4xl",
   "5xl": "sm:max-w-5xl",
-}
+};
 
 export default function Dialog({
   size = "lg",
   className,
   children,
   ...props
-}: { size?: keyof typeof sizes; className?: string; children: ReactNode } & Omit<
-  HeadlessDialogProps,
-  "as" | "className"
->) {
+}: {
+  size?: keyof typeof sizes;
+  className?: string;
+  children: ReactNode;
+} & Omit<HeadlessDialogProps, "as" | "className">) {
   return (
     <HeadlessDialog {...props}>
       <HeadlessDialogBackdrop
@@ -53,5 +54,5 @@ export default function Dialog({
         </div>
       </div>
     </HeadlessDialog>
-  )
+  );
 }

@@ -94,17 +94,17 @@ const colors = {
     "[--switch-bg-ring:var(--color-rose-600)]/90 [--switch-bg:var(--color-rose-500)] dark:[--switch-bg-ring:transparent]",
     "[--switch:white] [--switch-ring:var(--color-rose-600)]/90 [--switch-shadow:var(--color-rose-900)]/20",
   ],
-}
+};
 
-type Color = keyof typeof colors
+type Color = keyof typeof colors;
 
 export default function Switch({
   color = "dark/zinc",
   className,
   ...props
 }: {
-  color?: Color
-  className?: string
+  color?: Color;
+  className?: string;
 } & Omit<HeadlessSwitchProps, "as" | "className" | "children">) {
   return (
     <HeadlessSwitch
@@ -153,5 +153,5 @@ export default function Switch({
         )}
       />
     </HeadlessSwitch>
-  )
+  );
 }
