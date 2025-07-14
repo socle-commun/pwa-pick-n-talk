@@ -28,7 +28,7 @@ export class PickNTalkDB extends Dexie {
     this.version(1).stores({
       binders: "&uuid",
       categories: "&uuid",
-      pictograms: "&uuid, binderUuid, categoryUuid",
+      pictograms: "&uuid, binderUuid",
       settings: "&key",
       translations: "++id, &[objectUuid+language+key]",
     });
@@ -65,9 +65,17 @@ export class PickNTalkDB extends Dexie {
   private getCategoriesFromPictograms(
     pictograms: Pictogram[]
   ): PromiseExtended<Category[]> {
+    const categoryUuids = new Set<string>();
+    pictograms.forEach((pictogram) => {
+      if (pictogram.categories) {
+        pictogram.categories.forEach((categoryUuid) => {
+          categoryUuids.add(categoryUuid);
+        });
+      }
+    });
     return this.categories
       .where("uuid")
-      .anyOf(pictograms.map((pictogram) => pictogram.categoryUuid))
+      .anyOf(Array.from(categoryUuids))
       .toArray();
   }
 
@@ -300,7 +308,12 @@ export class PickNTalkDB extends Dexie {
 
   public deleteCategory(uuid: string) {
     return this.transaction("rw", this.pictograms, this.categories, () => {
-      this.pictograms.where({ categoryUuid: uuid }).delete();
+      // Remove category from all pictograms that reference it
+      this.pictograms.toCollection().modify((pictogram) => {
+        if (pictogram.categories) {
+          pictogram.categories = pictogram.categories.filter(catId => catId !== uuid);
+        }
+      });
       this.categories.delete(uuid);
     });
   }

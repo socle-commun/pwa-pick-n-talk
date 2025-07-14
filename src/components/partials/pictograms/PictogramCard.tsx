@@ -22,8 +22,8 @@ export default function PictogramCard({
 
   // Convert blob to URL for image display
   useEffect(() => {
-    if (pictogram.blob && !imageUrl) {
-      const url = URL.createObjectURL(pictogram.blob);
+    if (pictogram.image && !imageUrl) {
+      const url = URL.createObjectURL(pictogram.image);
       setImageUrl(url);
 
       // Cleanup function to revoke URL
@@ -31,7 +31,7 @@ export default function PictogramCard({
         URL.revokeObjectURL(url);
       };
     }
-  }, [pictogram.blob, imageUrl]);
+  }, [pictogram.image, imageUrl]);
 
   const handleSpeak = async () => {
     if (!pictogram.word || isSpeaking) return;
