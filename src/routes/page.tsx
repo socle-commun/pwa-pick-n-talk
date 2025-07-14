@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import Logo from "@/components/partials/global/Logo";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function IndexPage() {
   const { t } = useTranslation();

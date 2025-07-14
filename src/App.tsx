@@ -21,7 +21,7 @@ import BindersPage from "@/routes/binders/page";
 import BinderPage from "@/routes/binders/[uuid]/page";
 import BinderEditPage from "@/routes/binders/[uuid]/edit/page";
 
-import toggleDarkClass from "@/utilities/toggleDarkClass";
+import toggleDarkClass from "@/utils/toggleDarkClass";
 
 function App() {
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { type ComponentPropsWithoutRef } from "react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 type AvatarProps = {
   src?: string | null

@@ -1,6 +1,6 @@
 import Link from "@/components/ui/navigation/Link";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function TextLink({ className, ...props }: React.ComponentPropsWithoutRef<typeof Link>) {
   return (

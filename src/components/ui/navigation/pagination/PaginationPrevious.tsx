@@ -2,7 +2,7 @@ import { type PropsWithChildren } from "react";
 
 import { Button } from "@/components/ui/actions";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function PaginationPrevious({
   href = null,

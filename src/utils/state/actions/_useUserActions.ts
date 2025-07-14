@@ -2,8 +2,8 @@ import { compareSync, hashSync } from "bcryptjs";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router";
 
-import { userAtom } from "@/state/atoms";
-import { db } from "@/persistence";
+import { userAtom } from "@/utils/state/atoms";
+import { db } from "@/db";
 
 export default function useUserActions() {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { useContext, type ComponentPropsWithoutRef } from "react";
 
 import { TableContext } from "@/components/ui/data-display";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function TableHeader({ className, ...props }: ComponentPropsWithoutRef<"th">) {
   const { bleed, grid } = useContext(TableContext)

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function EmptyBindersList({ className, ...props }: {
   className?: string;

@@ -5,7 +5,7 @@ import {
   Input as HeadlessInput
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 const dateTypes = ["date", "datetime-local", "month", "time", "week"]
 type DateType = (typeof dateTypes)[number]

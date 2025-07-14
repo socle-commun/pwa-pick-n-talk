@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/components/ui/actions";
-import { type TranslatedPictogram } from "@/persistence/entities/translated/TranslatedPictogram";
-import { speak, isSpeechSynthesisSupported } from "@/utilities/speak";
-import cn from "@/utilities/cn";
+import { type TranslatedPictogram } from "@/db/entities/translated/TranslatedPictogram";
+import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
+import cn from "@/utils/cn";
 
 export interface PictogramCardProps {
 	pictogram: TranslatedPictogram;

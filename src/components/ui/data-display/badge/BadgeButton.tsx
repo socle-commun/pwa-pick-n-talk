@@ -9,7 +9,7 @@ import { TouchTarget } from "@/components/ui/actions";
 import { Badge } from "@/components/ui/data-display";
 import { Link } from "@/components/ui/navigation";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 const colors = {
   red: "bg-red-500/15 text-red-700 group-data-hover:bg-red-500/25 dark:bg-red-500/10 dark:text-red-400 dark:group-data-hover:bg-red-500/20",

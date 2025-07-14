@@ -3,7 +3,7 @@ import {
   Radio as HeadlessRadio,
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 const base = [
   // Basic layout

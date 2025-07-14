@@ -1,4 +1,4 @@
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function TouchTarget({ children }: { children: React.ReactNode }) {
   return (

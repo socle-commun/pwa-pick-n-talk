@@ -7,7 +7,7 @@ import {
   DialogPanel as HeadlessDialogPanel
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 const sizes = {
   "xs": "sm:max-w-xs",

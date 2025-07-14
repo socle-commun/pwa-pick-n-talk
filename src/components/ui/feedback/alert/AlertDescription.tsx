@@ -5,7 +5,7 @@ import {
 
 import Text from "@/components/ui/typography/text/Text";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function AlertDescription({
   className,

@@ -2,7 +2,7 @@ import { useId } from "react";
 
 import { LayoutGroup } from "framer-motion";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function SidebarSection({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   const id = useId()

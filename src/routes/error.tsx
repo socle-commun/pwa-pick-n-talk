@@ -1,7 +1,7 @@
 import Button from "@/components/ui/actions/Button";
 import Link from "@/components/ui/navigation/Link";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function ErrorPage() {
   return (

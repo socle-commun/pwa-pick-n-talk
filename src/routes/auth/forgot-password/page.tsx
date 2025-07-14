@@ -6,9 +6,9 @@ import { Link } from "@/components/ui/navigation";
 
 import Logo from "@/components/partials/global/Logo";
 
-import useUserActions from "@/state/actions/_useUserActions";
+import useUserActions from "@/utils/state/actions/_useUserActions";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 type SignInFormFields = {
   email: string;

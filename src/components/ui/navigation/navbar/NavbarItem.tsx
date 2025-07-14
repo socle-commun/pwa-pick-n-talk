@@ -10,7 +10,7 @@ import {
 import { Link } from "@/components/ui/navigation";
 import { TouchTarget } from "@/components/ui/actions";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default forwardRef(function NavbarItem(
   {

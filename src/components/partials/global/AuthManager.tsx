@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/actions";
 import { Avatar, Dropdown, DropdownButton, DropdownDivider, DropdownItem, DropdownLabel, DropdownMenu } from "@/components/ui/data-display";
 import { NavbarItem } from "@/components/ui/navigation";
 
-import useUserActions from "@/state/actions/_useUserActions";
-import { userAtom } from "@/state/atoms";
+import useUserActions from "@/utils/state/actions/_useUserActions";
+import { userAtom } from "@/utils/state/atoms";
 
-import cn from "@/utilities/cn";
-import getInitials from "@/utilities/text/getInitials";
+import cn from "@/utils/cn";
+import getInitials from "@/utils/text/getInitials";
 
 export default function AuthManager() {
   const userActions = useUserActions();

@@ -3,7 +3,7 @@ import {
   Switch as HeadlessSwitch,
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 const colors = {
   "dark/zinc": [

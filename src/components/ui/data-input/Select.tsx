@@ -5,7 +5,7 @@ import {
   Select as HeadlessSelect,
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default forwardRef(function Select(
   { className, multiple, ...props }: { className?: string } & Omit<HeadlessSelectProps, "as" | "className">,

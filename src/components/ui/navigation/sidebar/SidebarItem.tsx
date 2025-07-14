@@ -11,7 +11,7 @@ import {
 import { TouchTarget } from "@/components/ui/actions";
 import { Link } from "@/components/ui/navigation";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default forwardRef(function SidebarItem(
   {
