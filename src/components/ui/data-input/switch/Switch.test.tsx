@@ -53,7 +53,7 @@ describe("Switch Component", () => {
     render(<Switch checked={true} onChange={handleChange} />);
     const switchElement = screen.getByRole("switch");
     expect(switchElement).toBeChecked();
-    
+
     fireEvent.click(switchElement);
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
