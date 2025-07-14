@@ -1,1 +1,10 @@
-{}
+{
+  "language": {
+    "selector": {
+      "label": "Language",
+      "ariaLabel": "Select language",
+      "english": "English",
+      "french": "Français"
+    }
+  }
+}

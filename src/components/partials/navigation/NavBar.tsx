@@ -7,6 +7,7 @@ import {
 
 import Brand from "@/components/partials/global/Brand";
 import AuthManager from "@/components/partials/global/AuthManager";
+import LocaleSelector from "@/components/ui/LocaleSelector";
 
 export default function NavBar() {
   return (
@@ -18,6 +19,7 @@ export default function NavBar() {
       </NavbarSection>
       <NavbarSpacer />
       <NavbarSection>
+        <LocaleSelector variant="compact" className="mr-4" />
         <AuthManager />
       </NavbarSection>
     </Navbar>
