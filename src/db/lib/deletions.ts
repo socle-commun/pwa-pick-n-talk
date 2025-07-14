@@ -20,7 +20,7 @@ export function deleteCategory(this: PickNTalkDB, uuid: string) {
 }
 
 export function deletePictogram(this: PickNTalkDB, uuid: string) {
-  this.pictograms.delete(uuid);
+  return this.pictograms.delete(uuid);
 }
 
 export function deleteUser(this: PickNTalkDB, uuid: string) {
