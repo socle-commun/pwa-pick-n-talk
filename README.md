@@ -9,7 +9,8 @@ Pick'n'Talk est une application de communication visuelle 📱 destinée aux per
 - **🔊 Synthèse vocale (TTS)** : Lecture à voix haute des mots associés aux pictogrammes
 - Interface intuitive et accessible 👆
 - Prise en charge de différents profils utilisateurs 👤
-- Support multilingue (français, anglais) 🌍
+- Support multilingue (français, anglais) 🌍 avec sélecteur de langue rapide
+- **🌐 Sélecteur de langue** : Changement de langue instantané via interface dédiée
 - Adaptée aux enfants comme aux adultes 👶👵
 
 ## Pour qui ? 🤔
