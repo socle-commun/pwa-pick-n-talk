@@ -6,4 +6,4 @@ export * from "./radio";
 export * from "./switch";
 
 export { default as Select } from "./Select";
-export { default as TextArea } from "./TextArea";
+export { default as TextArea } from "./Textarea";
