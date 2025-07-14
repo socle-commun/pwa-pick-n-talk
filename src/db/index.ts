@@ -2,6 +2,7 @@ import Dexie, { type PromiseExtended, type Table } from "dexie";
 
 import { type Binder } from "@/db/entities/data/Binder";
 import { type Category } from "@/db/entities/data/Category";
+import { type History } from "@/db/entities/data/History";
 import { type Pictogram } from "@/db/entities/data/Pictogram";
 import { type Setting } from "@/db/entities/data/Setting";
 import { type Translation } from "@/db/entities/data/Translation";
@@ -16,6 +17,7 @@ import { populate } from "@/db/populate";
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;
   categories!: Table<Category, string>;
+  history!: Table<History, string>;
   pictograms!: Table<Pictogram, string>;
   settings!: Table<Setting, string>;
   translations!: Table<Translation, number>;
@@ -26,7 +28,7 @@ export class PickNTalkDB extends Dexie {
     this.version(1).stores({
       binders: "&uuid",
       categories: "&uuid",
-      pictograms: "&uuid, binderUuid, categoryUuid",
+      pictograms: "&uuid, binderUuid",
       settings: "&key",
       translations: "++id, &[objectUuid+language+key]",
     });
@@ -35,6 +37,9 @@ export class PickNTalkDB extends Dexie {
     });
     this.version(3).stores({
       users: "&uuid, email",
+    });
+    this.version(4).stores({
+      history: "&uuid, entityType, entityId, performedBy, timestamp",
     });
   }
 
@@ -47,6 +52,10 @@ export class PickNTalkDB extends Dexie {
     return this.users.where({ email }).first();
   }
 
+  public getHistory(entityId: string): PromiseExtended<History[]> {
+    return this.history.where({ entityId }).toArray();
+  }
+
   private getPictogramsFromBinderUuid(
     binderUuid: string
   ): PromiseExtended<Pictogram[]> {
@@ -56,9 +65,17 @@ export class PickNTalkDB extends Dexie {
   private getCategoriesFromPictograms(
     pictograms: Pictogram[]
   ): PromiseExtended<Category[]> {
+    const categoryUuids = new Set<string>();
+    pictograms.forEach((pictogram) => {
+      if (pictogram.categories) {
+        pictogram.categories.forEach((categoryUuid) => {
+          categoryUuids.add(categoryUuid);
+        });
+      }
+    });
     return this.categories
       .where("uuid")
-      .anyOf(pictograms.map((pictogram) => pictogram.categoryUuid))
+      .anyOf(Array.from(categoryUuids))
       .toArray();
   }
 
@@ -219,6 +236,10 @@ export class PickNTalkDB extends Dexie {
     return this.categories.add(category);
   }
 
+  public createHistory(history: History) {
+    return this.history.add(history);
+  }
+
   public createPictogram(pictogram: Pictogram) {
     return this.pictograms.add(pictogram);
   }
@@ -287,7 +308,12 @@ export class PickNTalkDB extends Dexie {
 
   public deleteCategory(uuid: string) {
     return this.transaction("rw", this.pictograms, this.categories, () => {
-      this.pictograms.where({ categoryUuid: uuid }).delete();
+      // Remove category from all pictograms that reference it
+      this.pictograms.toCollection().modify((pictogram) => {
+        if (pictogram.categories) {
+          pictogram.categories = pictogram.categories.filter(catId => catId !== uuid);
+        }
+      });
       this.categories.delete(uuid);
     });
   }

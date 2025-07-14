@@ -1,10 +1,10 @@
 export interface TranslatedPictogram {
   uuid: string;
 
-  blob?: Blob;
+  image?: Blob;
 
   binderUuid: string;
-  categoryUuid: string;
+  categories?: string[];
 
   word: string;
 }
