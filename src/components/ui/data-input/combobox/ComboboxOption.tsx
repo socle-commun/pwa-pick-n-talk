@@ -15,7 +15,7 @@ export default function ComboboxOption<T>({
   HeadlessComboboxOptionProps<"div", T>,
   "as" | "className"
 >) {
-  let sharedClasses = cn(
+  const sharedClasses = cn(
     // Base
     "flex min-w-0 items-center",
     // Icons
