@@ -14,6 +14,14 @@ import { type TranslatedPictogram } from "@/db/entities/translated/TranslatedPic
 
 import { populate } from "@/db/populate";
 
+// Import extracted methods
+import * as userQueries from "./database/user-queries";
+import * as binderQueries from "./database/binder-queries";
+import * as pictogramQueries from "./database/pictogram-queries";
+import * as mutations from "./database/mutations";
+import * as updates from "./database/updates";
+import * as deletions from "./database/deletions";
+
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;
   categories!: Table<Category, string>;
@@ -41,291 +49,59 @@ export class PickNTalkDB extends Dexie {
     this.version(4).stores({
       history: "&uuid, entityType, entityId, performedBy, timestamp",
     });
+
+    this.getUser = userQueries.getUser.bind(this);
+    this.getUserByEmail = userQueries.getUserByEmail.bind(this);
+    this.getHistory = userQueries.getHistory.bind(this);
+    this.getPictogramsFromBinderUuid = userQueries.getPictogramsFromBinderUuid.bind(this);
+    this.getCategoriesFromPictograms = userQueries.getCategoriesFromPictograms.bind(this);
+    this.getTranslatedBinders = binderQueries.getTranslatedBinders.bind(this);
+    this.getTranslatedBinder = binderQueries.getTranslatedBinder.bind(this);
+    this.getTranslatedPictogramsFromBinderUuid = pictogramQueries.getTranslatedPictogramsFromBinderUuid.bind(this);
+    this.getTranslatedCategoriesFromBinderUuid = pictogramQueries.getTranslatedCategoriesFromBinderUuid.bind(this);
+
+    this.createBinder = mutations.createBinder.bind(this);
+    this.createCategory = mutations.createCategory.bind(this);
+    this.createHistory = mutations.createHistory.bind(this);
+    this.createPictogram = mutations.createPictogram.bind(this);
+    this.createSetting = mutations.createSetting.bind(this);
+    this.createTranslation = mutations.createTranslation.bind(this);
+    this.createUser = mutations.createUser.bind(this);
+
+    this.updateTranslatedBinder = updates.updateTranslatedBinder.bind(this);
+    this.updateTranslatedPictogram = updates.updateTranslatedPictogram.bind(this);
+    this.updateTranslatedCategory = updates.updateTranslatedCategory.bind(this);
+
+    this.deleteBinder = deletions.deleteBinder.bind(this);
+    this.deleteCategory = deletions.deleteCategory.bind(this);
+    this.deletePictogram = deletions.deletePictogram.bind(this);
+    this.deleteUser = deletions.deleteUser.bind(this);
   }
 
-  // #region Get
-  public getUser(uuid: string): PromiseExtended<User | undefined> {
-    return this.users.get(uuid);
-  }
-
-  public getUserByEmail(email: string): PromiseExtended<User | undefined> {
-    return this.users.where({ email }).first();
-  }
-
-  public getHistory(entityId: string): PromiseExtended<History[]> {
-    return this.history.where({ entityId }).toArray();
-  }
-
-  private getPictogramsFromBinderUuid(
-    binderUuid: string
-  ): PromiseExtended<Pictogram[]> {
-    return this.pictograms.where({ binderUuid }).toArray();
-  }
-
-  private getCategoriesFromPictograms(
-    pictograms: Pictogram[]
-  ): PromiseExtended<Category[]> {
-    const categoryUuids = new Set<string>();
-    pictograms.forEach((pictogram) => {
-      if (pictogram.categories) {
-        pictogram.categories.forEach((categoryUuid) => {
-          categoryUuids.add(categoryUuid);
-        });
-      }
-    });
-    return this.categories
-      .where("uuid")
-      .anyOf(Array.from(categoryUuids))
-      .toArray();
-  }
-
-  public getTranslatedBinders(
-    language: string
-  ): PromiseExtended<TranslatedBinder[]> {
-    return this.transaction("r", this.binders, this.translations, () => {
-      return this.binders.toArray().then((binders) => {
-        return this.translations
-          .where("objectUuid")
-          .anyOf(binders.map((binder) => binder.uuid))
-          .toArray()
-          .then((translations) => {
-            return binders.map((binder) => {
-              const binderTitleTranslation = translations.find(
-                (translation) =>
-                  translation.objectUuid === binder.uuid &&
-                  translation.language === language &&
-                  translation.key === "title"
-              );
-              const binderDescriptionTranslation = translations.find(
-                (translation) =>
-                  translation.objectUuid === binder.uuid &&
-                  translation.language === language &&
-                  translation.key === "description"
-              );
-              return {
-                ...binder,
-                title: binderTitleTranslation?.value || "",
-                description: binderDescriptionTranslation?.value || "",
-              };
-            });
-          });
-      });
-    });
-  }
-
-  public getTranslatedBinder(
-    uuid: string,
-    language: string
-  ): PromiseExtended<TranslatedBinder> {
-    return this.transaction("r", this.binders, this.translations, () => {
-      return this.binders.get(uuid).then((binder) => {
-        if (!binder) {
-          return Promise.reject(new Error("Binder not found"));
-        }
-        return this.translations
-          .where("objectUuid")
-          .anyOf(binder.uuid)
-          .toArray()
-          .then((translations) => {
-            const binderTitleTranslation = translations.find(
-              (translation) =>
-                translation.objectUuid === binder.uuid &&
-                translation.language === language &&
-                translation.key === "title"
-            );
-            const binderDescriptionTranslation = translations.find(
-              (translation) =>
-                translation.objectUuid === binder.uuid &&
-                translation.language === language &&
-                translation.key === "description"
-            );
-            return {
-              ...binder,
-              title: binderTitleTranslation?.value || "",
-              description: binderDescriptionTranslation?.value || "",
-            };
-          });
-      });
-    });
-  }
-
-  public getTranslatedPictogramsFromBinderUuid(
-    binderUuid: string,
-    language: string
-  ): Promise<TranslatedPictogram[]> {
-    return this.transaction(
-      "r",
-      this.pictograms,
-      this.settings,
-      this.translations,
-      () => {
-        return this.getPictogramsFromBinderUuid(binderUuid).then(
-          (pictograms) => {
-            return this.translations
-              .where("objectUuid")
-              .anyOf(pictograms.map((pictogram) => pictogram.uuid))
-              .toArray()
-              .then((translations) => {
-                return pictograms.map((pictogram) => {
-                  const pictogramTranslation = translations.find(
-                    (translation) =>
-                      translation.objectUuid === pictogram.uuid &&
-                      translation.language === language &&
-                      translation.key === "word"
-                  );
-                  return {
-                    ...pictogram,
-                    word: pictogramTranslation?.value || "",
-                  };
-                });
-              });
-          }
-        );
-      }
-    );
-  }
-
-  public getTranslatedCategoriesFromBinderUuid(
-    binderUuid: string,
-    language: string
-  ): Promise<TranslatedCategory[]> {
-    return this.transaction(
-      "r",
-      this.pictograms,
-      this.categories,
-      this.settings,
-      this.translations,
-      () => {
-        return this.getPictogramsFromBinderUuid(binderUuid).then(
-          (pictograms) => {
-            return this.getCategoriesFromPictograms(pictograms).then(
-              (categories) => {
-                return this.translations
-                  .where("objectUuid")
-                  .anyOf(categories.map((category) => category.uuid))
-                  .toArray()
-                  .then((translations) => {
-                    return categories.map((category) => {
-                      const categoryTranslation = translations.find(
-                        (translation) =>
-                          translation.objectUuid === category.uuid &&
-                          translation.language === language &&
-                          translation.key === "name"
-                      );
-                      return {
-                        ...category,
-                        name: categoryTranslation?.value || "",
-                      };
-                    });
-                  });
-              }
-            );
-          }
-        );
-      }
-    );
-  }
-  // #endregion
-
-  // #region Create
-  public createBinder(binder: Binder) {
-    return this.binders.add(binder);
-  }
-
-  public createCategory(category: Category) {
-    return this.categories.add(category);
-  }
-
-  public createHistory(history: History) {
-    return this.history.add(history);
-  }
-
-  public createPictogram(pictogram: Pictogram) {
-    return this.pictograms.add(pictogram);
-  }
-
-  public createSetting(setting: Setting) {
-    return this.settings.add(setting);
-  }
-
-  public createTranslation(translation: Translation) {
-    return this.translations.add(translation);
-  }
-
-  public createUser(user: User): PromiseExtended<string> {
-    return this.users.add(user);
-  }
-  // #endregion
-
-  // #region Update
-  public updateTranslatedBinder(
-    binder: TranslatedBinder,
-    language: string
-  ): PromiseExtended<void> {
-    return this.transaction("rw", this.binders, this.translations, () => {
-      this.binders.update(binder.uuid, binder);
-      this.translations
-        .where({ objectUuid: binder.uuid, language, key: "title" })
-        .modify({ value: binder.title });
-      this.translations
-        .where({ objectUuid: binder.uuid, language, key: "description" })
-        .modify({ value: binder.description });
-    });
-  }
-
-  public updateTranslatedPictogram(
-    pictogram: TranslatedPictogram,
-    language: string
-  ): PromiseExtended<void> {
-    return this.transaction("rw", this.pictograms, this.translations, () => {
-      this.pictograms.update(pictogram.uuid, pictogram);
-      this.translations
-        .where({ objectUuid: pictogram.uuid, language, key: "word" })
-        .modify({ value: pictogram.word });
-    });
-  }
-
-  public updateTranslatedCategory(
-    category: TranslatedCategory,
-    language: string
-  ): PromiseExtended<void> {
-    return this.transaction("rw", this.categories, this.translations, () => {
-      this.categories.update(category.uuid, category);
-      this.translations
-        .where({ objectUuid: category.uuid, language, key: "name" })
-        .modify({ value: category.name });
-    });
-  }
-  // #endregion
-
-  // #region Delete
-  public deleteBinder(binderUuid: string) {
-    return this.transaction("rw", this.pictograms, this.binders, () => {
-      this.pictograms.where({ binderUuid }).delete();
-      this.binders.delete(binderUuid);
-    });
-  }
-
-  public deleteCategory(uuid: string) {
-    return this.transaction("rw", this.pictograms, this.categories, () => {
-      // Remove category from all pictograms that reference it
-      this.pictograms.toCollection().modify((pictogram) => {
-        if (pictogram.categories) {
-          pictogram.categories = pictogram.categories.filter(catId => catId !== uuid);
-        }
-      });
-      this.categories.delete(uuid);
-    });
-  }
-
-  public deletePictogram(uuid: string) {
-    this.pictograms.delete(uuid);
-  }
-
-  public deleteUser(uuid: string) {
-    this.users.delete(uuid);
-  }
-  // #endregion
+  // Method declarations for TypeScript (these will be assigned in constructor)
+  public getUser!: (uuid: string) => PromiseExtended<User | undefined>;
+  public getUserByEmail!: (email: string) => PromiseExtended<User | undefined>;
+  public getHistory!: (entityId: string) => PromiseExtended<History[]>;
+  public getPictogramsFromBinderUuid!: (binderUuid: string) => PromiseExtended<Pictogram[]>;
+  public getCategoriesFromPictograms!: (pictograms: Pictogram[]) => PromiseExtended<Category[]>;
+  public getTranslatedBinders!: (language: string) => PromiseExtended<TranslatedBinder[]>;
+  public getTranslatedBinder!: (uuid: string, language: string) => PromiseExtended<TranslatedBinder>;
+  public getTranslatedPictogramsFromBinderUuid!: (binderUuid: string, language: string) => Promise<TranslatedPictogram[]>;
+  public getTranslatedCategoriesFromBinderUuid!: (binderUuid: string, language: string) => Promise<TranslatedCategory[]>;
+  public createBinder!: (binder: Binder) => any;
+  public createCategory!: (category: Category) => any;
+  public createHistory!: (history: History) => any;
+  public createPictogram!: (pictogram: Pictogram) => any;
+  public createSetting!: (setting: Setting) => any;
+  public createTranslation!: (translation: Translation) => any;
+  public createUser!: (user: User) => PromiseExtended<string>;
+  public updateTranslatedBinder!: (binder: TranslatedBinder, language: string) => PromiseExtended<void>;
+  public updateTranslatedPictogram!: (pictogram: TranslatedPictogram, language: string) => PromiseExtended<void>;
+  public updateTranslatedCategory!: (category: TranslatedCategory, language: string) => PromiseExtended<void>;
+  public deleteBinder!: (binderUuid: string) => any;
+  public deleteCategory!: (uuid: string) => any;
+  public deletePictogram!: (uuid: string) => void;
+  public deleteUser!: (uuid: string) => void;
 }
 
 export const db = new PickNTalkDB();

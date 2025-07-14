@@ -45,16 +45,16 @@ describe("Combobox Component", () => {
       </Combobox>
     );
     const combobox = screen.getByRole("combobox");
-    
+
     // Type to filter
     fireEvent.change(combobox, { target: { value: "App" } });
-    
+
     // Should filter to show Apple
     expect(combobox).toHaveValue("App");
   });
 
   test("should use custom filter function when provided", () => {
-    const customFilter = (option: typeof testOptions[0], query: string) => 
+    const customFilter = (option: typeof testOptions[0], query: string) =>
       option.name.toLowerCase().startsWith(query.toLowerCase());
 
     render(
@@ -66,7 +66,7 @@ describe("Combobox Component", () => {
         {(option) => <div key={option.id}>{option.name}</div>}
       </Combobox>
     );
-    
+
     const combobox = screen.getByRole("combobox");
     expect(combobox).toBeInTheDocument();
   });
