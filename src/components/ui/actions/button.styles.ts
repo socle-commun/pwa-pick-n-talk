@@ -1,4 +1,4 @@
-import { colors, type Color } from "./button.colors";
+import { colors, type Color as ButtonColor } from "./button.colors";
 
 export const styles = {
   base: [
@@ -56,4 +56,4 @@ export const styles = {
   colors,
 };
 
-export type Color = keyof typeof styles.colors;
+export type Color = ButtonColor;
