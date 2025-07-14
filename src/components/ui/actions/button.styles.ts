@@ -56,4 +56,4 @@ export const styles = {
   colors,
 };
 
-export type Color = keyof typeof styles.colors;
+export { type Color };
