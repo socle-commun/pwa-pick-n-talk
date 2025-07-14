@@ -16,6 +16,7 @@ import FeedbackPage from "@/routes/feedback/page";
 import PrivacyPage from "@/routes/privacy/page";
 import ProfilePage from "@/routes/profile/page";
 import SettingsPage from "@/routes/settings/page";
+import TTSTestPage from "@/routes/tts-test/page";
 
 import BindersPage from "@/routes/binders/page";
 import BinderPage from "@/routes/binders/[uuid]/page";
@@ -45,6 +46,7 @@ function App() {
             <Route path="privacy" element={<PrivacyPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="settings" element={<SettingsPage />} />
+            <Route path="tts-test" element={<TTSTestPage />} />
 
             <Route path="binders">
               <Route index element={<BindersPage />} />
