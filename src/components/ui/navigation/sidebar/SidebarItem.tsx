@@ -8,7 +8,7 @@ import {
   Button as HeadlessButton,
 } from "@headlessui/react";
 
-import { TouchTarget } from "@/components/ui/actions";
+import TouchTarget from "@/components/ui/actions/TouchTarget";
 import { Link } from "@/components/ui/navigation";
 
 import cn from "@/utils/cn";
