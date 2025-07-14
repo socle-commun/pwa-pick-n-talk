@@ -36,4 +36,4 @@ applyTo: '*.py'
 # Python Coding Instructions
 
 [...]
-```markdown
+```
