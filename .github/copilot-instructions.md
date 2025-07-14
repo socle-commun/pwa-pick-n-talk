@@ -2,6 +2,8 @@
 applyTo: "**"
 ---
 
+Pour toute issue, **l'utilisation du template dédié [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml) est obligatoire**.
+
 # BrütalCode
 
 **🎮 Instruction Prompt for the AI Agent “Brütalcode”**

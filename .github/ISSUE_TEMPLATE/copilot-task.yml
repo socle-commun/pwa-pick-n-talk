@@ -1,0 +1,81 @@
+---
+name: "Copilot Task Request"
+description: "Request a task for GitHub Copilot to perform. Be exhaustive, precise, and mercilessly clear."
+title: ":robot: [Copilot] <Short, punchy summary of the task>"
+labels: ["copilot-task"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🦾 Copilot Task Request
+        **STOP!** If you’re not ready to explain your problem like you’re teaching a goldfish to code, turn back now. This template is for those who want Copilot to do their dirty work—properly. 
+        
+        Fill out every section. If you leave blanks, expect Copilot to roast you in the PR.
+
+  - type: input
+    id: summary
+    attributes:
+      label: "Task Summary"
+      description: "What do you want Copilot to do? Be concise, but not lazy."
+      placeholder: "E.g. Refactor the authentication middleware for clarity and performance."
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Context & Background"
+      description: "Explain the context. Why is this needed? What’s broken, missing, or embarrassing?"
+      placeholder: "Describe the current state, pain points, and why this task is necessary."
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: "Requirements & Acceptance Criteria"
+      description: "List everything Copilot must do. Don’t make it guess."
+      placeholder: "- Must use TypeScript\n- Must add unit tests\n- Must not break existing features\n- ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: "Technical Details & Constraints"
+      description: "What are the technical specifics? List files, APIs, libraries, edge cases, etc."
+      placeholder: "- Affected files\n- APIs to use\n- Coding standards\n- Known gotchas\n- ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: "References & Inspiration"
+      description: "Link to specs, docs, issues, or code that Copilot should read before embarrassing itself."
+      placeholder: "- #123\n- https://github.com/example/repo\n- ..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: definition-of-done
+    attributes:
+      label: "Definition of Done"
+      description: "How will you know Copilot’s work is finished (and not a disaster)?"
+      placeholder: "- All tests pass\n- Code reviewed\n- Deployed to staging\n- ..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: "Final Humiliation Checklist"
+      description: "Check all boxes. If you can’t, you’re not ready."
+      options:
+        - label: "I have filled out every section above."
+          required: true
+        - label: "I have provided all relevant links and files."
+          required: true
+        - label: "I accept that Copilot will mock my lack of detail if I miss anything."
+          required: true

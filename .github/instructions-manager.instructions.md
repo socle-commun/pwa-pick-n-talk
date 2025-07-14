@@ -1,5 +1,5 @@
 ---
-applyTo: '.github/instructions/*.md'
+applyTo: '.github/*.instructions.md'
 ---
 
 # Instructions manager Instructions
@@ -17,7 +17,7 @@ applyTo: '.github/instructions/*.md'
 
 To add a new instruction file:
 
-1. Create a new Markdown file in the `.github/instructions/` directory.
+1. Create a new Markdown file in the `.github/` directory.
 2. Begin the file with a YAML front matter section specifying the `applyTo` pattern for the target files.
 3. Add a clear title and relevant sections using Markdown headers.
 4. Write concise, actionable instructions following the guidelines above.

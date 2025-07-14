@@ -100,6 +100,7 @@ body:
 - Utiliser le Markdown ou le formatage YAML pour la lisibilité
 - Relire pour s’assurer que la tâche est compréhensible sans contexte externe
 
+
 ## Exigence
 
 Aucune feature, issue ou user story ne doit être validée sans respecter ce standard et le template YAML fourni.
