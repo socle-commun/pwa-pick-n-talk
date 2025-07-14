@@ -154,7 +154,7 @@ if (!parsed.success) {
 - Components, types, interfaces: PascalCase (e.g., UserCard, ProductList).
 - Variables, functions: camelCase (e.g., fetchUser, handleClick).
 - Constants: ALL_CAPS (e.g., API_URL).
-- One component = one file. If a component exceeds 50 lines, split it.
+- One component = one file. If a component exceeds 100 lines, split it.
 - Place UI components in src/components/ui/, pages in src/routes/, hooks in src/hooks/, types in src/types/.
 
 ---
