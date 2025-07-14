@@ -1,6 +1,6 @@
 import {
   type DialogTitleProps as HeadlessDialogTitleProps,
-  DialogTitle as HeadlessDialogTitle
+  DialogTitle as HeadlessDialogTitle,
 } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
@@ -14,5 +14,5 @@ export default function DialogTitle({
       {...props}
       className={cn(className, "text-lg/6 font-semibold text-balance text-zinc-950 sm:text-base/6 dark:text-white")}
     />
-  )
+  );
 }

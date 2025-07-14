@@ -5,5 +5,5 @@ export default function FeedbackPage() {
     <>
       <h1 className={cn("")}>Feedback</h1>
     </>
-  )
+  );
 }

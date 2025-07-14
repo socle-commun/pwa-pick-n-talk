@@ -1,4 +1,4 @@
-import { useContext, useState, type ComponentPropsWithoutRef } from "react"
+import { useContext, useState, type ComponentPropsWithoutRef } from "react";
 
 import { Link } from "@/components/ui/navigation";
 import { TableContext, TableRowContext } from "@/components/ui/data-display";
@@ -6,9 +6,9 @@ import { TableContext, TableRowContext } from "@/components/ui/data-display";
 import cn from "@/utilities/cn";
 
 export default function TableCell({ className, children, ...props }: ComponentPropsWithoutRef<"td">) {
-  const { bleed, dense, grid, striped } = useContext(TableContext)
-  const { href, target, title } = useContext(TableRowContext)
-  const [cellRef, setCellRef] = useState<HTMLElement | null>(null)
+  const { bleed, dense, grid, striped } = useContext(TableContext);
+  const { href, target, title } = useContext(TableRowContext);
+  const [cellRef, setCellRef] = useState<HTMLElement | null>(null);
 
   return (
     <td
@@ -20,7 +20,7 @@ export default function TableCell({ className, children, ...props }: ComponentPr
         !striped && "border-b border-zinc-950/5 dark:border-white/5",
         grid && "border-l border-l-zinc-950/5 first:border-l-0 dark:border-l-white/5",
         dense ? "py-2.5" : "py-4",
-        !bleed && "sm:first:pl-1 sm:last:pr-1"
+        !bleed && "sm:first:pl-1 sm:last:pr-1",
       )}
     >
       {href && (
@@ -35,5 +35,5 @@ export default function TableCell({ className, children, ...props }: ComponentPr
       )}
       {children}
     </td>
-  )
+  );
 }

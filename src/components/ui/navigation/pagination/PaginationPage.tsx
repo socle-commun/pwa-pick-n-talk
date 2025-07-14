@@ -19,10 +19,10 @@ export default function PaginationPage({
       className={cn(
         className,
         "min-w-9 before:absolute before:-inset-px before:rounded-lg",
-        current && "before:bg-zinc-950/5 dark:before:bg-white/10"
+        current && "before:bg-zinc-950/5 dark:before:bg-white/10",
       )}
     >
       <span className="-mx-0.5">{children}</span>
     </Button>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 import {
   type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription
+  Description as HeadlessDescription,
 } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
@@ -15,5 +15,5 @@ export default function ErrorMessage({
       {...props}
       className={cn(className, "text-base/6 text-red-600 data-disabled:opacity-50 sm:text-sm/6 dark:text-red-500")}
     />
-  )
+  );
 }

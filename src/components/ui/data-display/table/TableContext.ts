@@ -5,4 +5,4 @@ export default createContext<{ bleed: boolean; dense: boolean; grid: boolean; st
   dense: false,
   grid: false,
   striped: false,
-})
+});

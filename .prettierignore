@@ -1,0 +1,12 @@
+dist/
+node_modules/
+coverage/
+.nyc_output/
+.env
+.env.local
+.env.production.local
+.env.test.local
+package-lock.json
+*.log
+*.tgz
+*.tar.gz

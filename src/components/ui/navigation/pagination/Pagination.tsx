@@ -7,5 +7,5 @@ export default function Pagination({
   className,
   ...props
 }: ComponentPropsWithoutRef<"nav">) {
-  return <nav aria-label={ariaLabel} {...props} className={cn(className, "flex gap-x-2")} />
+  return <nav aria-label={ariaLabel} {...props} className={cn(className, "flex gap-x-2")} />;
 }

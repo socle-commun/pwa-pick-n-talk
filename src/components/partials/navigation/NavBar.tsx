@@ -1,4 +1,3 @@
-
 import { Navbar, NavbarSection, NavbarSpacer, Link } from "@/components/ui/navigation";
 
 import Brand from "@/components/partials/global/Brand";

@@ -1,4 +1,4 @@
-import cn from "@/utilities/cn"
+import cn from "@/utilities/cn";
 
 export default function Text({ className, ...props }: React.ComponentPropsWithoutRef<"p">) {
   return (
@@ -7,5 +7,5 @@ export default function Text({ className, ...props }: React.ComponentPropsWithou
       className={cn(className, "text-base/6 text-zinc-500 sm:text-sm/6 dark:text-zinc-400")}
       {...props}
     />
-  )
+  );
 }

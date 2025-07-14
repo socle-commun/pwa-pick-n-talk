@@ -1,6 +1,6 @@
 import {
   type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription
+  Description as HeadlessDescription,
 } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
@@ -11,11 +11,7 @@ export default function DropdownShortcut({
   ...props
 }: { keys: string | string[]; className?: string } & Omit<HeadlessDescriptionProps<"kbd">, "as" | "className">) {
   return (
-    <HeadlessDescription
-      as="kbd"
-      {...props}
-      className={cn(className, "col-start-5 row-start-1 flex justify-self-end")}
-    >
+    <HeadlessDescription as="kbd" {...props} className={cn(className, "col-start-5 row-start-1 flex justify-self-end")}>
       {(Array.isArray(keys) ? keys : keys.split("")).map((char, index) => (
         <kbd
           key={index}
@@ -29,5 +25,5 @@ export default function DropdownShortcut({
         </kbd>
       ))}
     </HeadlessDescription>
-  )
+  );
 }

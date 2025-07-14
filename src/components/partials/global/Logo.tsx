@@ -30,5 +30,5 @@ export default function Brand({ className }: { className?: string }) {
         />
       </path>
     </svg>
-  )
+  );
 }

@@ -1,7 +1,4 @@
-import {
-  type MenuItemsProps as HeadlessMenuItemsProps,
-  MenuItems as HeadlessMenuItems
-} from "@headlessui/react";
+import { type MenuItemsProps as HeadlessMenuItemsProps, MenuItems as HeadlessMenuItems } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
 
@@ -32,8 +29,8 @@ export default function DropdownMenu({
         // Define grid at the menu level if subgrid is supported
         "supports-[grid-template-columns:subgrid]:grid supports-[grid-template-columns:subgrid]:grid-cols-[auto_1fr_1.5rem_0.5rem_auto]",
         // Transitions
-        "transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0"
+        "transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0",
       )}
     />
-  )
+  );
 }

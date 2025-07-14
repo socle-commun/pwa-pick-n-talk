@@ -21,5 +21,5 @@ export default function Table({
         </div>
       </div>
     </TableContext.Provider>
-  )
+  );
 }

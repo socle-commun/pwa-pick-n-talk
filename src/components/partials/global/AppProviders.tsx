@@ -7,9 +7,5 @@ interface AppProvidersProps {
 }
 
 export default function AppProviders({ children }: AppProvidersProps) {
-  return (
-    <JotaiProvider>
-      {children}
-    </JotaiProvider>
-  )
+  return <JotaiProvider>{children}</JotaiProvider>;
 }

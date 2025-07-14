@@ -1,6 +1,6 @@
 import {
   type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription
+  Description as HeadlessDescription,
 } from "@headlessui/react";
 
 import Text from "@/components/ui/typography/text/Text";
@@ -12,10 +12,6 @@ export default function AlertDescription({
   ...props
 }: { className?: string } & Omit<HeadlessDescriptionProps<typeof Text>, "as" | "className">) {
   return (
-    <HeadlessDescription
-      as={Text}
-      {...props}
-      className={cn(className, "mt-2 text-center text-pretty sm:text-left")}
-    />
-  )
+    <HeadlessDescription as={Text} {...props} className={cn(className, "mt-2 text-center text-pretty sm:text-left")} />
+  );
 }

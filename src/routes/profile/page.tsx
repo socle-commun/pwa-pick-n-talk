@@ -5,5 +5,5 @@ export default function ProfilePage() {
     <>
       <h1 className={cn("")}>Profile</h1>
     </>
-  )
+  );
 }

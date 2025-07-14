@@ -13,9 +13,8 @@ export default function NavBar() {
         <Brand />
       </SidebarHeader>
       <SidebarBody>
-        <SidebarSection>
-        </SidebarSection>
+        <SidebarSection></SidebarSection>
       </SidebarBody>
     </Sidebar>
-  )
+  );
 }

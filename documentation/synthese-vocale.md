@@ -18,7 +18,7 @@ La fonctionnalité de synthèse vocale permet la lecture à voix haute des mots 
 ## Compatibilité navigateurs
 
 - ✅ Chrome/Chromium (toutes plateformes)
-- ✅ Firefox (toutes plateformes)  
+- ✅ Firefox (toutes plateformes)
 - ✅ Safari (macOS, iOS)
 - ✅ Edge (Windows)
 

@@ -5,7 +5,7 @@ import {
   Combobox as HeadlessCombobox,
   ComboboxInput as HeadlessComboboxInput,
   ComboboxButton as HeadlessComboboxButton,
-  ComboboxOptions as HeadlessComboboxOptions
+  ComboboxOptions as HeadlessComboboxOptions,
 } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
@@ -22,23 +22,23 @@ export default function Combobox<T>({
   children,
   ...props
 }: {
-  options: T[]
-  displayValue: (value: T | null) => string | undefined
-  filter?: (value: T, query: string) => boolean
-  className?: string
-  placeholder?: string
-  autoFocus?: boolean
-  "aria-label"?: string
-  children: (value: NonNullable<T>) => ReactElement
+  options: T[];
+  displayValue: (value: T | null) => string | undefined;
+  filter?: (value: T, query: string) => boolean;
+  className?: string;
+  placeholder?: string;
+  autoFocus?: boolean;
+  "aria-label"?: string;
+  children: (value: NonNullable<T>) => ReactElement;
 } & Omit<HeadlessComboboxProps<T, false>, "as" | "multiple" | "children"> & { anchor?: "top" | "bottom" }) {
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
 
   const filteredOptions =
     query === ""
       ? options
-      : options.filter((option) =>
-        filter ? filter(option, query) : displayValue(option)?.toLowerCase().includes(query.toLowerCase())
-      )
+      : options.filter(option =>
+          filter ? filter(option, query) : displayValue(option)?.toLowerCase().includes(query.toLowerCase()),
+        );
 
   return (
     <HeadlessCombobox {...props} multiple={false} virtual={{ options: filteredOptions }} onClose={() => setQuery("")}>
@@ -65,7 +65,7 @@ export default function Combobox<T>({
           data-slot="control"
           aria-label={ariaLabel}
           displayValue={(option: T) => displayValue(option) ?? ""}
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={event => setQuery(event.target.value)}
           placeholder={placeholder}
           className={cn([
             className,
@@ -118,11 +118,11 @@ export default function Combobox<T>({
           // Shadows
           "shadow-lg ring-1 ring-zinc-950/10 dark:ring-white/10 dark:ring-inset",
           // Transitions
-          "transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none"
+          "transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none",
         )}
       >
         {({ option }) => children(option)}
       </HeadlessComboboxOptions>
     </HeadlessCombobox>
-  )
+  );
 }

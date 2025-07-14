@@ -1,8 +1,8 @@
 export interface TranslatedBinder {
-	uuid: string;
+  uuid: string;
 
-	author: string;
-  
-	title: string;
-	description: string;
+  author: string;
+
+  title: string;
+  description: string;
 }

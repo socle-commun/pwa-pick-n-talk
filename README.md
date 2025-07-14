@@ -12,7 +12,6 @@ Pick'n'Talk est une application de communication visuelle 📱 destinée aux per
 - Support multilingue (français, anglais) 🌍
 - Adaptée aux enfants comme aux adultes 👶👵
 
-
 ## Pour qui ? 🤔
 
 Pick'n'Talk s'adresse aux personnes en situation de handicap de la parole, aux aidants, aux familles et aux professionnels de santé 👨‍⚕️👩‍🏫.

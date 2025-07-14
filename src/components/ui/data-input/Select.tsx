@@ -1,15 +1,12 @@
-import { forwardRef, type ForwardedRef } from "react"
+import { forwardRef, type ForwardedRef } from "react";
 
-import {
-  type SelectProps as HeadlessSelectProps,
-  Select as HeadlessSelect,
-} from "@headlessui/react";
+import { type SelectProps as HeadlessSelectProps, Select as HeadlessSelect } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
 
 export default forwardRef(function Select(
   { className, multiple, ...props }: { className?: string } & Omit<HeadlessSelectProps, "as" | "className">,
-  ref: ForwardedRef<HTMLSelectElement>
+  ref: ForwardedRef<HTMLSelectElement>,
 ) {
   return (
     <span
@@ -69,5 +66,5 @@ export default forwardRef(function Select(
         </span>
       )}
     </span>
-  )
-})
+  );
+});

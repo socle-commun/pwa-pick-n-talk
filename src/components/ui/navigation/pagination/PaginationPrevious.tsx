@@ -23,5 +23,5 @@ export default function PaginationPrevious({
         {children}
       </Button>
     </span>
-  )
+  );
 }

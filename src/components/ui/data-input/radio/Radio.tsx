@@ -1,7 +1,4 @@
-import {
-  type RadioProps as HeadlessRadioProps,
-  Radio as HeadlessRadio,
-} from "@headlessui/react";
+import { type RadioProps as HeadlessRadioProps, Radio as HeadlessRadio } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
 
@@ -32,7 +29,7 @@ const base = [
   "group-data-disabled:opacity-50",
   "group-data-disabled:border-zinc-950/25 group-data-disabled:bg-zinc-950/5 group-data-disabled:[--radio-checked-indicator:var(--color-zinc-950)]/50 group-data-disabled:before:bg-transparent",
   "dark:group-data-disabled:border-white/20 dark:group-data-disabled:bg-white/2.5 dark:group-data-disabled:[--radio-checked-indicator:var(--color-white)]/50 dark:group-data-checked:group-data-disabled:after:hidden",
-]
+];
 
 const colors = {
   "dark/zinc": [
@@ -73,9 +70,9 @@ const colors = {
     "[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-fuchsia-500)] [--radio-checked-border:var(--color-fuchsia-600)]/90",
   pink: "[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-pink-500)] [--radio-checked-border:var(--color-pink-600)]/90",
   rose: "[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-rose-500)] [--radio-checked-border:var(--color-rose-600)]/90",
-}
+};
 
-type Color = keyof typeof colors
+type Color = keyof typeof colors;
 
 export default function Radio({
   color = "dark/zinc",
@@ -83,20 +80,16 @@ export default function Radio({
   ...props
 }: { color?: Color; className?: string } & Omit<HeadlessRadioProps, "as" | "className" | "children">) {
   return (
-    <HeadlessRadio
-      data-slot="control"
-      {...props}
-      className={cn(className, "group inline-flex focus:outline-hidden")}
-    >
+    <HeadlessRadio data-slot="control" {...props} className={cn(className, "group inline-flex focus:outline-hidden")}>
       <span className={cn([base, colors[color]])}>
         <span
           className={cn(
             "size-full rounded-full border-[4.5px] border-transparent bg-(--radio-indicator) bg-clip-padding",
             // Forced colors mode
-            "forced-colors:border-[Canvas] forced-colors:group-data-checked:border-[Highlight]"
+            "forced-colors:border-[Canvas] forced-colors:group-data-checked:border-[Highlight]",
           )}
         />
       </span>
     </HeadlessRadio>
-  )
+  );
 }

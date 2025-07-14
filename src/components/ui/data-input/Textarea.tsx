@@ -1,9 +1,6 @@
 import { forwardRef, type ForwardedRef } from "react";
 
-import {
-  type TextareaProps as HeadlessTextareaProps,
-  Textarea as HeadlessTextarea,
-} from "@headlessui/react";
+import { type TextareaProps as HeadlessTextareaProps, Textarea as HeadlessTextarea } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
 
@@ -13,7 +10,7 @@ export default forwardRef(function Textarea(
     resizable = true,
     ...props
   }: { className?: string; resizable?: boolean } & Omit<HeadlessTextareaProps, "as" | "className">,
-  ref: ForwardedRef<HTMLTextAreaElement>
+  ref: ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
     <span
@@ -55,5 +52,5 @@ export default forwardRef(function Textarea(
         ])}
       />
     </span>
-  )
-})
+  );
+});

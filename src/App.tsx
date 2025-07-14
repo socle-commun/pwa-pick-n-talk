@@ -59,7 +59,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AppProviders>
-  )
+  );
 }
 
 export default App;

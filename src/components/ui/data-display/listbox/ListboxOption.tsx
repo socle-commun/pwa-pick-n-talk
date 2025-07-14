@@ -2,7 +2,7 @@ import { Fragment, type ReactNode } from "react";
 
 import {
   type ListboxOptionProps as HeadlessListboxOptionProps,
-  ListboxOption as HeadlessListboxOption
+  ListboxOption as HeadlessListboxOption,
 } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
@@ -11,10 +11,7 @@ export default function ListboxOption<T>({
   children,
   className,
   ...props
-}: { className?: string; children?: ReactNode } & Omit<
-  HeadlessListboxOptionProps<"div", T>,
-  "as" | "className"
->) {
+}: { className?: string; children?: ReactNode } & Omit<HeadlessListboxOptionProps<"div", T>, "as" | "className">) {
   const sharedClasses = cn(
     // Base
     "flex min-w-0 items-center",
@@ -23,14 +20,14 @@ export default function ListboxOption<T>({
     "*:data-[slot=icon]:text-zinc-500 group-data-focus/option:*:data-[slot=icon]:text-white dark:*:data-[slot=icon]:text-zinc-400",
     "forced-colors:*:data-[slot=icon]:text-[CanvasText] forced-colors:group-data-focus/option:*:data-[slot=icon]:text-[Canvas]",
     // Avatars
-    "*:data-[slot=avatar]:-mx-0.5 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:size-5"
-  )
+    "*:data-[slot=avatar]:-mx-0.5 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:size-5",
+  );
 
   return (
     <HeadlessListboxOption as={Fragment} {...props}>
       {({ selectedOption }) => {
         if (selectedOption) {
-          return <div className={cn(className, sharedClasses)}>{children}</div>
+          return <div className={cn(className, sharedClasses)}>{children}</div>;
         }
 
         return (
@@ -45,7 +42,7 @@ export default function ListboxOption<T>({
               // Forced colors mode
               "forced-color-adjust-none forced-colors:data-focus:bg-[Highlight] forced-colors:data-focus:text-[HighlightText]",
               // Disabled
-              "data-disabled:opacity-50"
+              "data-disabled:opacity-50",
             )}
           >
             <svg
@@ -58,8 +55,8 @@ export default function ListboxOption<T>({
             </svg>
             <span className={cn(className, sharedClasses, "col-start-2")}>{children}</span>
           </div>
-        )
+        );
       }}
     </HeadlessListboxOption>
-  )
+  );
 }

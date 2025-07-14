@@ -1,4 +1,3 @@
-
 import { Outlet } from "react-router";
 
 import { StackedLayout } from "@/components/ui/layout";
@@ -13,5 +12,5 @@ export default function Layout() {
         <Outlet />
       </StackedLayout>
     </>
-  )
+  );
 }

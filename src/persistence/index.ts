@@ -52,61 +52,118 @@ export class PickNTalkDB extends Dexie {
   }
 
   private getCategoriesFromPictograms(pictograms: Pictogram[]): PromiseExtended<Category[]> {
-    return this.categories.where("uuid").anyOf(pictograms.map((pictogram) => pictogram.categoryUuid)).toArray();
+    return this.categories
+      .where("uuid")
+      .anyOf(pictograms.map(pictogram => pictogram.categoryUuid))
+      .toArray();
   }
 
   public getTranslatedBinders(language: string): PromiseExtended<TranslatedBinder[]> {
     return this.transaction("r", this.binders, this.translations, () => {
-      return this.binders.toArray().then((binders) => {
-        return this.translations.where("objectUuid").anyOf(binders.map((binder) => binder.uuid)).toArray().then((translations) => {
-          return binders.map((binder) => {
-            const binderTitleTranslation = translations.find((translation) => translation.objectUuid === binder.uuid && translation.language === language && translation.key === "title");
-            const binderDescriptionTranslation = translations.find((translation) => translation.objectUuid === binder.uuid && translation.language === language && translation.key === "description");
-            return { ...binder, title: binderTitleTranslation?.value || "", description: binderDescriptionTranslation?.value || "" };
+      return this.binders.toArray().then(binders => {
+        return this.translations
+          .where("objectUuid")
+          .anyOf(binders.map(binder => binder.uuid))
+          .toArray()
+          .then(translations => {
+            return binders.map(binder => {
+              const binderTitleTranslation = translations.find(
+                translation =>
+                  translation.objectUuid === binder.uuid &&
+                  translation.language === language &&
+                  translation.key === "title",
+              );
+              const binderDescriptionTranslation = translations.find(
+                translation =>
+                  translation.objectUuid === binder.uuid &&
+                  translation.language === language &&
+                  translation.key === "description",
+              );
+              return {
+                ...binder,
+                title: binderTitleTranslation?.value || "",
+                description: binderDescriptionTranslation?.value || "",
+              };
+            });
           });
-        });
       });
     });
   }
 
   public getTranslatedBinder(uuid: string, language: string): PromiseExtended<TranslatedBinder> {
     return this.transaction("r", this.binders, this.translations, () => {
-      return this.binders.get(uuid).then((binder) => {
+      return this.binders.get(uuid).then(binder => {
         if (!binder) {
           return Promise.reject(new Error("Binder not found"));
         }
-        return this.translations.where("objectUuid").anyOf(binder.uuid).toArray().then((translations) => {
-          const binderTitleTranslation = translations.find((translation) => translation.objectUuid === binder.uuid && translation.language === language && translation.key === "title");
-          const binderDescriptionTranslation = translations.find((translation) => translation.objectUuid === binder.uuid && translation.language === language && translation.key === "description");
-          return { ...binder, title: binderTitleTranslation?.value || "", description: binderDescriptionTranslation?.value || "" };
-        });
+        return this.translations
+          .where("objectUuid")
+          .anyOf(binder.uuid)
+          .toArray()
+          .then(translations => {
+            const binderTitleTranslation = translations.find(
+              translation =>
+                translation.objectUuid === binder.uuid &&
+                translation.language === language &&
+                translation.key === "title",
+            );
+            const binderDescriptionTranslation = translations.find(
+              translation =>
+                translation.objectUuid === binder.uuid &&
+                translation.language === language &&
+                translation.key === "description",
+            );
+            return {
+              ...binder,
+              title: binderTitleTranslation?.value || "",
+              description: binderDescriptionTranslation?.value || "",
+            };
+          });
       });
     });
   }
 
   public getTranslatedPictogramsFromBinderUuid(binderUuid: string, language: string): Promise<TranslatedPictogram[]> {
     return this.transaction("r", this.pictograms, this.settings, this.translations, () => {
-      return this.getPictogramsFromBinderUuid(binderUuid).then((pictograms) => {
-        return this.translations.where("objectUuid").anyOf(pictograms.map((pictogram) => pictogram.uuid)).toArray().then((translations) => {
-          return pictograms.map((pictogram) => {
-            const pictogramTranslation = translations.find((translation) => translation.objectUuid === pictogram.uuid && translation.language === language && translation.key === "word");
-            return { ...pictogram, word: pictogramTranslation?.value || "" };
+      return this.getPictogramsFromBinderUuid(binderUuid).then(pictograms => {
+        return this.translations
+          .where("objectUuid")
+          .anyOf(pictograms.map(pictogram => pictogram.uuid))
+          .toArray()
+          .then(translations => {
+            return pictograms.map(pictogram => {
+              const pictogramTranslation = translations.find(
+                translation =>
+                  translation.objectUuid === pictogram.uuid &&
+                  translation.language === language &&
+                  translation.key === "word",
+              );
+              return { ...pictogram, word: pictogramTranslation?.value || "" };
+            });
           });
-        });
       });
     });
   }
 
   public getTranslatedCategoriesFromBinderUuid(binderUuid: string, language: string): Promise<TranslatedCategory[]> {
     return this.transaction("r", this.pictograms, this.categories, this.settings, this.translations, () => {
-      return this.getPictogramsFromBinderUuid(binderUuid).then((pictograms) => {
-        return this.getCategoriesFromPictograms(pictograms).then((categories) => {
-          return this.translations.where("objectUuid").anyOf(categories.map((category) => category.uuid)).toArray().then((translations) => {
-            return categories.map((category) => {
-              const categoryTranslation = translations.find((translation) => translation.objectUuid === category.uuid && translation.language === language && translation.key === "name");
-              return { ...category, name: categoryTranslation?.value || "" };
+      return this.getPictogramsFromBinderUuid(binderUuid).then(pictograms => {
+        return this.getCategoriesFromPictograms(pictograms).then(categories => {
+          return this.translations
+            .where("objectUuid")
+            .anyOf(categories.map(category => category.uuid))
+            .toArray()
+            .then(translations => {
+              return categories.map(category => {
+                const categoryTranslation = translations.find(
+                  translation =>
+                    translation.objectUuid === category.uuid &&
+                    translation.language === language &&
+                    translation.key === "name",
+                );
+                return { ...category, name: categoryTranslation?.value || "" };
+              });
             });
-          });
         });
       });
     });
@@ -144,7 +201,9 @@ export class PickNTalkDB extends Dexie {
     return this.transaction("rw", this.binders, this.translations, () => {
       this.binders.update(binder.uuid, binder);
       this.translations.where({ objectUuid: binder.uuid, language, key: "title" }).modify({ value: binder.title });
-      this.translations.where({ objectUuid: binder.uuid, language, key: "description" }).modify({ value: binder.description });
+      this.translations
+        .where({ objectUuid: binder.uuid, language, key: "description" })
+        .modify({ value: binder.description });
     });
   }
 

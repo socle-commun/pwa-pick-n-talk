@@ -26,9 +26,7 @@ export default function SignInPage() {
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
           <Logo className={cn("size-16")} />
-          <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight">
-            Sign in to your account
-          </h2>
+          <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight">Sign in to your account</h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
@@ -42,7 +40,8 @@ export default function SignInPage() {
                     id="email"
                     type="email"
                     required
-                    autoComplete="email" />
+                    autoComplete="email"
+                  />
                 </Field>
 
                 <Field className={cn("mb-2")}>
@@ -52,7 +51,8 @@ export default function SignInPage() {
                     id="password"
                     type="password"
                     required
-                    autoComplete="current-password" />
+                    autoComplete="current-password"
+                  />
                 </Field>
 
                 <div className="flex items-center justify-end">
@@ -68,5 +68,5 @@ export default function SignInPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

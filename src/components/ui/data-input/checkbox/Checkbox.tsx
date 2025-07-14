@@ -1,7 +1,4 @@
-import {
-  type CheckboxProps as HeadlessCheckboxProps,
-  Checkbox as HeadlessCheckbox,
-} from "@headlessui/react";
+import { type CheckboxProps as HeadlessCheckboxProps, Checkbox as HeadlessCheckbox } from "@headlessui/react";
 
 import cn from "@/utilities/cn";
 
@@ -31,7 +28,7 @@ const base = [
   // Forced colors mode
   "forced-colors:[--checkbox-check:HighlightText] forced-colors:[--checkbox-checked-bg:Highlight] forced-colors:group-data-disabled:[--checkbox-check:Highlight]",
   "dark:forced-colors:[--checkbox-check:HighlightText] dark:forced-colors:[--checkbox-checked-bg:Highlight] dark:forced-colors:group-data-disabled:[--checkbox-check:Highlight]",
-]
+];
 
 const colors = {
   "dark/zinc": [
@@ -72,17 +69,17 @@ const colors = {
     "[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-fuchsia-500)] [--checkbox-checked-border:var(--color-fuchsia-600)]/90",
   pink: "[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-pink-500)] [--checkbox-checked-border:var(--color-pink-600)]/90",
   rose: "[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-rose-500)] [--checkbox-checked-border:var(--color-rose-600)]/90",
-}
+};
 
-type Color = keyof typeof colors
+type Color = keyof typeof colors;
 
 export default function Checkbox({
   color = "dark/zinc",
   className,
   ...props
 }: {
-  color?: Color
-  className?: string
+  color?: Color;
+  className?: string;
 } & Omit<HeadlessCheckboxProps, "as" | "className">) {
   return (
     <HeadlessCheckbox
@@ -115,5 +112,5 @@ export default function Checkbox({
         </svg>
       </span>
     </HeadlessCheckbox>
-  )
+  );
 }

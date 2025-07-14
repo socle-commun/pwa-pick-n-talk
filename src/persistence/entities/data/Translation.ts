@@ -1,10 +1,10 @@
 export interface Translation {
-	id?: number;
+  id?: number;
 
-	objectUuid: string;
-	language: string;
+  objectUuid: string;
+  language: string;
 
-	key: string | undefined;
+  key: string | undefined;
 
-	value: string;
+  value: string;
 }
