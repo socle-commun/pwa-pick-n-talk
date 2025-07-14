@@ -32,12 +32,12 @@ export default forwardRef(function AvatarButton(
       | Omit<HeadlessButtonProps, "as" | "className">
       | Omit<ComponentPropsWithoutRef<typeof Link>, "className">
     ),
-  ref: React.ForwardedRef<HTMLElement>,
+  ref: React.ForwardedRef<HTMLElement>
 ) {
   const classes = cn(
     className,
     square ? "rounded-[20%]" : "rounded-full",
-    "relative inline-grid focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500",
+    "relative inline-grid focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500"
   );
 
   return "href" in props ? (

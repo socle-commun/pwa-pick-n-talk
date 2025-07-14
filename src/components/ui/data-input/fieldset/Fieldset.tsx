@@ -14,7 +14,7 @@ export default function Fieldset({
       {...props}
       className={cn(
         className,
-        "*:data-[slot=text]:mt-1 [&>*+[data-slot=control]]:mt-6",
+        "*:data-[slot=text]:mt-1 [&>*+[data-slot=control]]:mt-6"
       )}
     />
   );

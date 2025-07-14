@@ -45,7 +45,7 @@ export default function BinderPage() {
       {/* Binder Header */}
       <div
         className={cn(
-          "bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 p-6",
+          "bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 p-6"
         )}
       >
         <h1

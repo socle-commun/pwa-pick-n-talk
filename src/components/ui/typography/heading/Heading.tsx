@@ -18,7 +18,7 @@ export default function Heading({
       {...props}
       className={cn(
         className,
-        "text-4xl font-semibold text-zinc-950 dark:text-white",
+        "text-4xl font-semibold text-zinc-950 dark:text-white"
       )}
     />
   );

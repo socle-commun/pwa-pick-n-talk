@@ -9,7 +9,7 @@ export default function Text({
       data-slot="text"
       className={cn(
         className,
-        "text-base/6 text-zinc-500 sm:text-sm/6 dark:text-zinc-400",
+        "text-base/6 text-zinc-500 sm:text-sm/6 dark:text-zinc-400"
       )}
       {...props}
     />

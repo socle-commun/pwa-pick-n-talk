@@ -53,12 +53,12 @@ export default forwardRef(function BadgeButton(
       | Omit<HeadlessButtonProps, "as" | "className">
       | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
     ),
-  ref: React.ForwardedRef<HTMLElement>,
+  ref: React.ForwardedRef<HTMLElement>
 ) {
   const classes = cn(
     className,
     "group relative inline-flex rounded-md focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500",
-    colors[color],
+    colors[color]
   );
 
   return "href" in props ? (

@@ -10,7 +10,7 @@ import { DataInteractive } from "@headlessui/react";
 
 export default forwardRef(function Link(
   props: { href: string } & ComponentPropsWithoutRef<"a">,
-  ref: ForwardedRef<HTMLAnchorElement>,
+  ref: ForwardedRef<HTMLAnchorElement>
 ) {
   return (
     <DataInteractive>

@@ -27,7 +27,7 @@ export default function BinderCard({
       {...props}
       className={cn(
         className,
-        "w-content h-content flex flex-col bg-zinc-200 dark:bg-zinc-800 overflow-hidden rounded-md",
+        "w-content h-content flex flex-col bg-zinc-200 dark:bg-zinc-800 overflow-hidden rounded-md"
       )}
     >
       <Button
@@ -51,7 +51,7 @@ export default function BinderCard({
           href={`${binder.uuid}/edit`}
           color="sky"
           className={cn(
-            "hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150",
+            "hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150"
           )}
         >
           <PencilIcon className={cn("size-4")} />
@@ -64,7 +64,7 @@ export default function BinderCard({
             db.deleteBinder(binder.uuid);
           }}
           className={cn(
-            "hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150",
+            "hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150"
           )}
         >
           <TrashIcon className={cn("size-4")} />

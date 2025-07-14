@@ -41,7 +41,7 @@ export default function Combobox<T>({
       : options.filter((option) =>
           filter
             ? filter(option, query)
-            : displayValue(option)?.toLowerCase().includes(query.toLowerCase()),
+            : displayValue(option)?.toLowerCase().includes(query.toLowerCase())
         );
 
   return (
@@ -137,7 +137,7 @@ export default function Combobox<T>({
           // Shadows
           "shadow-lg ring-1 ring-zinc-950/10 dark:ring-white/10 dark:ring-inset",
           // Transitions
-          "transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none",
+          "transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none"
         )}
       >
         {({ option }) => children(option)}

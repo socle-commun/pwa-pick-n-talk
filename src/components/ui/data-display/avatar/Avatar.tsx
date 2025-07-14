@@ -30,7 +30,7 @@ export default function Avatar({
         // Border radius
         square
           ? "rounded-(--avatar-radius) *:rounded-(--avatar-radius)"
-          : "rounded-full *:rounded-full",
+          : "rounded-full *:rounded-full"
       )}
     >
       {initials && (

@@ -26,7 +26,7 @@ export default forwardRef(function Input(
       | "url"
       | DateType;
   } & Omit<HeadlessInputProps, "as" | "className">,
-  ref: ForwardedRef<HTMLInputElement>,
+  ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
     <span

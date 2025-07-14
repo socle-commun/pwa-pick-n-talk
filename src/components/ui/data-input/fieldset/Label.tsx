@@ -15,7 +15,7 @@ export default function Label({
       {...props}
       className={cn(
         className,
-        "text-base/6 select-none data-disabled:opacity-50 sm:text-sm/6",
+        "text-base/6 select-none data-disabled:opacity-50 sm:text-sm/6"
       )}
     />
   );

@@ -17,7 +17,7 @@ export default function DialogTitle({
       {...props}
       className={cn(
         className,
-        "text-lg/6 font-semibold text-balance text-zinc-950 sm:text-base/6 dark:text-white",
+        "text-lg/6 font-semibold text-balance text-zinc-950 sm:text-base/6 dark:text-white"
       )}
     />
   );

@@ -13,7 +13,7 @@ export default forwardRef(function Select(
     multiple,
     ...props
   }: { className?: string } & Omit<HeadlessSelectProps, "as" | "className">,
-  ref: ForwardedRef<HTMLSelectElement>,
+  ref: ForwardedRef<HTMLSelectElement>
 ) {
   return (
     <span

@@ -19,7 +19,7 @@ export default function Field({
         "[&>[data-slot=description]+[data-slot=control]]:mt-3",
         "[&>[data-slot=control]+[data-slot=description]]:mt-3",
         "[&>[data-slot=control]+[data-slot=error]]:mt-3",
-        "*:data-[slot=label]:font-medium",
+        "*:data-[slot=label]:font-medium"
       )}
     />
   );

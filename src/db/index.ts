@@ -48,13 +48,13 @@ export class PickNTalkDB extends Dexie {
   }
 
   private getPictogramsFromBinderUuid(
-    binderUuid: string,
+    binderUuid: string
   ): PromiseExtended<Pictogram[]> {
     return this.pictograms.where({ binderUuid }).toArray();
   }
 
   private getCategoriesFromPictograms(
-    pictograms: Pictogram[],
+    pictograms: Pictogram[]
   ): PromiseExtended<Category[]> {
     return this.categories
       .where("uuid")
@@ -63,7 +63,7 @@ export class PickNTalkDB extends Dexie {
   }
 
   public getTranslatedBinders(
-    language: string,
+    language: string
   ): PromiseExtended<TranslatedBinder[]> {
     return this.transaction("r", this.binders, this.translations, () => {
       return this.binders.toArray().then((binders) => {
@@ -77,13 +77,13 @@ export class PickNTalkDB extends Dexie {
                 (translation) =>
                   translation.objectUuid === binder.uuid &&
                   translation.language === language &&
-                  translation.key === "title",
+                  translation.key === "title"
               );
               const binderDescriptionTranslation = translations.find(
                 (translation) =>
                   translation.objectUuid === binder.uuid &&
                   translation.language === language &&
-                  translation.key === "description",
+                  translation.key === "description"
               );
               return {
                 ...binder,
@@ -98,7 +98,7 @@ export class PickNTalkDB extends Dexie {
 
   public getTranslatedBinder(
     uuid: string,
-    language: string,
+    language: string
   ): PromiseExtended<TranslatedBinder> {
     return this.transaction("r", this.binders, this.translations, () => {
       return this.binders.get(uuid).then((binder) => {
@@ -114,13 +114,13 @@ export class PickNTalkDB extends Dexie {
               (translation) =>
                 translation.objectUuid === binder.uuid &&
                 translation.language === language &&
-                translation.key === "title",
+                translation.key === "title"
             );
             const binderDescriptionTranslation = translations.find(
               (translation) =>
                 translation.objectUuid === binder.uuid &&
                 translation.language === language &&
-                translation.key === "description",
+                translation.key === "description"
             );
             return {
               ...binder,
@@ -134,7 +134,7 @@ export class PickNTalkDB extends Dexie {
 
   public getTranslatedPictogramsFromBinderUuid(
     binderUuid: string,
-    language: string,
+    language: string
   ): Promise<TranslatedPictogram[]> {
     return this.transaction(
       "r",
@@ -154,7 +154,7 @@ export class PickNTalkDB extends Dexie {
                     (translation) =>
                       translation.objectUuid === pictogram.uuid &&
                       translation.language === language &&
-                      translation.key === "word",
+                      translation.key === "word"
                   );
                   return {
                     ...pictogram,
@@ -162,15 +162,15 @@ export class PickNTalkDB extends Dexie {
                   };
                 });
               });
-          },
+          }
         );
-      },
+      }
     );
   }
 
   public getTranslatedCategoriesFromBinderUuid(
     binderUuid: string,
-    language: string,
+    language: string
   ): Promise<TranslatedCategory[]> {
     return this.transaction(
       "r",
@@ -193,7 +193,7 @@ export class PickNTalkDB extends Dexie {
                         (translation) =>
                           translation.objectUuid === category.uuid &&
                           translation.language === language &&
-                          translation.key === "name",
+                          translation.key === "name"
                       );
                       return {
                         ...category,
@@ -201,11 +201,11 @@ export class PickNTalkDB extends Dexie {
                       };
                     });
                   });
-              },
+              }
             );
-          },
+          }
         );
-      },
+      }
     );
   }
   // #endregion
@@ -239,7 +239,7 @@ export class PickNTalkDB extends Dexie {
   // #region Update
   public updateTranslatedBinder(
     binder: TranslatedBinder,
-    language: string,
+    language: string
   ): PromiseExtended<void> {
     return this.transaction("rw", this.binders, this.translations, () => {
       this.binders.update(binder.uuid, binder);
@@ -254,7 +254,7 @@ export class PickNTalkDB extends Dexie {
 
   public updateTranslatedPictogram(
     pictogram: TranslatedPictogram,
-    language: string,
+    language: string
   ): PromiseExtended<void> {
     return this.transaction("rw", this.pictograms, this.translations, () => {
       this.pictograms.update(pictogram.uuid, pictogram);
@@ -266,7 +266,7 @@ export class PickNTalkDB extends Dexie {
 
   public updateTranslatedCategory(
     category: TranslatedCategory,
-    language: string,
+    language: string
   ): PromiseExtended<void> {
     return this.transaction("rw", this.categories, this.translations, () => {
       this.categories.update(category.uuid, category);

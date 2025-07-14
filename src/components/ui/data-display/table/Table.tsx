@@ -29,13 +29,13 @@ export default function Table({
           {...props}
           className={cn(
             className,
-            "-mx-(--gutter) overflow-x-auto whitespace-nowrap",
+            "-mx-(--gutter) overflow-x-auto whitespace-nowrap"
           )}
         >
           <div
             className={cn(
               "inline-block min-w-full align-middle",
-              !bleed && "sm:px-(--gutter)",
+              !bleed && "sm:px-(--gutter)"
             )}
           >
             <table className="min-w-full text-left text-sm/6 text-zinc-950 dark:text-white">

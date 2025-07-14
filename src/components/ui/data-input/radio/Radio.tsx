@@ -96,7 +96,7 @@ export default function Radio({
           className={cn(
             "size-full rounded-full border-[4.5px] border-transparent bg-(--radio-indicator) bg-clip-padding",
             // Forced colors mode
-            "forced-colors:border-[Canvas] forced-colors:group-data-checked:border-[Highlight]",
+            "forced-colors:border-[Canvas] forced-colors:group-data-checked:border-[Highlight]"
           )}
         />
       </span>

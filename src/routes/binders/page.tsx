@@ -13,7 +13,7 @@ export default function IndexPage() {
 
   const binders = useLiveQuery(
     async () => db.getTranslatedBinders(i18n.language),
-    [db, t, i18n.language],
+    [db, t, i18n.language]
   );
 
   return binders && binders.length !== 0 ? (

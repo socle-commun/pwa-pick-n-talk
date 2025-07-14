@@ -16,7 +16,7 @@ export default forwardRef(function Textarea(
     HeadlessTextareaProps,
     "as" | "className"
   >,
-  ref: ForwardedRef<HTMLTextAreaElement>,
+  ref: ForwardedRef<HTMLTextAreaElement>
 ) {
   return (
     <span

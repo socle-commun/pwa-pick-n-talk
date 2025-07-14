@@ -23,7 +23,7 @@ export default forwardRef(function SidebarItem(
     | Omit<HeadlessButtonProps, "as" | "className">
     | Omit<HeadlessButtonProps<typeof Link>, "as" | "className">
   ),
-  ref: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>,
+  ref: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
 ) {
   const classes = cn(
     // Base
@@ -44,7 +44,7 @@ export default forwardRef(function SidebarItem(
     "dark:text-white dark:*:data-[slot=icon]:fill-zinc-400",
     "dark:data-hover:bg-white/5 dark:data-hover:*:data-[slot=icon]:fill-white",
     "dark:data-active:bg-white/5 dark:data-active:*:data-[slot=icon]:fill-white",
-    "dark:data-current:*:data-[slot=icon]:fill-white",
+    "dark:data-current:*:data-[slot=icon]:fill-white"
   );
 
   return (

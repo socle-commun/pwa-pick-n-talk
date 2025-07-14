@@ -20,7 +20,7 @@ export default function PictogramsGrid({
     try {
       return await db.getTranslatedPictogramsFromBinderUuid(
         binderUuid,
-        i18n.language,
+        i18n.language
       );
     } catch (error) {
       console.error("Failed to load pictograms:", error);
@@ -55,7 +55,7 @@ export default function PictogramsGrid({
     <div
       className={cn(
         "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 p-4",
-        className,
+        className
       )}
     >
       {pictograms.map((pictogram) => (

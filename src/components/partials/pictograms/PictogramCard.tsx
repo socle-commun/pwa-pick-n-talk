@@ -51,7 +51,7 @@ export default function PictogramCard({
       className={cn(
         "flex flex-col items-center p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md hover:shadow-lg transition-shadow",
         "border border-zinc-200 dark:border-zinc-700",
-        className,
+        className
       )}
     >
       {/* Pictogram Image */}
@@ -66,7 +66,7 @@ export default function PictogramCard({
           <div
             className={cn(
               "w-full h-full bg-zinc-100 dark:bg-zinc-700 rounded-md",
-              "flex items-center justify-center text-zinc-400",
+              "flex items-center justify-center text-zinc-400"
             )}
           >
             No Image
@@ -77,7 +77,7 @@ export default function PictogramCard({
       {/* Word Label */}
       <div
         className={cn(
-          "text-lg font-medium text-center mb-2 text-zinc-900 dark:text-zinc-100",
+          "text-lg font-medium text-center mb-2 text-zinc-900 dark:text-zinc-100"
         )}
       >
         {pictogram.word}
@@ -91,7 +91,7 @@ export default function PictogramCard({
           className={cn(
             "p-2 rounded-full",
             "hover:scale-105 active:scale-95 transition-transform duration-150",
-            isSpeaking ? "opacity-50 cursor-not-allowed" : "",
+            isSpeaking ? "opacity-50 cursor-not-allowed" : ""
           )}
           color="blue"
           plain

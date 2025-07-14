@@ -176,7 +176,7 @@ type ButtonProps = (
 
 export default forwardRef(function Button(
   { color, outline, plain, className, children, ...props }: ButtonProps,
-  ref: ForwardedRef<HTMLElement>,
+  ref: ForwardedRef<HTMLElement>
 ) {
   const classes = cn(
     styles.base,
@@ -185,7 +185,7 @@ export default forwardRef(function Button(
       ? styles.outline
       : plain
         ? styles.plain
-        : cn(styles.solid, styles.colors[color ?? "dark/zinc"]),
+        : cn(styles.solid, styles.colors[color ?? "dark/zinc"])
   );
 
   return "href" in props ? (

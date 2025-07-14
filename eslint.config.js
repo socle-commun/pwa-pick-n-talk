@@ -60,10 +60,9 @@ export default tseslint.config(
         },
       ],
 
-      // Code style rules
+      // Code style rules (handled by Prettier)
       quotes: ["error", "double"],
       semi: ["error", "always"],
-      "comma-dangle": ["error", "always-multiline"],
       "eol-last": ["error", "always"],
       "no-trailing-spaces": "error",
     },
