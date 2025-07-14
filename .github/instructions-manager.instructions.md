@@ -6,6 +6,15 @@ applyTo: '.github/*.instructions.md'
 
 ## Guidelines
 
+### Special Rule: pocs/
+
+All folders under `pocs/` are proof of concept only:
+- Never use them as a direct base for the main project.
+- Use them for inspiration, extract ideas, and refactor before integrating.
+- No copy-paste, no structural dependency.
+
+Brütalcode, not BrütalCopy.
+
 1. **Consistency**: Ensure all instruction files follow a clear and consistent format, including headers, bullet points, and code blocks where appropriate.
 2. **Clarity**: Write instructions in clear, concise English. Avoid ambiguity and provide examples if necessary.
 3. **Updates**: When modifying instructions, document the changes and update the version or date if applicable.
