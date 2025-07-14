@@ -1,6 +1,6 @@
 import { type ComponentPropsWithoutRef } from "react"
 
-import cn from "@/utilities/cn"
+import cn from "@/utils/cn"
 
 type HeadingProps = { level?: 1 | 2 | 3 | 4 | 5 | 6 } & ComponentPropsWithoutRef<
   "h1" | "h2" | "h3" | "h4" | "h5" | "h6"

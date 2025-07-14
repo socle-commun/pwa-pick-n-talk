@@ -1,4 +1,4 @@
-import { db } from "@/persistence";
+import { db } from "@/db";
 
 interface ElementTranslation {
   language: string;

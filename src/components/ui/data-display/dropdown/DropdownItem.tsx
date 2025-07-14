@@ -5,7 +5,7 @@ import {
 
 import { Link } from "@/components/ui/navigation";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function DropdownItem({
   className,

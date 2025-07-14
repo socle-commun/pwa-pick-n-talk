@@ -1,4 +1,4 @@
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function AlertActions({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   return (

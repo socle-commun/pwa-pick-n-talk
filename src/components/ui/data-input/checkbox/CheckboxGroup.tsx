@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function CheckboxGroup({ className, ...props }: ComponentPropsWithoutRef<"div">) {
   return (

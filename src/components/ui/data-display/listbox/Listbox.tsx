@@ -8,7 +8,7 @@ import {
   ListboxOptions as HeadlessListboxOptions
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function Listbox<T>({
   className,

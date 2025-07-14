@@ -7,10 +7,10 @@ import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
 import { Divider } from "@/components/ui/layout";
 import { Button } from "@/components/ui/actions";
 
-import { type TranslatedBinder } from "@/persistence/entities/translated/TranslatedBinder";
-import { db } from "@/persistence";
+import { type TranslatedBinder } from "@/db/entities/translated/TranslatedBinder";
+import { db } from "@/db";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function BinderCard({ binder, className, ...props }: {
   binder: TranslatedBinder;

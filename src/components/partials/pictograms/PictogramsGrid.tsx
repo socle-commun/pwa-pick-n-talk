@@ -2,8 +2,8 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { useTranslation } from "react-i18next";
 
 import PictogramCard from "./PictogramCard";
-import { db } from "@/persistence";
-import cn from "@/utilities/cn";
+import { db } from "@/db";
+import cn from "@/utils/cn";
 
 export interface PictogramsGridProps {
 	binderUuid: string;

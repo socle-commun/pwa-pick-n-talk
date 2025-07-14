@@ -3,7 +3,7 @@ import {
   MenuItems as HeadlessMenuItems
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function DropdownMenu({
   anchor = "bottom",

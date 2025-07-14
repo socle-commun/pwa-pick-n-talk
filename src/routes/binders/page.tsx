@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import BinderCard from "@/components/partials/binders/BinderCard";
 import EmptyBindersList from "@/components/partials/binders/EmptyBindersList";
 
-import { db } from "@/persistence";
+import { db } from "@/db";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function IndexPage() {
   const { t, i18n } = useTranslation();

@@ -5,7 +5,7 @@ import {
   Textarea as HeadlessTextarea,
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default forwardRef(function Textarea(
   {

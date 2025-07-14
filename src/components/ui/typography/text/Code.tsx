@@ -1,4 +1,4 @@
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function Code({ className, ...props }: React.ComponentPropsWithoutRef<"code">) {
   return (

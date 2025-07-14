@@ -6,7 +6,7 @@ import { Button as HeadlessButton, type ButtonProps as HeadlessButtonProps } fro
 import { TouchTarget } from "@/components/ui/actions";
 import { Link } from "@/components/ui/navigation";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 const styles = {
   base: [

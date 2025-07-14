@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/actions";
 import { Field, Fieldset, Input, Label } from "@/components/ui/data-input";
 import { Link } from "@/components/ui/navigation";
 
-import useUserActions from "@/state/actions/_useUserActions";
+import useUserActions from "@/utils/state/actions/_useUserActions";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 type SignInFormFields = {
   email: string;

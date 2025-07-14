@@ -3,7 +3,7 @@ import {
   Legend as HeadlessLegend
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function Legend({
   className,

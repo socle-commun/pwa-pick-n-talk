@@ -3,8 +3,8 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { useTranslation } from "react-i18next";
 
 import PictogramsGrid from "@/components/partials/pictograms/PictogramsGrid";
-import { db } from "@/persistence";
-import cn from "@/utilities/cn";
+import { db } from "@/db";
+import cn from "@/utils/cn";
 
 export default function BinderPage() {
   const { uuid } = useParams<{ uuid: string }>();

@@ -9,7 +9,7 @@ import { TouchTarget } from "@/components/ui/actions";
 import { Avatar } from "@/components/ui/data-display";
 import { Link } from "@/components/ui/navigation";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 type AvatarButtonProps = {
   src?: string | null

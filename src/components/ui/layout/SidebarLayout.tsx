@@ -9,7 +9,7 @@ import {
 
 import { NavbarItem } from "@/components/ui/navigation"
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 function OpenMenuIcon() {
   return (

@@ -1,6 +1,6 @@
 import { type ComponentPropsWithoutRef } from "react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function SidebarHeading({ className, ...props }: ComponentPropsWithoutRef<"h3">) {
   return (

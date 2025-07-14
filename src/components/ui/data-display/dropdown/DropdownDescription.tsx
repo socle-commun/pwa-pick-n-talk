@@ -3,7 +3,7 @@ import {
   Description as HeadlessDescription
 } from "@headlessui/react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function DropdownDescription({
   className,

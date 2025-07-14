@@ -1,6 +1,6 @@
 import TableContext from "@/components/ui/data-display/table/TableContext";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function Table({
   bleed = false,

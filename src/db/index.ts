@@ -1,17 +1,17 @@
 import Dexie, { type PromiseExtended, type Table } from "dexie";
 
-import { type Binder } from "@/persistence/entities/data/Binder";
-import { type Category } from "@/persistence/entities/data/Category";
-import { type Pictogram } from "@/persistence/entities/data/Pictogram";
-import { type Setting } from "@/persistence/entities/data/Setting";
-import { type Translation } from "@/persistence/entities/data/Translation";
-import type { User } from "@/persistence/entities/data/User";
+import { type Binder } from "@/db/entities/data/Binder";
+import { type Category } from "@/db/entities/data/Category";
+import { type Pictogram } from "@/db/entities/data/Pictogram";
+import { type Setting } from "@/db/entities/data/Setting";
+import { type Translation } from "@/db/entities/data/Translation";
+import type { User } from "@/db/entities/data/User";
 
-import { type TranslatedBinder } from "@/persistence/entities/translated/TranslatedBinder";
-import { type TranslatedCategory } from "@/persistence/entities/translated/TranslatedCategory";
-import { type TranslatedPictogram } from "@/persistence/entities/translated/TranslatedPictogram";
+import { type TranslatedBinder } from "@/db/entities/translated/TranslatedBinder";
+import { type TranslatedCategory } from "@/db/entities/translated/TranslatedCategory";
+import { type TranslatedPictogram } from "@/db/entities/translated/TranslatedPictogram";
 
-import { populate } from "@/persistence/populate";
+import { populate } from "@/db/populate";
 
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import cn from "@/utilities/cn";
+import cn from "@/utils/cn";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
