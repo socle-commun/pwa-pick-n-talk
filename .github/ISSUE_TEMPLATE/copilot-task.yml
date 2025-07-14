@@ -66,16 +66,3 @@ body:
       placeholder: "- All tests pass\n- Code reviewed\n- Deployed to staging\n- ..."
     validations:
       required: true
-
-  - type: checkboxes
-    id: confirmations
-    attributes:
-      label: "Final Humiliation Checklist"
-      description: "Check all boxes. If you can’t, you’re not ready."
-      options:
-        - label: "I have filled out every section above."
-          required: true
-        - label: "I have provided all relevant links and files."
-          required: true
-        - label: "I accept that Copilot will mock my lack of detail if I miss anything."
-          required: true
