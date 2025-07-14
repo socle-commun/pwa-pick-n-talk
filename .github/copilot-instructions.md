@@ -64,6 +64,12 @@ Pour toute issue, **utilise obligatoirement le template [`Copilot Task Request`]
 - Implement proper error boundaries in React components
 - Always log errors with contextual information
 
+### Directory Restrictions
+
+- **NEVER modify files in the `pocs/` directory** - This directory contains read-only proof-of-concepts
+- The `pocs/` folder is strictly off-limits for any changes whatsoever
+- If you accidentally modify PoC files, immediately revert them
+
 ---
 
 ## � Style BrutalComet
