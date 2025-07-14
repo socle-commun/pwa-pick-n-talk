@@ -4,7 +4,7 @@ import {
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
-import { colors, type Color } from "./switches/colors";
+import { colors, type Color } from "./constants/colors";
 
 export default function Switch({
   color = "dark/zinc",

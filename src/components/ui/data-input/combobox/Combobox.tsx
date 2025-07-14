@@ -7,8 +7,8 @@ import {
   ComboboxOptions as HeadlessComboboxOptions,
 } from "@headlessui/react";
 
-import { type ComboboxComponentProps } from "./comboboxes/types";
-import { controlStyles, inputStyles, optionsStyles } from "./comboboxes/styles";
+import { type ComboboxComponentProps } from "./types";
+import { controlStyles, inputStyles, optionsStyles } from "./helpers/styles";
 
 export default function Combobox<T>({
   options,

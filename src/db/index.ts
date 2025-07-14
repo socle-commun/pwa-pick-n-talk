@@ -15,12 +15,12 @@ import { type TranslatedPictogram } from "@/db/entities/translated/TranslatedPic
 import { populate } from "@/db/populate";
 
 // Import extracted methods
-import * as userQueries from "./database/user-queries";
-import * as binderQueries from "./database/binder-queries";
-import * as pictogramQueries from "./database/pictogram-queries";
-import * as mutations from "./database/mutations";
-import * as updates from "./database/updates";
-import * as deletions from "./database/deletions";
+import * as userQueries from "./lib/user-queries";
+import * as binderQueries from "./lib/binder-queries";
+import * as pictogramQueries from "./lib/pictogram-queries";
+import * as mutations from "./lib/mutations";
+import * as updates from "./lib/updates";
+import * as deletions from "./lib/deletions";
 
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;
