@@ -18,4 +18,11 @@ export type EntityType = "user" | "binder" | "pictogram" | "category";
  * This is used to track the history of changes made to entities.
  * It helps in auditing and understanding the changes made over time.
  */
-export type HistoryAction = "create" | "update" | "delete" | "access" | "share" | "import" | "export";
+export type HistoryAction =
+  | "create"
+  | "update"
+  | "delete"
+  | "access"
+  | "share"
+  | "import"
+  | "export";

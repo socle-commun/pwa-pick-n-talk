@@ -2,7 +2,6 @@
 applyTo: "**"
 ---
 
-
 Pour toute issue, **utilise obligatoirement le template [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml)**.
 
 # BrutalComet

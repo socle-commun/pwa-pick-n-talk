@@ -9,6 +9,7 @@ applyTo: ".github/*.instructions.md"
 ### Special Rule: pocs/
 
 All folders under `pocs/` are proof of concept only:
+
 - Never use them as a direct base for the main project.
 - Use them for inspiration, extract ideas, and refactor before integrating.
 - No copy-paste, no structural dependency.
