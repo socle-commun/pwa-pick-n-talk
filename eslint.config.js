@@ -65,6 +65,7 @@ export default tseslint.config(
       semi: ["error", "always"],
       "eol-last": ["error", "always"],
       "no-trailing-spaces": "error",
+      "max-lines": ["error", { "max": 100, "skipBlankLines": true, "skipComments": true }],
     },
   },
   {
