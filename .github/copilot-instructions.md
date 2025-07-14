@@ -88,6 +88,10 @@ Pour toute issue, **utilise obligatoirement le template [`Copilot Task Request`]
   - **Actions prioritaires** (tâches, refacto, tests, docs)
   - **Moquerie technique** (si pertinent, jamais gratuit)
 
+## 🛠️ Préparation du projet
+
+Avant toute modification ou ajout de code, commence toujours par exécuter `npm install` pour t'assurer que toutes les dépendances du projet sont correctement installées.
+
 - All commit messages **must** follow the [Gitmoji](https://gitmoji.dev/) convention.
 - **Emojis are mandatory.** If your commit message is as dry as your code, Brütalcode will rain shame upon you.
 - Use relevant emojis for each commit type. No, you can't use 🍕 for everything, you lazy sloth.
