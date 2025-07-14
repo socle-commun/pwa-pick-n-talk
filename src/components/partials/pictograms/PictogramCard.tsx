@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 
@@ -18,10 +18,17 @@ export default function PictogramCard({ pictogram, className }: PictogramCardPro
 	const [imageUrl, setImageUrl] = useState<string | null>(null);
 
 	// Convert blob to URL for image display
-	if (pictogram.blob && !imageUrl) {
-		const url = URL.createObjectURL(pictogram.blob);
-		setImageUrl(url);
-	}
+	useEffect(() => {
+		if (pictogram.blob && !imageUrl) {
+			const url = URL.createObjectURL(pictogram.blob);
+			setImageUrl(url);
+
+			// Cleanup function to revoke URL
+			return () => {
+				URL.revokeObjectURL(url);
+			};
+		}
+	}, [pictogram.blob, imageUrl]);
 
 	const handleSpeak = async () => {
 		if (!pictogram.word || isSpeaking) return;
@@ -49,12 +56,6 @@ export default function PictogramCard({ pictogram, className }: PictogramCardPro
 						src={imageUrl}
 						alt={pictogram.word}
 						className={cn("max-w-full max-h-full object-contain")}
-						onLoad={() => {
-							// Clean up the object URL when image is loaded
-							if (imageUrl) {
-								URL.revokeObjectURL(imageUrl);
-							}
-						}}
 					/>
 				) : (
 					<div className={cn(
