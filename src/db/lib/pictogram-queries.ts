@@ -11,7 +11,6 @@ export function getTranslatedPictogramsFromBinderUuid(
   return this.transaction(
     "r",
     this.pictograms,
-    this.settings,
     this.translations,
     () => {
       return this.getPictogramsFromBinderUuid(binderUuid).then(
