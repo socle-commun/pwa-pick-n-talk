@@ -8,7 +8,6 @@ export interface Pictogram {
 
   binderUuid: string;
   categoryUuid: string;
-  binder?: string;
   categories?: string[];
 
   properties?: Record<string, Record<string, string>>;
