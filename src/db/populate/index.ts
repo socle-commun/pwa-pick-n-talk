@@ -9,7 +9,7 @@ interface ElementTranslation {
 async function populateBinder(translations: ElementTranslation[]) {
   const binderUuid = await db.createBinder({
     uuid: crypto.randomUUID(),
-    author: "Socle Commun"
+    author: "Socle Commun",
   });
 
   translations.forEach(async (translation) => {
@@ -17,7 +17,7 @@ async function populateBinder(translations: ElementTranslation[]) {
       objectUuid: binderUuid,
       language: translation.language,
       key: translation.key,
-      value: translation.value
+      value: translation.value,
     });
   });
 
@@ -32,46 +32,46 @@ export async function populate() {
     {
       language: "fr-FR",
       key: "title",
-      value: "Classeur général"
+      value: "Classeur général",
     },
     {
       language: "en-US",
       key: "title",
-      value: "General binder"
+      value: "General binder",
     },
     {
       language: "fr-FR",
       key: "description",
-      value: "Un classeur général"
+      value: "Un classeur général",
     },
     {
       language: "en-US",
       key: "description",
-      value: "A general binder"
-    }
+      value: "A general binder",
+    },
   ]);
 
   await populateBinder([
     {
       language: "fr-FR",
       key: "title",
-      value: "Classeur vide"
+      value: "Classeur vide",
     },
     {
       language: "en-US",
       key: "title",
-      value: "Empty binder"
+      value: "Empty binder",
     },
     {
       language: "fr-FR",
       key: "description",
-      value: "Un classeur vide"
+      value: "Un classeur vide",
     },
     {
       language: "en-US",
       key: "description",
-      value: "An empty binder"
-    }
+      value: "An empty binder",
+    },
   ]);
   // #endregion
 

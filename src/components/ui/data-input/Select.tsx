@@ -1,4 +1,4 @@
-import { forwardRef, type ForwardedRef } from "react"
+import { forwardRef, type ForwardedRef } from "react";
 
 import {
   type SelectProps as HeadlessSelectProps,
@@ -8,8 +8,12 @@ import {
 import cn from "@/utils/cn";
 
 export default forwardRef(function Select(
-  { className, multiple, ...props }: { className?: string } & Omit<HeadlessSelectProps, "as" | "className">,
-  ref: ForwardedRef<HTMLSelectElement>
+  {
+    className,
+    multiple,
+    ...props
+  }: { className?: string } & Omit<HeadlessSelectProps, "as" | "className">,
+  ref: ForwardedRef<HTMLSelectElement>,
 ) {
   return (
     <span
@@ -63,11 +67,21 @@ export default forwardRef(function Select(
             aria-hidden="true"
             fill="none"
           >
-            <path d="M5.75 10.75L8 13L10.25 10.75" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M10.25 5.25L8 3L5.75 5.25" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M5.75 10.75L8 13L10.25 10.75"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M10.25 5.25L8 3L5.75 5.25"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </span>
       )}
     </span>
-  )
-})
+  );
+});

@@ -1,7 +1,9 @@
-
 import { forwardRef, type ForwardedRef } from "react";
 
-import { Button as HeadlessButton, type ButtonProps as HeadlessButtonProps } from "@headlessui/react";
+import {
+  Button as HeadlessButton,
+  type ButtonProps as HeadlessButtonProps,
+} from "@headlessui/react";
 
 import { TouchTarget } from "@/components/ui/actions";
 import { Link } from "@/components/ui/navigation";
@@ -161,7 +163,7 @@ const styles = {
       "[--btn-icon:var(--color-rose-300)] data-active:[--btn-icon:var(--color-rose-200)] data-hover:[--btn-icon:var(--color-rose-200)]",
     ],
   },
-}
+};
 
 type ButtonProps = (
   | { color?: keyof typeof styles.colors; outline?: never; plain?: never }
@@ -170,25 +172,37 @@ type ButtonProps = (
 ) & { className?: string; children: React.ReactNode } & (
     | Omit<HeadlessButtonProps, "as" | "className">
     | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
-  )
+  );
 
 export default forwardRef(function Button(
   { color, outline, plain, className, children, ...props }: ButtonProps,
-  ref: ForwardedRef<HTMLElement>
+  ref: ForwardedRef<HTMLElement>,
 ) {
   const classes = cn(
     styles.base,
     className,
-    outline ? styles.outline : plain ? styles.plain : cn(styles.solid, styles.colors[color ?? "dark/zinc"]),
-  )
+    outline
+      ? styles.outline
+      : plain
+        ? styles.plain
+        : cn(styles.solid, styles.colors[color ?? "dark/zinc"]),
+  );
 
   return "href" in props ? (
-    <Link {...props} className={classes} ref={ref as ForwardedRef<HTMLAnchorElement>}>
+    <Link
+      {...props}
+      className={classes}
+      ref={ref as ForwardedRef<HTMLAnchorElement>}
+    >
       <TouchTarget>{children}</TouchTarget>
     </Link>
   ) : (
-    <HeadlessButton {...props} className={cn(classes, "cursor-pointer")} ref={ref as ForwardedRef<HTMLButtonElement>}>
+    <HeadlessButton
+      {...props}
+      className={cn(classes, "cursor-pointer")}
+      ref={ref as ForwardedRef<HTMLButtonElement>}
+    >
       <TouchTarget>{children}</TouchTarget>
     </HeadlessButton>
-  )
-})
+  );
+});

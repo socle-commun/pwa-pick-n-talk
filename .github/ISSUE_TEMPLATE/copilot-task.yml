@@ -10,7 +10,7 @@ body:
       value: |
         ## 🦾 Copilot Task Request
         **STOP!** If you’re not ready to explain your problem like you’re teaching a goldfish to code, turn back now. This template is for those who want Copilot to do their dirty work—properly. 
-        
+
         Fill out every section. If you leave blanks, expect Copilot to roast you in the PR.
 
   - type: input

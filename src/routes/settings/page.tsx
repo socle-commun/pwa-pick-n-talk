@@ -5,5 +5,5 @@ export default function SettingsPage() {
     <>
       <h1 className={cn("")}>Settings</h1>
     </>
-  )
+  );
 }

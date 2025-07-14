@@ -1,5 +1,5 @@
 ---
-applyTo: '*.feature.md|issues|features|user-stories|.github/ISSUE_TEMPLATE/*'
+applyTo: "*.feature.md|issues|features|user-stories|.github/ISSUE_TEMPLATE/*"
 ---
 
 # Feature & Issue Writing Instructions
@@ -8,7 +8,6 @@ applyTo: '*.feature.md|issues|features|user-stories|.github/ISSUE_TEMPLATE/*'
 
 Garantir que chaque feature, issue ou user story soit complète, auto-suffisante et exploitable par n'importe quel membre de l'équipe, sans connaissance préalable du contexte.
 
-
 ## Structure recommandée
 
 Il est recommandé d’utiliser le format YAML moderne de GitHub pour les templates d’issues, qui guide l’utilisateur et garantit la complétude des informations. Exemple de structure :
@@ -16,7 +15,7 @@ Il est recommandé d’utiliser le format YAML moderne de GitHub pour les templa
 ```yaml
 name: Feature Request
 description: Proposer une nouvelle fonctionnalité ou une amélioration
-labels: ['enhancement', 'feature', 'status/need-triage']
+labels: ["enhancement", "feature", "status/need-triage"]
 body:
   - type: markdown
     attributes:
@@ -100,8 +99,6 @@ body:
 - Utiliser le Markdown ou le formatage YAML pour la lisibilité
 - Relire pour s’assurer que la tâche est compréhensible sans contexte externe
 
-
 ## Exigence
 
 Aucune feature, issue ou user story ne doit être validée sans respecter ce standard et le template YAML fourni.
-

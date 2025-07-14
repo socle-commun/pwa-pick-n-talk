@@ -2,6 +2,15 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import cn from "@/utils/cn";
 
-export default function NavbarSpacer({ className, ...props }: ComponentPropsWithoutRef<"div">) {
-  return <div aria-hidden="true" {...props} className={cn(className, "-ml-4 flex-1")} />
+export default function NavbarSpacer({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"div">) {
+  return (
+    <div
+      aria-hidden="true"
+      {...props}
+      className={cn(className, "-ml-4 flex-1")}
+    />
+  );
 }

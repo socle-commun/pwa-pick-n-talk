@@ -1,6 +1,6 @@
 import {
   type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription
+  Description as HeadlessDescription,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
@@ -9,7 +9,10 @@ export default function DropdownShortcut({
   keys,
   className,
   ...props
-}: { keys: string | string[]; className?: string } & Omit<HeadlessDescriptionProps<"kbd">, "as" | "className">) {
+}: { keys: string | string[]; className?: string } & Omit<
+  HeadlessDescriptionProps<"kbd">,
+  "as" | "className"
+>) {
   return (
     <HeadlessDescription
       as="kbd"
@@ -29,5 +32,5 @@ export default function DropdownShortcut({
         </kbd>
       ))}
     </HeadlessDescription>
-  )
+  );
 }

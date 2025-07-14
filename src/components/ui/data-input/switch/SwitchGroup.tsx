@@ -2,7 +2,10 @@ import { type ComponentPropsWithoutRef } from "react";
 
 import cn from "@/utils/cn";
 
-export default function SwitchGroup({ className, ...props }: ComponentPropsWithoutRef<"div">) {
+export default function SwitchGroup({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"div">) {
   return (
     <div
       data-slot="control"
@@ -12,8 +15,8 @@ export default function SwitchGroup({ className, ...props }: ComponentPropsWitho
         // Basic groups
         "space-y-3 **:data-[slot=label]:font-normal",
         // With descriptions
-        "has-data-[slot=description]:space-y-6 has-data-[slot=description]:**:data-[slot=label]:font-medium"
+        "has-data-[slot=description]:space-y-6 has-data-[slot=description]:**:data-[slot=label]:font-medium",
       )}
     />
-  )
+  );
 }

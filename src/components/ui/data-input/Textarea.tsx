@@ -12,8 +12,11 @@ export default forwardRef(function Textarea(
     className,
     resizable = true,
     ...props
-  }: { className?: string; resizable?: boolean } & Omit<HeadlessTextareaProps, "as" | "className">,
-  ref: ForwardedRef<HTMLTextAreaElement>
+  }: { className?: string; resizable?: boolean } & Omit<
+    HeadlessTextareaProps,
+    "as" | "className"
+  >,
+  ref: ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
     <span
@@ -55,5 +58,5 @@ export default forwardRef(function Textarea(
         ])}
       />
     </span>
-  )
-})
+  );
+});

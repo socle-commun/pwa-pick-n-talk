@@ -30,7 +30,9 @@ function App() {
 
   return (
     <AppProviders>
-      <BrowserRouter basename={process.env.NODE_ENV === "production" ? "/pick-n-talk" : "/"}>
+      <BrowserRouter
+        basename={process.env.NODE_ENV === "production" ? "/pick-n-talk" : "/"}
+      >
         <Routes>
           <Route path="" element={<Layout />}>
             <Route index element={<IndexPage />} />
@@ -59,7 +61,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AppProviders>
-  )
+  );
 }
 
 export default App;

@@ -12,30 +12,35 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          "react": ["react", "react-dom"],
+          react: ["react", "react-dom"],
           "react-router": ["react-router"],
-          "cn": ["clsx", "tailwind-merge"],
-          "dexie": ["dexie", "dexie-react-hooks"],
-          "i18next": ["i18next", "react-i18next", "i18next-http-backend", "i18next-browser-languagedetector"],
+          cn: ["clsx", "tailwind-merge"],
+          dexie: ["dexie", "dexie-react-hooks"],
+          i18next: [
+            "i18next",
+            "react-i18next",
+            "i18next-http-backend",
+            "i18next-browser-languagedetector",
+          ],
           "framer-motion": ["framer-motion"],
-          "headlessui": ["@headlessui/react"],
-          "icons": ["@heroicons/react"]
-        }
-      }
+          headlessui: ["@headlessui/react"],
+          icons: ["@heroicons/react"],
+        },
+      },
     },
     minify: process.env.NODE_ENV === "production" ? "terser" : false,
     terserOptions: {
       compress: {
-        passes: 2
+        passes: 2,
       },
       mangle: true,
       format: {
-        comments: false
-      }
-    }
+        comments: false,
+      },
+    },
   },
   define: {
-    "__APP_VERSION__": JSON.stringify(process.env.npm_package_version),
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
   },
   logLevel: "info",
   plugins: [react(), tailwindcss()],

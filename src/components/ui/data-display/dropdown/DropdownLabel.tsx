@@ -1,6 +1,6 @@
 import {
   type LabelProps as HeadlessLabelProps,
-  Label as HeadlessLabel
+  Label as HeadlessLabel,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
@@ -10,6 +10,10 @@ export default function DropdownLabel({
   ...props
 }: { className?: string } & Omit<HeadlessLabelProps, "as" | "className">) {
   return (
-    <HeadlessLabel {...props} data-slot="label" className={cn(className, "col-start-2 row-start-1")} />
-  )
+    <HeadlessLabel
+      {...props}
+      data-slot="label"
+      className={cn(className, "col-start-2 row-start-1")}
+    />
+  );
 }

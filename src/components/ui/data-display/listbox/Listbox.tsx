@@ -5,7 +5,7 @@ import {
   Listbox as HeadlessListbox,
   ListboxButton as HeadlessListboxButton,
   ListboxSelectedOption as HeadlessListboxSelectedOption,
-  ListboxOptions as HeadlessListboxOptions
+  ListboxOptions as HeadlessListboxOptions,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
@@ -18,11 +18,11 @@ export default function Listbox<T>({
   children: options,
   ...props
 }: {
-  className?: string
-  placeholder?: React.ReactNode
-  autoFocus?: boolean
-  "aria-label"?: string
-  children?: React.ReactNode
+  className?: string;
+  placeholder?: React.ReactNode;
+  autoFocus?: boolean;
+  "aria-label"?: string;
+  children?: React.ReactNode;
 } & Omit<HeadlessListboxProps<typeof Fragment, T>, "as" | "multiple">) {
   return (
     <HeadlessListbox {...props} multiple={false}>
@@ -49,7 +49,13 @@ export default function Listbox<T>({
         <HeadlessListboxSelectedOption
           as="span"
           options={options}
-          placeholder={placeholder && <span className="block truncate text-zinc-500">{placeholder}</span>}
+          placeholder={
+            placeholder && (
+              <span className="block truncate text-zinc-500">
+                {placeholder}
+              </span>
+            )
+          }
           className={cn([
             // Basic layout
             "relative block w-full appearance-none rounded-lg py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]",
@@ -76,8 +82,18 @@ export default function Listbox<T>({
             aria-hidden="true"
             fill="none"
           >
-            <path d="M5.75 10.75L8 13L10.25 10.75" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M10.25 5.25L8 3L5.75 5.25" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M5.75 10.75L8 13L10.25 10.75"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M10.25 5.25L8 3L5.75 5.25"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </span>
       </HeadlessListboxButton>
@@ -98,11 +114,11 @@ export default function Listbox<T>({
           // Shadows
           "shadow-lg ring-1 ring-zinc-950/10 dark:ring-white/10 dark:ring-inset",
           // Transitions
-          "transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none"
+          "transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none",
         )}
       >
         {options}
       </HeadlessListboxOptions>
     </HeadlessListbox>
-  )
+  );
 }

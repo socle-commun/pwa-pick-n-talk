@@ -1,1 +1,1 @@
-export { default as useUserActions } from "./_useUserActions"
+export { default as useUserActions } from "./_useUserActions";

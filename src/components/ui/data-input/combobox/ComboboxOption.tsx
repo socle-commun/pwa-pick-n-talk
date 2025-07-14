@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 
 import {
   type ComboboxOptionProps as HeadlessComboboxOptionProps,
-  ComboboxOption as HeadlessComboboxOption
+  ComboboxOption as HeadlessComboboxOption,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
@@ -23,8 +23,8 @@ export default function ComboboxOption<T>({
     "*:data-[slot=icon]:text-zinc-500 group-data-focus/option:*:data-[slot=icon]:text-white dark:*:data-[slot=icon]:text-zinc-400",
     "forced-colors:*:data-[slot=icon]:text-[CanvasText] forced-colors:group-data-focus/option:*:data-[slot=icon]:text-[Canvas]",
     // Avatars
-    "*:data-[slot=avatar]:-mx-0.5 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:size-5"
-  )
+    "*:data-[slot=avatar]:-mx-0.5 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:size-5",
+  );
 
   return (
     <HeadlessComboboxOption
@@ -39,7 +39,7 @@ export default function ComboboxOption<T>({
         // Forced colors mode
         "forced-color-adjust-none forced-colors:data-focus:bg-[Highlight] forced-colors:data-focus:text-[HighlightText]",
         // Disabled
-        "data-disabled:opacity-50"
+        "data-disabled:opacity-50",
       )}
     >
       <span className={cn(className, sharedClasses)}>{children}</span>
@@ -49,8 +49,13 @@ export default function ComboboxOption<T>({
         fill="none"
         aria-hidden="true"
       >
-        <path d="M4 8.5l3 3L12 4" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M4 8.5l3 3L12 4"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </HeadlessComboboxOption>
-  )
+  );
 }

@@ -24,8 +24,8 @@ export default function CheckboxField({
         // Description layout
         "*:data-[slot=description]:col-start-2 *:data-[slot=description]:row-start-2",
         // With description
-        "has-data-[slot=description]:**:data-[slot=label]:font-medium"
+        "has-data-[slot=description]:**:data-[slot=label]:font-medium",
       )}
     />
-  )
+  );
 }

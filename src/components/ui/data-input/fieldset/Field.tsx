@@ -1,11 +1,14 @@
 import {
   type FieldProps as HeadlessFieldProps,
-  Field as HeadlessField
+  Field as HeadlessField,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
 
-export default function Field({ className, ...props }: { className?: string } & Omit<HeadlessFieldProps, "as" | "className">) {
+export default function Field({
+  className,
+  ...props
+}: { className?: string } & Omit<HeadlessFieldProps, "as" | "className">) {
   return (
     <HeadlessField
       {...props}
@@ -16,8 +19,8 @@ export default function Field({ className, ...props }: { className?: string } & 
         "[&>[data-slot=description]+[data-slot=control]]:mt-3",
         "[&>[data-slot=control]+[data-slot=description]]:mt-3",
         "[&>[data-slot=control]+[data-slot=error]]:mt-3",
-        "*:data-[slot=label]:font-medium"
+        "*:data-[slot=label]:font-medium",
       )}
     />
-  )
+  );
 }

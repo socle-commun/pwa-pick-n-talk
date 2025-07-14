@@ -1,5 +1,5 @@
 ---
-applyTo: '.github/*.instructions.md'
+applyTo: ".github/*.instructions.md"
 ---
 
 # Instructions manager Instructions
@@ -27,10 +27,10 @@ To add a new instruction file:
 8. Request a review from at least one team member before merging.
 
 **example:**
-```markdown
 
+```markdown
 ---
-applyTo: '*.py'
+applyTo: "*.py"
 ---
 
 # Python Coding Instructions

@@ -5,5 +5,5 @@ export default function BinderEditPage() {
     <>
       <h1 className={cn("")}>Binder edit</h1>
     </>
-  )
+  );
 }

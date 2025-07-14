@@ -5,7 +5,7 @@ import {
   Combobox as HeadlessCombobox,
   ComboboxInput as HeadlessComboboxInput,
   ComboboxButton as HeadlessComboboxButton,
-  ComboboxOptions as HeadlessComboboxOptions
+  ComboboxOptions as HeadlessComboboxOptions,
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
@@ -22,26 +22,35 @@ export default function Combobox<T>({
   children,
   ...props
 }: {
-  options: T[]
-  displayValue: (value: T | null) => string | undefined
-  filter?: (value: T, query: string) => boolean
-  className?: string
-  placeholder?: string
-  autoFocus?: boolean
-  "aria-label"?: string
-  children: (value: NonNullable<T>) => ReactElement
-} & Omit<HeadlessComboboxProps<T, false>, "as" | "multiple" | "children"> & { anchor?: "top" | "bottom" }) {
-  const [query, setQuery] = useState("")
+  options: T[];
+  displayValue: (value: T | null) => string | undefined;
+  filter?: (value: T, query: string) => boolean;
+  className?: string;
+  placeholder?: string;
+  autoFocus?: boolean;
+  "aria-label"?: string;
+  children: (value: NonNullable<T>) => ReactElement;
+} & Omit<HeadlessComboboxProps<T, false>, "as" | "multiple" | "children"> & {
+    anchor?: "top" | "bottom";
+  }) {
+  const [query, setQuery] = useState("");
 
   const filteredOptions =
     query === ""
       ? options
       : options.filter((option) =>
-        filter ? filter(option, query) : displayValue(option)?.toLowerCase().includes(query.toLowerCase())
-      )
+          filter
+            ? filter(option, query)
+            : displayValue(option)?.toLowerCase().includes(query.toLowerCase()),
+        );
 
   return (
-    <HeadlessCombobox {...props} multiple={false} virtual={{ options: filteredOptions }} onClose={() => setQuery("")}>
+    <HeadlessCombobox
+      {...props}
+      multiple={false}
+      virtual={{ options: filteredOptions }}
+      onClose={() => setQuery("")}
+    >
       <span
         data-slot="control"
         className={cn([
@@ -96,8 +105,18 @@ export default function Combobox<T>({
             aria-hidden="true"
             fill="none"
           >
-            <path d="M5.75 10.75L8 13L10.25 10.75" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M10.25 5.25L8 3L5.75 5.25" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M5.75 10.75L8 13L10.25 10.75"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M10.25 5.25L8 3L5.75 5.25"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </HeadlessComboboxButton>
       </span>
@@ -118,11 +137,11 @@ export default function Combobox<T>({
           // Shadows
           "shadow-lg ring-1 ring-zinc-950/10 dark:ring-white/10 dark:ring-inset",
           // Transitions
-          "transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none"
+          "transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none",
         )}
       >
         {({ option }) => children(option)}
       </HeadlessComboboxOptions>
     </HeadlessCombobox>
-  )
+  );
 }

@@ -18,8 +18,8 @@ export default function RadioGroup({
         // Basic groups
         "space-y-3 **:data-[slot=label]:font-normal",
         // With descriptions
-        "has-data-[slot=description]:space-y-6 has-data-[slot=description]:**:data-[slot=label]:font-medium"
+        "has-data-[slot=description]:space-y-6 has-data-[slot=description]:**:data-[slot=label]:font-medium",
       )}
     />
-  )
+  );
 }

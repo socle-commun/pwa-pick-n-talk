@@ -32,17 +32,21 @@ const colors = {
   zinc: "bg-zinc-600/10 text-zinc-700 group-data-hover:bg-zinc-600/20 dark:bg-white/5 dark:text-zinc-400 dark:group-data-hover:bg-white/10",
 };
 
-type BadgeProps = { color?: keyof typeof colors }
+type BadgeProps = { color?: keyof typeof colors };
 
-export default function Badge({ color = "zinc", className, ...props }: BadgeProps & ComponentPropsWithoutRef<"span">) {
+export default function Badge({
+  color = "zinc",
+  className,
+  ...props
+}: BadgeProps & ComponentPropsWithoutRef<"span">) {
   return (
     <span
       {...props}
       className={cn(
         className,
         "inline-flex items-center gap-x-1.5 rounded-md px-1.5 py-0.5 text-sm/5 font-medium sm:text-xs/5 forced-colors:outline",
-        colors[color]
+        colors[color],
       )}
     />
-  )
+  );
 }
