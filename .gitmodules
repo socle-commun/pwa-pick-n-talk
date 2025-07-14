@@ -1,3 +1,6 @@
 [submodule "pocs/simple-picto"]
 	path = pocs/simple-picto
 	url = https://github.com/socle-commun/simple-picto
+[submodule "specs"]
+	path = specs
+	url = https://github.com/socle-commun/specs-pick-n-talk
