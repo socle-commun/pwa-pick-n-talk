@@ -45,6 +45,7 @@ applyTo: "**"
 - Use **TypeScript** for all new code
 - Use **tailwindcss** for styling
 - Use **React** for UI components
+- Use [Gitmoji](https://gitmoji.dev/instructions) for commit messages
 - Use the **components library** included in the components/ui folder for UI components
 
 ### Naming Conventions
