@@ -1,0 +1,76 @@
+name: Feature Request
+description: Proposer une nouvelle fonctionnalité ou une amélioration
+labels: ['enhancement', 'feature', 'status/need-triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Merci de prendre le temps de suggérer une amélioration !
+        >
+        > Avant de créer une nouvelle demande, vérifiez que la fonctionnalité n’a pas déjà été proposée dans les [issues existantes](../../issues).
+        >
+        > Merci de suivre le standard de rédaction : `.github/instructions/feature-writing.instructions.md`
+
+  - type: input
+    id: title
+    attributes:
+      label: Titre de la feature
+      description: Un titre clair et explicite pour la fonctionnalité.
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexte
+    attributes:
+      label: Contexte
+      description: Expliquez le besoin, le problème ou la demande. Ajoutez des liens vers la documentation, specs ou tickets liés.
+    validations:
+      required: true
+
+  - type: textarea
+    id: objectif
+    attributes:
+      label: Objectif / Résultat attendu
+      description: Décrivez précisément ce qui doit être livré ou modifié.
+    validations:
+      required: true
+
+  - type: textarea
+    id: criteres
+    attributes:
+      label: Critères d’acceptation
+      description: Listez les conditions à remplir pour considérer la tâche comme terminée (exemples, cas limites…).
+    validations:
+      required: true
+
+  - type: textarea
+    id: etapes
+    attributes:
+      label: Étapes de réalisation
+      description: Découpez la tâche en étapes techniques ou fonctionnelles si pertinent.
+    validations:
+      required: false
+
+  - type: textarea
+    id: impacts
+    attributes:
+      label: Impacts
+      description: Précisez les impacts sur l’existant, la documentation, les tests, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: exemples
+    attributes:
+      label: Exemples
+      description: Ajoutez des exemples de données, d’UI, de code ou de comportement attendu.
+    validations:
+      required: false
+
+  - type: textarea
+    id: contexte-supplementaire
+    attributes:
+      label: Contexte supplémentaire
+      description: Ajoutez tout autre contexte, capture d’écran ou information utile.
+    validations:
+      required: false
