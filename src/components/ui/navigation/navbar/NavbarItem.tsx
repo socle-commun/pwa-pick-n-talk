@@ -12,7 +12,7 @@ import {
 } from "@headlessui/react";
 
 import { Link } from "@/components/ui/navigation";
-import TouchTarget from "../../actions/TouchTarget";
+import TouchTarget from "@/components/ui/actions/TouchTarget";
 
 import cn from "@/utils/cn";
 
