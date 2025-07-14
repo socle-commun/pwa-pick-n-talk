@@ -24,5 +24,5 @@ export function deletePictogram(this: PickNTalkDB, uuid: string) {
 }
 
 export function deleteUser(this: PickNTalkDB, uuid: string) {
-  this.users.delete(uuid);
+  return this.users.delete(uuid);
 }
