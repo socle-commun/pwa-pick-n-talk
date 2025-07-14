@@ -114,6 +114,7 @@ import { Link } from "@/components/ui/link";
 - Use ESLint and Prettier for linting/formatting
 - Always test your code with unit tests.
 - Prefer immutable data (const, readonly).
+- Never create code in production file that is dedicated to development or testing.
 - Use optional chaining (?.) and nullish coalescing (??).
 - Use known design patterns to organize your code.
 - Use **zod** for runtime validation and type inference of data structures (see https://zod.dev/).
