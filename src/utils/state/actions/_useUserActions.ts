@@ -48,6 +48,8 @@ export default function useUserActions() {
         uuid: crypto.randomUUID(),
         email,
         hash: hashSync(password),
+        role: "user",
+        settings: {},
       })
       .then((uuid) => {
         db.getUser(uuid).then((user) => {

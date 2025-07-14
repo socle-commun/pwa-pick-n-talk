@@ -2,6 +2,7 @@ import Dexie, { type PromiseExtended, type Table } from "dexie";
 
 import { type Binder } from "@/db/entities/data/Binder";
 import { type Category } from "@/db/entities/data/Category";
+import { type History } from "@/db/entities/data/History";
 import { type Pictogram } from "@/db/entities/data/Pictogram";
 import { type Setting } from "@/db/entities/data/Setting";
 import { type Translation } from "@/db/entities/data/Translation";
@@ -16,6 +17,7 @@ import { populate } from "@/db/populate";
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;
   categories!: Table<Category, string>;
+  history!: Table<History, string>;
   pictograms!: Table<Pictogram, string>;
   settings!: Table<Setting, string>;
   translations!: Table<Translation, number>;
@@ -36,6 +38,9 @@ export class PickNTalkDB extends Dexie {
     this.version(3).stores({
       users: "&uuid, email",
     });
+    this.version(4).stores({
+      history: "&uuid, entityType, entityId, performedBy, timestamp",
+    });
   }
 
   // #region Get
@@ -45,6 +50,10 @@ export class PickNTalkDB extends Dexie {
 
   public getUserByEmail(email: string): PromiseExtended<User | undefined> {
     return this.users.where({ email }).first();
+  }
+
+  public getHistory(entityId: string): PromiseExtended<History[]> {
+    return this.history.where({ entityId }).toArray();
   }
 
   private getPictogramsFromBinderUuid(
@@ -217,6 +226,10 @@ export class PickNTalkDB extends Dexie {
 
   public createCategory(category: Category) {
     return this.categories.add(category);
+  }
+
+  public createHistory(history: History) {
+    return this.history.add(history);
   }
 
   public createPictogram(pictogram: Pictogram) {
