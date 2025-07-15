@@ -7,12 +7,12 @@ import { z } from "zod";
 export const TranslationSchema = z.object({
   id: z.number().int().positive().optional(),
   
-  objectUuid: z.string().uuid("Object UUID invalid"),
-  language: z.string().min(2, "Language code too short").max(10, "Language code too long"),
+  objectUuid: z.string().uuid("validation.errors.invalid_uuid"),
+  language: z.string().min(2, "validation.errors.string_too_short").max(10, "validation.errors.string_too_long"),
   
   key: z.string().optional(),
   
-  value: z.string().min(1, "Translation value cannot be empty"),
+  value: z.string().min(1, "validation.errors.field_empty"),
 });
 
 export type Translation = z.infer<typeof TranslationSchema>;

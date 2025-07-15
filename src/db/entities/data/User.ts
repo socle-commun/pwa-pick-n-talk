@@ -2,16 +2,16 @@ import { z } from "zod";
 import { RoleSchema } from "./Types";
 
 /**
- * User entity schema with proper validation
- * Because apparently someone needs to teach you what data validation means
+ * User entity schema with validation error keys for i18n
+ * Now returns error keys instead of hardcoded messages
  */
 export const UserSchema = z.object({
-  uuid: z.string().uuid("Invalid UUID format, did you even try?"),
+  uuid: z.string().uuid("validation.errors.invalid_uuid"),
   
-  name: z.string().min(1, "Name cannot be empty").optional(),
-  email: z.string().email("Learn what an email looks like"),
+  name: z.string().min(1, "validation.errors.field_empty").optional(),
+  email: z.string().email("validation.errors.invalid_email"),
   hash: z.string().optional(),
-  password: z.string().min(8, "Password too weak, like your coding skills").optional(),
+  password: z.string().min(8, "validation.errors.string_too_short").optional(),
   
   role: RoleSchema,
   

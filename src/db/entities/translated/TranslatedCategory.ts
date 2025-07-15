@@ -1,15 +1,14 @@
 import { z } from "zod";
 
 /**
- * TranslatedCategory entity schema
- * Because categories also deserve validation love
+ * TranslatedCategory entity schema with validation error keys for i18n
  */
 export const TranslatedCategorySchema = z.object({
-  uuid: z.string().uuid("Translated category UUID invalid"),
+  uuid: z.string().uuid("validation.errors.invalid_uuid"),
   
-  icon: z.instanceof(Blob, { message: "Icon must be a Blob" }),
+  icon: z.instanceof(Blob, { message: "validation.errors.invalid_file" }),
   
-  name: z.string().min(1, "Category name cannot be empty").max(100, "Category name too long"),
+  name: z.string().min(1, "validation.errors.field_empty").max(100, "validation.errors.string_too_long"),
 });
 
 export type TranslatedCategory = z.infer<typeof TranslatedCategorySchema>;
