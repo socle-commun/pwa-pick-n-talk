@@ -6,5 +6,21 @@
       "english": "English",
       "french": "Français"
     }
+  },
+  "validation": {
+    "errors": {
+      "required": "Ce champ est obligatoire",
+      "invalid_uuid": "Format UUID invalide",
+      "invalid_email": "Format d'email invalide",
+      "invalid_url": "Format d'URL invalide",
+      "invalid_date": "Format de date invalide",
+      "invalid_file": "Le fichier doit être valide",
+      "field_empty": "Ce champ ne peut pas être vide",
+      "string_too_short": "Texte trop court (minimum {{min}} caractères)",
+      "string_too_long": "Texte trop long (maximum {{max}} caractères)",
+      "number_too_small": "Nombre trop petit (minimum {{min}})",
+      "number_too_large": "Nombre trop grand (maximum {{max}})",
+      "invalid_type": "Type invalide, attendu {{expected}}"
+    }
   }
 }

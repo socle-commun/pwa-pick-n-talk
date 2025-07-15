@@ -1,17 +1,16 @@
 import { z } from "zod";
 
 /**
- * Category entity schema
- * Adding some brain cells to your data structures
+ * Category entity schema with validation error keys for i18n
  */
 export const CategorySchema = z.object({
-  uuid: z.string().uuid("Category UUID invalid, shocking"),
+  uuid: z.string().uuid("validation.errors.invalid_uuid"),
   
-  icon: z.instanceof(Blob, { message: "Icon must be a Blob" }),
+  icon: z.instanceof(Blob, { message: "validation.errors.invalid_file" }),
   
   properties: z.record(z.string(), z.record(z.string(), z.string())).optional(),
   
-  pictograms: z.array(z.string().uuid("Pictogram UUID invalid")).optional(),
+  pictograms: z.array(z.string().uuid("validation.errors.invalid_uuid")).optional(),
 });
 
 export type Category = z.infer<typeof CategorySchema>;
