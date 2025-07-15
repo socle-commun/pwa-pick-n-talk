@@ -1,0 +1,511 @@
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { vi, describe, it, expect, beforeEach } from "vitest";
+import { z } from "zod";
+import { Form, FormInput } from "../index";
+
+// Mock i18next with Vitest
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string, params?: Record<string, unknown>) => {
+      const translations: Record<string, string> = {
+        "validation.errors.invalid_email": "Invalid email format",
+        "validation.errors.field_empty": "This field cannot be empty",
+        "validation.errors.string_too_short": `Text too short (minimum ${params?.min || 8} characters)`,
+        "validation.errors.string_too_long": `Text too long (maximum ${params?.max || 100} characters)`,
+        "validation.errors.invalid_uuid": "Invalid UUID format",
+        "validation.errors.number_too_small": `Number too small (minimum ${params?.min || 0})`,
+        "validation.errors.number_too_big": `Number too big (maximum ${params?.max || 100})`,
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
+describe("Form System", () => {
+  const UserSchema = z.object({
+    email: z.string().email("validation.errors.invalid_email"),
+    name: z.string().min(1, "validation.errors.field_empty"),
+    password: z.string().min(8, "validation.errors.string_too_short"),
+    age: z.number().min(18, "validation.errors.number_too_small").max(120, "validation.errors.number_too_big"),
+    bio: z.string().max(500, "validation.errors.string_too_long").optional(),
+  });
+
+  type UserFormData = z.infer<typeof UserSchema>;
+
+  const defaultProps = {
+    schema: UserSchema,
+    initialValues: { email: "", name: "", password: "", age: 0, bio: "" },
+  };
+
+  describe("Form Rendering", () => {
+    it("renders all form elements correctly", () => {
+      render(
+        <Form<UserFormData> {...defaultProps}>
+          <FormInput name="email" label="Email" />
+          <FormInput name="name" label="Name" />
+          <FormInput name="password" label="Password" type="password" />
+          <FormInput name="age" label="Age" type="number" />
+          <FormInput name="bio" label="Bio" />
+          <button type="submit">Submit</button>
+        </Form>
+      );
+
+      expect(screen.getByLabelText("Email")).toBeInTheDocument();
+      expect(screen.getByLabelText("Name")).toBeInTheDocument();
+      expect(screen.getByLabelText("Password")).toBeInTheDocument();
+      expect(screen.getByLabelText("Age")).toBeInTheDocument();
+      expect(screen.getByLabelText("Bio")).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
+    });
+
+    it("displays pre-filled initial values correctly", () => {
+      const initialValues = {
+        email: "prefilled@example.com",
+        name: "Prefilled Name",
+        password: "prefilled123",
+        age: 25,
+        bio: "Prefilled bio text",
+      };
+
+      render(
+        <Form<UserFormData> {...defaultProps} initialValues={initialValues}>
+          <FormInput name="email" label="Email" />
+          <FormInput name="name" label="Name" />
+          <FormInput name="password" label="Password" type="password" />
+          <FormInput name="age" label="Age" type="number" />
+          <FormInput name="bio" label="Bio" />
+        </Form>
+      );
+
+      expect(screen.getByDisplayValue("prefilled@example.com")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("Prefilled Name")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("prefilled123")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("25")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("Prefilled bio text")).toBeInTheDocument();
+    });
+
+    it("shows required field indicators when specified", () => {
+      render(
+        <Form<UserFormData> {...defaultProps}>
+          <FormInput name="email" label="Email" required />
+          <FormInput name="name" label="Name" required />
+          <FormInput name="bio" label="Bio" />
+        </Form>
+      );
+
+      // Required fields should have asterisks
+      const emailLabel = screen.getByText("Email").closest("label");
+      const nameLabel = screen.getByText("Name").closest("label");
+      const bioLabel = screen.getByText("Bio").closest("label");
+
+      expect(emailLabel).toHaveTextContent("*");
+      expect(nameLabel).toHaveTextContent("*");
+      expect(bioLabel).not.toHaveTextContent("*");
+    });
+  });
+
+  describe("Field Validation", () => {
+    describe("Email validation", () => {
+      it("shows error for invalid email format", async () => {
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="email" label="Email" />
+          </Form>
+        );
+
+        const emailInput = screen.getByLabelText("Email");
+        fireEvent.change(emailInput, { target: { value: "invalid-email" } });
+        fireEvent.blur(emailInput);
+
+        await waitFor(() => {
+          expect(screen.getByText("Invalid email format")).toBeInTheDocument();
+        });
+      });
+
+      it("clears error when valid email is entered", async () => {
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="email" label="Email" />
+          </Form>
+        );
+
+        const emailInput = screen.getByLabelText("Email");
+
+        // Make invalid first
+        fireEvent.change(emailInput, { target: { value: "invalid" } });
+        fireEvent.blur(emailInput);
+
+        await waitFor(() => {
+          expect(screen.getByText("Invalid email format")).toBeInTheDocument();
+        });
+
+        // Then make valid
+        fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+        fireEvent.blur(emailInput);
+
+        await waitFor(() => {
+          expect(screen.queryByText("Invalid email format")).not.toBeInTheDocument();
+        });
+      });
+
+      it("accepts various valid email formats", async () => {
+        const validEmails = [
+          "test@example.com",
+          "user.name@domain.co.uk",
+          "test+tag@example.org",
+          "123@numbers.com",
+        ];
+
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="email" label="Email" />
+          </Form>
+        );
+
+        const emailInput = screen.getByLabelText("Email");
+
+        for (const email of validEmails) {
+          fireEvent.change(emailInput, { target: { value: email } });
+          fireEvent.blur(emailInput);
+
+          await waitFor(() => {
+            expect(screen.queryByText("Invalid email format")).not.toBeInTheDocument();
+          });
+        }
+      });
+    });
+
+    describe("Required field validation", () => {
+      it("shows error for empty required fields", async () => {
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="name" label="Name" />
+          </Form>
+        );
+
+        const nameInput = screen.getByLabelText("Name");
+        fireEvent.change(nameInput, { target: { value: "" } });
+        fireEvent.blur(nameInput);
+
+        await waitFor(() => {
+          expect(screen.getByText("This field cannot be empty")).toBeInTheDocument();
+        });
+      });
+
+      it("clears error when field is filled", async () => {
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="name" label="Name" />
+          </Form>
+        );
+
+        const nameInput = screen.getByLabelText("Name");
+
+        // Make empty first
+        fireEvent.change(nameInput, { target: { value: "" } });
+        fireEvent.blur(nameInput);
+
+        await waitFor(() => {
+          expect(screen.getByText("This field cannot be empty")).toBeInTheDocument();
+        });
+
+        // Then fill it
+        fireEvent.change(nameInput, { target: { value: "John Doe" } });
+        fireEvent.blur(nameInput);
+
+        await waitFor(() => {
+          expect(screen.queryByText("This field cannot be empty")).not.toBeInTheDocument();
+        });
+      });
+    });
+
+    describe("String length validation", () => {
+      it("shows error for password too short", async () => {
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="password" label="Password" type="password" />
+          </Form>
+        );
+
+        const passwordInput = screen.getByLabelText("Password");
+        fireEvent.change(passwordInput, { target: { value: "short" } });
+        fireEvent.blur(passwordInput);
+
+        await waitFor(() => {
+          expect(screen.getByText("Text too short (minimum 8 characters)")).toBeInTheDocument();
+        });
+      });
+
+      it("shows error for bio too long", async () => {
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="bio" label="Bio" />
+          </Form>
+        );
+
+        const bioInput = screen.getByLabelText("Bio");
+        const longText = "a".repeat(501); // Over 500 character limit
+        fireEvent.change(bioInput, { target: { value: longText } });
+        fireEvent.blur(bioInput);
+
+        await waitFor(() => {
+          expect(screen.getByText("Text too long (maximum 500 characters)")).toBeInTheDocument();
+        });
+      });
+    });
+
+    describe("Number validation", () => {
+      it("shows error for age too small", async () => {
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="age" label="Age" type="number" />
+          </Form>
+        );
+
+        const ageInput = screen.getByLabelText("Age");
+        fireEvent.change(ageInput, { target: { value: "17" } });
+        fireEvent.blur(ageInput);
+
+        await waitFor(() => {
+          expect(screen.getByText("Number too small (minimum 18)")).toBeInTheDocument();
+        });
+      });
+
+      it("shows error for age too big", async () => {
+        render(
+          <Form<UserFormData> {...defaultProps}>
+            <FormInput name="age" label="Age" type="number" />
+          </Form>
+        );
+
+        const ageInput = screen.getByLabelText("Age");
+        fireEvent.change(ageInput, { target: { value: "121" } });
+        fireEvent.blur(ageInput);
+
+        await waitFor(() => {
+          expect(screen.getByText("Number too big (maximum 120)")).toBeInTheDocument();
+        });
+      });
+    });
+  });
+
+  describe("Form Submission", () => {
+    it("prevents submission with validation errors", async () => {
+      const onSubmit = vi.fn();
+
+      render(
+        <Form<UserFormData> {...defaultProps} onSubmit={onSubmit}>
+          <FormInput name="email" label="Email" />
+          <FormInput name="name" label="Name" />
+          <FormInput name="password" label="Password" type="password" />
+          <button type="submit">Submit</button>
+        </Form>
+      );
+
+      const submitButton = screen.getByRole("button", { name: "Submit" });
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(onSubmit).not.toHaveBeenCalled();
+        expect(screen.getByText("Invalid email format")).toBeInTheDocument();
+        expect(screen.getByText("This field cannot be empty")).toBeInTheDocument();
+        expect(screen.getByText("Text too short (minimum 8 characters)")).toBeInTheDocument();
+      });
+    });
+
+    it("submits form with valid data", async () => {
+      const onSubmit = vi.fn().mockResolvedValue(undefined);
+
+      render(
+        <Form<UserFormData> {...defaultProps} onSubmit={onSubmit}>
+          <FormInput name="email" label="Email" />
+          <FormInput name="name" label="Name" />
+          <FormInput name="password" label="Password" type="password" />
+          <FormInput name="age" label="Age" type="number" />
+          <FormInput name="bio" label="Bio" />
+          <button type="submit">Submit</button>
+        </Form>
+      );
+
+      // Fill all required fields with valid data
+      fireEvent.change(screen.getByLabelText("Email"), { 
+        target: { value: "test@example.com" } 
+      });
+      fireEvent.change(screen.getByLabelText("Name"), { 
+        target: { value: "John Doe" } 
+      });
+      fireEvent.change(screen.getByLabelText("Password"), { 
+        target: { value: "password123" } 
+      });
+      fireEvent.change(screen.getByLabelText("Age"), { 
+        target: { value: "25" } 
+      });
+      fireEvent.change(screen.getByLabelText("Bio"), { 
+        target: { value: "This is a short bio" } 
+      });
+
+      fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+
+      await waitFor(() => {
+        expect(onSubmit).toHaveBeenCalledWith({
+          email: "test@example.com",
+          name: "John Doe",
+          password: "password123",
+          age: 25,
+          bio: "This is a short bio",
+        });
+      });
+    });
+
+    it("handles form submission loading state", async () => {
+      const onSubmit = vi.fn().mockImplementation(
+        () => new Promise(resolve => setTimeout(resolve, 100))
+      );
+
+      render(
+        <Form<UserFormData> {...defaultProps} onSubmit={onSubmit}>
+          <FormInput name="email" label="Email" />
+          <FormInput name="name" label="Name" />
+          <FormInput name="password" label="Password" type="password" />
+          <FormInput name="age" label="Age" type="number" />
+          <button type="submit">Submit</button>
+        </Form>
+      );
+
+      // Fill valid data
+      fireEvent.change(screen.getByLabelText("Email"), { 
+        target: { value: "test@example.com" } 
+      });
+      fireEvent.change(screen.getByLabelText("Name"), { 
+        target: { value: "John Doe" } 
+      });
+      fireEvent.change(screen.getByLabelText("Password"), { 
+        target: { value: "password123" } 
+      });
+      fireEvent.change(screen.getByLabelText("Age"), { 
+        target: { value: "25" } 
+      });
+
+      const submitButton = screen.getByRole("button", { name: "Submit" });
+      fireEvent.click(submitButton);
+
+      // Check that form is disabled during submission
+      await waitFor(() => {
+        expect(submitButton).toBeDisabled();
+      });
+
+      // Wait for submission to complete
+      await waitFor(() => {
+        expect(onSubmit).toHaveBeenCalled();
+      });
+
+      // Form should be enabled again after submission
+      await waitFor(() => {
+        expect(submitButton).not.toBeDisabled();
+      });
+    });
+
+    it("handles submission errors gracefully", async () => {
+      const onSubmit = vi.fn().mockRejectedValue(new Error("Submission failed"));
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      render(
+        <Form<UserFormData> {...defaultProps} onSubmit={onSubmit}>
+          <FormInput name="email" label="Email" />
+          <FormInput name="name" label="Name" />
+          <FormInput name="password" label="Password" type="password" />
+          <FormInput name="age" label="Age" type="number" />
+          <button type="submit">Submit</button>
+        </Form>
+      );
+
+      // Fill valid data
+      fireEvent.change(screen.getByLabelText("Email"), { 
+        target: { value: "test@example.com" } 
+      });
+      fireEvent.change(screen.getByLabelText("Name"), { 
+        target: { value: "John Doe" } 
+      });
+      fireEvent.change(screen.getByLabelText("Password"), { 
+        target: { value: "password123" } 
+      });
+      fireEvent.change(screen.getByLabelText("Age"), { 
+        target: { value: "25" } 
+      });
+
+      fireEvent.click(screen.getByRole("button", { name: "Submit" }));
+
+      await waitFor(() => {
+        expect(onSubmit).toHaveBeenCalled();
+        expect(consoleError).toHaveBeenCalledWith("Form submission error:", expect.any(Error));
+      });
+
+      consoleError.mockRestore();
+    });
+  });
+
+  describe("Form Interaction", () => {
+    it("validates fields only after blur (not on every keystroke)", async () => {
+      render(
+        <Form<UserFormData> {...defaultProps}>
+          <FormInput name="email" label="Email" />
+        </Form>
+      );
+
+      const emailInput = screen.getByLabelText("Email");
+      
+      // Type invalid email but don't blur
+      fireEvent.change(emailInput, { target: { value: "invalid" } });
+      
+      // Should not show error yet
+      expect(screen.queryByText("Invalid email format")).not.toBeInTheDocument();
+      
+      // Now blur the field
+      fireEvent.blur(emailInput);
+      
+      await waitFor(() => {
+        expect(screen.getByText("Invalid email format")).toBeInTheDocument();
+      });
+    });
+
+    it("supports different input types correctly", () => {
+      render(
+        <Form<UserFormData> {...defaultProps}>
+          <FormInput name="email" label="Email" type="email" />
+          <FormInput name="password" label="Password" type="password" />
+          <FormInput name="age" label="Age" type="number" />
+          <FormInput name="bio" label="Bio" />
+        </Form>
+      );
+
+      expect(screen.getByLabelText("Email")).toHaveAttribute("type", "email");
+      expect(screen.getByLabelText("Password")).toHaveAttribute("type", "password");
+      expect(screen.getByLabelText("Age")).toHaveAttribute("type", "number");
+      expect(screen.getByLabelText("Bio")).toHaveAttribute("type", "text");
+    });
+
+    it("maintains field values during validation", async () => {
+      render(
+        <Form<UserFormData> {...defaultProps}>
+          <FormInput name="email" label="Email" />
+          <FormInput name="name" label="Name" />
+        </Form>
+      );
+
+      const emailInput = screen.getByLabelText("Email");
+      const nameInput = screen.getByLabelText("Name");
+
+      // Enter values
+      fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+      fireEvent.change(nameInput, { target: { value: "John Doe" } });
+
+      // Blur to trigger validation
+      fireEvent.blur(emailInput);
+      fireEvent.blur(nameInput);
+
+      // Values should be maintained
+      expect(emailInput).toHaveValue("test@example.com");
+      expect(nameInput).toHaveValue("John Doe");
+    });
+  });
+});
