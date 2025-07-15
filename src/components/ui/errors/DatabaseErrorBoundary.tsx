@@ -1,5 +1,6 @@
 import { Component, type ReactNode } from "react";
 import cn from "@/utils/cn";
+import { Button } from "@/components/ui/actions";
 
 interface Props {
   children: ReactNode;
@@ -41,15 +42,13 @@ export class DatabaseErrorBoundary extends Component<Props, State> {
               <br />
               Please try refreshing the page.
             </div>
-            <button
+            <Button
               onClick={() => window.location.reload()}
-              className={cn(
-                "mt-4 px-4 py-2 bg-blue-600 text-white rounded-md",
-                "hover:bg-blue-700 transition-colors"
-              )}
+              color="blue"
+              className="mt-4"
             >
               Refresh Page
-            </button>
+            </Button>
           </div>
         )
       );
