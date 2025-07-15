@@ -48,6 +48,23 @@ applyTo: "**"
 - Use **React** for UI components
 - Use [Gitmoji](https://gitmoji.dev/instructions) for commit messages
 - Use the **components library** included in the components/ui folder for UI components
+- **Use Zod for all data validation** - All entities must have Zod schemas for runtime type safety
+
+### Data Validation Standards
+
+- **All entities must use Zod schemas** instead of plain TypeScript interfaces
+- Always provide validation helpers (`validate`, `validateSafe`, `validatePartial`)
+- Export both the schema and the inferred type: `export const UserSchema = z.object({...}); export type User = z.infer<typeof UserSchema>;`
+- Use descriptive error messages in Zod validations
+- Validate data at boundaries (API inputs, form submissions, external data)
+- Use `safeParse()` for non-throwing validation in user-facing code
+
+### Entity Structure Standards
+
+- Place all entity schemas in `src/db/entities/data/` or `src/db/entities/translated/`
+- Each entity file must export: Schema, Type, validate function, validatePartial function
+- Use proper UUID validation for all entity identifiers
+- Include meaningful constraints (string lengths, number ranges, etc.)
 
 ### Naming Conventions
 
@@ -98,12 +115,42 @@ applyTo: "**"
 
 Avant toute modification ou ajout de code, commence toujours par exécuter `npm install` pour t'assurer que toutes les dépendances du projet sont correctement installées.
 
+### 📝 Commit Message Excellence
+
 - All commit messages **must** follow the [Gitmoji](https://gitmoji.dev/) convention.
 - **Emojis are mandatory.** If your commit message is as dry as your code, Brütalcode will rain shame upon you.
 - Use relevant emojis for each commit type. No, you can't use 🍕 for everything, you lazy sloth.
 - If you forget the emoji, expect a savage roast in your PR review.
 - The emoji must always appear at the start of the message.
+- **For major changes, use detailed multi-line commits** with:
+  - Concise summary line with emoji and brief description
+  - Blank line
+  - Bullet points describing specific changes
+  - Breaking changes clearly marked
 - Messages should be **concise, imperative**, and reflect the commit's content, e.g.:
   - `:bug: Fix null pointer crash in login handler`
   - `:sparkles: Add dark mode support`
   - `:recycle: Refactor user auth middleware for clarity`
+  - `:sparkles: Transform all entities with Zod schemas for runtime validation
+
+    - Add comprehensive Zod validation to 8 core entities
+    - Transform 3 translated entities with proper constraints
+    - Implement validation helpers and utilities 
+    - Breaking: Replace TypeScript interfaces with Zod-inferred types`
+
+### 🔍 Analysis Before Action
+
+- **Always examine project structure** before making changes
+- **Check existing patterns** and follow them consistently
+- **Look for similar implementations** in the codebase before creating new ones
+- **Test builds after major changes** to ensure no regressions
+- **Consider impact on existing code** when making breaking changes
+
+### 🎯 BrutalComet Enhanced Workflow
+
+1. **Analyze** - Understand the existing codebase and patterns
+2. **Plan** - Identify what needs to be done and potential impacts
+3. **Execute** - Make changes following project standards
+4. **Validate** - Test that changes work and don't break existing functionality
+5. **Document** - Provide clear documentation for complex changes
+6. **Commit** - Write detailed, professional commit messages
