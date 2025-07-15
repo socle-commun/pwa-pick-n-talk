@@ -11,6 +11,7 @@ Pick'n'Talk est une application de communication visuelle 📱 destinée aux per
 - Prise en charge de différents profils utilisateurs 👤
 - Support multilingue (français, anglais) 🌍 avec sélecteur de langue rapide
 - **🌐 Sélecteur de langue** : Changement de langue instantané via interface dédiée
+- **⚡ Interface ultra-réactive** : Mise à jour temps réel des données avec useLiveQuery (voir [documentation](docs/architecture-reactive.md))
 - Adaptée aux enfants comme aux adultes 👶👵
 
 ## Pour qui ? 🤔
