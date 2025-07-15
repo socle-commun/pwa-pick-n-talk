@@ -138,6 +138,48 @@ Avant toute modification ou ajout de code, commence toujours par exécuter `npm 
     - Implement validation helpers and utilities 
     - Breaking: Replace TypeScript interfaces with Zod-inferred types`
 
+#### 🏆 Advanced Commit Method for Complex Changes
+
+For major transformations requiring detailed documentation:
+
+1. **Create temporary commit message file:**
+   ```bash
+   # Create detailed message with proper formatting
+   create_file commit-message.txt "content"
+   ```
+
+2. **Use git commit with file input:**
+   ```bash
+   git commit -F commit-message.txt
+   ```
+
+3. **Clean up temporary file:**
+   ```bash
+   rm commit-message.txt
+   ```
+
+**Template structure for complex commits:**
+```
+:emoji: Title with clear impact description
+
+- Detailed technical change 1
+- Detailed technical change 2  
+- Detailed technical change 3
+- Add comprehensive methodology/documentation updates
+
+Breaking: Clear description of breaking changes
+feat: Summary of new features added
+docs: Documentation improvements made
+
+Contextual summary line describing the transformation scope
+```
+
+**Advantages:**
+- No terminal character limits
+- Perfect formatting with indentations and bullet points
+- Structured documentation for major changes
+- Reusable templates for similar transformations
+
 ### 🔍 Analysis Before Action
 
 - **Always examine project structure** before making changes
