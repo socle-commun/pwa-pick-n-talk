@@ -62,8 +62,8 @@ function BinderContent({ binder, uuid }: BinderContentProps) {
     return (
       <div className={cn("flex items-center justify-center h-full p-4")}>
         <div className={cn("text-zinc-600 dark:text-zinc-400 flex items-center gap-2")}>
-          <div 
-            className={cn("animate-spin h-5 w-5 border-2 border-blue-600 border-t-transparent rounded-full")} 
+          <div
+            className={cn("animate-spin h-5 w-5 border-2 border-blue-600 border-t-transparent rounded-full")}
             role="status"
             aria-hidden="true"
           />

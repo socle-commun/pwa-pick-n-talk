@@ -29,7 +29,7 @@ describe("Dexie useLiveQuery Integration", () => {
  * 1. useLiveQuery is properly imported and available
  * 2. Database instance has all required reactive query methods
  * 3. The reactive data flow architecture is in place
- * 
+ *
  * The actual reactive behavior is tested through the UI components
  * that use useLiveQuery in their implementation.
  */

@@ -1,10 +1,10 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { useTranslation } from "react-i18next";
 
-import PictogramCard from "./PictogramCard";
+import { PictogramsGridLayout } from "./PictogramsGridLayout";
 import { DatabaseErrorBoundary } from "@/components/ui/errors/DatabaseErrorBoundary";
+import { LoadingSpinner, EmptyState, ErrorFallback } from "@/components/ui/feedback";
 import { db } from "@/db";
-import cn from "@/utils/cn";
 
 export interface PictogramsGridProps {
   binderUuid: string;
@@ -21,7 +21,7 @@ export default function PictogramsGrid({
     if (!binderUuid) {
       throw new Error("Binder UUID is required");
     }
-    
+
     try {
       return await db.getTranslatedPictogramsFromBinderUuid(
         binderUuid,
@@ -37,21 +37,21 @@ export default function PictogramsGrid({
   return (
     <DatabaseErrorBoundary
       fallback={
-        <div className={cn("flex flex-col items-center justify-center p-8")}>
-          <div className={cn("text-red-600 dark:text-red-400 text-xl mb-2")}>
-            ⚠️ Failed to load pictograms
-          </div>
-          <div className={cn("text-zinc-600 dark:text-zinc-400 text-center")}>
-            There was an error loading the pictograms for this binder.
-            <br />
-            Please try refreshing the page.
-          </div>
-        </div>
+        <ErrorFallback
+          title="Failed to load pictograms"
+          description={
+            <>
+              There was an error loading the pictograms for this binder.
+              <br />
+              Please try refreshing the page.
+            </>
+          }
+        />
       }
     >
-      <PictogramsGridContent 
-        pictograms={pictograms} 
-        className={className} 
+      <PictogramsGridContent
+        pictograms={pictograms}
+        className={className}
       />
     </DatabaseErrorBoundary>
   );
@@ -64,43 +64,17 @@ interface PictogramsGridContentProps {
 
 function PictogramsGridContent({ pictograms, className }: PictogramsGridContentProps) {
   if (pictograms === undefined) {
-    return (
-      <div className={cn("flex items-center justify-center p-8")}>
-        <div className={cn("text-zinc-600 dark:text-zinc-400 flex items-center gap-2")}>
-          <div 
-            className={cn("animate-spin h-5 w-5 border-2 border-blue-600 border-t-transparent rounded-full")} 
-            role="status"
-            aria-hidden="true"
-          />
-          Loading pictograms...
-        </div>
-      </div>
-    );
+    return <LoadingSpinner message="Loading pictograms..." />;
   }
 
   if (pictograms.length === 0) {
     return (
-      <div className={cn("flex flex-col items-center justify-center p-8")}>
-        <div className={cn("text-xl text-zinc-600 dark:text-zinc-400 mb-2")}>
-          No pictograms found
-        </div>
-        <div className={cn("text-sm text-zinc-500 dark:text-zinc-500")}>
-          This binder doesn&apos;t contain any pictograms yet.
-        </div>
-      </div>
+      <EmptyState
+        title="No pictograms found"
+        description="This binder doesn't contain any pictograms yet."
+      />
     );
   }
 
-  return (
-    <div
-      className={cn(
-        "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 p-4",
-        className
-      )}
-    >
-      {pictograms.map((pictogram: any) => (
-        <PictogramCard key={pictogram.uuid} pictogram={pictogram} />
-      ))}
-    </div>
-  );
+  return <PictogramsGridLayout pictograms={pictograms} className={className} />;
 }
