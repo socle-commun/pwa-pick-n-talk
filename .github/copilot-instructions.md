@@ -2,7 +2,8 @@
 applyTo: "**"
 ---
 
-Pour toute issue, **utilise obligatoirement le template [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml)**.
+- For all issues, **use this template [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml)**.
+- Always use git blame and git log to understand the context before taking decision.
 
 # BrutalComet
 
