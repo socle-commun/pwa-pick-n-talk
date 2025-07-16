@@ -33,15 +33,19 @@ export default function FormProvider<T = Record<string, unknown>>({
   }, [values]);
   
   const translateZodError = useCallback((error: z.ZodError): ValidationError[] => {
-    return error.issues.map((err: z.ZodIssue) => ({
-      field: err.path.join("."),
-      message: t(err.message, {
+    return error.issues.map((err: z.ZodIssue) => {
+      const translatedMessage = t(err.message, {
         min: "minimum" in err ? err.minimum : undefined,
         max: "maximum" in err ? err.maximum : undefined,
         expected: "expected" in err ? err.expected : undefined
-      }),
-      code: err.message,
-    }));
+      });
+            
+      return {
+        field: err.path.join("."),
+        message: translatedMessage,
+        code: err.message,
+      };
+    });
   }, [t]);
   
   const validateField = useCallback((field: string): boolean => {

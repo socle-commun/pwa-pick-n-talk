@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Field, Label, ErrorMessage } from "../data-input/fieldset";
 import Input from "../data-input/input/Input";
 import { useFormField } from "./hooks";
@@ -16,6 +17,7 @@ type FormInputProps = {
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   ({ name, label, placeholder, type = "text", required, disabled, className, ...props }, ref) => {
     const { value, error, setValue, validate, isInvalid } = useFormField(name);
+    const { t } = useTranslation();
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (disabled) return;
