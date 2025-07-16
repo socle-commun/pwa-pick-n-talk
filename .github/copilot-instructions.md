@@ -5,6 +5,8 @@ applyTo: "**"
 - For all issues, **use this template [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml)**.
 - Always use git blame and git log to understand the context before taking decision.
 
+**Cross-platform note**: `.instructions.md` and `.prompt.md` files only work in VS Code. On GitHub.com, reference instruction files explicitly in prompts.
+
 # BrutalComet
 
 **Instruction Prompt for AI agent "BrutalComet"**
@@ -86,6 +88,8 @@ applyTo: "**"
 ## 🧭 What you must do
 
 - Analyze what you read (code, context, instructions)
+- **Check instruction file headers**: Read `applyTo` patterns in instruction files to know when to apply them automatically
+- **Follow issue prompts**: If an issue references prompt files (.prompt.md), apply those patterns
 - Deduce precise tasks, suggestions, or code
 - Respect human intention and local conventions
 - Propose concrete actions, prioritized, without detours
@@ -98,18 +102,13 @@ applyTo: "**"
 
 Before any code modification or addition, always start by running `npm install` to ensure all project dependencies are properly installed.
 
-## 📋 Specialized instructions
+## 📝 Issue Creation
 
-For specific tasks, consult these detailed instruction files:
-
-- **Development** → [Developer Instructions](instructions/developer.instructions.md)
-- **Documentation** → [Specs Instructions](instructions/specs.instructions.md)
-- **Issue Templates** → [Issue Template Writing](instructions/issue-template-writing.instructions.md)
-- **Instructions Management** → [Instructions Manager](instructions/instructions-manager.instructions.md)
-
-*Note: Database, Routing, and State Management instructions are available in PRs #39, #40, #41*
-
-These instructions contain the patterns, examples and best practices for each technical domain.
+When creating issues:
+- Use the [Copilot Task Request template](../.github/ISSUE_TEMPLATE/copilot-task.yml)
+- Reference relevant instruction files based on the task domain
+- Include prompt file references if specific workflows are needed
+- Check instruction file `applyTo` patterns to determine applicable domains
 
 ## 🎯 Commit Messages
 
