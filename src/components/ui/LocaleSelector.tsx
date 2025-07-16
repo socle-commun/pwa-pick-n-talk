@@ -17,8 +17,9 @@ interface Language {
 }
 
 const SUPPORTED_LANGUAGES: Language[] = [
-  { code: "en-US", name: "English", flag: "🇺🇸" },
-  { code: "fr-FR", name: "Français", flag: "🇫🇷" },
+  { code: "en", name: "English", flag: "🇺🇸" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
 ];
 
 interface LocaleSelectorProps {
@@ -57,7 +58,7 @@ export default function LocaleSelector({
                 className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm hover:bg-zinc-100 data-[focus]:bg-blue-100 data-[selected]:bg-blue-50 dark:text-white dark:hover:bg-zinc-700 dark:data-[focus]:bg-blue-900 dark:data-[selected]:bg-blue-900"
               >
                 <span className="text-lg">{language.flag}</span>
-                <span>{t(`language.selector.${language.code === "en-US" ? "english" : "french"}`)}</span>
+                <span>{t(`language.selector.${language.code === "en" ? "english" : language.code === "fr" ? "french" : "spanish"}`)}</span>
               </ComboboxOption>
             ))}
           </ComboboxOptions>
@@ -78,7 +79,7 @@ export default function LocaleSelector({
             <div className="flex items-center gap-3">
               <span className="text-lg">{currentLanguage.flag}</span>
               <span className="block truncate text-zinc-900 dark:text-white">
-                {t(`language.selector.${currentLanguage.code === "en-US" ? "english" : "french"}`)}
+                {t(`language.selector.${currentLanguage.code === "en" ? "english" : currentLanguage.code === "fr" ? "french" : "spanish"}`)}
               </span>
             </div>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -96,7 +97,7 @@ export default function LocaleSelector({
                 <div className="flex items-center gap-3">
                   <span className="text-lg">{language.flag}</span>
                   <span className="block truncate font-normal">
-                    {t(`language.selector.${language.code === "en-US" ? "english" : "french"}`)}
+                    {t(`language.selector.${language.code === "en" ? "english" : language.code === "fr" ? "french" : "spanish"}`)}
                   </span>
                   {language.code === currentLanguage.code && (
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-blue-600">
