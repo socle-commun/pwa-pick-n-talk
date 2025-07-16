@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import "@testing-library/jest-dom";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 
 import LocaleSelector from "./LocaleSelector";
 
@@ -11,6 +12,7 @@ const mockT = vi.fn((key: string) => {
     "language.selector.ariaLabel": "Select language",
     "language.selector.english": "English",
     "language.selector.french": "Français",
+    "language.selector.spanish": "Español",
   };
   return translations[key] || key;
 });
@@ -19,7 +21,7 @@ vi.mock("react-i18next", () => ({
   useTranslation: () => ({
     t: mockT,
     i18n: {
-      language: "en-US",
+      language: "en",
       changeLanguage: mockChangeLanguage,
     },
   }),
@@ -71,5 +73,6 @@ describe("LocaleSelector", () => {
 
     expect(mockT).toHaveBeenCalledWith("language.selector.label");
     expect(mockT).toHaveBeenCalledWith("language.selector.english");
+    expect(mockT).toHaveBeenCalledWith("language.selector.spanish");
   });
 });
