@@ -15,6 +15,7 @@ export default function ErrorMessage({
   return (
     <HeadlessDescription
       data-slot="error"
+      role="alert"
       {...props}
       className={cn(
         className,

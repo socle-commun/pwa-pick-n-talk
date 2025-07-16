@@ -17,6 +17,7 @@
     "docs:preview": "vitepress preview documentation"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.9.0",
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
     "bcryptjs": "^3.0.2",
@@ -33,7 +34,8 @@
     "react-hook-form": "^7.57.0",
     "react-i18next": "^15.5.2",
     "react-router": "^7.6.0",
-    "tailwind-merge": "^3.3.0"
+    "tailwind-merge": "^3.3.0",
+    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
