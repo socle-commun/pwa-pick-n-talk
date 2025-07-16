@@ -62,7 +62,7 @@ export const BasicFormSchema = z.object({
 ❌ **Never**:
 - Copy-paste code between tests
 - Hardcode test values (use Faker)
-- Put multiple `describe()` main blocks in one file
+- Put multiple top-level `describe()` blocks in one file
 - Different i18next mocks per file
 - `any` types in helpers
 
