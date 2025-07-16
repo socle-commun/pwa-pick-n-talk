@@ -210,3 +210,10 @@ All commit messages **must** follow the [Gitmoji](https://gitmoji.dev/) conventi
   - `:bug: Fix null pointer crash in login handler`
   - `:sparkles: Add dark mode support`
   - `:recycle: Refactor user auth middleware for clarity`
+
+## 🚀 GitHub CLI (`gh`) - Gestion des repositories github
+
+Pour communiquer avec github, privilegiez l'outil `gh` plutôt que l'interface web. Il est plus rapide, plus efficace et vous permet de gérer les PR, issues et labels directement depuis la ligne de commande.
+
+**Documentation complète :** `gh help` puis `gh <command> --help` pour tout détail.
+
