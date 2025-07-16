@@ -4,7 +4,8 @@
       "label": "Language",
       "ariaLabel": "Select language",
       "english": "English",
-      "french": "Français"
+      "french": "Français",
+      "spanish": "Español"
     }
   }
 }

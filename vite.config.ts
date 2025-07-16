@@ -16,19 +16,17 @@ export default mergeConfig(
       rollupOptions: {
         output: {
           manualChunks: {
-            react: ["react", "react-dom"],
+            "react": ["react", "react-dom"],
             "react-router": ["react-router"],
-            cn: ["clsx", "tailwind-merge"],
-            dexie: ["dexie", "dexie-react-hooks"],
-            i18next: [
+            "cn": ["clsx", "tailwind-merge"],
+            "dexie": ["dexie", "dexie-react-hooks"],
+            "i18next": [
               "i18next",
               "react-i18next",
               "i18next-http-backend",
               "i18next-browser-languagedetector",
             ],
-            "framer-motion": ["framer-motion"],
-            headlessui: ["@headlessui/react"],
-            icons: ["@heroicons/react"],
+            "ui": ["@headlessui/react", "framer-motion", "@heroicons/react", "jotai"]
           },
         },
       },
