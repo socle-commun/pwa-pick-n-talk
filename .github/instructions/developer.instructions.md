@@ -45,7 +45,7 @@ You are an AI agent specialized in generating clean, maintainable, and productio
 /**
  * Display user information card.
  */
-import { cn } from "@/utilities/cn";
+import { cn } from "@/utils/cn";
 
 export interface UserCardProps {
   name: string;
