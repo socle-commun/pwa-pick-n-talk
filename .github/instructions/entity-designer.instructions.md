@@ -57,7 +57,7 @@ slug: z.string().regex(/^[a-z0-9-]+$/, "validation.errors.invalid_slug").transfo
 avatar: z.instanceof(File).refine(f => f.size <= 5 * 1024 * 1024, "validation.errors.file_too_large")
 
 // Date with constraints
-birthDate: z.date().max(new Date())
+birthDate: z.date().max(new Date(), "validation.errors.date_in_future")
 
 // ISO string to Date
 updatedAt: z.string().datetime().transform(s => new Date(s))
