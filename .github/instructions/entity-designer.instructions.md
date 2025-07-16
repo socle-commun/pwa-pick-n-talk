@@ -48,7 +48,7 @@ name: z.string().min(1, "validation.errors.field_empty").max(100)
 email: z.string().email("validation.errors.invalid_email")
 
 // Slug format with transform
-slug: z.string().regex(/^[a-z0-9-]+$/).transform(s => s.toLowerCase())
+slug: z.string().regex(/^[a-z0-9-]+$/, "validation.errors.invalid_slug").transform(s => s.toLowerCase())
 ```
 
 ### File & Date Validation
