@@ -60,7 +60,7 @@ avatar: z.instanceof(File).refine(f => f.size <= 5 * 1024 * 1024, "validation.er
 birthDate: z.date().max(new Date(), "validation.errors.date_in_future")
 
 // ISO string to Date
-updatedAt: z.string().datetime().transform(s => new Date(s))
+updatedAt: z.string().datetime("validation.errors.invalid_datetime").transform(s => new Date(s))
 ```
 
 ### Error Messages (i18n keys)
