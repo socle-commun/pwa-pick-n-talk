@@ -84,7 +84,7 @@ describe("Feature Name", () => {
 
   describe("Behavior Category", () => {
     it("should validate specific scenario", async () => {
-      // Test implementation (aim for 15-20 lines, but prioritize clarity and coverage)
+      // Test implementation: prioritize clarity, coverage, and performance over arbitrary line counts
     });
   });
 });
