@@ -54,7 +54,7 @@ slug: z.string().regex(/^[a-z0-9-]+$/, "validation.errors.invalid_slug").transfo
 ### File & Date Validation
 ```typescript
 // File upload
-avatar: z.instanceof(File).refine(f => f.size <= 5 * 1024 * 1024)
+avatar: z.instanceof(File).refine(f => f.size <= 5 * 1024 * 1024, "validation.errors.file_too_large")
 
 // Date with constraints
 birthDate: z.date().max(new Date())
