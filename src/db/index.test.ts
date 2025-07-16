@@ -27,10 +27,8 @@ describe("PickNTalkDB", () => {
     expect(typeof db.getHistory).toBe("function");
     expect(typeof db.getBinders).toBe("function");
     expect(typeof db.getBinder).toBe("function");
-    expect(typeof db.getTranslatedBinders).toBe("function");
-    expect(typeof db.getTranslatedBinder).toBe("function");
-    expect(typeof db.getTranslatedPictogramsFromBinderUuid).toBe("function");
-    expect(typeof db.getTranslatedCategoriesFromBinderUuid).toBe("function");
+    expect(typeof db.getPictogramsFromBinderId).toBe("function");
+    expect(typeof db.getCategoriesFromBinderId).toBe("function");
   });
 
   test("should have all mutation methods", () => {

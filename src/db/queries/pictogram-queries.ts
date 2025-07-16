@@ -3,21 +3,21 @@ import { type PromiseExtended } from "dexie";
 import { type Category } from "@/db/models/Category";
 import { type Pictogram } from "@/db/models/Pictogram";
 
-import { type PickNTalkDB } from "../index";
+import { type PickNTalkDB } from "@/db/index";
 
-export function getPictogramsFromBinderUuid(
+export function getPictogramsFromBinderId(
   this: PickNTalkDB,
-  binderUuid: string
+  binderId: string
 ): PromiseExtended<Pictogram[]> {
-  return this.pictograms.where({ binderUuid }).toArray();
+  return this.pictograms.where({ binder: binderId }).toArray();
 }
 
-export function getCategoriesFromBinderUuid(
+export function getCategoriesFromBinderId(
   this: PickNTalkDB,
-  binderUuid: string
+  binderId: string
 ): PromiseExtended<Category[]> {
   return this.transaction("r", this.pictograms, this.categories, () => {
-    return this.getPictogramsFromBinderUuid(binderUuid).then((pictograms) => {
+    return this.getPictogramsFromBinderId(binderId).then((pictograms) => {
       const categoryIds = new Set<string>();
       pictograms.forEach((pictogram) => {
         if (pictogram.categories) {

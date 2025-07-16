@@ -46,6 +46,7 @@ export default function useUserActions() {
     return db
       .createUser({
         id: crypto.randomUUID(),
+        name: email.split("@")[0], // Use part before @ as default name
         email,
         hash: hashSync(password),
         role: "user",

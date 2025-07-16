@@ -5,7 +5,7 @@ import { type History } from "@/db/models/History";
 import { type Pictogram } from "@/db/models/Pictogram";
 import type { User } from "@/db/models/User";
 
-import { type PickNTalkDB } from "../index";
+import { type PickNTalkDB } from "@/db/index";
 
 export function getUser(this: PickNTalkDB, id: string): PromiseExtended<User | undefined> {
   return this.users.get(id);
@@ -19,11 +19,11 @@ export function getHistory(this: PickNTalkDB, entityId: string): PromiseExtended
   return this.history.where({ entityId }).toArray();
 }
 
-export function getPictogramsFromBinderUuid(
+export function getPictogramsFromBinderId(
   this: PickNTalkDB,
-  binderUuid: string
+  binderId: string
 ): PromiseExtended<Pictogram[]> {
-  return this.pictograms.where({ binderUuid }).toArray();
+  return this.pictograms.where({ binder: binderId }).toArray();
 }
 
 export function getCategoriesFromPictograms(

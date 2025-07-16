@@ -4,7 +4,7 @@ import { type Binder } from "@/db/models/Binder";
 import { type Category } from "@/db/models/Category";
 import { type Pictogram } from "@/db/models/Pictogram";
 
-import { type PickNTalkDB } from "../index";
+import { type PickNTalkDB } from "@/db/index";
 
 export function updateBinder(
   this: PickNTalkDB,

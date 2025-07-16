@@ -7,9 +7,7 @@ import { type Pictogram } from "@/db/models/Pictogram";
 import { type Setting } from "@/db/models/Setting";
 import type { User } from "@/db/models/User";
 
-import { type TranslatedBinder } from "@/db/models/TranslatedBinder";
-import { type TranslatedCategory } from "@/db/models/TranslatedCategory";
-import { type TranslatedPictogram } from "@/db/models/TranslatedPictogram";
+
 
 import { populate } from "@/db/populate";
 
@@ -17,7 +15,6 @@ import { populate } from "@/db/populate";
 import * as userQueries from "./queries/user-queries";
 import * as binderQueries from "./queries/binder-queries";
 import * as pictogramQueries from "./queries/pictogram-queries";
-import * as translationQueries from "./queries/translation-queries";
 import * as mutations from "./queries/mutations";
 import * as updates from "./queries/updates";
 import * as deletions from "./queries/deletions";
@@ -33,9 +30,9 @@ export class PickNTalkDB extends Dexie {
   constructor() {
     super("pick-n-talk");
     this.version(1).stores({
-      binders: "&id, author, isFavorite",
-      categories: "&id",
-      pictograms: "&id, binderUuid, isFavorite",
+      binders: "&id, author, isFavorite, pictograms, users",
+      categories: "&id, pictograms",
+      pictograms: "&id, binder, isFavorite, categories",
       settings: "&key",
       users: "&id, email",
       history: "&id, entityType, entityId, performedBy, timestamp",
@@ -45,7 +42,7 @@ export class PickNTalkDB extends Dexie {
     this.getUser = userQueries.getUser.bind(this);
     this.getUserByEmail = userQueries.getUserByEmail.bind(this);
     this.getHistory = userQueries.getHistory.bind(this);
-    this.getPictogramsFromBinderUuid = userQueries.getPictogramsFromBinderUuid.bind(this);
+    this.getPictogramsFromBinderId = userQueries.getPictogramsFromBinderId.bind(this);
     this.getCategoriesFromPictograms = userQueries.getCategoriesFromPictograms.bind(this);
 
     // Binder queries
@@ -53,13 +50,7 @@ export class PickNTalkDB extends Dexie {
     this.getBinder = binderQueries.getBinder.bind(this);
 
     // Pictogram queries
-    this.getCategoriesFromBinderUuid = pictogramQueries.getCategoriesFromBinderUuid.bind(this);
-
-    // Translation queries
-    this.getTranslatedBinders = translationQueries.getTranslatedBinders.bind(this);
-    this.getTranslatedBinder = translationQueries.getTranslatedBinder.bind(this);
-    this.getTranslatedPictogramsFromBinderUuid = translationQueries.getTranslatedPictogramsFromBinderUuid.bind(this);
-    this.getTranslatedCategoriesFromBinderUuid = translationQueries.getTranslatedCategoriesFromBinderUuid.bind(this);
+    this.getCategoriesFromBinderId = pictogramQueries.getCategoriesFromBinderId.bind(this);
 
     // Mutations
     this.createBinder = mutations.createBinder.bind(this);
@@ -86,7 +77,7 @@ export class PickNTalkDB extends Dexie {
   public getUser!: (id: string) => PromiseExtended<User | undefined>;
   public getUserByEmail!: (email: string) => PromiseExtended<User | undefined>;
   public getHistory!: (entityId: string) => PromiseExtended<History[]>;
-  public getPictogramsFromBinderUuid!: (binderUuid: string) => PromiseExtended<Pictogram[]>;
+  public getPictogramsFromBinderId!: (binderId: string) => PromiseExtended<Pictogram[]>;
   public getCategoriesFromPictograms!: (pictograms: Pictogram[]) => PromiseExtended<Category[]>;
 
   // Binder queries
@@ -94,13 +85,7 @@ export class PickNTalkDB extends Dexie {
   public getBinder!: (id: string) => PromiseExtended<Binder | undefined>;
 
   // Pictogram queries
-  public getCategoriesFromBinderUuid!: (binderUuid: string) => PromiseExtended<Category[]>;
-
-  // Translation queries
-  public getTranslatedBinders!: (language: string) => PromiseExtended<TranslatedBinder[]>;
-  public getTranslatedBinder!: (id: string, language: string) => PromiseExtended<TranslatedBinder | null>;
-  public getTranslatedPictogramsFromBinderUuid!: (binderUuid: string, language: string) => PromiseExtended<TranslatedPictogram[]>;
-  public getTranslatedCategoriesFromBinderUuid!: (binderUuid: string, language: string) => PromiseExtended<TranslatedCategory[]>;
+  public getCategoriesFromBinderId!: (binderId: string) => PromiseExtended<Category[]>;
 
   // Mutations
   public createBinder!: (binder: Binder) => any;

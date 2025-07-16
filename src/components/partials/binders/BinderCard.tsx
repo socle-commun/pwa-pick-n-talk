@@ -7,7 +7,7 @@ import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
 import { Divider } from "@/components/ui/layout";
 import { Button } from "@/components/ui/actions";
 
-import { type TranslatedBinder } from "@/db/models/TranslatedBinder";
+import { type Binder } from "@/db/models/Binder";
 import { db } from "@/db";
 
 import cn from "@/utils/cn";
@@ -17,10 +17,14 @@ export default function BinderCard({
   className,
   ...props
 }: {
-  binder: TranslatedBinder;
+  binder: Binder;
   className?: string;
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  // Extract translated properties
+  const title = binder.properties?.[i18n.language]?.title || "";
+  const description = binder.properties?.[i18n.language]?.description || "";
 
   return (
     <div
@@ -35,14 +39,14 @@ export default function BinderCard({
         plain
         className={cn("flex flex-col gap-1 bg-transparent rounded-b-none")}
       >
-        <div className={cn("text-2xl font-bold")}>{binder.title}</div>
+        <div className={cn("text-2xl font-bold")}>{title}</div>
         <div
           className={cn("pl-1 text-sm italic text-zinc-700 dark:text-zinc-300")}
         >
           {t("by")} {binder.author}
         </div>
         <div className={cn("text-lg text-zinc-800 dark:text-zinc-200 mb-2")}>
-          {binder.description}
+          {description}
         </div>
       </Button>
       <Divider className={cn("border-zinc-600 dark:border-zinc-400")} />

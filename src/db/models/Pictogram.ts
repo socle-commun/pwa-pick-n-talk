@@ -13,6 +13,6 @@ export interface Pictogram {
 
   properties?: Record<string, Record<string, string>>;
 
-  binderUuid: string;
+  binder: string;
   categories?: string[];
 }

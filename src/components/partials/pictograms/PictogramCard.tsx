@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/components/ui/actions";
-import { type TranslatedPictogram } from "@/db/models/TranslatedPictogram";
+import { type Pictogram } from "@/db/models/Pictogram";
 import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
 import cn from "@/utils/cn";
 
 export interface PictogramCardProps {
-  pictogram: TranslatedPictogram;
+  pictogram: Pictogram;
   className?: string;
 }
 
@@ -19,6 +19,9 @@ export default function PictogramCard({
   const { i18n } = useTranslation();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  // Extract translated word from properties
+  const word = pictogram.properties?.[i18n.language]?.word || "";
 
   // Convert blob to URL for image display
   useEffect(() => {
@@ -34,11 +37,11 @@ export default function PictogramCard({
   }, [pictogram.image, imageUrl]);
 
   const handleSpeak = async () => {
-    if (!pictogram.word || isSpeaking) return;
+    if (!word || isSpeaking) return;
 
     setIsSpeaking(true);
     try {
-      await speak(pictogram.word, i18n.language);
+      await speak(word, i18n.language);
     } catch (error) {
       console.error("Failed to speak pictogram word:", error);
     } finally {
@@ -59,7 +62,7 @@ export default function PictogramCard({
         {imageUrl ? (
           <img
             src={imageUrl}
-            alt={pictogram.word}
+            alt={word}
             className={cn("max-w-full max-h-full object-contain")}
           />
         ) : (
@@ -80,14 +83,14 @@ export default function PictogramCard({
           "text-lg font-medium text-center mb-2 text-zinc-900 dark:text-zinc-100"
         )}
       >
-        {pictogram.word}
+        {word}
       </div>
 
       {/* Speaker Button */}
       {isSpeechSynthesisSupported() && (
         <Button
           onClick={handleSpeak}
-          disabled={isSpeaking || !pictogram.word}
+          disabled={isSpeaking || !word}
           className={cn(
             "p-2 rounded-full",
             "hover:scale-105 active:scale-95 transition-transform duration-150",
@@ -97,7 +100,7 @@ export default function PictogramCard({
         >
           <SpeakerWaveIcon className={cn("size-5")} />
           <span className={cn("sr-only")}>
-            {isSpeaking ? "Speaking..." : `Speak "${pictogram.word}"`}
+            {isSpeaking ? "Speaking..." : `Speak "${word}"`}
           </span>
         </Button>
       )}

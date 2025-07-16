@@ -2,7 +2,7 @@ import { type PromiseExtended } from "dexie";
 
 import { type Binder } from "@/db/models/Binder";
 
-import { type PickNTalkDB } from "../index";
+import { type PickNTalkDB } from "@/db/index";
 
 export function getBinders(this: PickNTalkDB): PromiseExtended<Binder[]> {
   return this.binders.toArray();

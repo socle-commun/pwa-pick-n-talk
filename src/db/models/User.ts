@@ -9,7 +9,7 @@ import type { Role } from "./Types";
 export interface User {
   id: string;
 
-  name?: string;
+  name: string;
   email: string;
   hash?: string;
 

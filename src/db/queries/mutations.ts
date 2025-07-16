@@ -5,9 +5,9 @@ import { type Category } from "@/db/models/Category";
 import { type History } from "@/db/models/History";
 import { type Pictogram } from "@/db/models/Pictogram";
 import { type Setting } from "@/db/models/Setting";
-import type { User } from "@/db/models/User";
+import { type User } from "@/db/models/User";
 
-import { type PickNTalkDB } from "../index";
+import { type PickNTalkDB } from "@/db/index";
 
 export function createBinder(this: PickNTalkDB, binder: Binder) {
   return this.binders.add(binder);

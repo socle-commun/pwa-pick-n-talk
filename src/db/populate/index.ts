@@ -9,11 +9,11 @@ export async function populate() {
     author: "Socle Commun",
     isFavorite: false,
     properties: {
-      "fr-FR": {
+      "fr": {
         title: "Classeur général",
         description: "Un classeur général",
       },
-      "en-US": {
+      "en": {
         title: "General binder",
         description: "A general binder",
       },
@@ -25,11 +25,11 @@ export async function populate() {
     author: "Socle Commun",
     isFavorite: false,
     properties: {
-      "fr-FR": {
+      "fr": {
         title: "Classeur vide",
         description: "Un classeur vide",
       },
-      "en-US": {
+      "en": {
         title: "Empty binder",
         description: "An empty binder",
       },
