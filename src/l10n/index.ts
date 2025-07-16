@@ -14,7 +14,7 @@ i18n
   .init({
     supportedLngs: ["en", "fr", "es"],
     fallbackLng: ["en", "fr", "es"],
-    debug: process.env.NODE_ENV === "production",
+    debug: process.env.NODE_ENV === "development",
     interpolation: {
       escapeValue: false,
     },
