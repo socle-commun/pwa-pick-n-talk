@@ -8,6 +8,55 @@
       "spanish": "Español"
     }
   },
+  "auth": {
+    "signin": {
+      "title": "Connectez-vous à votre compte",
+      "email": "Email",
+      "password": "Mot de passe",
+      "forgot_password": "Mot de passe oublié ?",
+      "submit": "Se connecter"
+    },
+    "signup": {
+      "title": "Créez votre compte",
+      "name": "Nom",
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "S'inscrire"
+    },
+    "forgot_password": {
+      "title": "Réinitialisez votre mot de passe",
+      "description": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "email": "Email",
+      "submit": "Envoyer le lien de réinitialisation",
+      "back_to_signin": "Retour à la connexion"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "edit": {
+      "title": "Modifier le profil",
+      "name": "Nom",
+      "email": "Email",
+      "role": "Rôle",
+      "save": "Enregistrer les modifications",
+      "cancel": "Annuler"
+    },
+    "roles": {
+      "user": "Utilisateur",
+      "caregiver": "Aidant",
+      "professional": "Professionnel"
+    }
+  },
+  "binder": {
+    "edit": {
+      "title": "Modifier le classeur",
+      "id": "ID du classeur",
+      "author": "Auteur",
+      "is_favorite": "Marquer comme favori",
+      "save": "Enregistrer les modifications",
+      "cancel": "Annuler"
+    }
+  },
   "validation": {
     "errors": {
       "required": "Ce champ est obligatoire",
@@ -21,7 +70,9 @@
       "string_too_long": "Texte trop long (maximum {{max}} caractères)",
       "number_too_small": "Nombre trop petit (minimum {{min}})",
       "number_too_big": "Nombre trop grand (maximum {{max}})",
-      "invalid_type": "Type invalide, attendu {{expected}}"
+      "invalid_type": "Type invalide, attendu {{expected}}",
+      "password_too_short": "Le mot de passe doit contenir au moins 16 caractères",
+      "name_too_short": "Le nom doit contenir au moins 2 caractères"
     }
   }
 }

@@ -1,26 +1,23 @@
-import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/actions";
-import { Field, Fieldset, Input, Label } from "@/components/ui/data-input";
 import { Link } from "@/components/ui/navigation";
+import { Form, FormInput } from "@/components/ui/forms";
 
 import Logo from "@/components/partials/global/Logo";
 
-import useUserActions from "@/utils/state/actions/_useUserActions";
+import { ForgotPasswordSchema, type ForgotPasswordFormData } from "@/db/models/schemas/auth";
 
 import cn from "@/utils/cn";
 
-type SignInFormFields = {
-  email: string;
-  password: string;
-};
-
 export default function ForgotPasswordPage() {
-  const userActions = useUserActions();
-  const { register, handleSubmit } = useForm<SignInFormFields>({});
+  const { t } = useTranslation();
 
-  const onSubmit = ({ email, password }: SignInFormFields) =>
-    userActions.login(email, password);
+  const handleSubmit = async ({ email }: ForgotPasswordFormData) => {
+    // TODO: Implement password reset functionality in userActions
+    console.log("Password reset requested for:", email);
+    // For now, we'll just log the request until the backend is implemented
+  };
 
   return (
     <>
@@ -28,48 +25,38 @@ export default function ForgotPasswordPage() {
         <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
           <Logo className={cn("size-16")} />
           <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight">
-            Sign in to your account
+            {t("auth.forgot_password.title", "Reset your password")}
           </h2>
+          <p className="mt-2 text-center text-sm text-zinc-600 dark:text-zinc-400">
+            {t("auth.forgot_password.description", "Enter your email address and we'll send you a link to reset your password.")}
+          </p>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-zinc-200 dark:bg-zinc-800 px-6 py-12 shadow-sm sm:rounded-lg sm:px-12">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <Fieldset>
-                <Field className={cn("mb-2")}>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    {...register("email", {
-                      required: true,
-                      pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                    })}
-                    id="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                  />
-                </Field>
-
-                <Field className={cn("mb-2")}>
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    {...register("password", { required: true, minLength: 16 })}
-                    id="password"
-                    type="password"
-                    required
-                    autoComplete="current-password"
-                  />
-                </Field>
-
-                <div className="flex items-center justify-end">
-                  <Link href="/auth/forgot-password">Forgot password?</Link>
-                </div>
-              </Fieldset>
+            <Form<ForgotPasswordFormData>
+              schema={ForgotPasswordSchema}
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              <FormInput
+                name="email"
+                label={t("auth.forgot_password.email", "Email")}
+                type="email"
+                required
+                autoComplete="email"
+              />
 
               <Button type="submit" color="sky" className="w-full">
-                Sign in
+                {t("auth.forgot_password.submit", "Send reset link")}
               </Button>
-            </form>
+
+              <div className="text-center">
+                <Link href="/auth/sign-in">
+                  {t("auth.forgot_password.back_to_signin", "Back to sign in")}
+                </Link>
+              </div>
+            </Form>
           </div>
         </div>
       </div>

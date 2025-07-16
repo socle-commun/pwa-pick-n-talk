@@ -1,25 +1,21 @@
-import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import Logo from "@/components/partials/global/Logo";
 
 import { Button } from "@/components/ui/actions";
-import { Field, Fieldset, Input, Label } from "@/components/ui/data-input";
+import { Form, FormInput } from "@/components/ui/forms";
 import useUserActions from "@/utils/state/actions/_useUserActions";
+import { SignUpSchema, type SignUpFormData } from "@/db/models/schemas/auth";
 
 import cn from "@/utils/cn";
 
-type SignUpFormFields = {
-  name: string;
-  email: string;
-  password: string;
-};
-
 export default function SignUpPage() {
+  const { t } = useTranslation();
   const userActions = useUserActions();
-  const { register, handleSubmit } = useForm<SignUpFormFields>({});
 
-  const onSubmit = ({ name, email, password }: SignUpFormFields) =>
-    userActions.register(email, password, name);
+  const handleSubmit = async ({ name, email, password }: SignUpFormData) => {
+    await userActions.register(email, password, name);
+  };
 
   return (
     <>
@@ -27,58 +23,45 @@ export default function SignUpPage() {
         <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
           <Logo className={cn("size-16")} />
           <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight">
-            Create your account
+            {t("auth.signup.title", "Create your account")}
           </h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-zinc-200 dark:bg-zinc-800 px-6 py-12 shadow-sm sm:rounded-lg sm:px-12">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <Fieldset>
-                <Field className={cn("mb-2")}>
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    {...register("name", {
-                      required: true,
-                      minLength: 2,
-                    })}
-                    id="name"
-                    type="text"
-                    required
-                    autoComplete="name"
-                  />
-                </Field>
+            <Form<SignUpFormData>
+              schema={SignUpSchema}
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              <FormInput
+                name="name"
+                label={t("auth.signup.name", "Name")}
+                type="text"
+                required
+                autoComplete="name"
+              />
 
-                <Field className={cn("mb-2")}>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    {...register("email", {
-                      required: true,
-                      pattern: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                    })}
-                    id="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                  />
-                </Field>
+              <FormInput
+                name="email"
+                label={t("auth.signup.email", "Email")}
+                type="email"
+                required
+                autoComplete="email"
+              />
 
-                <Field className={cn("mb-2")}>
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    {...register("password", { required: true, minLength: 16 })}
-                    id="password"
-                    type="password"
-                    required
-                    autoComplete="current-password"
-                  />
-                </Field>
-              </Fieldset>
+              <FormInput
+                name="password"
+                label={t("auth.signup.password", "Password")}
+                type="password"
+                required
+                autoComplete="new-password"
+              />
 
               <Button type="submit" color="sky" className="w-full">
-                Sign up
+                {t("auth.signup.submit", "Sign up")}
               </Button>
-            </form>
+            </Form>
           </div>
         </div>
       </div>

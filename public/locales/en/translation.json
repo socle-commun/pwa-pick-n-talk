@@ -8,6 +8,55 @@
       "spanish": "Español"
     }
   },
+  "auth": {
+    "signin": {
+      "title": "Sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "forgot_password": "Forgot password?",
+      "submit": "Sign in"
+    },
+    "signup": {
+      "title": "Create your account",
+      "name": "Name",
+      "email": "Email", 
+      "password": "Password",
+      "submit": "Sign up"
+    },
+    "forgot_password": {
+      "title": "Reset your password",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "email": "Email",
+      "submit": "Send reset link",
+      "back_to_signin": "Back to sign in"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": {
+      "title": "Edit Profile",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "save": "Save Changes",
+      "cancel": "Cancel"
+    },
+    "roles": {
+      "user": "User",
+      "caregiver": "Caregiver",
+      "professional": "Professional"
+    }
+  },
+  "binder": {
+    "edit": {
+      "title": "Edit Binder",
+      "id": "Binder ID",
+      "author": "Author",
+      "is_favorite": "Mark as favorite",
+      "save": "Save Changes",
+      "cancel": "Cancel"
+    }
+  },
   "validation": {
     "errors": {
       "required": "This field is required",
@@ -21,7 +70,9 @@
       "string_too_long": "Text too long (maximum {{max}} characters)",
       "number_too_small": "Number too small (minimum {{min}})",
       "number_too_big": "Number too large (maximum {{max}})",
-      "invalid_type": "Invalid type, expected {{expected}}"
+      "invalid_type": "Invalid type, expected {{expected}}",
+      "password_too_short": "Password must be at least 16 characters long",
+      "name_too_short": "Name must be at least 2 characters long"
     }
   }
 }
