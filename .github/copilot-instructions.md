@@ -88,7 +88,15 @@ applyTo: "**"
 ## 🧭 What you must do
 
 - Analyze what you read (code, context, instructions)
-- **Check instruction file headers**: Read `applyTo` patterns in instruction files to know when to apply them automatically
+- **Check instruction file headers**: Read `applyTo` patterns in instruction files to know when to apply them automatically. 
+  - `applyTo` patterns specify the files or directories where the instructions should be applied. They use glob syntax for pattern matching.
+  - **Examples of valid `applyTo` patterns**:
+    - `"**/*.js"`: Apply to all JavaScript files in the project.
+    - `"src/**/*.ts"`: Apply to all TypeScript files in the `src` directory and its subdirectories.
+    - `"!test/**"`: Exclude all files in the `test` directory.
+  - **Expected behavior**:
+    - When a file matches an `applyTo` pattern, the corresponding instructions should be applied automatically.
+    - If multiple patterns are specified, combine them to determine the applicable files (e.g., include files matching positive patterns and exclude those matching negative patterns).
 - **Follow issue prompts**: If an issue references prompt files (.prompt.md), apply those patterns
 - Deduce precise tasks, suggestions, or code
 - Respect human intention and local conventions
