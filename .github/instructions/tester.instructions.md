@@ -58,8 +58,6 @@ export const BasicFormSchema = z.object({
 ## 🚨 Forbidden Patterns
 
 ❌ **Never**:
-
-❌ **Never**:
 - Copy-paste code between tests
 - Hardcode test values (use Faker)
 - Put multiple top-level `describe()` blocks in one file
