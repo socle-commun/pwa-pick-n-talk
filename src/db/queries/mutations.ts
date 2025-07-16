@@ -1,12 +1,11 @@
 import { type PromiseExtended } from "dexie";
 
-import { type Binder } from "@/db/entities/data/Binder";
-import { type Category } from "@/db/entities/data/Category";
-import { type History } from "@/db/entities/data/History";
-import { type Pictogram } from "@/db/entities/data/Pictogram";
-import { type Setting } from "@/db/entities/data/Setting";
-import { type Translation } from "@/db/entities/data/Translation";
-import type { User } from "@/db/entities/data/User";
+import { type Binder } from "@/db/models/Binder";
+import { type Category } from "@/db/models/Category";
+import { type History } from "@/db/models/History";
+import { type Pictogram } from "@/db/models/Pictogram";
+import { type Setting } from "@/db/models/Setting";
+import type { User } from "@/db/models/User";
 
 import { type PickNTalkDB } from "../index";
 
@@ -28,10 +27,6 @@ export function createPictogram(this: PickNTalkDB, pictogram: Pictogram) {
 
 export function createSetting(this: PickNTalkDB, setting: Setting) {
   return this.settings.add(setting);
-}
-
-export function createTranslation(this: PickNTalkDB, translation: Translation) {
-  return this.translations.add(translation);
 }
 
 export function createUser(this: PickNTalkDB, user: User): PromiseExtended<string> {

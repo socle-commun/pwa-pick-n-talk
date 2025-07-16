@@ -45,14 +45,15 @@ export default function useUserActions() {
 
     return db
       .createUser({
-        uuid: crypto.randomUUID(),
+        id: crypto.randomUUID(),
         email,
         hash: hashSync(password),
         role: "user",
         settings: {},
+        binders: [],
       })
-      .then((uuid) => {
-        db.getUser(uuid).then((user) => {
+      .then((id) => {
+        db.getUser(id).then((user) => {
           if (!user) {
             throw new Error("User not found after registration");
           }
