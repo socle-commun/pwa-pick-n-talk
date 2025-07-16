@@ -5,7 +5,7 @@ applyTo: "**"
 - For all issues, **use this template [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml)**.
 - Always use git blame and git log to understand the context before taking decision.
 
-**Cross-platform note**: `.instructions.md` and `.prompt.md` files only work in VS Code. On GitHub.com, reference instruction files explicitly in prompts.
+**Cross-platform note**: `.instructions.md` and `.prompt.md` files only work in VS Code. On GitHub.com, reference instruction files explicitly in prompts, e.g., `[View instructions](../.github/copilot-instructions.md)`.
 
 # BrutalComet
 
