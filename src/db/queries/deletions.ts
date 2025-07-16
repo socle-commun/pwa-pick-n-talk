@@ -1,9 +1,9 @@
 import { type PickNTalkDB } from "@/db/index";
 
 export function deleteBinder(this: PickNTalkDB, binderId: string) {
-  return this.transaction("rw", this.pictograms, this.binders, () => {
-    this.pictograms.where({ binder: binderId }).delete();
-    this.binders.delete(binderId);
+  return this.transaction("rw", this.pictograms, this.binders, async () => {
+    await this.pictograms.where({ binder: binderId }).delete();
+    await this.binders.delete(binderId);
   });
 }
 
