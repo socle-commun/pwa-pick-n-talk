@@ -26,7 +26,8 @@ export default mergeConfig(
               "i18next-http-backend",
               "i18next-browser-languagedetector",
             ],
-            "ui": ["@headlessui/react", "framer-motion", "@heroicons/react", "jotai"]
+            "ui": ["@headlessui/react", "framer-motion", "@heroicons/react"],
+            "state": ["jotai"]
           },
         },
       },
