@@ -55,11 +55,9 @@ export const BasicFormSchema = z.object({
 - Validation only after `blur`, not on every keystroke
 - Disabled/enabled states
 
-## 🔧 Utilities
-
-[WIP]
-
 ## 🚨 Forbidden Patterns
+
+❌ **Never**:
 
 ❌ **Never**:
 - Copy-paste code between tests
