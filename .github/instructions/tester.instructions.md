@@ -82,7 +82,9 @@ describe("Feature Name", () => {
 
   describe("Behavior Category", () => {
     it("should validate specific scenario", async () => {
-      // Test implementation: prioritize clarity, coverage, and performance over arbitrary line counts
+      // Arrange: Set up initial state and props
+      // Act: Perform the action being tested
+      // Assert: Verify the expected outcome
     });
   });
 });
