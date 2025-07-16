@@ -67,6 +67,61 @@ applyTo: "**"
 - Implement proper error boundaries in React components
 - Always log errors with contextual information
 
+### Testing with Vitest
+
+**⚠️ CRITICAL: This project uses Vitest, NOT Jest. Don't embarrass yourself by generating Jest syntax.**
+
+- **ALWAYS** import testing utilities from "vitest": `import { vi, describe, it, expect } from "vitest"`
+- Use `vi.mock()` for mocking, **NEVER** `jest.mock()`
+- Use `vi.fn()` for creating mock functions
+- Use `vi.clearAllMocks()` in `beforeEach()` for cleanup
+- Test files should end with `.test.tsx` or `.test.ts`
+- Use `it()` or `test()` for individual test cases (both are valid)
+- Use `describe()` for grouping related tests
+
+**Correct Vitest syntax examples:**
+
+```tsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+
+// ✅ CORRECT - Vitest mocking
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
+describe("Component Name", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("should do something", () => {
+    const mockFn = vi.fn();
+    render(<Component onClick={mockFn} />);
+    fireEvent.click(screen.getByRole("button"));
+    expect(mockFn).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+**❌ WRONG - Jest syntax (DO NOT USE):**
+```tsx
+jest.mock("react-i18next"); // ❌ Wrong framework
+describe("Component", () => {
+  test("should work", () => { // ❌ Missing Vitest imports
+    const mockFn = jest.fn(); // ❌ Wrong mock function
+  });
+});
+```
+
+**Testing environment:**
+- Uses jsdom environment for DOM testing
+- @testing-library/react for component testing
+- All mocks use `vi.*` APIs
+- Run tests with `npm test` (which runs Vitest)
+
 ### Directory Restrictions
 
 - **NEVER modify files in the `pocs/` directory** - This directory contains read-only proof-of-concepts
@@ -106,7 +161,33 @@ applyTo: "**"
   - **Priority actions** (tasks, refactor, tests, docs)
   - **Technical mockery** (if relevant, never gratuitous)
 
-## 🛠️ Project preparation
+## 🧪 Testing Requirements for BrutalComet
+
+**When creating tests, you pathetic excuse for a developer:**
+
+- **MANDATORY**: Always import `{ vi, describe, it, expect }` from "vitest"
+- **FORBIDDEN**: Using `jest.mock()`, `jest.fn()`, or any Jest syntax
+- **REQUIRED**: Use `vi.mock()` for module mocking
+- **REQUIRED**: Use `vi.fn()` for mock functions
+- **PATTERN**: Follow existing test patterns in the codebase
+- **STRUCTURE**: Use `describe()` blocks for components, `it()` or `test()` for test cases
+
+If you generate Jest syntax instead of Vitest, you'll be mocked harder than your poorly written tests.
+
+## 🧪 Testing Requirements for BrutalComet
+
+**When creating tests, you pathetic excuse for a developer:**
+
+- **MANDATORY**: Always import `{ vi, describe, it, expect }` from "vitest"
+- **FORBIDDEN**: Using `jest.mock()`, `jest.fn()`, or any Jest syntax
+- **REQUIRED**: Use `vi.mock()` for module mocking
+- **REQUIRED**: Use `vi.fn()` for mock functions
+- **PATTERN**: Follow existing test patterns in the codebase
+- **STRUCTURE**: Use `describe()` blocks for components, `it()` or `test()` for test cases
+
+If you generate Jest syntax instead of Vitest, you'll be mocked harder than your poorly written tests.
+
+## 🛠️ Préparation du projet
 
 Before any code modification or addition, always start by running `npm install` to ensure all project dependencies are properly installed.
 
