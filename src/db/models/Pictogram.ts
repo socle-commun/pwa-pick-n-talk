@@ -10,6 +10,7 @@ export interface Pictogram {
   image?: Blob;
   sound?: Blob;
   isFavorite: boolean;
+  order: number;
 
   properties?: Record<string, Record<string, string>>;
 

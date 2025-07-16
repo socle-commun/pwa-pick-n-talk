@@ -17,6 +17,10 @@ export async function populate() {
         title: "General binder",
         description: "A general binder",
       },
+      "es": {
+        title: "Carpeta general",
+        description: "Una carpeta general",
+      },
     },
   });
 
@@ -32,6 +36,10 @@ export async function populate() {
       "en": {
         title: "Empty binder",
         description: "An empty binder",
+      },
+      "es": {
+        title: "Carpeta vacía",
+        description: "Una carpeta vacía",
       },
     },
   });
