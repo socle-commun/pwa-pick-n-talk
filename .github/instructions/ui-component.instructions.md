@@ -121,3 +121,31 @@ describe("ComponentName", () => {
 - **Target**: Modern browsers with CSS custom properties support
 - **Touch**: Optimize for both pointer and touch interactions
 - **Responsive**: Design mobile-first with progressive enhancement
+
+---
+
+## 🔗 **Related Files & Documentation**
+
+### Core Files
+- [`src/components/ui/index.ts`](../../../src/components/ui/index.ts) - Central component exports
+- [`src/utils/cn.ts`](../../../src/utils/cn.ts) - Class name utility function
+- [`docs/ui-components.md`](../../../docs/ui-components.md) - Complete UI library documentation
+
+### Component Categories
+- [`src/components/ui/actions/`](../../../src/components/ui/actions/) - Interactive components (buttons, touch targets)
+- [`src/components/ui/data-input/`](../../../src/components/ui/data-input/) - Form controls and inputs
+- [`src/components/ui/data-display/`](../../../src/components/ui/data-display/) - Data presentation components
+- [`src/components/ui/navigation/`](../../../src/components/ui/navigation/) - Navigation elements
+- [`src/components/ui/feedback/`](../../../src/components/ui/feedback/) - Alerts, dialogs, error boundaries
+- [`src/components/ui/typography/`](../../../src/components/ui/typography/) - Text and heading components
+- [`src/components/ui/layout/`](../../../src/components/ui/layout/) - Layout and structural components
+
+### Configuration & Testing
+- [`vitest.config.ts`](../../../vitest.config.ts) - Vitest testing configuration
+- [`package.json`](../../../package.json) - Dependencies (Headless UI, Tailwind CSS, testing)
+- [`vitest.setup.ts`](../../../vitest.setup.ts) - Test environment setup
+
+### Development Guidelines
+- [`.github/instructions/developer.instructions.md`](../developer.instructions.md) - General coding standards
+- [`.github/instructions/tester.instructions.md`](../tester.instructions.md) - Testing guidelines and patterns
+- [`README.md`](../../../README.md) - Project overview and setup
