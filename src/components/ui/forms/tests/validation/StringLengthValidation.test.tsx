@@ -34,7 +34,7 @@ describe("String Length Validation", () => {
     fireEvent.blur(passwordInput);
 
     await waitFor(() => {
-      expect(screen.getByText("Text too short (minimum 8 characters)")).toBeInTheDocument();
+      expect(screen.getByText("validation.errors.string_too_short")).toBeInTheDocument();
     });
   });
 
@@ -51,7 +51,7 @@ describe("String Length Validation", () => {
     fireEvent.blur(bioInput);
 
     await waitFor(() => {
-      expect(screen.getByText("Text too long (maximum 100 characters)")).toBeInTheDocument();
+      expect(screen.getByText("validation.errors.string_too_long")).toBeInTheDocument();
     });
   });
 
@@ -69,7 +69,7 @@ describe("String Length Validation", () => {
     fireEvent.blur(descriptionInput);
 
     await waitFor(() => {
-      expect(screen.getByText("Text too short (minimum 10 characters)")).toBeInTheDocument();
+      expect(screen.getByText("validation.errors.string_too_short")).toBeInTheDocument();
     });
 
     // Test too long
@@ -78,7 +78,7 @@ describe("String Length Validation", () => {
     fireEvent.blur(descriptionInput);
 
     await waitFor(() => {
-      expect(screen.getByText("Text too long (maximum 200 characters)")).toBeInTheDocument();
+      expect(screen.getByText("validation.errors.string_too_long")).toBeInTheDocument();
     });
 
     // Test valid length
@@ -86,7 +86,7 @@ describe("String Length Validation", () => {
     fireEvent.blur(descriptionInput);
 
     await waitFor(() => {
-      expect(screen.queryByText(/Text too/)).not.toBeInTheDocument();
+      expect(screen.queryByText(/validation.errors.string_too/)).not.toBeInTheDocument();
     });
   });
 });
