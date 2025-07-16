@@ -8,7 +8,7 @@ export function useBinder(uuid: string | undefined) {
   return useLiveQuery(async () => {
     if (!uuid) return null;
     try {
-      return await db.getTranslatedBinder(uuid, i18n.language);
+      return await db.getBinder(uuid);
     } catch (error) {
       console.error("Failed to load binder:", error);
       // Re-throw to let Error Boundary handle it

@@ -1,26 +1,23 @@
 import Dexie, { type PromiseExtended, type Table } from "dexie";
 
-import { type Binder } from "@/db/entities/data/Binder";
-import { type Category } from "@/db/entities/data/Category";
-import { type History } from "@/db/entities/data/History";
-import { type Pictogram } from "@/db/entities/data/Pictogram";
-import { type Setting } from "@/db/entities/data/Setting";
-import { type Translation } from "@/db/entities/data/Translation";
-import type { User } from "@/db/entities/data/User";
+import { type Binder } from "@/db/models/Binder";
+import { type Category } from "@/db/models/Category";
+import { type History } from "@/db/models/History";
+import { type Pictogram } from "@/db/models/Pictogram";
+import { type Setting } from "@/db/models/Setting";
+import type { User } from "@/db/models/User";
 
-import { type TranslatedBinder } from "@/db/entities/translated/TranslatedBinder";
-import { type TranslatedCategory } from "@/db/entities/translated/TranslatedCategory";
-import { type TranslatedPictogram } from "@/db/entities/translated/TranslatedPictogram";
+
 
 import { populate } from "@/db/populate";
 
 // Import extracted methods
-import * as userQueries from "./lib/user-queries";
-import * as binderQueries from "./lib/binder-queries";
-import * as pictogramQueries from "./lib/pictogram-queries";
-import * as mutations from "./lib/mutations";
-import * as updates from "./lib/updates";
-import * as deletions from "./lib/deletions";
+import * as userQueries from "@/db/queries/user-queries";
+import * as binderQueries from "@/db/queries/binder-queries";
+import * as pictogramQueries from "@/db/queries/pictogram-queries";
+import * as mutations from "@/db/queries/mutations";
+import * as updates from "@/db/queries/updates";
+import * as deletions from "@/db/queries/deletions";
 
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;
@@ -28,50 +25,47 @@ export class PickNTalkDB extends Dexie {
   history!: Table<History, string>;
   pictograms!: Table<Pictogram, string>;
   settings!: Table<Setting, string>;
-  translations!: Table<Translation, number>;
   users!: Table<User, string>;
 
   constructor() {
-    super("PickNTalkDB");
+    super("pick-n-talk");
     this.version(1).stores({
-      binders: "&uuid",
-      categories: "&uuid",
-      pictograms: "&uuid, binderUuid",
+      binders: "&id, author, isFavorite, pictograms, users",
+      categories: "&id, pictograms",
+      pictograms: "&id, binder, isFavorite, categories",
       settings: "&key",
-      translations: "++id, &[objectUuid+language+key]",
-    });
-    this.version(2).stores({
-      users: "&uuid",
-    });
-    this.version(3).stores({
-      users: "&uuid, email",
-    });
-    this.version(4).stores({
-      history: "&uuid, entityType, entityId, performedBy, timestamp",
+      users: "&id, email",
+      history: "&id, entityType, entityId, performedBy, timestamp",
     });
 
+    // User queries
     this.getUser = userQueries.getUser.bind(this);
     this.getUserByEmail = userQueries.getUserByEmail.bind(this);
     this.getHistory = userQueries.getHistory.bind(this);
-    this.getPictogramsFromBinderUuid = userQueries.getPictogramsFromBinderUuid.bind(this);
+    this.getPictogramsFromBinderId = pictogramQueries.getPictogramsFromBinderId.bind(this);
     this.getCategoriesFromPictograms = userQueries.getCategoriesFromPictograms.bind(this);
-    this.getTranslatedBinders = binderQueries.getTranslatedBinders.bind(this);
-    this.getTranslatedBinder = binderQueries.getTranslatedBinder.bind(this);
-    this.getTranslatedPictogramsFromBinderUuid = pictogramQueries.getTranslatedPictogramsFromBinderUuid.bind(this);
-    this.getTranslatedCategoriesFromBinderUuid = pictogramQueries.getTranslatedCategoriesFromBinderUuid.bind(this);
 
+    // Binder queries
+    this.getBinders = binderQueries.getBinders.bind(this);
+    this.getBinder = binderQueries.getBinder.bind(this);
+
+    // Pictogram queries
+    this.getCategoriesFromBinderId = pictogramQueries.getCategoriesFromBinderId.bind(this);
+
+    // Mutations
     this.createBinder = mutations.createBinder.bind(this);
     this.createCategory = mutations.createCategory.bind(this);
     this.createHistory = mutations.createHistory.bind(this);
     this.createPictogram = mutations.createPictogram.bind(this);
     this.createSetting = mutations.createSetting.bind(this);
-    this.createTranslation = mutations.createTranslation.bind(this);
     this.createUser = mutations.createUser.bind(this);
 
-    this.updateTranslatedBinder = updates.updateTranslatedBinder.bind(this);
-    this.updateTranslatedPictogram = updates.updateTranslatedPictogram.bind(this);
-    this.updateTranslatedCategory = updates.updateTranslatedCategory.bind(this);
+    // Updates
+    this.updateBinder = updates.updateBinder.bind(this);
+    this.updatePictogram = updates.updatePictogram.bind(this);
+    this.updateCategory = updates.updateCategory.bind(this);
 
+    // Deletions
     this.deleteBinder = deletions.deleteBinder.bind(this);
     this.deleteCategory = deletions.deleteCategory.bind(this);
     this.deletePictogram = deletions.deletePictogram.bind(this);
@@ -79,29 +73,38 @@ export class PickNTalkDB extends Dexie {
   }
 
   // Method declarations for TypeScript (these will be assigned in constructor)
-  public getUser!: (uuid: string) => PromiseExtended<User | undefined>;
+  // User queries
+  public getUser!: (id: string) => PromiseExtended<User | undefined>;
   public getUserByEmail!: (email: string) => PromiseExtended<User | undefined>;
   public getHistory!: (entityId: string) => PromiseExtended<History[]>;
-  public getPictogramsFromBinderUuid!: (binderUuid: string) => PromiseExtended<Pictogram[]>;
+  public getPictogramsFromBinderId!: (binderId: string) => PromiseExtended<Pictogram[]>;
   public getCategoriesFromPictograms!: (pictograms: Pictogram[]) => PromiseExtended<Category[]>;
-  public getTranslatedBinders!: (language: string) => PromiseExtended<TranslatedBinder[]>;
-  public getTranslatedBinder!: (uuid: string, language: string) => PromiseExtended<TranslatedBinder>;
-  public getTranslatedPictogramsFromBinderUuid!: (binderUuid: string, language: string) => Promise<TranslatedPictogram[]>;
-  public getTranslatedCategoriesFromBinderUuid!: (binderUuid: string, language: string) => Promise<TranslatedCategory[]>;
+
+  // Binder queries
+  public getBinders!: () => PromiseExtended<Binder[]>;
+  public getBinder!: (id: string) => PromiseExtended<Binder | undefined>;
+
+  // Pictogram queries
+  public getCategoriesFromBinderId!: (binderId: string) => PromiseExtended<Category[]>;
+
+  // Mutations
   public createBinder!: (binder: Binder) => any;
   public createCategory!: (category: Category) => any;
   public createHistory!: (history: History) => any;
   public createPictogram!: (pictogram: Pictogram) => any;
   public createSetting!: (setting: Setting) => any;
-  public createTranslation!: (translation: Translation) => any;
   public createUser!: (user: User) => PromiseExtended<string>;
-  public updateTranslatedBinder!: (binder: TranslatedBinder, language: string) => PromiseExtended<void>;
-  public updateTranslatedPictogram!: (pictogram: TranslatedPictogram, language: string) => PromiseExtended<void>;
-  public updateTranslatedCategory!: (category: TranslatedCategory, language: string) => PromiseExtended<void>;
-  public deleteBinder!: (binderUuid: string) => any;
-  public deleteCategory!: (uuid: string) => any;
-  public deletePictogram!: (uuid: string) => void;
-  public deleteUser!: (uuid: string) => void;
+
+  // Updates
+  public updateBinder!: (binder: Binder) => PromiseExtended<void>;
+  public updatePictogram!: (pictogram: Pictogram) => PromiseExtended<void>;
+  public updateCategory!: (category: Category) => PromiseExtended<void>;
+
+  // Deletions
+  public deleteBinder!: (binderId: string) => any;
+  public deleteCategory!: (id: string) => any;
+  public deletePictogram!: (id: string) => void;
+  public deleteUser!: (id: string) => void;
 }
 
 export const db = new PickNTalkDB();
