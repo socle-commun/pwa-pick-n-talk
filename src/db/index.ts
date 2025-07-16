@@ -42,7 +42,7 @@ export class PickNTalkDB extends Dexie {
     this.getUser = userQueries.getUser.bind(this);
     this.getUserByEmail = userQueries.getUserByEmail.bind(this);
     this.getHistory = userQueries.getHistory.bind(this);
-    this.getPictogramsFromBinderId = userQueries.getPictogramsFromBinderId.bind(this);
+    this.getPictogramsFromBinderId = pictogramQueries.getPictogramsFromBinderId.bind(this);
     this.getCategoriesFromPictograms = userQueries.getCategoriesFromPictograms.bind(this);
 
     // Binder queries

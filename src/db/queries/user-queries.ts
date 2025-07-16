@@ -19,12 +19,7 @@ export function getHistory(this: PickNTalkDB, entityId: string): PromiseExtended
   return this.history.where({ entityId }).toArray();
 }
 
-export function getPictogramsFromBinderId(
-  this: PickNTalkDB,
-  binderId: string
-): PromiseExtended<Pictogram[]> {
-  return this.pictograms.where({ binder: binderId }).toArray();
-}
+
 
 export function getCategoriesFromPictograms(
   this: PickNTalkDB,
