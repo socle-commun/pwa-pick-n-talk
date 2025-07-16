@@ -13,6 +13,7 @@ This UI library provides a complete set of components organized by category:
 - **Layout**: Structural layout components (dividers, containers)
 - **Typography**: Text and heading components
 - **Feedback**: Alerts, dialogs, loading states, and error boundaries
+- **Forms**: Advanced form validation with Zod schemas and TypeScript safety
 
 ## Usage
 
@@ -21,7 +22,7 @@ This UI library provides a complete set of components organized by category:
 All components can be imported from the central index:
 
 ```typescript
-import { Button, Input, Select, Dialog } from "@/components/ui";
+import { Button, Input, Select, Dialog, Form, FormInput } from "@/components/ui";
 ```
 
 ### Category-specific Imports
@@ -31,6 +32,7 @@ Or import from specific categories:
 ```typescript
 import { Button } from "@/components/ui/actions";
 import { Input, Select } from "@/components/ui/data-input";
+import { Form, FormInput } from "@/components/ui/forms";
 ```
 
 ## Component Categories
@@ -215,6 +217,92 @@ import {
   <YourComponent />
 </DatabaseErrorBoundary>
 ```
+
+### Forms
+
+Advanced form validation system with Zod schemas, providing runtime type safety and comprehensive validation.
+
+```typescript
+import { z } from "zod";
+import { 
+  Form, 
+  FormProvider, 
+  FormInput, 
+  useForm, 
+  useFormField 
+} from "@/components/ui/forms";
+
+// Define Zod schema
+const UserSchema = z.object({
+  name: z.string().min(1, "validation.errors.field_empty"),
+  email: z.string().email("validation.errors.invalid_email"),
+  age: z.number().min(18, "validation.errors.age_minimum"),
+});
+
+// Type-safe form component
+function UserForm() {
+  const handleSubmit = (data: z.infer<typeof UserSchema>) => {
+    console.log("Valid form data:", data);
+  };
+
+  return (
+    <Form<typeof UserSchema>
+      schema={UserSchema}
+      initialValues={{ name: "", email: "", age: 18 }}
+      onSubmit={handleSubmit}
+    >
+      <FormInput 
+        name="name" 
+        label="Full Name" 
+        placeholder="Enter your name"
+        required 
+      />
+      <FormInput 
+        name="email" 
+        label="Email" 
+        type="email"
+        placeholder="Enter your email"
+        required 
+      />
+      <FormInput 
+        name="age" 
+        label="Age" 
+        type="number"
+        min={18}
+        required 
+      />
+      <button type="submit">Submit</button>
+    </Form>
+  );
+}
+
+// Advanced form with custom validation
+const AdvancedSchema = z.object({
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  confirmPassword: z.string(),
+}).refine(data => data.password === data.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"],
+});
+
+function AdvancedForm() {
+  return (
+    <Form schema={AdvancedSchema}>
+      <FormInput name="password" type="password" label="Password" />
+      <FormInput name="confirmPassword" type="password" label="Confirm Password" />
+    </Form>
+  );
+}
+```
+
+**Features:**
+- ✅ **Runtime validation** with Zod schemas
+- ✅ **TypeScript integration** for compile-time safety
+- ✅ **Real-time field validation** on blur events
+- ✅ **Internationalized error messages** via react-i18next
+- ✅ **Form state management** with loading states
+- ✅ **Custom validation rules** and cross-field validation
+- ✅ **Accessibility compliant** with proper ARIA attributes
 
 ### Layout
 

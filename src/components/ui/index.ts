@@ -10,6 +10,7 @@
  * - Layout: Structural layout components
  * - Typography: Text and heading components
  * - Feedback: Alerts, dialogs, and status indicators
+ * - Forms: Form validation and submission components
  */
 
 // Actions
@@ -32,6 +33,9 @@ export * from "./typography";
 
 // Feedback
 export * from "./feedback";
+
+// Forms
+export * from "./forms";
 
 // Standalone components
 export { default as LocaleSelector } from "./LocaleSelector";

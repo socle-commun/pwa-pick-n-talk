@@ -7,5 +7,72 @@
       "french": "Français",
       "spanish": "Español"
     }
+  },
+  "auth": {
+    "signin": {
+      "title": "Inicia sesión en tu cuenta",
+      "email": "Email",
+      "password": "Contraseña",
+      "forgot_password": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar sesión"
+    },
+    "signup": {
+      "title": "Crea tu cuenta",
+      "name": "Nombre",
+      "email": "Email",
+      "password": "Contraseña",
+      "submit": "Registrarse"
+    },
+    "forgot_password": {
+      "title": "Restablece tu contraseña",
+      "description": "Ingresa tu dirección de email y te enviaremos un enlace para restablecer tu contraseña.",
+      "email": "Email",
+      "submit": "Enviar enlace de restablecimiento",
+      "back_to_signin": "Volver al inicio de sesión"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "edit": {
+      "title": "Editar perfil",
+      "name": "Nombre",
+      "email": "Email",
+      "role": "Rol",
+      "save": "Guardar cambios",
+      "cancel": "Cancelar"
+    },
+    "roles": {
+      "user": "Usuario",
+      "caregiver": "Cuidador",
+      "professional": "Profesional"
+    }
+  },
+  "binder": {
+    "edit": {
+      "title": "Editar carpeta",
+      "id": "ID de la carpeta",
+      "author": "Autor",
+      "is_favorite": "Marcar como favorito",
+      "save": "Guardar cambios",
+      "cancel": "Cancelar"
+    }
+  },
+  "validation": {
+    "errors": {
+      "required": "Este campo es obligatorio",
+      "invalid_uuid": "Formato UUID inválido",
+      "invalid_email": "Formato de email inválido",
+      "invalid_url": "Formato de URL inválido",
+      "invalid_date": "Formato de fecha inválido",
+      "invalid_file": "El archivo debe ser válido",
+      "field_empty": "Este campo no puede estar vacío",
+      "string_too_short": "Texto demasiado corto (mínimo {{min}} caracteres)",
+      "string_too_long": "Texto demasiado largo (máximo {{max}} caracteres)",
+      "number_too_small": "Número demasiado pequeño (mínimo {{min}})",
+      "number_too_big": "Número demasiado grande (máximo {{max}})",
+      "invalid_type": "Tipo inválido, esperado {{expected}}",
+      "password_too_short": "La contraseña debe tener al menos 16 caracteres",
+      "name_too_short": "El nombre debe tener al menos 2 caracteres"
+    }
   }
 }
