@@ -1,13 +1,15 @@
 {
   "language": {
-    "selector":         "binder": {
-          "author_empty": "Author cannot be empty",
-          "icon_invalid": "Icon must be a valid file",
-          "title_empty": "Title cannot be empty",
-          "title_too_long": "Title cannot exceed 200 characters",
-          "description_empty": "Description cannot be empty",
-          "description_too_long": "Description cannot exceed 1000 characters"
-        }, "label": "Language",
+    "selector": {
+      "binder": {
+        "author_empty": "Author cannot be empty",
+        "icon_invalid": "Icon must be a valid file",
+        "title_empty": "Title cannot be empty",
+        "title_too_long": "Title cannot exceed 200 characters",
+        "description_empty": "Description cannot be empty",
+       "description_too_long": "Description cannot exceed 1000 characters"
+      },
+      "label": "Language",
       "ariaLabel": "Select language",
       "english": "English",
       "french": "Français",
