@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-import type { User } from "@/db/entities/data/User";
+import type { User } from "@/db/models/User";
 
 const userString = localStorage.getItem("user");
 const initialUser: User | null = userString

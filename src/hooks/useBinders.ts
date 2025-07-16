@@ -8,7 +8,7 @@ export function useBinders() {
   return useLiveQuery(
     async () => {
       try {
-        return await db.getTranslatedBinders(i18n.language);
+        return await db.getBinders();
       } catch (error) {
         console.error("Failed to load binders:", error);
         // Re-throw to let Error Boundary handle it

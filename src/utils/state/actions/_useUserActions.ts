@@ -38,21 +38,23 @@ export default function useUserActions() {
     navigate("/");
   }
 
-  async function register(email: string, password: string) {
-    if (!email || !password || (await db.getUserByEmail(email))) {
+  async function register(email: string, password: string, name: string) {
+    if (!email || !password || !name || (await db.getUserByEmail(email))) {
       throw new Error("Credentials invalid or user already exists");
     }
 
     return db
       .createUser({
-        uuid: crypto.randomUUID(),
+        id: crypto.randomUUID(),
+        name,
         email,
         hash: hashSync(password),
         role: "user",
         settings: {},
+        binders: [],
       })
-      .then((uuid) => {
-        db.getUser(uuid).then((user) => {
+      .then((id) => {
+        db.getUser(id).then((user) => {
           if (!user) {
             throw new Error("User not found after registration");
           }

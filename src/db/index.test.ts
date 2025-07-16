@@ -9,7 +9,7 @@ vi.mock("./populate", () => ({
 describe("PickNTalkDB", () => {
   test("should instantiate database class", () => {
     expect(db).toBeInstanceOf(PickNTalkDB);
-    expect(db.name).toBe("PickNTalkDB");
+    expect(db.name).toBe("pick-n-talk");
   });
 
   test("should have all required tables", () => {
@@ -17,7 +17,6 @@ describe("PickNTalkDB", () => {
     expect(db.categories).toBeDefined();
     expect(db.pictograms).toBeDefined();
     expect(db.settings).toBeDefined();
-    expect(db.translations).toBeDefined();
     expect(db.users).toBeDefined();
     expect(db.history).toBeDefined();
   });
@@ -26,10 +25,10 @@ describe("PickNTalkDB", () => {
     expect(typeof db.getUser).toBe("function");
     expect(typeof db.getUserByEmail).toBe("function");
     expect(typeof db.getHistory).toBe("function");
-    expect(typeof db.getTranslatedBinders).toBe("function");
-    expect(typeof db.getTranslatedBinder).toBe("function");
-    expect(typeof db.getTranslatedPictogramsFromBinderUuid).toBe("function");
-    expect(typeof db.getTranslatedCategoriesFromBinderUuid).toBe("function");
+    expect(typeof db.getBinders).toBe("function");
+    expect(typeof db.getBinder).toBe("function");
+    expect(typeof db.getPictogramsFromBinderId).toBe("function");
+    expect(typeof db.getCategoriesFromBinderId).toBe("function");
   });
 
   test("should have all mutation methods", () => {
@@ -38,14 +37,13 @@ describe("PickNTalkDB", () => {
     expect(typeof db.createHistory).toBe("function");
     expect(typeof db.createPictogram).toBe("function");
     expect(typeof db.createSetting).toBe("function");
-    expect(typeof db.createTranslation).toBe("function");
     expect(typeof db.createUser).toBe("function");
   });
 
   test("should have all update methods", () => {
-    expect(typeof db.updateTranslatedBinder).toBe("function");
-    expect(typeof db.updateTranslatedPictogram).toBe("function");
-    expect(typeof db.updateTranslatedCategory).toBe("function");
+    expect(typeof db.updateBinder).toBe("function");
+    expect(typeof db.updatePictogram).toBe("function");
+    expect(typeof db.updateCategory).toBe("function");
   });
 
   test("should have all deletion methods", () => {
