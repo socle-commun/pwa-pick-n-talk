@@ -1,17 +1,19 @@
 {
   "language": {
-    "selector":         "binder": {
-          "author_empty": "Author cannot be empty",
-          "icon_invalid": "Icon must be a valid file",
-          "title_empty": "Title cannot be empty",
-          "title_too_long": "Title cannot exceed 200 characters",
-          "description_empty": "Description cannot be empty",
-          "description_too_long": "Description cannot exceed 1000 characters"
-        }, "label": "Language",
+    "selector": {
+      "label": "Language",
       "ariaLabel": "Select language",
       "english": "English",
       "french": "Français"
     }
+  },
+  "binder": {
+    "author_empty": "Author cannot be empty",
+    "icon_invalid": "Icon must be a valid file",
+    "title_empty": "Title cannot be empty",
+    "title_too_long": "Title cannot exceed 200 characters",
+    "description_empty": "Description cannot be empty",
+    "description_too_long": "Description cannot exceed 1000 characters"
   },
   "validation": {
     "errors": {
@@ -25,7 +27,7 @@
       "string_too_short": "Text too short (minimum {{min}} characters)",
       "string_too_long": "Text too long (maximum {{max}} characters)",
       "number_too_small": "Number too small (minimum {{min}})",
-      "number_too_large": "Number too large (maximum {{max}})",
+      "number_too_big": "Number too large (maximum {{max}})",
       "invalid_type": "Invalid type, expected {{expected}}"
     }
   }

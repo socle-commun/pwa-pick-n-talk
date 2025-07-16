@@ -7,6 +7,14 @@
       "french": "Français"
     }
   },
+  "binder": {
+    "author_empty": "L'auteur ne peut pas être vide",
+    "icon_invalid": "L'icône doit être un fichier valide",
+    "title_empty": "Le titre ne peut pas être vide",
+    "title_too_long": "Le titre ne peut pas dépasser 200 caractères",
+    "description_empty": "La description ne peut pas être vide",
+    "description_too_long": "La description ne peut pas dépasser 1000 caractères"
+  },
   "validation": {
     "errors": {
       "required": "Ce champ est obligatoire",
@@ -19,7 +27,7 @@
       "string_too_short": "Texte trop court (minimum {{min}} caractères)",
       "string_too_long": "Texte trop long (maximum {{max}} caractères)",
       "number_too_small": "Nombre trop petit (minimum {{min}})",
-      "number_too_large": "Nombre trop grand (maximum {{max}})",
+      "number_too_big": "Nombre trop grand (maximum {{max}})",
       "invalid_type": "Type invalide, attendu {{expected}}"
     }
   }

@@ -5,7 +5,7 @@ import { z } from "zod";
  * Because settings without validation are just chaos
  */
 export const SettingSchema = z.object({
-  key: z.string().min(1, "Setting key cannot be empty"),
+  key: z.string().min(1, "validation.errors.field_empty"),
   value: z.union([
     z.boolean(),
     z.number(),

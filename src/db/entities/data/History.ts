@@ -10,13 +10,13 @@ import { EntityTypeSchema, HistoryActionSchema } from "./Types";
  * Now with proper validation because tracking garbage isn't useful.
  */
 export const HistorySchema = z.object({
-  uuid: z.string().uuid("History UUID invalid"),
+  uuid: z.string().uuid("validation.errors.invalid_uuid"),
   
   entityType: EntityTypeSchema,
-  entityId: z.string().uuid("Entity ID must be a valid UUID"),
+  entityId: z.string().uuid("validation.errors.invalid_uuid"),
   
   action: HistoryActionSchema,
-  performedBy: z.string().uuid("Performer ID must be a valid UUID"),
+  performedBy: z.string().uuid("validation.errors.invalid_uuid"),
   timestamp: z.date(),
   
   changes: z.record(z.string(), z.record(z.string(), z.string())),

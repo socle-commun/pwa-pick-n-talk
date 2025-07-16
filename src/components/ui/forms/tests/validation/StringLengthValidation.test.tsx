@@ -1,22 +1,11 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { vi, describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { z } from "zod";
 import { Form, FormInput } from "../../index";
+import { mockI18next } from "../__helpers__/mockUtils";
 
-// Mock i18next
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (key: string, params?: Record<string, unknown>) => {
-      const translations: Record<string, string> = {
-        "validation.errors.string_too_short":
-          `Text too short (minimum ${params?.min || 8} characters)`,
-        "validation.errors.string_too_long":
-          `Text too long (maximum ${params?.max || 100} characters)`,
-      };
-      return translations[key] || key;
-    },
-  }),
-}));
+// Mock i18next using centralized helper
+mockI18next();
 
 describe("String Length Validation", () => {
   const StringSchema = z.object({
