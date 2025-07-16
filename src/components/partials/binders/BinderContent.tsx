@@ -25,7 +25,7 @@ export function BinderContent({ binder, uuid }: BinderContentProps) {
   return (
     <div className={cn("min-h-full")}>
       <BinderHeader title={binder.title} description={binder.description} />
-      <PictogramsGrid binderUuid={uuid} />
+      <PictogramsGrid binderId={uuid} />
     </div>
   );
 }

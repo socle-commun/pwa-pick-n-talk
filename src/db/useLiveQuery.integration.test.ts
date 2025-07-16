@@ -11,14 +11,14 @@ describe("Dexie useLiveQuery Integration", () => {
 
   it("should have db instance available for queries", () => {
     expect(db).toBeDefined();
-    expect(db.getTranslatedBinders).toBeDefined();
-    expect(db.getTranslatedPictogramsFromBinderUuid).toBeDefined();
-    expect(db.getTranslatedBinder).toBeDefined();
+    expect(db.getBinders).toBeDefined();
+    expect(db.getPictogramsFromBinderId).toBeDefined();
+    expect(db.getBinder).toBeDefined();
   });
 
   it("should handle reactive database queries", async () => {
     // Test that database methods return promise-like objects (Dexie.Promise)
-    const result = db.getTranslatedBinders("en-US");
+    const result = db.getBinders();
     expect(result).toBeDefined();
     expect(typeof result.then).toBe("function");
   });

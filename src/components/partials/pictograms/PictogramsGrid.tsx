@@ -4,15 +4,15 @@ import { ErrorFallback } from "@/components/ui/feedback";
 import { usePictograms } from "@/hooks/usePictograms";
 
 export interface PictogramsGridProps {
-  binderUuid: string;
+  binderId: string;
   className?: string;
 }
 
 export default function PictogramsGrid({
-  binderUuid,
+  binderId,
   className,
 }: PictogramsGridProps) {
-  const pictograms = usePictograms(binderUuid);
+  const pictograms = usePictograms(binderId);
 
   return (
     <DatabaseErrorBoundary
