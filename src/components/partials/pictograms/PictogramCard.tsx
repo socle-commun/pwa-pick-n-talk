@@ -5,6 +5,7 @@ import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/actions";
 import { type Pictogram } from "@/db/models/Pictogram";
 import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
+import { getTranslation } from "@/utils/translation";
 import cn from "@/utils/cn";
 
 export interface PictogramCardProps {
@@ -21,7 +22,7 @@ export default function PictogramCard({
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   // Extract translated word from properties
-  const word = pictogram.properties?.[i18n.language]?.word || "";
+  const word = getTranslation(pictogram.properties, i18n.language, "word");
 
   // Convert blob to URL for image display
   useEffect(() => {

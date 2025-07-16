@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/actions";
 
 import { type Binder } from "@/db/models/Binder";
 import { db } from "@/db";
+import { getTranslation } from "@/utils/translation";
 
 import cn from "@/utils/cn";
 
@@ -23,8 +24,8 @@ export default function BinderCard({
   const { t, i18n } = useTranslation();
 
   // Extract translated properties
-  const title = binder.properties?.[i18n.language]?.title || "";
-  const description = binder.properties?.[i18n.language]?.description || "";
+  const title = getTranslation(binder.properties, i18n.language, "title");
+  const description = getTranslation(binder.properties, i18n.language, "description");
 
   return (
     <div

@@ -38,15 +38,15 @@ export default function useUserActions() {
     navigate("/");
   }
 
-  async function register(email: string, password: string) {
-    if (!email || !password || (await db.getUserByEmail(email))) {
+  async function register(email: string, password: string, name: string) {
+    if (!email || !password || !name || (await db.getUserByEmail(email))) {
       throw new Error("Credentials invalid or user already exists");
     }
 
     return db
       .createUser({
         id: crypto.randomUUID(),
-        name: email.split("@")[0], // Use part before @ as default name
+        name,
         email,
         hash: hashSync(password),
         role: "user",

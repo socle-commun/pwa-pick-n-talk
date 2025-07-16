@@ -9,6 +9,7 @@ import useUserActions from "@/utils/state/actions/_useUserActions";
 import cn from "@/utils/cn";
 
 type SignUpFormFields = {
+  name: string;
   email: string;
   password: string;
 };
@@ -17,8 +18,8 @@ export default function SignUpPage() {
   const userActions = useUserActions();
   const { register, handleSubmit } = useForm<SignUpFormFields>({});
 
-  const onSubmit = ({ email, password }: SignUpFormFields) =>
-    userActions.register(email, password);
+  const onSubmit = ({ name, email, password }: SignUpFormFields) =>
+    userActions.register(email, password, name);
 
   return (
     <>
@@ -34,6 +35,20 @@ export default function SignUpPage() {
           <div className="bg-zinc-200 dark:bg-zinc-800 px-6 py-12 shadow-sm sm:rounded-lg sm:px-12">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <Fieldset>
+                <Field className={cn("mb-2")}>
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    {...register("name", {
+                      required: true,
+                      minLength: 2,
+                    })}
+                    id="name"
+                    type="text"
+                    required
+                    autoComplete="name"
+                  />
+                </Field>
+
                 <Field className={cn("mb-2")}>
                   <Label htmlFor="email">Email</Label>
                   <Input
