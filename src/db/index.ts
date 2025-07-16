@@ -12,12 +12,12 @@ import type { User } from "@/db/models/User";
 import { populate } from "@/db/populate";
 
 // Import extracted methods
-import * as userQueries from "./queries/user-queries";
-import * as binderQueries from "./queries/binder-queries";
-import * as pictogramQueries from "./queries/pictogram-queries";
-import * as mutations from "./queries/mutations";
-import * as updates from "./queries/updates";
-import * as deletions from "./queries/deletions";
+import * as userQueries from "@/db/queries/user-queries";
+import * as binderQueries from "@/db/queries/binder-queries";
+import * as pictogramQueries from "@/db/queries/pictogram-queries";
+import * as mutations from "@/db/queries/mutations";
+import * as updates from "@/db/queries/updates";
+import * as deletions from "@/db/queries/deletions";
 
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;
