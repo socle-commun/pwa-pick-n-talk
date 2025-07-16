@@ -10,7 +10,7 @@ export function getTranslatedBinders(
   this: PickNTalkDB,
   language: string
 ): PromiseExtended<TranslatedBinder[]> {
-  return this.binders.toArray().then(binders => 
+  return this.binders.toArray().then(binders =>
     binders.map(binder => translateBinder(binder, language))
   );
 }
@@ -20,7 +20,7 @@ export function getTranslatedBinder(
   id: string,
   language: string
 ): PromiseExtended<TranslatedBinder | null> {
-  return this.binders.get(id).then(binder => 
+  return this.binders.get(id).then(binder =>
     binder ? translateBinder(binder, language) : null
   );
 }
@@ -54,7 +54,7 @@ export function getTranslatedCategoriesFromBinderUuid(
         .where("id")
         .anyOf(Array.from(categoryIds))
         .toArray()
-        .then(categories => 
+        .then(categories =>
           categories.map(category => translateCategory(category, language))
         );
     });
