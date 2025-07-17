@@ -83,5 +83,3 @@ describe("EntityForm", () => {
 - **Form submission**: Disable fieldset during submission
 - **Validation timing**: On blur, not on every keystroke
 - **Schema caching**: Zod schemas are automatically cached
-
-Fixes #37.
