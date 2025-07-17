@@ -52,16 +52,24 @@ export default mergeConfig(
           },
         },
       },
+      // Enable compression and optimize build
+      reportCompressedSize: true,
+      chunkSizeWarningLimit: 500,
       minify: process.env.NODE_ENV === "production" ? "terser" : false,
       terserOptions: {
         compress: {
           passes: 2,
+          drop_console: process.env.NODE_ENV === "production",
+          drop_debugger: process.env.NODE_ENV === "production",
         },
         mangle: true,
         format: {
           comments: false,
         },
       },
+      // Optimize CSS
+      cssCodeSplit: true,
+      cssMinify: process.env.NODE_ENV === "production",
     },
     define: {
       __APP_VERSION__: JSON.stringify(process.env.npm_package_version),

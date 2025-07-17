@@ -1,7 +1,10 @@
+import { lazy, Suspense } from "react";
 import { BinderHeader } from "@/components/partials/binders/BinderHeader";
-import PictogramsGrid from "@/components/partials/pictograms/PictogramsGrid";
 import { LoadingSpinner, ErrorFallback } from "@/components/ui/feedback";
 import cn from "@/utils/cn";
+
+// Lazy load the PictogramsGrid component
+const PictogramsGrid = lazy(() => import("@/components/partials/pictograms/PictogramsGrid"));
 
 interface BinderContentProps {
   binder: any;
@@ -25,7 +28,9 @@ export function BinderContent({ binder, uuid }: BinderContentProps) {
   return (
     <div className={cn("min-h-full")}>
       <BinderHeader title={binder.title} description={binder.description} />
-      <PictogramsGrid binderId={uuid} />
+      <Suspense fallback={<LoadingSpinner message="Loading pictograms..." />}>
+        <PictogramsGrid binderId={uuid} />
+      </Suspense>
     </div>
   );
 }
