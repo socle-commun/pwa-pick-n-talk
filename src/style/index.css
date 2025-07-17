@@ -14,6 +14,11 @@
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
+  /* Thème principal */
+  --theme-bg-primary: var(--bg-primary, #f4f4f5);
+  --theme-bg-secondary: var(--bg-secondary, #fff);
+  --theme-text-primary: var(--text-primary, #18181b);
+  --theme-text-secondary: var(--text-secondary, #52525b);
 }
 
 /* #endregion */
@@ -22,24 +27,26 @@
 @layer base {
   :root {
     @apply font-sans antialiased;
-    /* Use theme variables instead of hardcoded colors */
     background-color: var(--theme-bg-primary);
     color: var(--theme-text-primary);
   }
 
   html {
     @apply h-full;
+    background-color: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
   }
 
   body {
     @apply min-h-screen;
-    /* Use theme variables for body */
     background-color: var(--theme-bg-primary);
     color: var(--theme-text-primary);
   }
 
   #root {
     @apply contents isolate;
+    background-color: var(--theme-bg-secondary);
+    color: var(--theme-text-secondary);
   }
 }
 

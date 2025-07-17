@@ -46,16 +46,20 @@ export default function ThemeModeToggle({ className }: ThemeModeToggleProps) {
               value={mode.mode}
               className={({ active, selected }) =>
                 cn(
-                  'relative cursor-pointer select-none py-2 pl-3 pr-9',
-                  active && 'bg-interactive-primary text-inverse',
-                  selected && 'bg-interactive-primary text-inverse'
+                  "relative cursor-pointer select-none py-2 pl-3 pr-9 transition-colors",
+                  "hover:bg-interactive-primary hover:text-primary",
+                  active && "bg-interactive-primary text-primary",
+                  selected && "bg-interactive-primary font-semibold",
+                  "dark:hover:bg-white/10 dark:hover:text-inverse",
+                  active && "dark:bg-white/10 dark:text-inverse",
+                  selected && "dark:bg-white/10 dark:font-semibold"
                 )
               }
             >
               {({ selected }) => (
                 <div className="flex items-center gap-3">
                   <mode.icon className="h-5 w-5" />
-                  <span className={cn('font-medium', selected && 'font-semibold')}>
+                  <span className={cn("font-medium", selected && "font-semibold")}> 
                     {t(`settings.theme.mode.${mode.mode}`, mode.mode)}
                   </span>
                 </div>
