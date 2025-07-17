@@ -6,6 +6,7 @@ import cn from "@/utils/cn";
 import { type DaltonismType } from "@/utils/daltonism/types";
 import useDaltonismSettings from "@/utils/state/useDaltonismSettings";
 import { DaltonismOption, type DaltonismOptionType } from "./DaltonismOption";
+import { ColorPreview } from "./ColorPreview";
 
 const DALTONISM_TYPES: Array<{ type: DaltonismType; icon: string }> = [
   { type: "none", icon: "👁️" }, { type: "protanopia", icon: "🔴" },
@@ -45,6 +46,7 @@ export default function DaltonismModeToggle({ className, variant = "full" }: Dal
         <span className="text-lg">{currentOption.icon}</span>
         <div className="flex-1 min-w-0">
           <div className="font-medium text-zinc-900 dark:text-white">{currentOption.label}</div>
+          <ColorPreview daltonismType={currentOption.type} className="mt-1" />
         </div>
       </div>
       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

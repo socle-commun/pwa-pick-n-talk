@@ -1,4 +1,5 @@
 import { type DaltonismType } from "@/utils/daltonism/types";
+import { ColorPreview } from "./ColorPreview";
 
 interface DaltonismOptionType {
   type: DaltonismType;
@@ -17,6 +18,7 @@ export function DaltonismOption({ option, isSelected }: DaltonismOptionProps) {
       <span className="text-lg">{option.icon}</span>
       <div className="flex-1 min-w-0">
         <div className="font-medium">{option.label}</div>
+        <ColorPreview daltonismType={option.type} className="mt-1" />
       </div>
       {isSelected && (
         <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-blue-600">

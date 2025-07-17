@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { atom, useAtom } from "jotai";
 import { getSetting, setSetting } from "@/utils/state/useSettings";
-import { 
-  type DaltonismType, 
+import {
+  type DaltonismType,
   type DaltonismConfig,
   DaltonismConfigSchema,
-  DEFAULT_DALTONISM_CONFIG 
+  DEFAULT_DALTONISM_CONFIG
 } from "@/utils/daltonism/types";
 
 // Setting keys for localStorage
@@ -14,9 +14,9 @@ const DALTONISM_SETTING_KEY = "daltonism_config";
 // Load initial daltonism config from localStorage
 const loadInitialDaltonismConfig = (): DaltonismConfig => {
   const setting = getSetting(DALTONISM_SETTING_KEY);
-  
+
   if (!setting) return DEFAULT_DALTONISM_CONFIG;
-  
+
   try {
     const result = DaltonismConfigSchema.safeParse(setting.value);
     return result.success ? result.data : DEFAULT_DALTONISM_CONFIG;

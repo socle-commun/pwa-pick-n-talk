@@ -12,7 +12,7 @@ export const getSetting = (key: string): Setting | null => {
 
     const parsed = JSON.parse(stored);
     const result = validateSettingSafe(parsed);
-    
+
     return result.success ? result.data : null;
   } catch {
     return null;
@@ -28,7 +28,7 @@ export const setSetting = (key: string, value: any): void => {
   try {
     const setting: Setting = { key, value };
     const result = validateSettingSafe(setting);
-    
+
     if (result.success) {
       localStorage.setItem(key, JSON.stringify(setting));
     }
