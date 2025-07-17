@@ -1,4 +1,7 @@
 {
+  "home": {
+    "title": "Bienvenue sur Pick'n'Talk"
+  },
   "language": {
     "selector": {
       "label": "Langue",
