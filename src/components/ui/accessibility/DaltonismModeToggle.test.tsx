@@ -23,10 +23,23 @@ vi.mock("@/utils/state/useUserPreferences", () => ({
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
     t: (key: string, defaultValue?: string, options?: any) => {
+      const translations: Record<string, string> = {
+        "accessibility.daltonism.label": "Daltonism Support",
+        "accessibility.daltonism.options.none.label": "Normal Vision",
+        "accessibility.daltonism.options.none.description": "No color adjustment",
+        "accessibility.daltonism.options.protanopia.label": "Protanopia",
+        "accessibility.daltonism.options.protanopia.description": "Red-blind (difficulty with red/green)",
+        "accessibility.daltonism.options.deuteranopia.label": "Deuteranopia",
+        "accessibility.daltonism.options.deuteranopia.description": "Green-blind (difficulty with red/green)",
+        "accessibility.daltonism.options.tritanopia.label": "Tritanopia",
+        "accessibility.daltonism.options.tritanopia.description": "Blue-blind (difficulty with blue/yellow)",
+      };
+
       if (key === "accessibility.daltonism.enabled") {
         return `Color adjustments are active for ${options?.type}`;
       }
-      return defaultValue || key;
+
+      return translations[key] || defaultValue || key;
     },
   }),
 }));

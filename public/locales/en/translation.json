@@ -57,6 +57,30 @@
       "cancel": "Cancel"
     }
   },
+  "accessibility": {
+    "daltonism": {
+      "label": "Daltonism Support",
+      "options": {
+        "none": {
+          "label": "Normal Vision",
+          "description": "No color adjustment"
+        },
+        "protanopia": {
+          "label": "Protanopia",
+          "description": "Red-blind (difficulty with red/green)"
+        },
+        "deuteranopia": {
+          "label": "Deuteranopia",
+          "description": "Green-blind (difficulty with red/green)"
+        },
+        "tritanopia": {
+          "label": "Tritanopia",
+          "description": "Blue-blind (difficulty with blue/yellow)"
+        }
+      },
+      "enabled": "Color adjustments are active for {{type}}"
+    }
+  },
   "validation": {
     "errors": {
       "required": "This field is required",
