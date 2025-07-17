@@ -77,6 +77,29 @@
       "enabled": "Color adjustments are active for {{type}}"
     }
   },
+  "theme": {
+    "selector": {
+      "label": "Theme"
+    },
+    "light": {
+      "description": "Light colors for normal use"
+    },
+    "dark": {
+      "description": "Dark colors for low-light environments"
+    },
+    "protanopia": {
+      "description": "Red-blind (difficulty with red/green)"
+    },
+    "deuteranopia": {
+      "description": "Green-blind (difficulty with red/green)"
+    },
+    "tritanopia": {
+      "description": "Blue-blind (difficulty with blue/yellow)"
+    },
+    "highContrast": {
+      "description": "High contrast colors for better visibility"
+    }
+  },
   "validation": {
     "errors": {
       "required": "This field is required",

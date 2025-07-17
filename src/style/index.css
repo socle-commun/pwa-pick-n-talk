@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./themes.css";
 @import "./daltonism.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -21,8 +22,10 @@
 /* #region Base */
 @layer base {
   :root {
-    @apply bg-zinc-100 text-zinc-950 dark:bg-zinc-900 dark:text-zinc-50;
     @apply font-sans antialiased;
+    /* Use theme variables instead of hardcoded colors */
+    background-color: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
   }
 
   html {
@@ -31,6 +34,9 @@
 
   body {
     @apply min-h-screen;
+    /* Use theme variables for body */
+    background-color: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
   }
 
   #root {

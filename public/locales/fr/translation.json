@@ -77,6 +77,29 @@
       "enabled": "Les ajustements de couleur sont actifs pour {{type}}"
     }
   },
+  "theme": {
+    "selector": {
+      "label": "Thème"
+    },
+    "light": {
+      "description": "Couleurs claires pour usage normal"
+    },
+    "dark": {
+      "description": "Couleurs sombres pour environnements peu éclairés"
+    },
+    "protanopia": {
+      "description": "Rouge-aveugle (difficulté avec rouge/vert)"
+    },
+    "deuteranopia": {
+      "description": "Vert-aveugle (difficulté avec rouge/vert)"
+    },
+    "tritanopia": {
+      "description": "Bleu-aveugle (difficulté avec bleu/jaune)"
+    },
+    "highContrast": {
+      "description": "Couleurs à fort contraste pour une meilleure visibilité"
+    }
+  },
   "validation": {
     "errors": {
       "required": "Ce champ est obligatoire",

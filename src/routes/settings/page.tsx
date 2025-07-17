@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import LocaleSelector from "@/components/ui/LocaleSelector";
-import DaltonismModeToggle from "@/components/ui/accessibility/DaltonismModeToggle";
+import ThemeSelector from "@/components/ui/theme/ThemeSelector";
 import cn from "@/utils/cn";
 
 export default function SettingsPage() {
@@ -9,14 +9,14 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-8">
-      <h1 className={cn("text-2xl font-bold text-zinc-900 dark:text-white")}>
+      <h1 className={cn("text-2xl font-bold theme-text-primary")}>
         {t("Settings", "Settings")}
       </h1>
 
       <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
         <div className="space-y-6">
           <div>
-            <h2 className="text-lg font-semibold text-zinc-900 dark:text-white mb-4">
+            <h2 className="text-lg font-semibold theme-text-primary mb-4">
               {t("settings.language.title", "Language")}
             </h2>
             <div className="max-w-md">
@@ -27,11 +27,11 @@ export default function SettingsPage() {
 
         <div className="space-y-6">
           <div>
-            <h2 className="text-lg font-semibold text-zinc-900 dark:text-white mb-4">
+            <h2 className="text-lg font-semibold theme-text-primary mb-4">
               {t("settings.accessibility.title", "Accessibility")}
             </h2>
             <div className="max-w-md">
-              <DaltonismModeToggle />
+              <ThemeSelector />
             </div>
           </div>
         </div>

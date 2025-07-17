@@ -15,7 +15,7 @@ export default function EmptyBindersList({
       {...props}
       className={cn(
         className,
-        "w-content h-content flex flex-col gap-2 p-4 bg-zinc-300 dark:bg-zinc-600 overflow-hidden rounded-md"
+        "w-content h-content flex flex-col gap-2 p-4 theme-bg-tertiary theme-text-secondary overflow-hidden rounded-md"
       )}
     >
       {t("binders.list.empty")}
