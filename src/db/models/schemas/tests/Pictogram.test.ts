@@ -69,7 +69,7 @@ describe("Pictogram Schema Validation", () => {
     expect(result.isFavorite).toBe(false);
   });
 
-  it("categories is optional and undefined when not provided", () => {
+  it("categories are optional and undefined when not provided", () => {
     const { categories, ...pictogramWithoutCategories } = validPictogram;
     const result = PictogramSchema.parse(pictogramWithoutCategories);
     expect(result.categories).toBeUndefined();
