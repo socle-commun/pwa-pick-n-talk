@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:analyze": "npm run build && open dist/bundle-analyzer.html",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -37,6 +38,7 @@
     "react-i18next": "^15.5.2",
     "react-router": "^7.6.0",
     "tailwind-merge": "^3.3.0",
+    "web-vitals": "^5.0.3",
     "zod": "^4.0.5"
   },
   "devDependencies": {
@@ -57,6 +59,7 @@
     "globals": "^16.0.0",
     "jsdom": "^26.1.0",
     "playwright": "^1.54.1",
+    "rollup-plugin-visualizer": "^6.0.3",
     "start-server-and-test": "^2.0.12",
     "tailwindcss": "^4.1.7",
     "terser": "^5.43.1",
