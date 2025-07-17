@@ -1,18 +1,30 @@
-import { describe, test, expect } from "vitest";
-import { PickNTalkDB, db } from "./index";
+
+import { vi, describe, it, expect, beforeAll, afterAll } from "vitest";
+// Inject fake-indexeddb before Dexie import
+import "fake-indexeddb/auto";
+import { PickNTalkDB } from "./index";
 
 // Mock the populate function to avoid database setup issues in tests
 vi.mock("./populate", () => ({
   populate: vi.fn(),
 }));
 
+let db: PickNTalkDB;
+beforeAll(() => {
+  db = new PickNTalkDB();
+});
+afterAll(async () => {
+  await db.delete();
+});
+
+
 describe("PickNTalkDB", () => {
-  test("should instantiate database class", () => {
+  it("should instantiate database class", () => {
     expect(db).toBeInstanceOf(PickNTalkDB);
     expect(db.name).toBe("pick-n-talk");
   });
 
-  test("should have all required tables", () => {
+  it("should have all required tables", () => {
     expect(db.binders).toBeDefined();
     expect(db.categories).toBeDefined();
     expect(db.pictograms).toBeDefined();
@@ -21,7 +33,7 @@ describe("PickNTalkDB", () => {
     expect(db.history).toBeDefined();
   });
 
-  test("should have all query methods", () => {
+  it("should have all query methods", () => {
     expect(typeof db.getUser).toBe("function");
     expect(typeof db.getUserByEmail).toBe("function");
     expect(typeof db.getHistory).toBe("function");
@@ -31,7 +43,7 @@ describe("PickNTalkDB", () => {
     expect(typeof db.getCategoriesFromBinderId).toBe("function");
   });
 
-  test("should have all mutation methods", () => {
+  it("should have all mutation methods", () => {
     expect(typeof db.createBinder).toBe("function");
     expect(typeof db.createCategory).toBe("function");
     expect(typeof db.createHistory).toBe("function");
@@ -40,16 +52,35 @@ describe("PickNTalkDB", () => {
     expect(typeof db.createUser).toBe("function");
   });
 
-  test("should have all update methods", () => {
+  it("should have all update methods", () => {
     expect(typeof db.updateBinder).toBe("function");
     expect(typeof db.updatePictogram).toBe("function");
     expect(typeof db.updateCategory).toBe("function");
   });
 
-  test("should have all deletion methods", () => {
+  it("should have all deletion methods", () => {
     expect(typeof db.deleteBinder).toBe("function");
     expect(typeof db.deleteCategory).toBe("function");
     expect(typeof db.deletePictogram).toBe("function");
     expect(typeof db.deleteUser).toBe("function");
+  });
+
+  it("should perform CRUD operations for User", async () => {
+    const user = { id: "u1", email: "test@example.com", name: "Test User" };
+    // Create
+    await db.createUser(user);
+    // Read
+    const fetched = await db.getUser("u1");
+    expect(fetched).toBeDefined();
+    expect(fetched?.email).toBe("test@example.com");
+    // Update
+    const updated = { ...user, name: "Updated User" };
+    await db.updateUser(updated);
+    const fetchedUpdated = await db.getUser("u1");
+    expect(fetchedUpdated?.name).toBe("Updated User");
+    // Delete
+    await db.deleteUser("u1");
+    const deleted = await db.getUser("u1");
+    expect(deleted).toBeUndefined();
   });
 });

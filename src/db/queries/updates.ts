@@ -1,3 +1,11 @@
+import type { User } from "@/db/models";
+
+export function updateUser(
+  this: PickNTalkDB,
+  user: User
+): PromiseExtended<void> {
+  return this.users.update(user.id, user).then(() => {});
+}
 import { type PromiseExtended } from "dexie";
 
 import { type Binder } from "@/db/models";
