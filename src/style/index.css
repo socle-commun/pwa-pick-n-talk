@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./daltonism.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

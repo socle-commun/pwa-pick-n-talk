@@ -11,18 +11,18 @@ export function useForm<T = Record<string, unknown>>(): FormContextType<T> {
 
 export function useFormField(name: string) {
   const form = useForm();
-  
+
   const value = form.getValue(name);
   const error = form.errors.find((err: ValidationError) => err.field === name);
-  
+
   const setValue = (newValue: unknown) => {
     form.setValue(name, newValue);
   };
-  
+
   const validate = () => {
     return form.validateField(name);
   };
-  
+
   return {
     value,
     error,

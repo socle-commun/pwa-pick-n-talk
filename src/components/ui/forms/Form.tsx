@@ -17,14 +17,14 @@ function FormContent<T>({ children, onSubmit, className }: {
   className?: string;
 }) {
   const { values, validateForm, setSubmitting, isSubmitting } = useForm<T>();
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     if (onSubmit) {
       setSubmitting(true);
       try {
@@ -36,7 +36,7 @@ function FormContent<T>({ children, onSubmit, className }: {
       }
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className={className} noValidate>
       <fieldset disabled={isSubmitting}>
