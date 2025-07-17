@@ -36,7 +36,7 @@
   
   --daltonism-semantic-success: rgb(34 197 94); /* Green success */
   --daltonism-semantic-warning: rgb(234 179 8); /* Yellow warning */
-  --daltonism-semantic-error: rgb(120 113 108); /* Error as neutral */
+  --daltonism-semantic-error: rgb(255 140 0); /* Bright orange for errors - more visible */
   --daltonism-semantic-info: rgb(59 130 246); /* Blue info */
 }
 
@@ -51,7 +51,7 @@
   
   --daltonism-semantic-success: rgb(59 130 246); /* Success as blue */
   --daltonism-semantic-warning: rgb(234 179 8); /* Yellow warning */
-  --daltonism-semantic-error: rgb(239 68 68); /* Red error */
+  --daltonism-semantic-error: rgb(239 68 68); /* Red error - more vivid */
   --daltonism-semantic-info: rgb(59 130 246); /* Blue info */
 }
 
@@ -65,8 +65,8 @@
   --daltonism-primary-purple: rgb(239 68 68); /* Purple to red */
   
   --daltonism-semantic-success: rgb(34 197 94); /* Green success */
-  --daltonism-semantic-warning: rgb(239 68 68); /* Warning as red */
-  --daltonism-semantic-error: rgb(239 68 68); /* Red error */
+  --daltonism-semantic-warning: rgb(239 68 68); /* Warning as red - more visible */
+  --daltonism-semantic-error: rgb(220 38 38); /* Darker red for errors */
   --daltonism-semantic-info: rgb(34 197 94); /* Info as green */
 }
 

@@ -62,20 +62,16 @@
       "label": "Soporte para daltonismo",
       "options": {
         "none": {
-          "label": "Visión normal",
-          "description": "Sin ajuste de color"
+          "label": "Por defecto"
         },
         "protanopia": {
-          "label": "Protanopia",
-          "description": "Daltonismo rojo (dificultad con rojo/verde)"
+          "label": "Protanopia"
         },
         "deuteranopia": {
-          "label": "Deuteranopia",
-          "description": "Daltonismo verde (dificultad con rojo/verde)"
+          "label": "Deuteranopia"
         },
         "tritanopia": {
-          "label": "Tritanopia",
-          "description": "Daltonismo azul (dificultad con azul/amarillo)"
+          "label": "Tritanopia"
         }
       },
       "enabled": "Los ajustes de color están activos para {{type}}"

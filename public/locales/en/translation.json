@@ -62,20 +62,16 @@
       "label": "Daltonism Support",
       "options": {
         "none": {
-          "label": "Normal Vision",
-          "description": "No color adjustment"
+          "label": "Default"
         },
         "protanopia": {
-          "label": "Protanopia",
-          "description": "Red-blind (difficulty with red/green)"
+          "label": "Protanopia"
         },
         "deuteranopia": {
-          "label": "Deuteranopia",
-          "description": "Green-blind (difficulty with red/green)"
+          "label": "Deuteranopia"
         },
         "tritanopia": {
-          "label": "Tritanopia",
-          "description": "Blue-blind (difficulty with blue/yellow)"
+          "label": "Tritanopia"
         }
       },
       "enabled": "Color adjustments are active for {{type}}"

@@ -2,19 +2,16 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import DaltonismModeToggle from "@/components/ui/accessibility/DaltonismModeToggle";
 
-// Mock the useUserPreferences hook
+// Mock the useDaltonismSettings hook
 const mockSetDaltonismMode = vi.fn();
-const mockPreferences = {
-  daltonism: {
-    enabled: false,
-    type: "none" as const,
-  },
-  locale: "en",
+const mockDaltonismConfig = {
+  enabled: false,
+  type: "none" as const,
 };
 
-vi.mock("@/utils/state/useUserPreferences", () => ({
+vi.mock("@/utils/state/useDaltonismSettings", () => ({
   default: () => ({
-    preferences: mockPreferences,
+    daltonismConfig: mockDaltonismConfig,
     setDaltonismMode: mockSetDaltonismMode,
   }),
 }));
@@ -25,14 +22,10 @@ vi.mock("react-i18next", () => ({
     t: (key: string, defaultValue?: string, options?: any) => {
       const translations: Record<string, string> = {
         "accessibility.daltonism.label": "Daltonism Support",
-        "accessibility.daltonism.options.none.label": "Normal Vision",
-        "accessibility.daltonism.options.none.description": "No color adjustment",
+        "accessibility.daltonism.options.none.label": "Default",
         "accessibility.daltonism.options.protanopia.label": "Protanopia",
-        "accessibility.daltonism.options.protanopia.description": "Red-blind (difficulty with red/green)",
         "accessibility.daltonism.options.deuteranopia.label": "Deuteranopia",
-        "accessibility.daltonism.options.deuteranopia.description": "Green-blind (difficulty with red/green)",
         "accessibility.daltonism.options.tritanopia.label": "Tritanopia",
-        "accessibility.daltonism.options.tritanopia.description": "Blue-blind (difficulty with blue/yellow)",
       };
 
       if (key === "accessibility.daltonism.enabled") {
@@ -47,9 +40,9 @@ vi.mock("react-i18next", () => ({
 describe("DaltonismModeToggle", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Reset mock preferences to default state
-    mockPreferences.daltonism.enabled = false;
-    mockPreferences.daltonism.type = "none";
+    // Reset mock daltonism config to default state
+    mockDaltonismConfig.enabled = false;
+    mockDaltonismConfig.type = "none";
   });
 
   describe("Full variant", () => {
@@ -57,8 +50,7 @@ describe("DaltonismModeToggle", () => {
       render(<DaltonismModeToggle />);
 
       expect(screen.getByText("Daltonism Support")).toBeInTheDocument();
-      expect(screen.getByText("Normal Vision")).toBeInTheDocument();
-      expect(screen.getByText("No color adjustment")).toBeInTheDocument();
+      expect(screen.getByText("Default")).toBeInTheDocument();
     });
 
     it("should display all daltonism options when opened", async () => {
@@ -68,15 +60,13 @@ describe("DaltonismModeToggle", () => {
       fireEvent.click(button);
 
       await waitFor(() => {
-        expect(screen.getByText("Normal Vision")).toBeInTheDocument();
+        expect(screen.getByText("Default")).toBeInTheDocument();
         expect(screen.getByText("Protanopia")).toBeInTheDocument();
         expect(screen.getByText("Deuteranopia")).toBeInTheDocument();
         expect(screen.getByText("Tritanopia")).toBeInTheDocument();
       });
 
-      expect(screen.getByText("Red-blind (difficulty with red/green)")).toBeInTheDocument();
-      expect(screen.getByText("Green-blind (difficulty with red/green)")).toBeInTheDocument();
-      expect(screen.getByText("Blue-blind (difficulty with blue/yellow)")).toBeInTheDocument();
+      // No descriptions anymore - they were removed
     });
 
     it("should call setDaltonismMode when option is selected", async () => {
@@ -96,8 +86,8 @@ describe("DaltonismModeToggle", () => {
 
     it("should disable daltonism when 'None' is selected", async () => {
       // Set initial state to enabled
-      mockPreferences.daltonism.enabled = true;
-      mockPreferences.daltonism.type = "protanopia";
+      mockDaltonismConfig.enabled = true;
+      mockDaltonismConfig.type = "protanopia";
 
       render(<DaltonismModeToggle />);
 
@@ -105,17 +95,17 @@ describe("DaltonismModeToggle", () => {
       fireEvent.click(button);
 
       await waitFor(() => {
-        expect(screen.getByText("Normal Vision")).toBeInTheDocument();
+        expect(screen.getByText("Default")).toBeInTheDocument();
       });
 
-      fireEvent.click(screen.getByText("Normal Vision"));
+      fireEvent.click(screen.getByText("Default"));
 
       expect(mockSetDaltonismMode).toHaveBeenCalledWith(false, "none");
     });
 
     it("should show enabled state message when daltonism is active", () => {
-      mockPreferences.daltonism.enabled = true;
-      mockPreferences.daltonism.type = "deuteranopia";
+      mockDaltonismConfig.enabled = true;
+      mockDaltonismConfig.type = "deuteranopia";
 
       render(<DaltonismModeToggle />);
 
@@ -147,7 +137,7 @@ describe("DaltonismModeToggle", () => {
       fireEvent.click(button);
 
       await waitFor(() => {
-        expect(screen.getByText("Normal Vision")).toBeInTheDocument();
+        expect(screen.getByText("Default")).toBeInTheDocument();
         expect(screen.getByText("Protanopia")).toBeInTheDocument();
       });
     });
@@ -164,8 +154,8 @@ describe("DaltonismModeToggle", () => {
 
   describe("Current selection display", () => {
     it("should show checkmark for currently selected option", async () => {
-      mockPreferences.daltonism.enabled = true;
-      mockPreferences.daltonism.type = "tritanopia";
+      mockDaltonismConfig.enabled = true;
+      mockDaltonismConfig.type = "tritanopia";
 
       render(<DaltonismModeToggle />);
 
@@ -180,13 +170,12 @@ describe("DaltonismModeToggle", () => {
     });
 
     it("should display the correct current option in the button", () => {
-      mockPreferences.daltonism.enabled = true;
-      mockPreferences.daltonism.type = "protanopia";
+      mockDaltonismConfig.enabled = true;
+      mockDaltonismConfig.type = "protanopia";
 
       render(<DaltonismModeToggle />);
 
       expect(screen.getByText("Protanopia")).toBeInTheDocument();
-      expect(screen.getByText("Red-blind (difficulty with red/green)")).toBeInTheDocument();
     });
   });
 

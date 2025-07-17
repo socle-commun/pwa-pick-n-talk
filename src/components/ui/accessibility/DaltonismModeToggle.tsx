@@ -3,8 +3,8 @@ import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from "@head
 import { ChevronDownIcon, EyeIcon } from "@heroicons/react/20/solid";
 
 import cn from "@/utils/cn";
-import { type DaltonismType } from "@/db/entities/data/UserPreferences";
-import useUserPreferences from "@/utils/state/useUserPreferences";
+import { type DaltonismType } from "@/utils/daltonism/types";
+import useDaltonismSettings from "@/utils/state/useDaltonismSettings";
 import { DaltonismOption, type DaltonismOptionType } from "./DaltonismOption";
 
 const DALTONISM_TYPES: Array<{ type: DaltonismType; icon: string }> = [
@@ -19,17 +19,16 @@ interface DaltonismModeToggleProps {
 
 export default function DaltonismModeToggle({ className, variant = "full" }: DaltonismModeToggleProps) {
   const { t } = useTranslation();
-  const { preferences, setDaltonismMode } = useUserPreferences();
+  const { daltonismConfig, setDaltonismMode } = useDaltonismSettings();
 
   const getDaltonismOption = (type: DaltonismType): DaltonismOptionType => ({
     type,
     label: t(`accessibility.daltonism.options.${type}.label`),
-    description: t(`accessibility.daltonism.options.${type}.description`),
     icon: DALTONISM_TYPES.find(c => c.type === type)?.icon || "👁️",
   });
 
   const daltonismOptions = DALTONISM_TYPES.map(c => getDaltonismOption(c.type));
-  const currentOption = getDaltonismOption(preferences.daltonism.type);
+  const currentOption = getDaltonismOption(daltonismConfig.type);
 
   const compactButton = (
     <ComboboxButton className="flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700">
@@ -46,7 +45,6 @@ export default function DaltonismModeToggle({ className, variant = "full" }: Dal
         <span className="text-lg">{currentOption.icon}</span>
         <div className="flex-1 min-w-0">
           <div className="font-medium text-zinc-900 dark:text-white">{currentOption.label}</div>
-          <div className="text-sm text-zinc-500 dark:text-zinc-400 truncate">{currentOption.description}</div>
         </div>
       </div>
       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -72,7 +70,7 @@ export default function DaltonismModeToggle({ className, variant = "full" }: Dal
     </ComboboxOptions>
   );
 
-  const statusMessage = preferences.daltonism.enabled && (
+  const statusMessage = daltonismConfig.enabled && (
     <div className="mt-2 p-3 rounded-lg bg-blue-50 border border-blue-200 dark:bg-blue-900/20 dark:border-blue-800">
       <div className="flex items-center gap-2 text-sm text-blue-700 dark:text-blue-300">
         <EyeIcon className="h-4 w-4" />
