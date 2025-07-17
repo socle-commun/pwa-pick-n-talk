@@ -18,7 +18,7 @@ export default mergeConfig(
         output: {
           manualChunks: {
             // Core React libraries
-            "react-vendor": ["react", "react-dom"],
+            "react": ["react", "react-dom"],
             "react-router": ["react-router"],
             
             // State management

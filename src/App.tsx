@@ -1,4 +1,4 @@
-import { lazy, useEffect } from "react";
+import { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 
 import AppProviders from "@/components/partials/global/AppProviders";
