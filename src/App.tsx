@@ -1,5 +1,4 @@
 import { lazy, useEffect } from "react";
-
 import { BrowserRouter, Route, Routes } from "react-router";
 
 import AppProviders from "@/components/partials/global/AppProviders";
@@ -23,13 +22,14 @@ const BindersPage = lazy(() => import("@/routes/binders/page"));
 const BinderPage = lazy(() => import("@/routes/binders/[uuid]/page"));
 const BinderEditPage = lazy(() => import("@/routes/binders/[uuid]/edit/page"));
 
-import toggleDarkClass from "@/utils/toggleDarkClass";
+import { useThemeMode, useDaltonismMode } from "@/utils/theme";
 
 function App() {
-  useEffect(() => {
-    toggleDarkClass();
-  }, []);
+  // Initialize theme system
+  useThemeMode();
+  useDaltonismMode();
 
+  // Theme is always ready with the new system
   return (
     <AppProviders>
       <BrowserRouter

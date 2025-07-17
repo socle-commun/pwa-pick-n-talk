@@ -8,7 +8,7 @@ describe("Pictogram Schema Validation", () => {
     sound: new Blob(["audio"], { type: "audio/mp3" }),
     isFavorite: true,
     order: 5,
-    properties: { 
+    properties: {
       "en": { "text": "Cat", "description": "A furry animal" },
       "fr": { "text": "Chat", "description": "Un animal poilu" }
     },
@@ -89,14 +89,14 @@ describe("Pictogram Schema Validation", () => {
     const pictogramWithComplexProperties = {
       ...validPictogram,
       properties: {
-        "en": { 
-          "text": "Cat", 
+        "en": {
+          "text": "Cat",
           "description": "A furry animal",
           "phonetic": "kæt",
           "category": "animals"
         },
-        "fr": { 
-          "text": "Chat", 
+        "fr": {
+          "text": "Chat",
           "description": "Un animal poilu",
           "phonetic": "ʃa",
           "category": "animaux"

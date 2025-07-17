@@ -35,7 +35,7 @@ describe("Form Enhanced Test Coverage", () => {
       const emailInput = screen.getByLabelText("Email");
       const validEmails = [
         "test@example.com",
-        "user.name@domain.co.uk", 
+        "user.name@domain.co.uk",
         "test+tag@example.org",
         "user_name@example.com",
         "123@numbers.com",
@@ -46,7 +46,7 @@ describe("Form Enhanced Test Coverage", () => {
       for (const email of validEmails) {
         fireEvent.change(emailInput, { target: { value: email } });
         fireEvent.blur(emailInput);
-        
+
         await waitFor(() => {
           expect(screen.queryByText("Invalid email format")).not.toBeInTheDocument();
         });
@@ -270,8 +270,8 @@ describe("Form Enhanced Test Coverage", () => {
 
     it("renders all input types correctly", () => {
       render(
-        <Form 
-          schema={TypesSchema} 
+        <Form
+          schema={TypesSchema}
           initialValues={{ text: "", email: "", password: "", number: 0, tel: "", url: "", search: "" }}
         >
           <FormInput name="text" label="Text" type="text" />

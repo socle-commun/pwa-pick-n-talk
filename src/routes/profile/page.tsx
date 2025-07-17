@@ -31,7 +31,7 @@ export default function ProfilePage() {
         <h2 className="text-lg font-semibold mb-4 text-zinc-900 dark:text-white">
           {t("profile.edit.title", "Edit Profile")}
         </h2>
-        
+
         <Form<ProfileEditFormData>
           schema={ProfileEditSchema}
           initialValues={initialValues}
@@ -56,7 +56,7 @@ export default function ProfilePage() {
             <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
               {t("profile.edit.role", "Role")}
             </label>
-            <select 
+            <select
               name="role"
               className="w-full px-3 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white"
             >

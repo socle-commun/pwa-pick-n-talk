@@ -1,0 +1,20 @@
+/**
+ * Theme System - All theme CSS files
+ * This file imports all individual theme CSS files
+ */
+
+/* Base theme - Light with default colors */
+@import './themes/light-default.css';
+
+/* Dark theme - Default colors */
+@import './themes/dark-default.css';
+
+/* Light theme - Daltonism variants */
+@import './themes/light-protanopia.css';
+@import './themes/light-deuteranopia.css';
+@import './themes/light-tritanopia.css';
+
+/* Dark theme - Daltonism variants */
+@import './themes/dark-protanopia.css';
+@import './themes/dark-deuteranopia.css';
+@import './themes/dark-tritanopia.css';

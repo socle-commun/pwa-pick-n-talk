@@ -72,7 +72,7 @@ describe("History Schema Validation", () => {
     const historyWithComplexChanges = {
       ...validHistory,
       changes: {
-        "settings": { 
+        "settings": {
           "theme": "dark",
           "language": "fr"
         },

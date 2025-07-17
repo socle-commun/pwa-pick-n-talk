@@ -21,9 +21,9 @@ describe("Setting Schema Validation", () => {
   });
 
   it("validates setting with object value", () => {
-    const objectSetting = { 
-      key: "layout", 
-      value: { columns: 3, rows: 4, spacing: 10 } 
+    const objectSetting = {
+      key: "layout",
+      value: { columns: 3, rows: 4, spacing: 10 }
     };
     expect(() => validateSetting(objectSetting)).not.toThrow();
     expect(isValidSetting(objectSetting)).toBe(true);
