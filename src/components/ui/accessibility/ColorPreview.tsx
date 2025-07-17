@@ -9,10 +9,10 @@ export const COLOR_PREVIEWS: Record<DaltonismType, { success: string; warning: s
     info: "rgb(59, 130, 246)"      // Original blue
   },
   protanopia: {
-    success: "rgb(34, 197, 94)",   // Green success
-    warning: "rgb(234, 179, 8)",   // Yellow warning
-    error: "rgb(255, 140, 0)",     // Bright orange for errors
-    info: "rgb(59, 130, 246)"      // Blue info
+    success: "rgb(59, 130, 246)",   // Blue for success - no green/red confusion
+    warning: "rgb(234, 179, 8)",    // Bright yellow warning
+    error: "rgb(98, 49, 168)",      // Deep purple for errors - avoids red entirely
+    info: "rgb(34, 197, 94)"        // Green for info
   },
   deuteranopia: {
     success: "rgb(59, 130, 246)",  // Success as blue
