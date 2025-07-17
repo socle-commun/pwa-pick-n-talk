@@ -14,7 +14,9 @@
     "test": "vitest",
     "docs:dev": "vitepress dev documentation",
     "docs:build": "vitepress build documentation",
-    "docs:preview": "vitepress preview documentation"
+    "docs:preview": "vitepress preview documentation",
+    "e2e:run": "playwright test --config=e2e/playwright.config.ts",
+    "e2e": "start-server-and-test dev http://localhost:5173 e2e:run"
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
@@ -39,6 +41,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@playwright/test": "^1.54.1",
     "@tailwindcss/vite": "^4.1.7",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -53,6 +56,7 @@
     "globals": "^16.0.0",
     "jsdom": "^26.1.0",
     "playwright": "^1.54.1",
+    "start-server-and-test": "^2.0.12",
     "tailwindcss": "^4.1.7",
     "terser": "^5.43.1",
     "typescript": "~5.8.3",
