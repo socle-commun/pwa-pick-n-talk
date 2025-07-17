@@ -17,7 +17,11 @@
     "docs:build": "vitepress build documentation",
     "docs:preview": "vitepress preview documentation",
     "e2e:run": "playwright test --config=e2e/playwright.config.ts",
-    "e2e": "start-server-and-test dev http://localhost:5173 e2e:run"
+    "e2e": "start-server-and-test dev http://localhost:5173 e2e:run",
+    "e2e:headed": "playwright test --config=e2e/playwright.config.ts --headed",
+    "e2e:debug": "playwright test --config=e2e/playwright.config.ts --debug",
+    "e2e:ui": "playwright test --config=e2e/playwright.config.ts --ui",
+    "e2e:report": "playwright show-report e2e/playwright-report"
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
