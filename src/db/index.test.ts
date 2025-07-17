@@ -65,22 +65,5 @@ describe("PickNTalkDB", () => {
     expect(typeof db.deleteUser).toBe("function");
   });
 
-  it("should perform CRUD operations for User", async () => {
-    const user = { id: "u1", email: "test@example.com", name: "Test User" };
-    // Create
-    await db.createUser(user);
-    // Read
-    const fetched = await db.getUser("u1");
-    expect(fetched).toBeDefined();
-    expect(fetched?.email).toBe("test@example.com");
-    // Update
-    const updated = { ...user, name: "Updated User" };
-    await db.updateUser(updated);
-    const fetchedUpdated = await db.getUser("u1");
-    expect(fetchedUpdated?.name).toBe("Updated User");
-    // Delete
-    await db.deleteUser("u1");
-    const deleted = await db.getUser("u1");
-    expect(deleted).toBeUndefined();
-  });
+  // ...entity CRUD and edge case tests moved to src/db/tests/*
 });
