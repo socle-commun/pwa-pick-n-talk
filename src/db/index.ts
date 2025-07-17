@@ -64,6 +64,7 @@ export class PickNTalkDB extends Dexie {
     this.updateBinder = updates.updateBinder.bind(this);
     this.updatePictogram = updates.updatePictogram.bind(this);
     this.updateCategory = updates.updateCategory.bind(this);
+    this.updateUser = updates.updateUser.bind(this);
 
     // Deletions
     this.deleteBinder = deletions.deleteBinder.bind(this);
@@ -99,6 +100,7 @@ export class PickNTalkDB extends Dexie {
   public updateBinder!: (binder: Binder) => PromiseExtended<void>;
   public updatePictogram!: (pictogram: Pictogram) => PromiseExtended<void>;
   public updateCategory!: (category: Category) => PromiseExtended<void>;
+  public updateUser!: (user: User) => PromiseExtended<void>;
 
   // Deletions
   public deleteBinder!: (binderId: string) => PromiseExtended<void>;
