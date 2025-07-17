@@ -1,3 +1,2 @@
-export * from './types';
-export * from './useTheme';
-export { default as useTheme } from './useTheme';
+export { useThemeMode, type ThemeMode } from './useThemeMode';
+export { useDaltonismMode, type DaltonismMode } from './useDaltonismMode';

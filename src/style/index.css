@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "./themes.css";
-@import "./daltonism.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

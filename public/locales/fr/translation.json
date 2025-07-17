@@ -81,6 +81,11 @@
     "selector": {
       "label": "Thème"
     },
+    "mode": {
+      "label": "Mode du thème",
+      "light": "Clair",
+      "dark": "Sombre"
+    },
     "light": {
       "description": "Couleurs claires pour usage normal"
     },

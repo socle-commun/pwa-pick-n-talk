@@ -81,6 +81,11 @@
     "selector": {
       "label": "Theme"
     },
+    "mode": {
+      "label": "Theme Mode",
+      "light": "Light",
+      "dark": "Dark"
+    },
     "light": {
       "description": "Light colors for normal use"
     },

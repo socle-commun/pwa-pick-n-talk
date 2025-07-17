@@ -1,0 +1,53 @@
+/**
+ * Light theme - Protanopia (red-blind)
+ * Avoid red/orange colors, use safe alternatives
+ */
+.daltonism-protanopia {
+  /* Background colors - same as default */
+  --bg-primary: rgb(244 244 245);
+  --bg-secondary: rgb(255 255 255);
+  --bg-tertiary: rgb(250 250 250);
+  --bg-overlay: rgba(0 0 0 / 0.1);
+  
+  /* Text colors - same as default */
+  --text-primary: rgb(24 24 27);
+  --text-secondary: rgb(82 82 91);
+  --text-tertiary: rgb(161 161 170);
+  --text-inverse: rgb(255 255 255);
+  
+  /* Border colors - same as default */
+  --border-primary: rgb(228 228 231);
+  --border-secondary: rgb(244 244 245);
+  --border-focus: rgb(59 130 246);
+  
+  /* Semantic colors - Success (use blue instead of green) */
+  --success-primary: rgb(59 130 246); /* Blue instead of green */
+  --success-secondary: rgb(219 234 254); /* Light blue background */
+  --success-text: rgb(30 64 175); /* Blue text */
+  --success-border: rgb(147 197 253); /* Blue borders */
+  
+  /* Semantic colors - Warning (keep yellow - safe) */
+  --warning-primary: rgb(234 179 8);
+  --warning-secondary: rgb(254 240 138);
+  --warning-text: rgb(133 77 14);
+  --warning-border: rgb(253 224 71);
+  
+  /* Semantic colors - Error (use dark blue instead of red) */
+  --error-primary: rgb(0 51 204); /* Dark blue instead of red */
+  --error-secondary: rgb(191 219 254); /* Light blue background */
+  --error-text: rgb(30 58 138); /* Dark blue text */
+  --error-border: rgb(147 197 253); /* Blue borders */
+  
+  /* Semantic colors - Info (use cyan) */
+  --info-primary: rgb(0 206 209); /* Cyan */
+  --info-secondary: rgb(207 250 254); /* Light cyan background */
+  --info-text: rgb(21 94 117); /* Cyan text */
+  --info-border: rgb(103 232 249); /* Cyan borders */
+  
+  /* Interactive colors - same as default */
+  --interactive-primary: rgb(59 130 246);
+  --interactive-secondary: rgb(100 116 139);
+  --interactive-hover: rgb(37 99 235);
+  --interactive-active: rgb(29 78 216);
+  --interactive-disabled: rgb(148 163 184);
+}

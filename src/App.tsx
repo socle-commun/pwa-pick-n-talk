@@ -19,17 +19,14 @@ import BindersPage from "@/routes/binders/page";
 import BinderPage from "@/routes/binders/[uuid]/page";
 import BinderEditPage from "@/routes/binders/[uuid]/edit/page";
 
-import { useTheme } from "@/utils/theme";
+import { useThemeMode, useDaltonismMode } from "@/utils/theme";
 
 function App() {
   // Initialize theme system
-  const { isReady } = useTheme();
+  useThemeMode();
+  useDaltonismMode();
 
-  // Don't render until theme is ready to prevent flash of unstyled content
-  if (!isReady) {
-    return null;
-  }
-
+  // Theme is always ready with the new system
   return (
     <AppProviders>
       <BrowserRouter
