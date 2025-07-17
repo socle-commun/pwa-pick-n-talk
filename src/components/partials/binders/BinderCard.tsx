@@ -32,7 +32,7 @@ export default function BinderCard({
       {...props}
       className={cn(
         className,
-        "w-content h-content flex flex-col bg-zinc-200 dark:bg-zinc-800 overflow-hidden rounded-md"
+        "w-content h-content flex flex-col theme-bg-secondary overflow-hidden rounded-md"
       )}
     >
       <Button
@@ -40,17 +40,17 @@ export default function BinderCard({
         plain
         className={cn("flex flex-col gap-1 bg-transparent rounded-b-none")}
       >
-        <div className={cn("text-2xl font-bold")}>{title}</div>
+        <div className={cn("text-2xl font-bold theme-text-primary")}>{title}</div>
         <div
-          className={cn("pl-1 text-sm italic text-zinc-700 dark:text-zinc-300")}
+          className={cn("pl-1 text-sm italic theme-text-secondary")}
         >
           {t("by")} {binder.author}
         </div>
-        <div className={cn("text-lg text-zinc-800 dark:text-zinc-200 mb-2")}>
+        <div className={cn("text-lg theme-text-primary mb-2")}>
           {description}
         </div>
       </Button>
-      <Divider className={cn("border-zinc-600 dark:border-zinc-400")} />
+      <Divider className={cn("theme-border-secondary")} />
       <div className={cn("flex justify-end gap-1 px-2 py-1")}>
         <Button
           href={`${binder.id}/edit`}

@@ -1,0 +1,53 @@
+/**
+ * Light theme - Tritanopia (blue-blind)
+ * Adjust blue colors, use yellow/red instead
+ */
+.daltonism-tritanopia {
+  /* Background colors - same as default */
+  --bg-primary: rgb(244 244 245);
+  --bg-secondary: rgb(255 255 255);
+  --bg-tertiary: rgb(250 250 250);
+  --bg-overlay: rgba(0 0 0 / 0.1);
+  
+  /* Text colors - same as default */
+  --text-primary: rgb(24 24 27);
+  --text-secondary: rgb(82 82 91);
+  --text-tertiary: rgb(161 161 170);
+  --text-inverse: rgb(255 255 255);
+  
+  /* Border colors - same as default */
+  --border-primary: rgb(228 228 231);
+  --border-secondary: rgb(244 244 245);
+  --border-focus: rgb(239 68 68); /* Red instead of blue */
+  
+  /* Semantic colors - Success (use bright green) */
+  --success-primary: rgb(34 197 94); /* Keep green - distinct from blue */
+  --success-secondary: rgb(187 247 208);
+  --success-text: rgb(21 128 61);
+  --success-border: rgb(134 239 172);
+  
+  /* Semantic colors - Warning (use red instead of yellow) */
+  --warning-primary: rgb(239 68 68); /* Red instead of yellow */
+  --warning-secondary: rgb(254 202 202); /* Light red background */
+  --warning-text: rgb(185 28 28); /* Red text */
+  --warning-border: rgb(252 165 165); /* Red borders */
+  
+  /* Semantic colors - Error (use dark red) */
+  --error-primary: rgb(220 38 38); /* Dark red */
+  --error-secondary: rgb(254 202 202);
+  --error-text: rgb(153 27 27);
+  --error-border: rgb(252 165 165);
+  
+  /* Semantic colors - Info (use green instead of blue) */
+  --info-primary: rgb(34 197 94); /* Green instead of blue */
+  --info-secondary: rgb(187 247 208); /* Light green background */
+  --info-text: rgb(21 128 61); /* Green text */
+  --info-border: rgb(134 239 172); /* Green borders */
+  
+  /* Interactive colors - use red instead of blue */
+  --interactive-primary: rgb(239 68 68); /* Red instead of blue */
+  --interactive-secondary: rgb(100 116 139);
+  --interactive-hover: rgb(220 38 38); /* Darker red */
+  --interactive-active: rgb(185 28 28); /* Even darker red */
+  --interactive-disabled: rgb(148 163 184);
+}

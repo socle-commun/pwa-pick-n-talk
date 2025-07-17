@@ -16,12 +16,12 @@ type FormInputProps = {
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   ({ name, label, placeholder, type = "text", required, disabled, className, ...props }, ref) => {
     const { value, error, setValue, validate, isInvalid } = useFormField(name);
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (disabled) return;
-      
+
       const inputValue = e.target.value;
-      
+
       // Convert string to number for number inputs
       if (type === "number") {
         const numValue = inputValue === "" ? undefined : Number(inputValue);
@@ -30,11 +30,11 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         setValue(inputValue);
       }
     };
-    
+
     const handleBlur = () => {
       validate();
     };
-    
+
     return (
       <Field className={className}>
         {label && (

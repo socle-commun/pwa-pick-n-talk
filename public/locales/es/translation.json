@@ -60,6 +60,54 @@
       "cancel": "Cancelar"
     }
   },
+  "accessibility": {
+    "daltonism": {
+      "label": "Soporte para daltonismo",
+      "options": {
+        "none": {
+          "label": "Por defecto"
+        },
+        "protanopia": {
+          "label": "Protanopia"
+        },
+        "deuteranopia": {
+          "label": "Deuteranopia"
+        },
+        "tritanopia": {
+          "label": "Tritanopia"
+        }
+      },
+      "enabled": "Los ajustes de color están activos para {{type}}"
+    }
+  },
+  "theme": {
+    "selector": {
+      "label": "Tema"
+    },
+    "mode": {
+      "label": "Modo del tema",
+      "light": "Claro",
+      "dark": "Oscuro"
+    },
+    "light": {
+      "description": "Colores claros para uso normal"
+    },
+    "dark": {
+      "description": "Colores oscuros para entornos con poca luz"
+    },
+    "protanopia": {
+      "description": "Ciego al rojo (dificultad con rojo/verde)"
+    },
+    "deuteranopia": {
+      "description": "Ciego al verde (dificultad con rojo/verde)"
+    },
+    "tritanopia": {
+      "description": "Ciego al azul (dificultad con azul/amarillo)"
+    },
+    "highContrast": {
+      "description": "Colores de alto contraste para mejor visibilidad"
+    }
+  },
   "validation": {
     "errors": {
       "required": "Este campo es obligatorio",

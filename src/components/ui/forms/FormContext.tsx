@@ -21,17 +21,17 @@ export default function FormProvider<T = Record<string, unknown>>({
   const [errors, setErrors] = useState<ValidationError[]>([]);
   const [isSubmitting, setSubmitting] = useState(false);
   const [isDirty, setDirty] = useState(false);
-  
+
   const setValue = useCallback((field: string, value: unknown) => {
     setValues(prev => ({ ...prev, [field]: value }));
     setDirty(true);
     setErrors(prev => prev.filter(error => error.field !== field));
   }, []);
-  
+
   const getValue = useCallback((field: string) => {
     return (values as Record<string, unknown>)?.[field];
   }, [values]);
-  
+
   const translateZodError = useCallback((error: z.ZodError): ValidationError[] => {
     return error.issues.map((err: z.ZodIssue) => {
       const translatedMessage = t(err.message, {
@@ -39,7 +39,7 @@ export default function FormProvider<T = Record<string, unknown>>({
         max: "maximum" in err ? err.maximum : undefined,
         expected: "expected" in err ? err.expected : undefined
       });
-            
+
       return {
         field: err.path.join("."),
         message: translatedMessage,
@@ -47,17 +47,17 @@ export default function FormProvider<T = Record<string, unknown>>({
       };
     });
   }, [t]);
-  
+
   const validateField = useCallback((field: string): boolean => {
     if (!schema) return true;
-    
+
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const fieldSchema = (schema as any).shape?.[field];
       if (fieldSchema) {
         fieldSchema.parse(getValue(field));
       }
-      
+
       setErrors(prev => prev.filter(error => error.field !== field));
       return true;
     } catch (error) {
@@ -66,7 +66,7 @@ export default function FormProvider<T = Record<string, unknown>>({
           ...err,
           field,
         }));
-        
+
         setErrors(prev => [
           ...prev.filter(error => error.field !== field),
           ...fieldErrors,
@@ -75,10 +75,10 @@ export default function FormProvider<T = Record<string, unknown>>({
       return false;
     }
   }, [schema, getValue, translateZodError]);
-  
+
   const validateForm = useCallback((): boolean => {
     if (!schema) return true;
-    
+
     try {
       schema.parse(values);
       setErrors([]);
@@ -90,7 +90,7 @@ export default function FormProvider<T = Record<string, unknown>>({
       return false;
     }
   }, [schema, values, translateZodError]);
-  
+
   const clearErrors = useCallback((field?: string) => {
     if (field) {
       setErrors(prev => prev.filter(error => error.field !== field));
@@ -98,14 +98,14 @@ export default function FormProvider<T = Record<string, unknown>>({
       setErrors([]);
     }
   }, []);
-  
+
   const reset = useCallback(() => {
     setValues(initialValues as T);
     setErrors([]);
     setDirty(false);
     setSubmitting(false);
   }, [initialValues]);
-  
+
   const contextValue: FormContextType<T> = {
     values,
     errors,
@@ -121,7 +121,7 @@ export default function FormProvider<T = Record<string, unknown>>({
     reset,
     schema,
   };
-  
+
   return (
     <FormContext.Provider value={contextValue}>
       {children}

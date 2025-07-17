@@ -1,0 +1,93 @@
+/**
+ * Light theme - Default (normal vision)
+ */
+:root {
+  /* Background colors */
+  --bg-primary: rgb(244 244 245); /* Light background */
+  --bg-secondary: rgb(255 255 255); /* Cards, panels */
+  --bg-tertiary: rgb(250 250 250); /* Subtle backgrounds */
+  --bg-overlay: rgba(0 0 0 / 0.1); /* Overlays, modals */
+  
+  /* Text colors */
+  --text-primary: rgb(24 24 27); /* Main text */
+  --text-secondary: rgb(82 82 91); /* Secondary text */
+  --text-tertiary: rgb(161 161 170); /* Muted text */
+  --text-inverse: rgb(255 255 255); /* Text on dark backgrounds */
+  
+  /* Border colors */
+  --border-primary: rgb(228 228 231); /* Main borders */
+  --border-secondary: rgb(244 244 245); /* Subtle borders */
+  --border-focus: rgb(59 130 246); /* Focus rings */
+  
+  /* Semantic colors - Success */
+  --success-primary: rgb(34 197 94); /* Main success color */
+  --success-secondary: rgb(187 247 208); /* Light success background */
+  --success-text: rgb(21 128 61); /* Success text */
+  --success-border: rgb(134 239 172); /* Success borders */
+  
+  /* Semantic colors - Warning */
+  --warning-primary: rgb(234 179 8); /* Main warning color */
+  --warning-secondary: rgb(254 240 138); /* Light warning background */
+  --warning-text: rgb(133 77 14); /* Warning text */
+  --warning-border: rgb(253 224 71); /* Warning borders */
+  
+  /* Semantic colors - Error */
+  --error-primary: rgb(239 68 68); /* Main error color */
+  --error-secondary: rgb(254 202 202); /* Light error background */
+  --error-text: rgb(185 28 28); /* Error text */
+  --error-border: rgb(252 165 165); /* Error borders */
+  
+  /* Semantic colors - Info */
+  --info-primary: rgb(59 130 246); /* Main info color */
+  --info-secondary: rgb(219 234 254); /* Light info background */
+  --info-text: rgb(30 64 175); /* Info text */
+  --info-border: rgb(147 197 253); /* Info borders */
+  
+  /* Interactive colors */
+  --interactive-primary: rgb(59 130 246); /* Primary buttons, links */
+  --interactive-secondary: rgb(100 116 139); /* Secondary buttons */
+  --interactive-hover: rgb(37 99 235); /* Hover states */
+  --interactive-active: rgb(29 78 216); /* Active states */
+  --interactive-disabled: rgb(148 163 184); /* Disabled states */
+}
+
+/* Utility classes for theme colors */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-overlay { background-color: var(--bg-overlay); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-inverse { color: var(--text-inverse); }
+
+.border-primary { border-color: var(--border-primary); }
+.border-secondary { border-color: var(--border-secondary); }
+.border-focus { border-color: var(--border-focus); }
+
+.success-primary { color: var(--success-primary); }
+.success-secondary { background-color: var(--success-secondary); }
+.success-text { color: var(--success-text); }
+.success-border { border-color: var(--success-border); }
+
+.warning-primary { color: var(--warning-primary); }
+.warning-secondary { background-color: var(--warning-secondary); }
+.warning-text { color: var(--warning-text); }
+.warning-border { border-color: var(--warning-border); }
+
+.error-primary { color: var(--error-primary); }
+.error-secondary { background-color: var(--error-secondary); }
+.error-text { color: var(--error-text); }
+.error-border { border-color: var(--error-border); }
+
+.info-primary { color: var(--info-primary); }
+.info-secondary { background-color: var(--info-secondary); }
+.info-text { color: var(--info-text); }
+.info-border { border-color: var(--info-border); }
+
+.interactive-primary { color: var(--interactive-primary); }
+.interactive-secondary { color: var(--interactive-secondary); }
+.interactive-hover { color: var(--interactive-hover); }
+.interactive-active { color: var(--interactive-active); }
+.interactive-disabled { color: var(--interactive-disabled); }

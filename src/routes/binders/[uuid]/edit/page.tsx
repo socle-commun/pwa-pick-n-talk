@@ -56,7 +56,7 @@ export default function BinderEditPage() {
               name="isFavorite"
               className="rounded border-zinc-300 dark:border-zinc-600"
             />
-            <label 
+            <label
               htmlFor="isFavorite"
               className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
             >

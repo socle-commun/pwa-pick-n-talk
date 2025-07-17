@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./themes.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -13,6 +14,11 @@
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
+  /* Thème principal */
+  --theme-bg-primary: var(--bg-primary, #f4f4f5);
+  --theme-bg-secondary: var(--bg-secondary, #fff);
+  --theme-text-primary: var(--text-primary, #18181b);
+  --theme-text-secondary: var(--text-secondary, #52525b);
 }
 
 /* #endregion */
@@ -20,20 +26,27 @@
 /* #region Base */
 @layer base {
   :root {
-    @apply bg-zinc-100 text-zinc-950 dark:bg-zinc-900 dark:text-zinc-50;
     @apply font-sans antialiased;
+    background-color: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
   }
 
   html {
     @apply h-full;
+    background-color: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
   }
 
   body {
     @apply min-h-screen;
+    background-color: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
   }
 
   #root {
     @apply contents isolate;
+    background-color: var(--theme-bg-secondary);
+    color: var(--theme-text-secondary);
   }
 }
 
