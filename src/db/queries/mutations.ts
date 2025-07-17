@@ -1,11 +1,11 @@
 import { type PromiseExtended } from "dexie";
 
-import { type Binder } from "@/db/models/Binder";
-import { type Category } from "@/db/models/Category";
-import { type History } from "@/db/models/History";
-import { type Pictogram } from "@/db/models/Pictogram";
-import { type Setting } from "@/db/models/Setting";
-import { type User } from "@/db/models/User";
+import { type Binder } from "@/db/models";
+import { type Category } from "@/db/models";
+import { type History } from "@/db/models";
+import { type Pictogram } from "@/db/models";
+import { type Setting } from "@/db/models";
+import { type User } from "@/db/models";
 
 import { type PickNTalkDB } from "@/db/index";
 

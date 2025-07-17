@@ -9,12 +9,12 @@ export const SettingSchema = z.object({
   value: z.union([z.boolean(), z.number(), z.string(), z.object({})]),
 });
 
-export type SettingValidated = z.infer<typeof SettingSchema>;
+export type Setting = z.infer<typeof SettingSchema>;
 
 /**
  * Validation helpers
  */
-export const validateSetting = (data: unknown): SettingValidated => {
+export const validateSetting = (data: unknown): Setting => {
   return SettingSchema.parse(data);
 };
 
@@ -22,13 +22,13 @@ export const validateSettingSafe = (data: unknown) => {
   return SettingSchema.safeParse(data);
 };
 
-export const validateSettingPartial = (data: unknown): Partial<SettingValidated> => {
+export const validateSettingPartial = (data: unknown): Partial<Setting> => {
   return SettingSchema.partial().parse(data);
 };
 
 /**
  * Type guard for Setting validation
  */
-export const isValidSetting = (data: unknown): data is SettingValidated => {
+export const isValidSetting = (data: unknown): data is Setting => {
   return SettingSchema.safeParse(data).success;
 };

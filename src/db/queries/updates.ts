@@ -1,8 +1,8 @@
 import { type PromiseExtended } from "dexie";
 
-import { type Binder } from "@/db/models/Binder";
-import { type Category } from "@/db/models/Category";
-import { type Pictogram } from "@/db/models/Pictogram";
+import { type Binder } from "@/db/models";
+import { type Category } from "@/db/models";
+import { type Pictogram } from "@/db/models";
 
 import { type PickNTalkDB } from "@/db/index";
 

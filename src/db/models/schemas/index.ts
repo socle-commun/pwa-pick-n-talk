@@ -1,9 +1,19 @@
 /**
  * Central export point for all Zod validation schemas
- * 
+ *
  * This file provides unified access to all model validation schemas,
  * validation helpers, and type guards for runtime type safety.
  */
+
+// Shared types
+export {
+  RoleSchema,
+  EntityTypeSchema,
+  HistoryActionSchema,
+  type Role,
+  type EntityType,
+  type HistoryAction
+} from "./shared-types";
 
 // User schema and validators
 export {
@@ -12,7 +22,7 @@ export {
   validateUserSafe,
   validateUserPartial,
   isValidUser,
-  type UserValidated
+  type User
 } from "./User";
 
 // Binder schema and validators
@@ -22,7 +32,7 @@ export {
   validateBinderSafe,
   validateBinderPartial,
   isValidBinder,
-  type BinderValidated
+  type Binder
 } from "./Binder";
 
 // Category schema and validators
@@ -32,7 +42,7 @@ export {
   validateCategorySafe,
   validateCategoryPartial,
   isValidCategory,
-  type CategoryValidated
+  type Category
 } from "./Category";
 
 // Pictogram schema and validators
@@ -42,7 +52,7 @@ export {
   validatePictogramSafe,
   validatePictogramPartial,
   isValidPictogram,
-  type PictogramValidated
+  type Pictogram
 } from "./Pictogram";
 
 // History schema and validators
@@ -52,7 +62,7 @@ export {
   validateHistorySafe,
   validateHistoryPartial,
   isValidHistory,
-  type HistoryValidated
+  type History
 } from "./History";
 
 // Setting schema and validators
@@ -62,7 +72,7 @@ export {
   validateSettingSafe,
   validateSettingPartial,
   isValidSetting,
-  type SettingValidated
+  type Setting
 } from "./Setting";
 
 /**
