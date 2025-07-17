@@ -124,7 +124,7 @@ describe("Database Operations", () => {
       binders: [],
     });
 
-    const result = await db.getUser(user);
+    const result = await db.getUser(user.id);
     expect(result).toBeDefined();
     expect(result?.email).toBe("test@example.com");
   });
