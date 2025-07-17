@@ -29,7 +29,7 @@ vi.mock("react-i18next", () => ({
       };
 
       if (key === "accessibility.daltonism.enabled") {
-        return `Color adjustments are active for ${options?.type}`;
+        return `Color adjustments are active for ${options?.type || "unknown"}`;
       }
 
       return translations[key] || defaultValue || key;

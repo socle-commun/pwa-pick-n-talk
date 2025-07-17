@@ -73,8 +73,8 @@ export default function DaltonismModeToggle({ className, variant = "full" }: Dal
   );
 
   const statusMessage = daltonismConfig.enabled && (
-    <div className="mt-2 p-3 rounded-lg bg-blue-50 border border-blue-200 dark:bg-blue-900/20 dark:border-blue-800">
-      <div className="flex items-center gap-2 text-sm text-blue-700 dark:text-blue-300">
+    <div className="mt-2 p-3 rounded-lg bg-daltonism-info/10 border border-daltonism-info/30 dark:bg-daltonism-info/20 dark:border-daltonism-info/40">
+      <div className="flex items-center gap-2 text-sm text-daltonism-info dark:text-daltonism-info">
         <EyeIcon className="h-4 w-4" />
         <span>{t("accessibility.daltonism.enabled", { type: currentOption.label })}</span>
       </div>

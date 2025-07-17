@@ -135,3 +135,69 @@
 .ring-daltonism-info {
   --tw-ring-color: var(--daltonism-semantic-info);
 }
+
+/* Opacity variants for background colors */
+.bg-daltonism-success\/10 {
+  background-color: color-mix(in srgb, var(--daltonism-semantic-success) 10%, transparent);
+}
+
+.bg-daltonism-warning\/10 {
+  background-color: color-mix(in srgb, var(--daltonism-semantic-warning) 10%, transparent);
+}
+
+.bg-daltonism-error\/10 {
+  background-color: color-mix(in srgb, var(--daltonism-semantic-error) 10%, transparent);
+}
+
+.bg-daltonism-info\/10 {
+  background-color: color-mix(in srgb, var(--daltonism-semantic-info) 10%, transparent);
+}
+
+.bg-daltonism-success\/20 {
+  background-color: color-mix(in srgb, var(--daltonism-semantic-success) 20%, transparent);
+}
+
+.bg-daltonism-warning\/20 {
+  background-color: color-mix(in srgb, var(--daltonism-semantic-warning) 20%, transparent);
+}
+
+.bg-daltonism-error\/20 {
+  background-color: color-mix(in srgb, var(--daltonism-semantic-error) 20%, transparent);
+}
+
+.bg-daltonism-info\/20 {
+  background-color: color-mix(in srgb, var(--daltonism-semantic-info) 20%, transparent);
+}
+
+/* Opacity variants for border colors */
+.border-daltonism-success\/30 {
+  border-color: color-mix(in srgb, var(--daltonism-semantic-success) 30%, transparent);
+}
+
+.border-daltonism-warning\/30 {
+  border-color: color-mix(in srgb, var(--daltonism-semantic-warning) 30%, transparent);
+}
+
+.border-daltonism-error\/30 {
+  border-color: color-mix(in srgb, var(--daltonism-semantic-error) 30%, transparent);
+}
+
+.border-daltonism-info\/30 {
+  border-color: color-mix(in srgb, var(--daltonism-semantic-info) 30%, transparent);
+}
+
+.border-daltonism-success\/40 {
+  border-color: color-mix(in srgb, var(--daltonism-semantic-success) 40%, transparent);
+}
+
+.border-daltonism-warning\/40 {
+  border-color: color-mix(in srgb, var(--daltonism-semantic-warning) 40%, transparent);
+}
+
+.border-daltonism-error\/40 {
+  border-color: color-mix(in srgb, var(--daltonism-semantic-error) 40%, transparent);
+}
+
+.border-daltonism-info\/40 {
+  border-color: color-mix(in srgb, var(--daltonism-semantic-info) 40%, transparent);
+}

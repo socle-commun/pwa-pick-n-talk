@@ -1,6 +1,7 @@
 import { type DaltonismType } from "@/utils/daltonism/types";
 
 // Color swatches for each daltonism type based on semantic colors
+// These values match exactly with the CSS custom properties in daltonism.css
 export const COLOR_PREVIEWS: Record<DaltonismType, { success: string; warning: string; error: string; info: string }> = {
   none: {
     success: "rgb(34, 197, 94)",   // Original green
@@ -11,18 +12,18 @@ export const COLOR_PREVIEWS: Record<DaltonismType, { success: string; warning: s
   protanopia: {
     success: "rgb(59, 130, 246)",   // Blue for success - no green/red confusion
     warning: "rgb(234, 179, 8)",    // Bright yellow warning
-    error: "rgb(98, 49, 168)",      // Deep purple for errors - avoids red entirely
-    info: "rgb(34, 197, 94)"        // Green for info
+    error: "rgb(0, 51, 204)",       // Dark blue for errors - safe for red-blind users
+    info: "rgb(0, 206, 209)"        // Cyan for info - distinct from success blue
   },
   deuteranopia: {
     success: "rgb(59, 130, 246)",  // Success as blue
     warning: "rgb(234, 179, 8)",   // Yellow warning
-    error: "rgb(239, 68, 68)",     // Red error
+    error: "rgb(239, 68, 68)",     // Red error - more vivid
     info: "rgb(59, 130, 246)"      // Blue info
   },
   tritanopia: {
     success: "rgb(34, 197, 94)",   // Green success
-    warning: "rgb(239, 68, 68)",   // Warning as red
+    warning: "rgb(239, 68, 68)",   // Warning as red - more visible
     error: "rgb(220, 38, 38)",     // Darker red for errors
     info: "rgb(34, 197, 94)"       // Info as green
   }
