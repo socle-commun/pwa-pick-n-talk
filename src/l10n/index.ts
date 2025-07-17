@@ -4,8 +4,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
 
 /**
- * Initializes i18next for multi-language support.
- * Loads translations from /locales and detects user language.
+ * Initializes i18next for multi-language support with optimized loading.
+ * Loads translations lazily and detects user language.
  */
 i18n
   .use(HttpApi)
@@ -25,7 +25,23 @@ i18n
     backend: {
       // Translation files will be loaded from /locales/{{lng}}/translation.json
       loadPath: "/locales/{{lng}}/translation.json",
+      // Only load translations when needed
+      allowMultiLoading: false,
+      // Cache translations in localStorage for better performance
+      crossDomain: false,
     },
+    // Load only required namespaces
+    ns: ["translation"],
+    defaultNS: "translation",
+    // Lazy loading configuration
+    load: "languageOnly", // Load only the language, not the region
+    preload: [], // Don't preload all languages, load on demand
+    // Performance optimizations
+    cleanCode: true,
+    // Reduce bundle size by not loading unused features
+    saveMissing: false,
+    updateMissing: false,
+    saveMissingTo: "fallback",
   });
 
 export default i18n;

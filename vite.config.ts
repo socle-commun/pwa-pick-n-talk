@@ -5,6 +5,7 @@ import vitestConfig from "./vitest.config";
 
 import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
+import { visualizer } from "rollup-plugin-visualizer";
 
 import { resolve } from "path";
 
@@ -16,18 +17,38 @@ export default mergeConfig(
       rollupOptions: {
         output: {
           manualChunks: {
-            "react": ["react", "react-dom"],
+            // Core React libraries
+            "react-vendor": ["react", "react-dom"],
             "react-router": ["react-router"],
-            "cn": ["clsx", "tailwind-merge"],
-            "dexie": ["dexie", "dexie-react-hooks"],
-            "i18next": [
+            
+            // State management
+            "state-management": ["jotai"],
+            
+            // UI libraries (split by size and usage)
+            "ui-headless": ["@headlessui/react"],
+            "ui-icons": ["@heroicons/react"],
+            "ui-animations": ["framer-motion"],
+            
+            // Utilities
+            "utilities": ["clsx", "tailwind-merge"],
+            
+            // Database
+            "database": ["dexie", "dexie-react-hooks"],
+            
+            // i18n (keep together for efficiency)
+            "i18n": [
               "i18next",
               "react-i18next",
               "i18next-http-backend",
               "i18next-browser-languagedetector",
             ],
-            "ui": ["@headlessui/react", "framer-motion", "@heroicons/react"],
-            "state": ["jotai"]
+            
+            // Forms and validation
+            "forms": ["react-hook-form", "zod"],
+            
+            // Other utilities
+            "crypto": ["bcryptjs"],
+            "faker": ["@faker-js/faker"],
           },
         },
       },
@@ -46,7 +67,16 @@ export default mergeConfig(
       __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
     },
     logLevel: "info",
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(), 
+      tailwindcss(),
+      visualizer({
+        filename: "dist/bundle-analyzer.html",
+        open: false,
+        gzipSize: true,
+        brotliSize: true,
+      })
+    ],
     resolve: {
       alias: {
         "@": resolve(__dirname, "src"),
