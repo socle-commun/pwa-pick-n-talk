@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { atom, useAtom } from "jotai";
-import { type Setting, validateSettingSafe } from "@/db/models/schemas/Setting";
+import { getSetting, setSetting } from "@/utils/state/useSettings";
 import { 
   type DaltonismType, 
   type DaltonismConfig,
@@ -10,35 +10,6 @@ import {
 
 // Setting keys for localStorage
 const DALTONISM_SETTING_KEY = "daltonism_config";
-
-// Helper to get setting from localStorage
-const getSetting = (key: string): Setting | null => {
-  try {
-    const stored = localStorage.getItem(key);
-    if (!stored) return null;
-
-    const parsed = JSON.parse(stored);
-    const result = validateSettingSafe(parsed);
-    
-    return result.success ? result.data : null;
-  } catch {
-    return null;
-  }
-};
-
-// Helper to set setting in localStorage
-const setSetting = (key: string, value: any): void => {
-  try {
-    const setting: Setting = { key, value };
-    const result = validateSettingSafe(setting);
-    
-    if (result.success) {
-      localStorage.setItem(key, JSON.stringify(setting));
-    }
-  } catch (error) {
-    console.error(`Failed to save setting ${key}:`, error);
-  }
-};
 
 // Load initial daltonism config from localStorage
 const loadInitialDaltonismConfig = (): DaltonismConfig => {
