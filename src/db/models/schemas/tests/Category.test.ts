@@ -32,10 +32,10 @@ describe("Category Schema Validation", () => {
     expect(isValidCategory(categoryWithoutProperties)).toBe(true);
   });
 
-  it("uses default empty array for pictograms", () => {
+  it("pictograms is optional and undefined when not provided", () => {
     const { pictograms, ...categoryWithoutPictograms } = validCategory;
     const result = CategorySchema.parse(categoryWithoutPictograms);
-    expect(result.pictograms).toEqual([]);
+    expect(result.pictograms).toBeUndefined();
   });
 
   it("validates category with complex properties structure", () => {

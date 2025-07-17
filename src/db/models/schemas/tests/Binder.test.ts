@@ -41,11 +41,11 @@ describe("Binder Schema Validation", () => {
     expect(() => validateBinder(binderWithProperties)).not.toThrow();
   });
 
-  it("uses default values for arrays", () => {
+  it("arrays are optional and undefined when not provided", () => {
     const { pictograms, users, ...binderWithoutArrays } = validBinder;
     const result = BinderSchema.parse(binderWithoutArrays);
-    expect(result.pictograms).toEqual([]);
-    expect(result.users).toEqual([]);
+    expect(result.pictograms).toBeUndefined();
+    expect(result.users).toBeUndefined();
   });
 
   it("uses default false for isFavorite", () => {
