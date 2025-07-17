@@ -27,6 +27,14 @@ describe("Binder CRUD", () => {
     expect(deleted).toBeUndefined();
   });
 
+  it("should reject creation of duplicate Binder ID", async () => {
+    const binder = { id: "dup-binder", author: "u1", isFavorite: false, pictograms: [], users: [] };
+    await db.createBinder(binder);
+    // Try to create again with same ID
+    await expect(db.createBinder(binder)).rejects.toThrow();
+    await db.deleteBinder("dup-binder");
+  });
+
   it("should not update non-existent Binder", async () => {
     const binder = { id: "missing", author: "none", isFavorite: false, pictograms: [], users: [] };
     await expect(db.updateBinder(binder)).resolves.toBeUndefined();

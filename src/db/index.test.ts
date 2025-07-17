@@ -56,6 +56,7 @@ describe("PickNTalkDB", () => {
     expect(typeof db.updateBinder).toBe("function");
     expect(typeof db.updatePictogram).toBe("function");
     expect(typeof db.updateCategory).toBe("function");
+    expect(typeof db.updateUser).toBe("function");
   });
 
   it("should have all deletion methods", () => {
