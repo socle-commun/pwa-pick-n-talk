@@ -32,7 +32,7 @@ describe("Category Schema Validation", () => {
     expect(isValidCategory(categoryWithoutProperties)).toBe(true);
   });
 
-  it("pictograms is optional and undefined when not provided", () => {
+  it("pictograms are optional and undefined when not provided", () => {
     const { pictograms, ...categoryWithoutPictograms } = validCategory;
     const result = CategorySchema.parse(categoryWithoutPictograms);
     expect(result.pictograms).toBeUndefined();
