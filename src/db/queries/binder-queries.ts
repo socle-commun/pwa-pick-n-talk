@@ -1,6 +1,6 @@
 import { type PromiseExtended } from "dexie";
 
-import { type Binder } from "@/db/models/Binder";
+import { type Binder } from "@/db/models";
 
 import { type PickNTalkDB } from "@/db/index";
 

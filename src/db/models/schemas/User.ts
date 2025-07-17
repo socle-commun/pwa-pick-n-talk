@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { RoleSchema } from "./shared-types";
 
 /**
  * Zod schema for User model validation
@@ -9,17 +10,17 @@ export const UserSchema = z.object({
   name: z.string().min(1, "validation.errors.field_empty").max(100, "validation.errors.string_too_long"),
   email: z.string().email("validation.errors.invalid_email"),
   hash: z.string().optional(),
-  role: z.enum(["user", "caregiver", "professional"]),
-  settings: z.record(z.string(), z.union([z.boolean(), z.number(), z.string(), z.object({})])),
+  role: RoleSchema,
+  settings: z.record(z.string(), z.union([z.boolean(), z.number(), z.string(), z.record(z.string(), z.any())])),
   binders: z.array(z.string()).default([]),
 });
 
-export type UserValidated = z.infer<typeof UserSchema>;
+export type User = z.infer<typeof UserSchema>;
 
 /**
  * Validation helpers
  */
-export const validateUser = (data: unknown): UserValidated => {
+export const validateUser = (data: unknown): User => {
   return UserSchema.parse(data);
 };
 
@@ -27,13 +28,13 @@ export const validateUserSafe = (data: unknown) => {
   return UserSchema.safeParse(data);
 };
 
-export const validateUserPartial = (data: unknown): Partial<UserValidated> => {
+export const validateUserPartial = (data: unknown): Partial<User> => {
   return UserSchema.partial().parse(data);
 };
 
 /**
  * Type guard for User validation
  */
-export const isValidUser = (data: unknown): data is UserValidated => {
+export const isValidUser = (data: unknown): data is User => {
   return UserSchema.safeParse(data).success;
 };

@@ -1,11 +1,11 @@
 import Dexie, { type PromiseExtended, type Table } from "dexie";
 
-import { type Binder } from "@/db/models/Binder";
-import { type Category } from "@/db/models/Category";
-import { type History } from "@/db/models/History";
-import { type Pictogram } from "@/db/models/Pictogram";
-import { type Setting } from "@/db/models/Setting";
-import type { User } from "@/db/models/User";
+import { type Binder } from "@/db/models";
+import { type Category } from "@/db/models";
+import { type History } from "@/db/models";
+import { type Pictogram } from "@/db/models";
+import { type Setting } from "@/db/models";
+import type { User } from "@/db/models";
 
 
 
@@ -88,11 +88,11 @@ export class PickNTalkDB extends Dexie {
   public getCategoriesFromBinderId!: (binderId: string) => PromiseExtended<Category[]>;
 
   // Mutations
-  public createBinder!: (binder: Binder) => any;
-  public createCategory!: (category: Category) => any;
-  public createHistory!: (history: History) => any;
-  public createPictogram!: (pictogram: Pictogram) => any;
-  public createSetting!: (setting: Setting) => any;
+  public createBinder!: (binder: Binder) => PromiseExtended<string>;
+  public createCategory!: (category: Category) => PromiseExtended<string>;
+  public createHistory!: (history: History) => PromiseExtended<string>;
+  public createPictogram!: (pictogram: Pictogram) => PromiseExtended<string>;
+  public createSetting!: (setting: Setting) => PromiseExtended<string>;
   public createUser!: (user: User) => PromiseExtended<string>;
 
   // Updates
@@ -101,10 +101,10 @@ export class PickNTalkDB extends Dexie {
   public updateCategory!: (category: Category) => PromiseExtended<void>;
 
   // Deletions
-  public deleteBinder!: (binderId: string) => any;
-  public deleteCategory!: (id: string) => any;
-  public deletePictogram!: (id: string) => void;
-  public deleteUser!: (id: string) => void;
+  public deleteBinder!: (binderId: string) => PromiseExtended<void>;
+  public deleteCategory!: (id: string) => PromiseExtended<void>;
+  public deletePictogram!: (id: string) => PromiseExtended<void>;
+  public deleteUser!: (id: string) => PromiseExtended<void>;
 }
 
 export const db = new PickNTalkDB();

@@ -69,10 +69,10 @@ describe("Pictogram Schema Validation", () => {
     expect(result.isFavorite).toBe(false);
   });
 
-  it("uses default empty array for categories", () => {
+  it("categories is optional and undefined when not provided", () => {
     const { categories, ...pictogramWithoutCategories } = validPictogram;
     const result = PictogramSchema.parse(pictogramWithoutCategories);
-    expect(result.categories).toEqual([]);
+    expect(result.categories).toBeUndefined();
   });
 
   it("validates pictogram with minimal required fields", () => {

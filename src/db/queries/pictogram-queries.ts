@@ -1,7 +1,7 @@
 import { type PromiseExtended } from "dexie";
 
-import { type Category } from "@/db/models/Category";
-import { type Pictogram } from "@/db/models/Pictogram";
+import { type Category } from "@/db/models";
+import { type Pictogram } from "@/db/models";
 
 import { type PickNTalkDB } from "@/db/index";
 
