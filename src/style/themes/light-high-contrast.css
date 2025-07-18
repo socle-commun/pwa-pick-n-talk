@@ -1,0 +1,52 @@
+/**
+ * Light theme - High Contrast (enhanced visibility)
+ */
+:root.high-contrast {
+  /* Background colors - Increased contrast */
+  --bg-primary: rgb(255 255 255); /* Pure white background */
+  --bg-secondary: rgb(255 255 255); /* Pure white for cards, panels */
+  --bg-tertiary: rgb(248 248 248); /* Very light background */
+  --bg-overlay: rgba(0 0 0 / 0.8); /* Stronger overlays */
+  
+  /* Text colors - Maximum contrast */
+  --text-primary: rgb(0 0 0); /* Pure black text */
+  --text-secondary: rgb(0 0 0); /* Black secondary text */
+  --text-tertiary: rgb(64 64 64); /* Dark gray for muted text */
+  --text-inverse: rgb(255 255 255); /* White text on dark backgrounds */
+  
+  /* Border colors - Strong borders */
+  --border-primary: rgb(0 0 0); /* Black borders */
+  --border-secondary: rgb(64 64 64); /* Dark gray borders */
+  --border-focus: rgb(0 0 255); /* Bright blue for focus */
+  
+  /* Semantic colors - High contrast variants */
+  --success-primary: rgb(0 128 0); /* Strong green */
+  --success-secondary: rgb(230 255 230); /* Light green background */
+  --success-text: rgb(0 100 0); /* Dark green text */
+  --success-border: rgb(0 180 0); /* Medium green borders */
+  
+  /* Warning colors */
+  --warning-primary: rgb(255 140 0); /* Strong orange */
+  --warning-secondary: rgb(255 248 230); /* Light orange background */
+  --warning-text: rgb(180 100 0); /* Dark orange text */
+  --warning-border: rgb(255 180 0); /* Medium orange borders */
+  
+  /* Error colors */
+  --error-primary: rgb(220 0 0); /* Strong red */
+  --error-secondary: rgb(255 230 230); /* Light red background */
+  --error-text: rgb(180 0 0); /* Dark red text */
+  --error-border: rgb(255 100 100); /* Medium red borders */
+  
+  /* Info colors */
+  --info-primary: rgb(0 0 255); /* Strong blue */
+  --info-secondary: rgb(230 240 255); /* Light blue background */
+  --info-text: rgb(0 0 180); /* Dark blue text */
+  --info-border: rgb(100 150 255); /* Medium blue borders */
+  
+  /* Interactive colors - High contrast */
+  --interactive-primary: rgb(0 0 255); /* Bright blue */
+  --interactive-secondary: rgb(100 100 100); /* Gray */
+  --interactive-hover: rgb(0 0 200); /* Darker blue hover */
+  --interactive-active: rgb(0 0 150); /* Even darker blue active */
+  --interactive-disabled: rgb(160 160 160); /* Light gray disabled */
+}

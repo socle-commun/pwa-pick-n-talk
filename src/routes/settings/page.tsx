@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import LocaleSelector from "@/components/ui/LocaleSelector";
 import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
 import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
+import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
+import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
 import cn from "@/utils/cn";
 
 export default function SettingsPage() {
@@ -32,7 +34,9 @@ export default function SettingsPage() {
               {t("settings.accessibility.title", "Accessibility")}
             </h2>
             <div className="max-w-md space-y-4">
+              <FontSizeSelector />
               <ThemeModeToggle />
+              <HighContrastModeToggle />
               <DaltonismModeToggle />
             </div>
           </div>

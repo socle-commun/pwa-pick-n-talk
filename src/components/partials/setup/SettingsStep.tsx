@@ -5,6 +5,8 @@ import { Switch } from "@/components/ui/data-input/switch";
 import LocaleSelector from "@/components/ui/LocaleSelector";
 import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
 import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
+import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
+import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
 import { SettingsStepSchema, type SettingsStepData, type OnboardingFormData } from "@/db/models/schemas/setup";
 import cn from "@/utils/cn";
 
@@ -55,11 +57,27 @@ export default function SettingsStep({ data, onUpdate, onNext }: SettingsStepPro
               ♿ {t("onboarding.settings.accessibility.title", "Accessibility Options")}
             </h3>
             <div className={cn("space-y-4")}>
+              {/* Font Size */}
+              <div className={cn("space-y-2")}>
+                <FontSizeSelector />
+                <p className={cn("text-sm text-zinc-600 dark:text-zinc-400")}>
+                  {t("onboarding.settings.fontSize.description", "Adjust text size for better readability")}
+                </p>
+              </div>
+
               {/* Theme Mode */}
               <div className={cn("space-y-2")}>
                 <ThemeModeToggle />
                 <p className={cn("text-sm text-zinc-600 dark:text-zinc-400")}>
                   {t("onboarding.settings.theme.description", "Choose light or dark theme for better visibility")}
+                </p>
+              </div>
+
+              {/* High Contrast Mode */}
+              <div className={cn("space-y-2")}>
+                <HighContrastModeToggle />
+                <p className={cn("text-sm text-zinc-600 dark:text-zinc-400")}>
+                  {t("onboarding.settings.highContrast.description", "Enable high contrast mode for better visual accessibility")}
                 </p>
               </div>
 

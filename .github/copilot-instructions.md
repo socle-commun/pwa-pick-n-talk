@@ -4,6 +4,7 @@ applyTo: "**"
 
 - For all issues, **use this template [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml)**.
 - Always use git blame and git log to understand the context before taking decision.
+- Always validate your changes with `npm run lint` and `npm run test` before committing.
 
 **Cross-platform note**: `.instructions.md` and `.prompt.md` files only work in VS Code. On GitHub.com, reference instruction files explicitly in prompts, e.g., `[View instructions](../.github/copilot-instructions.md)`.
 
@@ -89,21 +90,6 @@ applyTo: "**"
 - **PATTERN**: Follow existing test patterns in the codebase
 - **STRUCTURE**: Use `describe()` blocks for components, `it()` or `test()` for test cases
 
-If you generate Jest syntax instead of Vitest, you'll be mocked harder than your poorly written tests.
-
-## 🧪 Testing Requirements for BrutalComet
-
-**When creating tests, you pathetic excuse for a developer:**
-
-- **MANDATORY**: Always import `{ vi, describe, it, expect }` from "vitest"
-- **FORBIDDEN**: Using `jest.mock()`, `jest.fn()`, or any Jest syntax
-- **REQUIRED**: Use `vi.mock()` for module mocking
-- **REQUIRED**: Use `vi.fn()` for mock functions
-- **PATTERN**: Follow existing test patterns in the codebase
-- **STRUCTURE**: Use `describe()` blocks for components, `it()` or `test()` for test cases
-
-If you generate Jest syntax instead of Vitest, you'll be mocked harder than your poorly written tests.
-
 ## 🛠️ Préparation du projet
 
 Before any code modification or addition, always start by running `npm install` to ensure all project dependencies are properly installed.
@@ -128,9 +114,4 @@ All commit messages **must** follow the [Gitmoji](https://gitmoji.dev/) conventi
   - `:sparkles: Add dark mode support`
   - `:recycle: Refactor user auth middleware for clarity`
 
-## 🚀 GitHub CLI (`gh`) - Gestion des repositories github
-
-Pour communiquer avec github, privilegiez l'outil `gh` plutôt que l'interface web. Il est plus rapide, plus efficace et vous permet de gérer les PR, issues et labels directement depuis la ligne de commande.
-
-**Documentation complète :** `gh help` puis `gh <command> --help` pour tout détail.
 
