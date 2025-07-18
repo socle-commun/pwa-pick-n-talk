@@ -21,7 +21,7 @@ export function getBinder(this: PickNTalkDB, id: string): PromiseExtended<Binder
 /**
  * Create a new binder
  */
-export function createBinder(this: PickNTalkDB, binder: Binder) {
+export function createBinder(this: PickNTalkDB, binder: Binder): PromiseExtended<string> {
   return this.binders.add(binder);
 }
 
@@ -38,7 +38,7 @@ export function updateBinder(
 /**
  * Delete a binder and all its associated pictograms
  */
-export function deleteBinder(this: PickNTalkDB, binderId: string) {
+export function deleteBinder(this: PickNTalkDB, binderId: string): PromiseExtended<void> {
   return this.transaction("rw", this.pictograms, this.binders, async () => {
     await this.pictograms.where({ binder: binderId }).delete();
     await this.binders.delete(binderId);

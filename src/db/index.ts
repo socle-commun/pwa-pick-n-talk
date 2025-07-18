@@ -60,6 +60,8 @@ export class PickNTalkDB extends Dexie {
     this.deletePictogram = pictogramQueries.deletePictogram.bind(this);
 
     // Category queries
+    this.getCategories = categoryQueries.getCategories.bind(this);
+    this.getCategory = categoryQueries.getCategory.bind(this);
     this.getCategoriesFromBinderId = categoryQueries.getCategoriesFromBinderId.bind(this);
     this.createCategory = categoryQueries.createCategory.bind(this);
     this.updateCategory = categoryQueries.updateCategory.bind(this);
@@ -70,6 +72,8 @@ export class PickNTalkDB extends Dexie {
     this.createHistory = historyQueries.createHistory.bind(this);
 
     // Setting queries
+    this.getSettings = settingQueries.getSettings.bind(this);
+    this.getSetting = settingQueries.getSetting.bind(this);
     this.createSetting = settingQueries.createSetting.bind(this);
 
     // Global queries
@@ -98,6 +102,8 @@ export class PickNTalkDB extends Dexie {
   public deletePictogram!: (id: string) => PromiseExtended<void>;
 
   // Category queries
+  public getCategories!: () => PromiseExtended<Category[]>;
+  public getCategory!: (id: string) => PromiseExtended<Category | undefined>;
   public getCategoriesFromBinderId!: (binderId: string) => PromiseExtended<Category[]>;
   public createCategory!: (category: Category) => PromiseExtended<string>;
   public updateCategory!: (category: Category) => PromiseExtended<void>;
@@ -108,6 +114,8 @@ export class PickNTalkDB extends Dexie {
   public createHistory!: (history: History) => PromiseExtended<string>;
 
   // Setting queries
+  public getSettings!: () => PromiseExtended<Setting[]>;
+  public getSetting!: (key: string) => PromiseExtended<Setting | undefined>;
   public createSetting!: (setting: Setting) => PromiseExtended<string>;
 
   // Global queries

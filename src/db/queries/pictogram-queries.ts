@@ -17,7 +17,7 @@ export function getPictogramsFromBinderId(
 /**
  * Create a new pictogram
  */
-export function createPictogram(this: PickNTalkDB, pictogram: Pictogram) {
+export function createPictogram(this: PickNTalkDB, pictogram: Pictogram): PromiseExtended<string> {
   return this.pictograms.add(pictogram);
 }
 
@@ -34,6 +34,6 @@ export function updatePictogram(
 /**
  * Delete a pictogram
  */
-export function deletePictogram(this: PickNTalkDB, id: string) {
+export function deletePictogram(this: PickNTalkDB, id: string): PromiseExtended<void> {
   return this.pictograms.delete(id);
 }

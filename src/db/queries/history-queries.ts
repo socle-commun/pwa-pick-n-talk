@@ -7,7 +7,7 @@ import { type PickNTalkDB } from "@/db/index";
 /**
  * Create a new history record
  */
-export function createHistory(this: PickNTalkDB, history: History) {
+export function createHistory(this: PickNTalkDB, history: History): PromiseExtended<string> {
   return this.history.add(history);
 }
 
