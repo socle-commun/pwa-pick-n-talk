@@ -2,6 +2,48 @@
   "home": {
     "title": "Bienvenue sur Pick'n'Talk"
   },
+  "homepage": {
+    "hero": {
+      "title": "Communiquez avec Confiance",
+      "subtitle": "Pick'n'Talk facilite la communication grâce à des classeurs de pictogrammes personnalisables, conçus pour tous ceux qui ont besoin d'outils de communication alternatifs.",
+      "cta": {
+        "primary": "Commencer",
+        "secondary": "En Savoir Plus"
+      }
+    },
+    "cta": {
+      "title": "Prêt à Commencer ?",
+      "description": "Rejoignez des milliers d'utilisateurs qui ont amélioré leur communication avec Pick'n'Talk."
+    },
+    "features": {
+      "title": "Pourquoi Choisir Pick'n'Talk ?",
+      "items": {
+        "customizable": {
+          "title": "Entièrement Personnalisable",
+          "description": "Créez des classeurs de communication personnalisés adaptés à vos besoins et préférences spécifiques."
+        },
+        "accessible": {
+          "title": "Conception Accessible",
+          "description": "Conçu avec l'accessibilité à l'esprit, prenant en charge plusieurs langues et fonctionnalités d'accessibilité visuelle."
+        },
+        "offline": {
+          "title": "Fonctionne Hors Ligne",
+          "description": "Utilisez vos outils de communication à tout moment, n'importe où - aucune connexion internet requise."
+        }
+      }
+    },
+    "authenticated": {
+      "welcome": "Bon retour, {{name}} !",
+      "quick_actions": "Actions Rapides",
+      "recent_binders": "Classeurs Récents",
+      "no_binders": "Aucun classeur encore. Créez votre premier pour commencer !"
+    },
+    "empty_state": {
+      "title": "Commençons",
+      "subtitle": "Il semble que ce soit votre première utilisation de Pick'n'Talk. Créons votre profil de communication !",
+      "cta": "Créer Votre Premier Classeur"
+    }
+  },
   "language": {
     "selector": {
       "label": "Langue",
