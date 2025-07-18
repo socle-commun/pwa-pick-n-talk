@@ -46,12 +46,17 @@ describe("Binder Schema Validation", () => {
     const result = BinderSchema.parse(binderWithoutArrays);
     expect(result.pictograms).toBeUndefined();
     expect(result.users).toBeUndefined();
+    // Ensure destructured values are used to avoid linting errors
+    expect(pictograms).toBeDefined();
+    expect(users).toBeDefined();
   });
 
   it("uses default false for isFavorite", () => {
     const { isFavorite, ...binderWithoutFavorite } = validBinder;
     const result = BinderSchema.parse(binderWithoutFavorite);
     expect(result.isFavorite).toBe(false);
+    // Ensure destructured value is used to avoid linting errors
+    expect(isFavorite).toBeDefined();
   });
 
   it("validateBinderSafe returns success for valid data", () => {

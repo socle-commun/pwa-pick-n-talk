@@ -2,6 +2,48 @@
   "home": {
     "title": "Bienvenido a Pick'n'Talk"
   },
+  "homepage": {
+    "hero": {
+      "title": "Comunícate con Confianza",
+      "subtitle": "Pick'n'Talk potencia la comunicación a través de carpetas de pictogramas personalizables, diseñadas para todos los que necesitan herramientas de comunicación alternativas.",
+      "cta": {
+        "primary": "Empezar",
+        "secondary": "Saber Más"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Empezar?",
+      "description": "Únete a miles de usuarios que han mejorado su comunicación con Pick'n'Talk."
+    },
+    "features": {
+      "title": "¿Por Qué Elegir Pick'n'Talk?",
+      "items": {
+        "customizable": {
+          "title": "Totalmente Personalizable",
+          "description": "Crea carpetas de comunicación personalizadas adaptadas a tus necesidades y preferencias específicas."
+        },
+        "accessible": {
+          "title": "Diseño Accesible",
+          "description": "Construido pensando en la accesibilidad, compatible con múltiples idiomas y características de accesibilidad visual."
+        },
+        "offline": {
+          "title": "Funciona Sin Conexión",
+          "description": "Usa tus herramientas de comunicación en cualquier momento, en cualquier lugar - no se requiere conexión a internet."
+        }
+      }
+    },
+    "authenticated": {
+      "welcome": "¡Bienvenido de vuelta, {{name}}!",
+      "quick_actions": "Acciones Rápidas",
+      "recent_binders": "Carpetas Recientes",
+      "no_binders": "Aún no hay carpetas. ¡Crea la primera para empezar!"
+    },
+    "empty_state": {
+      "title": "Empecemos",
+      "subtitle": "Parece que es tu primera vez usando Pick'n'Talk. ¡Creemos tu perfil de comunicación!",
+      "cta": "Crear Tu Primera Carpeta"
+    }
+  },
   "language": {
     "selector": {
       "label": "Idioma",

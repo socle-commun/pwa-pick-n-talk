@@ -107,6 +107,22 @@ export class PickNTalkDB extends Dexie {
   public deleteCategory!: (id: string) => PromiseExtended<void>;
   public deletePictogram!: (id: string) => PromiseExtended<void>;
   public deleteUser!: (id: string) => PromiseExtended<void>;
+
+  // Database state checks
+  public async isEmpty(): Promise<boolean> {
+    try {
+      const binderCount = await this.binders.count();
+      const pictogramCount = await this.pictograms.count();
+      const categoryCount = await this.categories.count();
+
+      // Database is empty if there are no binders, pictograms, or categories
+      return binderCount === 0 && pictogramCount === 0 && categoryCount === 0;
+    } catch (error) {
+      console.error("Failed to check if database is empty:", error);
+      // In case of error, assume database is not empty to avoid incorrect redirects
+      return false;
+    }
+  }
 }
 
 export const db = new PickNTalkDB();

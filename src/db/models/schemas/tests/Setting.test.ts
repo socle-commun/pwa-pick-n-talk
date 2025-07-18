@@ -1,5 +1,6 @@
+/* eslint-disable max-lines */
 import { describe, it, expect } from "vitest";
-import { SettingSchema, validateSetting, validateSettingSafe, isValidSetting } from "../Setting";
+import { validateSetting, validateSettingSafe, isValidSetting } from "../Setting";
 
 describe("Setting Schema Validation", () => {
   it("validates setting with string value", () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { HistorySchema, validateHistory, validateHistorySafe, isValidHistory } from "../History";
+import { validateHistory, validateHistorySafe, isValidHistory } from "../History";
 
 describe("History Schema Validation", () => {
   const validHistory = {
