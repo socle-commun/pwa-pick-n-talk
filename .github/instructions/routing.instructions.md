@@ -7,6 +7,7 @@ applyTo: "src/routes/**/*.tsx"
 ## 📏 Rules
 
 - **React Router v7** - Use modern hooks (`useNavigate`, `useParams`, `useLocation`)
+- **Import from react-router** - Use `import { Outlet } from "react-router"` instead of `react-router-dom`
 - **File structure** - Pages in `src/routes/` with nested folders for organization
 - **Layout pattern** - Use `<Outlet />` for nested rendering
 - **Navigation** - Declarative with UI components, avoid imperative navigation
@@ -34,7 +35,7 @@ src/routes/
 ### Layout Component
 ```tsx
 // src/routes/layout.tsx
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import { StackedLayout } from "@/components/ui/layout";
 import NavBar from "@/components/partials/navigation/NavBar";
 import SideBar from "@/components/partials/navigation/SideBar";
@@ -51,7 +52,7 @@ export default function Layout() {
 ### Page Component
 ```tsx
 // src/routes/binders/[uuid]/page.tsx
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { useLiveQuery } from "dexie-react-hooks";
 import { BinderContent } from "@/components/partials/binders";
 import { ErrorFallback } from "@/components/ui/feedback";
@@ -87,7 +88,7 @@ import { Link } from "@/components/ui/navigation";
 ### App Router Setup
 ```tsx
 // src/App.tsx
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "@/routes/layout";
 import IndexPage from "@/routes/page";
 import BindersPage from "@/routes/binders/page";
@@ -133,7 +134,7 @@ export default function ErrorPage() {
 
 ```tsx
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import { vi, describe, it, expect } from "vitest";
 import BinderPage from "@/routes/binders/[uuid]/page";
 
@@ -143,8 +144,8 @@ const RouterWrapper = ({ children }: { children: React.ReactNode }) => (
 
 describe("Routing", () => {
   it("renders binder page with uuid", () => {
-    vi.mock("react-router-dom", async () => ({
-      ...(await vi.importActual("react-router-dom")),
+    vi.mock("react-router", async () => ({
+      ...(await vi.importActual("react-router")),
       useParams: () => ({ uuid: "test-uuid" }),
     }));
 
