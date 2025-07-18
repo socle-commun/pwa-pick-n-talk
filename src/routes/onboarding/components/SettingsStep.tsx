@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Form } from "@/components/ui/forms";
 import { Switch } from "@/components/ui/data-input/switch";
 import LocaleSelector from "@/components/ui/LocaleSelector";
+import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
+import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
 import { SettingsStepSchema, type SettingsStepData, type OnboardingFormData } from "../schemas/onboarding";
 import cn from "@/utils/cn";
 
@@ -28,10 +30,10 @@ export default function SettingsStep({ data, onUpdate, onNext }: SettingsStepPro
   return (
     <div className={cn("space-y-6")}>
       <div className={cn("text-center mb-8")}>
-        <div className={cn("text-4xl mb-4")}>⚙️</div>
+        <div className={cn("text-4xl mb-4")}>♿</div>
         <p className={cn("text-lg text-zinc-600 dark:text-zinc-400")}>
           {t("onboarding.settings.intro", 
-            "Let's configure your preferences to personalize your Pick & Talk experience."
+            "First, let's configure your accessibility preferences and personalize your Pick & Talk experience."
           )}
         </p>
       </div>
@@ -47,6 +49,30 @@ export default function SettingsStep({ data, onUpdate, onNext }: SettingsStepPro
         className="space-y-8"
       >
         <div className={cn("space-y-6")}>
+          {/* Accessibility Section */}
+          <div className={cn("border border-zinc-200 dark:border-zinc-700 rounded-lg p-6")}>
+            <h3 className={cn("text-lg font-semibold mb-4 flex items-center gap-2")}>
+              ♿ {t("onboarding.settings.accessibility.title", "Accessibility Options")}
+            </h3>
+            <div className={cn("space-y-4")}>
+              {/* Theme Mode */}
+              <div className={cn("space-y-2")}>
+                <ThemeModeToggle />
+                <p className={cn("text-sm text-zinc-600 dark:text-zinc-400")}>
+                  {t("onboarding.settings.theme.description", "Choose light or dark theme for better visibility")}
+                </p>
+              </div>
+
+              {/* Daltonism Support */}
+              <div className={cn("space-y-2")}>
+                <DaltonismModeToggle />
+                <p className={cn("text-sm text-zinc-600 dark:text-zinc-400")}>
+                  {t("onboarding.settings.daltonism.description", "Adjust colors for color vision accessibility")}
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Language Selection */}
           <div className={cn("space-y-3")}>
             <label className={cn("block text-sm font-medium")}>
@@ -93,13 +119,13 @@ export default function SettingsStep({ data, onUpdate, onNext }: SettingsStepPro
           </div>
         </div>
 
-        <div className={cn("bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg")}>
-          <h3 className={cn("font-semibold text-amber-800 dark:text-amber-200 mb-2")}>
+        <div className={cn("bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg")}>
+          <h3 className={cn("font-semibold text-blue-800 dark:text-blue-200 mb-2")}>
             ℹ️ {t("onboarding.settings.note.title", "Note")}
           </h3>
-          <p className={cn("text-amber-700 dark:text-amber-300 text-sm")}>
+          <p className={cn("text-blue-700 dark:text-blue-300 text-sm")}>
             {t("onboarding.settings.note.content", 
-              "You can change these settings anytime in the app's preferences. These are just your starting preferences."
+              "These settings help ensure Pick & Talk works best for your needs. You can change any of these settings later in the app preferences."
             )}
           </p>
         </div>
@@ -112,7 +138,7 @@ export default function SettingsStep({ data, onUpdate, onNext }: SettingsStepPro
               "focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
             )}
           >
-            {t("onboarding.settings.save", "Save Preferences")}
+            {t("onboarding.settings.continue", "Continue to Welcome")}
           </button>
         </div>
       </Form>

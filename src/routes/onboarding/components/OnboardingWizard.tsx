@@ -16,9 +16,9 @@ import type { OnboardingFormData } from "../schemas/onboarding";
 import cn from "@/utils/cn";
 
 const STEPS = [
+  { id: "settings", title: "Accessibility & Preferences", component: SettingsStep },
   { id: "welcome", title: "Welcome", component: WelcomeStep },
   { id: "binder", title: "Create Your First Binder", component: BinderCreationStep },
-  { id: "settings", title: "Preferences", component: SettingsStep },
   { id: "completion", title: "All Set!", component: CompletionStep },
 ];
 
@@ -28,12 +28,14 @@ export default function OnboardingWizard() {
   const navigate = useNavigate();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [formData, setFormData] = useState<Partial<OnboardingFormData>>({
-    welcomeAcknowledged: false,
-    binderName: "",
-    binderDescription: "",
     enableNotifications: true,
     preferredLanguage: "en",
     enableSounds: true,
+    welcomeAcknowledged: false,
+    binderName: "",
+    binderDescription: "",
+    binderCategories: [],
+    binderPictograms: [],
     completed: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,6 +77,45 @@ export default function OnboardingWizard() {
       // Create the binder if provided
       if (formData.binderName) {
         const binderId = crypto.randomUUID();
+        
+        // Create categories first if any were added
+        const categoryIds: string[] = [];
+        if (formData.binderCategories && formData.binderCategories.length > 0) {
+          for (const categoryData of formData.binderCategories) {
+            const categoryId = crypto.randomUUID();
+            await db.createCategory({
+              id: categoryId,
+              properties: {
+                name: { en: categoryData.name },
+              },
+              pictograms: [],
+            });
+            categoryIds.push(categoryId);
+          }
+        }
+
+        // Create pictograms if any were selected
+        const pictogramIds: string[] = [];
+        if (formData.binderPictograms && formData.binderPictograms.length > 0) {
+          // In a real implementation, you would fetch the actual pictogram data
+          // For now, we'll create placeholder pictograms based on the selection
+          for (let i = 0; i < formData.binderPictograms.length; i++) {
+            const pictogramId = formData.binderPictograms[i];
+            const newPictogramId = crypto.randomUUID();
+            await db.createPictogram({
+              id: newPictogramId,
+              binder: binderId,
+              isFavorite: false,
+              order: i, // Add required order field
+              properties: {
+                name: { en: pictogramId }, // Simplified for demo
+              },
+              categories: categoryIds, // Associate with created categories
+            });
+            pictogramIds.push(newPictogramId);
+          }
+        }
+
         await db.createBinder({
           id: binderId,
           author: user.id,
@@ -82,7 +123,7 @@ export default function OnboardingWizard() {
             name: { en: formData.binderName },
             description: { en: formData.binderDescription || "" },
           },
-          pictograms: [],
+          pictograms: pictogramIds,
           users: [user.id],
           isFavorite: false,
         });
