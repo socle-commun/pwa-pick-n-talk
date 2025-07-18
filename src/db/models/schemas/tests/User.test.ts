@@ -9,6 +9,7 @@ describe("User Schema Validation", () => {
     role: "user" as const,
     settings: { theme: "dark", notifications: true },
     binders: ["binder-1", "binder-2"],
+    hasCompletedOnboarding: false,
   };
 
   it("validates a correct user object", () => {
@@ -57,11 +58,13 @@ describe("User Schema Validation", () => {
     expect(() => validateUser(userWithHash)).not.toThrow();
   });
 
-  it("uses default empty array for binders", () => {
-    const { binders, ...userWithoutBinders } = validUser;
+  it("uses default empty array for binders and false for onboarding", () => {
+    const { binders, hasCompletedOnboarding, ...userWithoutBinders } = validUser;
     const result = UserSchema.parse(userWithoutBinders);
     expect(result.binders).toEqual([]);
+    expect(result.hasCompletedOnboarding).toBe(false);
     // Ensure destructured value is used to avoid linting errors
     expect(binders).toBeDefined();
+    expect(hasCompletedOnboarding).toBeDefined();
   });
 });

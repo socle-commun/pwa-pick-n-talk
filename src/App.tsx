@@ -13,6 +13,8 @@ const ForgotPasswordPage = lazy(() => import("@/routes/auth/forgot-password/page
 const SignInPage = lazy(() => import("@/routes/auth/sign-in/page"));
 const SignUpPage = lazy(() => import("@/routes/auth/sign-up/page"));
 
+const OnboardingPage = lazy(() => import("@/routes/onboarding/page"));
+
 const FeedbackPage = lazy(() => import("@/routes/feedback/page"));
 const PrivacyPage = lazy(() => import("@/routes/privacy/page"));
 const ProfilePage = lazy(() => import("@/routes/profile/page"));
@@ -45,6 +47,8 @@ function App() {
               <Route path="sign-in" element={<LazyRoute component={SignInPage} />} />
               <Route path="sign-up" element={<LazyRoute component={SignUpPage} />} />
             </Route>
+
+            <Route path="onboarding" element={<LazyRoute component={OnboardingPage} />} />
 
             <Route path="feedback" element={<LazyRoute component={FeedbackPage} />} />
             <Route path="privacy" element={<LazyRoute component={PrivacyPage} />} />

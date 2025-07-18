@@ -13,6 +13,7 @@ export const UserSchema = z.object({
   role: RoleSchema,
   settings: z.record(z.string(), z.union([z.boolean(), z.number(), z.string(), z.record(z.string(), z.any())])),
   binders: z.array(z.string()).default([]),
+  hasCompletedOnboarding: z.boolean().default(false),
 });
 
 export type User = z.infer<typeof UserSchema>;

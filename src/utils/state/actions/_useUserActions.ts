@@ -52,6 +52,7 @@ export default function useUserActions() {
         role: "user",
         settings: {},
         binders: [],
+        hasCompletedOnboarding: false,
       })
       .then((id) => {
         db.getUser(id).then((user) => {
@@ -61,7 +62,7 @@ export default function useUserActions() {
 
           localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
-          navigate("/");
+          navigate("/onboarding");
         });
       });
   }
