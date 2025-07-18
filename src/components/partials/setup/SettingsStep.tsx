@@ -119,11 +119,11 @@ export default function SettingsStep({ data, onUpdate, onNext }: SettingsStepPro
           </div>
         </div>
 
-        <div className={cn("bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg")}>
-          <h3 className={cn("font-semibold text-blue-800 dark:text-blue-200 mb-2")}>
+        <div className={cn("info-secondary p-4 rounded-lg")}>
+          <h3 className={cn("font-semibold info-text mb-2")}>
             ℹ️ {t("onboarding.settings.note.title", "Note")}
           </h3>
-          <p className={cn("text-blue-700 dark:text-blue-300 text-sm")}>
+          <p className={cn("info-text text-sm")}>
             {t("onboarding.settings.note.content", 
               "These settings help ensure Pick & Talk works best for your needs. You can change any of these settings later in the app preferences."
             )}

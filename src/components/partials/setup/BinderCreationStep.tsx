@@ -15,7 +15,6 @@ interface BinderCreationStepProps {
 
 export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCreationStepProps) {
   const { t } = useTranslation();
-  const [isValid, setIsValid] = useState(false);
   const [categories, setCategories] = useState(data.binderCategories || []);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [selectedPictograms, setSelectedPictograms] = useState(data.binderPictograms || []);
@@ -50,19 +49,6 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
     };
     onUpdate(binderData);
     onNext();
-  };
-
-  const handleFormChange = (formData: Partial<BinderStepData>) => {
-    // Validate current form data
-    const validation = BinderStepSchema.safeParse({
-      binderName: formData.binderName || data.binderName,
-      binderDescription: formData.binderDescription || data.binderDescription,
-      binderCategories: categories,
-      binderPictograms: selectedPictograms,
-    });
-    
-    setIsValid(validation.success && ((formData.binderName || data.binderName) || "").length > 0);
-    onUpdate(formData);
   };
 
   const addCategory = (categoryData: { id: string; name: string }) => {
@@ -129,7 +115,6 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
             placeholder={t("onboarding.binder.name.placeholder", "e.g., My Daily Words, Meal Time, Emotions...")}
             required
             autoComplete="off"
-            onChange={(e) => handleFormChange({ binderName: e.target.value })}
           />
 
           <FormInput
@@ -137,7 +122,6 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
             label={t("onboarding.binder.description.label", "Description (optional)")}
             placeholder={t("onboarding.binder.description.placeholder", "Brief description of this binder's purpose...")}
             autoComplete="off"
-            onChange={(e) => handleFormChange({ binderDescription: e.target.value })}
           />
         </div>
 
@@ -283,12 +267,9 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
         <div className={cn("text-center pt-4")}>
           <button
             type="submit"
-            disabled={!isValid}
             className={cn(
               "px-8 py-3 rounded-lg transition-colors",
-              isValid
-                ? "bg-sky-600 text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-                : "bg-zinc-300 dark:bg-zinc-600 text-zinc-500 dark:text-zinc-400 cursor-not-allowed"
+              "bg-sky-600 text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
             )}
           >
             {t("onboarding.binder.create", "Create My First Binder")}
