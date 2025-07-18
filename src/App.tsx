@@ -23,10 +23,11 @@ const BindersPage = lazy(() => import("@/routes/binders/page"));
 const BinderPage = lazy(() => import("@/routes/binders/[uuid]/page"));
 const BinderEditPage = lazy(() => import("@/routes/binders/[uuid]/edit/page"));
 
-import { useThemeMode, useDaltonismMode } from "@/utils/theme";
+import { useFontSize, useThemeMode, useDaltonismMode } from "@/utils/theme";
 
 function App() {
   // Initialize theme system
+  useFontSize();
   useThemeMode();
   useDaltonismMode();
 

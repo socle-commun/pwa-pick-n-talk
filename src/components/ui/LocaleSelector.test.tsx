@@ -65,7 +65,7 @@ describe("LocaleSelector", () => {
     render(<LocaleSelector variant="compact" />);
 
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("flex", "items-center", "gap-2");
+    expect(button).toHaveClass("flex", "items-center", "gap-1", "sm:gap-2");
   });
 
   it("calls t function with correct keys", () => {

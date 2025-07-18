@@ -18,8 +18,8 @@ export default function NavBar() {
         </Link>
       </NavbarSection>
       <NavbarSpacer />
-      <NavbarSection>
-        <LocaleSelector variant="compact" className="mr-4" />
+      <NavbarSection className="flex-shrink-0">
+        <LocaleSelector variant="compact" className="mr-2 sm:mr-4" />
         <AuthManager />
       </NavbarSection>
     </Navbar>
