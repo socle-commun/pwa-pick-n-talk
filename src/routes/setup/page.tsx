@@ -23,7 +23,7 @@ export default function SetupPage() {
 
   if (!user) {
     return (
-      <div className={cn("flex items-center justify-center h-full p-4")}>
+      <div className={cn("flex items-center justify-center h-full p-4")} aria-label="Loading">
         <Logo className={cn("size-16 animate-pulse")} />
       </div>
     );
