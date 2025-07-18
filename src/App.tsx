@@ -13,13 +13,12 @@ const ForgotPasswordPage = lazy(() => import("@/routes/auth/forgot-password/page
 const SignInPage = lazy(() => import("@/routes/auth/sign-in/page"));
 const SignUpPage = lazy(() => import("@/routes/auth/sign-up/page"));
 
-const OnboardingPage = lazy(() => import("@/routes/onboarding/page"));
+const SetupPage = lazy(() => import("@/routes/setup/page"));
 
 const FeedbackPage = lazy(() => import("@/routes/feedback/page"));
 const PrivacyPage = lazy(() => import("@/routes/privacy/page"));
 const ProfilePage = lazy(() => import("@/routes/profile/page"));
 const SettingsPage = lazy(() => import("@/routes/settings/page"));
-const SetupPage = lazy(() => import("@/routes/setup/page"));
 
 const BindersPage = lazy(() => import("@/routes/binders/page"));
 const BinderPage = lazy(() => import("@/routes/binders/[uuid]/page"));
@@ -48,13 +47,12 @@ function App() {
               <Route path="sign-up" element={<LazyRoute component={SignUpPage} />} />
             </Route>
 
-            <Route path="onboarding" element={<LazyRoute component={OnboardingPage} />} />
+            <Route path="setup" element={<LazyRoute component={SetupPage} />} />
 
             <Route path="feedback" element={<LazyRoute component={FeedbackPage} />} />
             <Route path="privacy" element={<LazyRoute component={PrivacyPage} />} />
             <Route path="profile" element={<LazyRoute component={ProfilePage} />} />
             <Route path="settings" element={<LazyRoute component={SettingsPage} />} />
-            <Route path="setup" element={<LazyRoute component={SetupPage} />} />
 
             <Route path="binders">
               <Route index element={<LazyRoute component={BindersPage} />} />

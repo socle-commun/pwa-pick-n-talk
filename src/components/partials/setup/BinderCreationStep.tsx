@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Form, FormInput } from "@/components/ui/forms";
 import { Button } from "@/components/ui/actions";
-import { BinderStepSchema, type BinderStepData, type OnboardingFormData } from "../schemas/onboarding";
+import { BinderStepSchema, type BinderStepData, type OnboardingFormData } from "@/db/models/schemas/setup";
 import cn from "@/utils/cn";
 
 interface BinderCreationStepProps {

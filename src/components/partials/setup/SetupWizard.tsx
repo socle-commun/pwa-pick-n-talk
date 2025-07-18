@@ -12,7 +12,7 @@ import BinderCreationStep from "./BinderCreationStep";
 import SettingsStep from "./SettingsStep";
 import CompletionStep from "./CompletionStep";
 
-import type { OnboardingFormData } from "../schemas/onboarding";
+import type { OnboardingFormData } from "@/db/models/schemas/setup";
 import cn from "@/utils/cn";
 
 const STEPS = [
@@ -22,7 +22,7 @@ const STEPS = [
   { id: "completion", title: "All Set!", component: CompletionStep },
 ];
 
-export default function OnboardingWizard() {
+export default function SetupWizard() {
   const { t } = useTranslation();
   const [user, setUser] = useAtom(userAtom);
   const navigate = useNavigate();
@@ -57,15 +57,7 @@ export default function OnboardingWizard() {
   };
 
   const handleSkip = () => {
-    // Skip onboarding and go directly to home with minimal setup
-    if (user) {
-      const updatedUser = { ...user, hasCompletedOnboarding: true };
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      setUser(updatedUser);
-      
-      // Update user in database
-      db.updateUser({ ...user, hasCompletedOnboarding: true });
-    }
+    // Skip setup and go directly to home
     navigate("/");
   };
 
@@ -133,28 +125,20 @@ export default function OnboardingWizard() {
         await db.updateUser({ 
           ...user,
           binders: updatedBinders,
-          hasCompletedOnboarding: true,
         });
 
         // Update local state
         const updatedUser = { 
           ...user, 
           binders: updatedBinders,
-          hasCompletedOnboarding: true 
         };
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-        setUser(updatedUser);
-      } else {
-        // Just mark onboarding as complete
-        await db.updateUser({ ...user, hasCompletedOnboarding: true });
-        const updatedUser = { ...user, hasCompletedOnboarding: true };
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setUser(updatedUser);
       }
 
       navigate("/");
     } catch (error) {
-      console.error("Failed to complete onboarding:", error);
+      console.error("Failed to complete setup:", error);
     } finally {
       setIsSubmitting(false);
     }

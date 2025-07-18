@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useAtom } from "jotai";
 
 import { userAtom } from "@/utils/state/atoms";
-import type { OnboardingFormData } from "../schemas/onboarding";
+import type { OnboardingFormData } from "@/db/models/schemas/setup";
 import cn from "@/utils/cn";
 
 interface WelcomeStepProps {

@@ -5,7 +5,7 @@ import { Switch } from "@/components/ui/data-input/switch";
 import LocaleSelector from "@/components/ui/LocaleSelector";
 import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
 import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
-import { SettingsStepSchema, type SettingsStepData, type OnboardingFormData } from "../schemas/onboarding";
+import { SettingsStepSchema, type SettingsStepData, type OnboardingFormData } from "@/db/models/schemas/setup";
 import cn from "@/utils/cn";
 
 interface SettingsStepProps {
