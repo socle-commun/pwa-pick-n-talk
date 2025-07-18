@@ -18,6 +18,7 @@ export const OnboardingSchema = z.object({
   binderCategories: z.array(z.object({
     id: z.string(),
     name: z.string(),
+    pictograms: z.array(z.string()).optional(),
   })).optional(),
   binderPictograms: z.array(z.string()).optional(),
   

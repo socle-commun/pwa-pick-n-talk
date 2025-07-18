@@ -5,7 +5,6 @@ import { useEffect } from "react";
 
 import Logo from "@/components/partials/global/Logo";
 import { userAtom } from "@/utils/state/atoms";
-import { db } from "@/db";
 import SetupWizard from "@/components/partials/setup/SetupWizard";
 
 import cn from "@/utils/cn";

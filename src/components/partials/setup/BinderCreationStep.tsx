@@ -18,6 +18,7 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
   const [categories, setCategories] = useState(data.binderCategories || []);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [selectedPictograms, setSelectedPictograms] = useState(data.binderPictograms || []);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Predefined categories for easier setup
   const predefinedCategories = [
@@ -53,7 +54,7 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
 
   const addCategory = (categoryData: { id: string; name: string }) => {
     if (!categories.find(c => c.id === categoryData.id)) {
-      const newCategories = [...categories, categoryData];
+      const newCategories = [...categories, { ...categoryData, pictograms: [] }];
       setCategories(newCategories);
       onUpdate({ binderCategories: newCategories });
     }
@@ -70,19 +71,59 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
       const newCategory = {
         id: `custom-${Date.now()}`,
         name: newCategoryName.trim(),
+        pictograms: [],
       };
       addCategory(newCategory);
       setNewCategoryName("");
     }
   };
 
-  const togglePictogram = (pictogramId: string) => {
-    const newPictograms = selectedPictograms.includes(pictogramId)
-      ? selectedPictograms.filter(id => id !== pictogramId)
-      : [...selectedPictograms, pictogramId];
+  const assignPictogramToCategory = (pictogramId: string, categoryId: string) => {
+    const newCategories = categories.map(category => {
+      if (category.id === categoryId) {
+        const pictograms = category.pictograms || [];
+        if (!pictograms.includes(pictogramId)) {
+          return { ...category, pictograms: [...pictograms, pictogramId] };
+        }
+      } else {
+        // Remove pictogram from other categories
+        return { ...category, pictograms: (category.pictograms || []).filter(id => id !== pictogramId) };
+      }
+      return category;
+    });
     
-    setSelectedPictograms(newPictograms);
-    onUpdate({ binderPictograms: newPictograms });
+    setCategories(newCategories);
+    onUpdate({ binderCategories: newCategories });
+    
+    // Update global selected pictograms
+    const allAssignedPictograms = newCategories.flatMap(cat => cat.pictograms || []);
+    setSelectedPictograms(allAssignedPictograms);
+    onUpdate({ binderPictograms: allAssignedPictograms });
+  };
+
+  const removePictogramFromCategory = (pictogramId: string, categoryId: string) => {
+    const newCategories = categories.map(category => {
+      if (category.id === categoryId) {
+        return { ...category, pictograms: (category.pictograms || []).filter(id => id !== pictogramId) };
+      }
+      return category;
+    });
+    
+    setCategories(newCategories);
+    onUpdate({ binderCategories: newCategories });
+    
+    // Update global selected pictograms
+    const allAssignedPictograms = newCategories.flatMap(cat => cat.pictograms || []);
+    setSelectedPictograms(allAssignedPictograms);
+    onUpdate({ binderPictograms: allAssignedPictograms });
+  };
+
+  const isPictogramAssigned = (pictogramId: string) => {
+    return categories.some(category => (category.pictograms || []).includes(pictogramId));
+  };
+
+  const getPictogramCategory = (pictogramId: string) => {
+    return categories.find(category => (category.pictograms || []).includes(pictogramId));
   };
 
   return (
@@ -196,6 +237,11 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
                     )}
                   >
                     {category.name}
+                    {category.pictograms && category.pictograms.length > 0 && (
+                      <span className={cn("ml-1 px-1 py-0.5 bg-sky-200 dark:bg-sky-700 rounded text-xs")}>
+                        {category.pictograms.length}
+                      </span>
+                    )}
                     <button
                       type="button"
                       onClick={() => removeCategory(category.id)}
@@ -216,29 +262,100 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
             🎨 {t("onboarding.binder.pictograms.title", "Pictograms")}
           </h3>
           <p className={cn("text-sm text-zinc-600 dark:text-zinc-400 mb-4")}>
-            {t("onboarding.binder.pictograms.description", "Select some pictograms to add to your binder:")}
+            {t("onboarding.binder.pictograms.description", "Select pictograms and assign them to categories. Click on a category first, then click on pictograms to assign them.")}
           </p>
+
+          {/* Category Selection for Pictogram Assignment */}
+          {categories.length > 0 && (
+            <div className={cn("mb-4")}>
+              <p className={cn("text-sm font-medium mb-2")}>
+                {t("onboarding.binder.pictograms.selectCategory", "Select a category to assign pictograms:")}
+              </p>
+              <div className={cn("flex flex-wrap gap-2")}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory(null)}
+                  className={cn(
+                    "px-3 py-1 rounded-full text-sm transition-colors",
+                    selectedCategory === null
+                      ? "bg-zinc-500 text-white"
+                      : "bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-600"
+                  )}
+                >
+                  {t("onboarding.binder.pictograms.unassigned", "Unassigned")}
+                </button>
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={cn(
+                      "px-3 py-1 rounded-full text-sm transition-colors",
+                      selectedCategory === category.id
+                        ? "bg-sky-500 text-white"
+                        : "bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300 hover:bg-sky-200 dark:hover:bg-sky-800"
+                    )}
+                  >
+                    {category.name}
+                    {category.pictograms && category.pictograms.length > 0 && (
+                      <span className={cn("ml-1 px-1 py-0.5 bg-sky-200 dark:bg-sky-700 rounded text-xs")}>
+                        {category.pictograms.length}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+              {selectedCategory && (
+                <p className={cn("text-xs text-zinc-500 dark:text-zinc-400 mt-2")}>
+                  {t("onboarding.binder.pictograms.assignHint", "Click on pictograms below to assign them to the selected category.")}
+                </p>
+              )}
+            </div>
+          )}
 
           <div className={cn("grid grid-cols-2 md:grid-cols-4 gap-3")}>
             {samplePictograms.map((pictogram) => {
-              const isSelected = selectedPictograms.includes(pictogram.id);
+              const isAssigned = isPictogramAssigned(pictogram.id);
+              const assignedCategory = getPictogramCategory(pictogram.id);
+              const canAssign = selectedCategory && categories.length > 0;
+              
               return (
                 <button
                   key={pictogram.id}
                   type="button"
-                  onClick={() => togglePictogram(pictogram.id)}
+                  onClick={() => {
+                    if (selectedCategory) {
+                      if (assignedCategory?.id === selectedCategory) {
+                        // Remove from current category
+                        removePictogramFromCategory(pictogram.id, selectedCategory);
+                      } else {
+                        // Assign to selected category
+                        assignPictogramToCategory(pictogram.id, selectedCategory);
+                      }
+                    }
+                  }}
+                  disabled={!canAssign}
                   className={cn(
                     "p-4 border-2 rounded-lg text-center transition-all",
-                    isSelected
-                      ? "border-sky-500 bg-sky-50 dark:bg-sky-900/20"
-                      : "border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600"
+                    isAssigned
+                      ? assignedCategory?.id === selectedCategory
+                        ? "border-red-500 bg-red-50 dark:bg-red-900/20"
+                        : "border-green-500 bg-green-50 dark:bg-green-900/20"
+                      : selectedCategory
+                        ? "border-zinc-200 dark:border-zinc-700 hover:border-sky-300 dark:hover:border-sky-600 hover:bg-sky-50 dark:hover:bg-sky-900/20"
+                        : "border-zinc-200 dark:border-zinc-700 opacity-50 cursor-not-allowed"
                   )}
                 >
                   <div className={cn("text-2xl mb-2")}>{pictogram.emoji}</div>
                   <div className={cn("text-sm font-medium")}>{pictogram.name}</div>
                   <div className={cn("text-xs text-zinc-500 dark:text-zinc-400")}>
-                    {predefinedCategories.find(c => c.id === pictogram.category)?.name}
+                    {assignedCategory ? assignedCategory.name : t("onboarding.binder.pictograms.unassigned", "Unassigned")}
                   </div>
+                  {assignedCategory?.id === selectedCategory && (
+                    <div className={cn("text-xs text-red-600 dark:text-red-400 mt-1")}>
+                      {t("onboarding.binder.pictograms.clickToRemove", "Click to remove")}
+                    </div>
+                  )}
                 </button>
               );
             })}
@@ -247,7 +364,15 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
           {selectedPictograms.length > 0 && (
             <div className={cn("mt-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg")}>
               <p className={cn("text-sm text-green-800 dark:text-green-200")}>
-                ✅ {t("onboarding.binder.pictograms.selected", "Selected {{count}} pictogram(s)", { count: selectedPictograms.length })}
+                ✅ {t("onboarding.binder.pictograms.assigned", "Assigned {{count}} pictogram(s) to categories", { count: selectedPictograms.length })}
+              </p>
+            </div>
+          )}
+
+          {categories.length === 0 && (
+            <div className={cn("p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg")}>
+              <p className={cn("text-sm text-yellow-800 dark:text-yellow-200")}>
+                ⚠️ {t("onboarding.binder.pictograms.needCategories", "Please add at least one category above to assign pictograms.")}
               </p>
             </div>
           )}
@@ -259,7 +384,7 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
           </h3>
           <p className={cn("text-blue-700 dark:text-blue-300 text-sm")}>
             {t("onboarding.binder.tip.content", 
-              "Don't worry about making it perfect now. You can always add more categories and pictograms later, or create additional binders for different situations."
+              "Create categories first, then assign pictograms to organize your communication board effectively. You can always add more categories and pictograms later, or create additional binders for different situations."
             )}
           </p>
         </div>
