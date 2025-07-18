@@ -11,13 +11,14 @@ import type { User } from "@/db/models";
 
 import { populate } from "@/db/populate";
 
-// Import extracted methods
+// Import extracted methods organized by domain
 import * as userQueries from "@/db/queries/user-queries";
 import * as binderQueries from "@/db/queries/binder-queries";
 import * as pictogramQueries from "@/db/queries/pictogram-queries";
-import * as mutations from "@/db/queries/mutations";
-import * as updates from "@/db/queries/updates";
-import * as deletions from "@/db/queries/deletions";
+import * as categoryQueries from "@/db/queries/category-queries";
+import * as historyQueries from "@/db/queries/history-queries";
+import * as settingQueries from "@/db/queries/setting-queries";
+import * as globalQueries from "@/db/queries/global-queries";
 
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;
@@ -41,72 +42,76 @@ export class PickNTalkDB extends Dexie {
     // User queries
     this.getUser = userQueries.getUser.bind(this);
     this.getUserByEmail = userQueries.getUserByEmail.bind(this);
-    this.getHistory = userQueries.getHistory.bind(this);
-    this.getPictogramsFromBinderId = pictogramQueries.getPictogramsFromBinderId.bind(this);
-    this.getCategoriesFromPictograms = userQueries.getCategoriesFromPictograms.bind(this);
+    this.createUser = userQueries.createUser.bind(this);
+    this.updateUser = userQueries.updateUser.bind(this);
+    this.deleteUser = userQueries.deleteUser.bind(this);
 
     // Binder queries
     this.getBinders = binderQueries.getBinders.bind(this);
     this.getBinder = binderQueries.getBinder.bind(this);
+    this.createBinder = binderQueries.createBinder.bind(this);
+    this.updateBinder = binderQueries.updateBinder.bind(this);
+    this.deleteBinder = binderQueries.deleteBinder.bind(this);
 
     // Pictogram queries
-    this.getCategoriesFromBinderId = pictogramQueries.getCategoriesFromBinderId.bind(this);
+    this.getPictogramsFromBinderId = pictogramQueries.getPictogramsFromBinderId.bind(this);
+    this.createPictogram = pictogramQueries.createPictogram.bind(this);
+    this.updatePictogram = pictogramQueries.updatePictogram.bind(this);
+    this.deletePictogram = pictogramQueries.deletePictogram.bind(this);
 
-    // Mutations
-    this.createBinder = mutations.createBinder.bind(this);
-    this.createCategory = mutations.createCategory.bind(this);
-    this.createHistory = mutations.createHistory.bind(this);
-    this.createPictogram = mutations.createPictogram.bind(this);
-    this.createSetting = mutations.createSetting.bind(this);
-    this.createUser = mutations.createUser.bind(this);
+    // Category queries
+    this.getCategoriesFromBinderId = categoryQueries.getCategoriesFromBinderId.bind(this);
+    this.createCategory = categoryQueries.createCategory.bind(this);
+    this.updateCategory = categoryQueries.updateCategory.bind(this);
+    this.deleteCategory = categoryQueries.deleteCategory.bind(this);
 
-    // Updates
-    this.updateBinder = updates.updateBinder.bind(this);
-    this.updatePictogram = updates.updatePictogram.bind(this);
-    this.updateCategory = updates.updateCategory.bind(this);
-    this.updateUser = updates.updateUser.bind(this);
+    // History queries
+    this.getHistory = historyQueries.getHistory.bind(this);
+    this.createHistory = historyQueries.createHistory.bind(this);
 
-    // Deletions
-    this.deleteBinder = deletions.deleteBinder.bind(this);
-    this.deleteCategory = deletions.deleteCategory.bind(this);
-    this.deletePictogram = deletions.deletePictogram.bind(this);
-    this.deleteUser = deletions.deleteUser.bind(this);
+    // Setting queries
+    this.createSetting = settingQueries.createSetting.bind(this);
+
+    // Global queries
+    this.getCategoriesFromPictograms = globalQueries.getCategoriesFromPictograms.bind(this);
   }
 
   // Method declarations for TypeScript (these will be assigned in constructor)
   // User queries
   public getUser!: (id: string) => PromiseExtended<User | undefined>;
   public getUserByEmail!: (email: string) => PromiseExtended<User | undefined>;
-  public getHistory!: (entityId: string) => PromiseExtended<History[]>;
-  public getPictogramsFromBinderId!: (binderId: string) => PromiseExtended<Pictogram[]>;
-  public getCategoriesFromPictograms!: (pictograms: Pictogram[]) => PromiseExtended<Category[]>;
+  public createUser!: (user: User) => PromiseExtended<string>;
+  public updateUser!: (user: User) => PromiseExtended<void>;
+  public deleteUser!: (id: string) => PromiseExtended<void>;
 
   // Binder queries
   public getBinders!: () => PromiseExtended<Binder[]>;
   public getBinder!: (id: string) => PromiseExtended<Binder | undefined>;
+  public createBinder!: (binder: Binder) => PromiseExtended<string>;
+  public updateBinder!: (binder: Binder) => PromiseExtended<void>;
+  public deleteBinder!: (binderId: string) => PromiseExtended<void>;
 
   // Pictogram queries
-  public getCategoriesFromBinderId!: (binderId: string) => PromiseExtended<Category[]>;
-
-  // Mutations
-  public createBinder!: (binder: Binder) => PromiseExtended<string>;
-  public createCategory!: (category: Category) => PromiseExtended<string>;
-  public createHistory!: (history: History) => PromiseExtended<string>;
+  public getPictogramsFromBinderId!: (binderId: string) => PromiseExtended<Pictogram[]>;
   public createPictogram!: (pictogram: Pictogram) => PromiseExtended<string>;
-  public createSetting!: (setting: Setting) => PromiseExtended<string>;
-  public createUser!: (user: User) => PromiseExtended<string>;
-
-  // Updates
-  public updateBinder!: (binder: Binder) => PromiseExtended<void>;
   public updatePictogram!: (pictogram: Pictogram) => PromiseExtended<void>;
-  public updateCategory!: (category: Category) => PromiseExtended<void>;
-  public updateUser!: (user: User) => PromiseExtended<void>;
-
-  // Deletions
-  public deleteBinder!: (binderId: string) => PromiseExtended<void>;
-  public deleteCategory!: (id: string) => PromiseExtended<void>;
   public deletePictogram!: (id: string) => PromiseExtended<void>;
-  public deleteUser!: (id: string) => PromiseExtended<void>;
+
+  // Category queries
+  public getCategoriesFromBinderId!: (binderId: string) => PromiseExtended<Category[]>;
+  public createCategory!: (category: Category) => PromiseExtended<string>;
+  public updateCategory!: (category: Category) => PromiseExtended<void>;
+  public deleteCategory!: (id: string) => PromiseExtended<void>;
+
+  // History queries
+  public getHistory!: (entityId: string) => PromiseExtended<History[]>;
+  public createHistory!: (history: History) => PromiseExtended<string>;
+
+  // Setting queries
+  public createSetting!: (setting: Setting) => PromiseExtended<string>;
+
+  // Global queries
+  public getCategoriesFromPictograms!: (pictograms: Pictogram[]) => PromiseExtended<Category[]>;
 
   // Database state checks
   public async isEmpty(): Promise<boolean> {
