@@ -22,12 +22,12 @@ describe("Setting Queries", () => {
 
   describe("getSettings", () => {
     it("should return all settings", async () => {
-      const setting1: Setting = { 
-        key: "theme", 
+      const setting1: Setting = {
+        key: "theme",
         value: "dark"
       };
-      const setting2: Setting = { 
-        key: "language", 
+      const setting2: Setting = {
+        key: "language",
         value: "en"
       };
 
@@ -48,8 +48,8 @@ describe("Setting Queries", () => {
 
   describe("getSetting", () => {
     it("should return a setting by key", async () => {
-      const setting: Setting = { 
-        key: "theme", 
+      const setting: Setting = {
+        key: "theme",
         value: "dark"
       };
       await db.createSetting(setting);
@@ -68,11 +68,11 @@ describe("Setting Queries", () => {
 
   describe("createSetting", () => {
     it("should create a new setting and return the key", async () => {
-      const setting: Setting = { 
-        key: "theme", 
+      const setting: Setting = {
+        key: "theme",
         value: "dark"
       };
-      
+
       const result = await db.createSetting(setting);
       expect(result).toBe("theme");
 
@@ -81,14 +81,14 @@ describe("Setting Queries", () => {
     });
 
     it("should reject creating a setting with duplicate key", async () => {
-      const setting: Setting = { 
-        key: "theme", 
+      const setting: Setting = {
+        key: "theme",
         value: "dark"
       };
       await db.createSetting(setting);
 
-      const duplicateSetting: Setting = { 
-        key: "theme", 
+      const duplicateSetting: Setting = {
+        key: "theme",
         value: "light"
       };
       await expect(db.createSetting(duplicateSetting)).rejects.toThrow();

@@ -22,24 +22,24 @@ describe("History Queries", () => {
 
   describe("getHistory", () => {
     it("should return history entries for a specific entity", async () => {
-      const history1: History = { 
-        id: "hist1", 
+      const history1: History = {
+        id: "hist1",
         entityType: "Binder",
         entityId: "binder1",
         performedBy: "user1",
         timestamp: new Date("2024-01-01"),
         action: "create"
       };
-      const history2: History = { 
-        id: "hist2", 
+      const history2: History = {
+        id: "hist2",
         entityType: "Pictogram",
         entityId: "binder1",
         performedBy: "user2",
         timestamp: new Date("2024-01-02"),
         action: "update"
       };
-      const history3: History = { 
-        id: "hist3", 
+      const history3: History = {
+        id: "hist3",
         entityType: "Binder",
         entityId: "binder2",
         performedBy: "user1",
@@ -66,15 +66,15 @@ describe("History Queries", () => {
 
   describe("createHistory", () => {
     it("should create a new history entry and return the ID", async () => {
-      const history: History = { 
-        id: "hist1", 
+      const history: History = {
+        id: "hist1",
         entityType: "Binder",
         entityId: "binder1",
         performedBy: "user1",
         timestamp: new Date("2024-01-01"),
         action: "create"
       };
-      
+
       const result = await db.createHistory(history);
       expect(result).toBe("hist1");
 
@@ -84,8 +84,8 @@ describe("History Queries", () => {
     });
 
     it("should reject creating a history entry with duplicate ID", async () => {
-      const history: History = { 
-        id: "hist1", 
+      const history: History = {
+        id: "hist1",
         entityType: "Binder",
         entityId: "binder1",
         performedBy: "user1",
@@ -94,8 +94,8 @@ describe("History Queries", () => {
       };
       await db.createHistory(history);
 
-      const duplicateHistory: History = { 
-        id: "hist1", 
+      const duplicateHistory: History = {
+        id: "hist1",
         entityType: "Pictogram",
         entityId: "pic1",
         performedBy: "user2",

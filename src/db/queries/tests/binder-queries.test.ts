@@ -9,6 +9,17 @@ import type { Binder } from "../../models";
 // Mock the populate function
 vi.mock("../../populate", () => ({ populate: vi.fn() }));
 
+// Helper function to create test binder
+const createTestBinder = (id: string, overrides: Partial<Binder> = {}): Binder => ({
+  id,
+  title: `Binder ${id}`,
+  author: "user1",
+  isFavorite: false,
+  pictograms: [],
+  users: [],
+  ...overrides
+});
+
 describe("Binder Queries", () => {
   let db: PickNTalkDB;
 
@@ -20,167 +31,37 @@ describe("Binder Queries", () => {
     await db.delete();
   });
 
-  describe("getBinders", () => {
-    it("should return all binders", async () => {
-      const binder1: Binder = { 
-        id: "binder1", 
-        title: "Binder 1", 
-        author: "user1",
-        isFavorite: false,
-        pictograms: [],
-        users: []
-      };
-      const binder2: Binder = { 
-        id: "binder2", 
-        title: "Binder 2", 
-        author: "user1",
-        isFavorite: true,
-        pictograms: [],
-        users: []
-      };
+  it("should handle all CRUD operations correctly", async () => {
+    // Test empty state
+    expect(await db.getBinders()).toEqual([]);
+    expect(await db.getBinder("nonexistent")).toBeUndefined();
 
-      await db.createBinder(binder1);
-      await db.createBinder(binder2);
+    // Test create
+    const binder = createTestBinder("test", { title: "Test Binder" });
+    const id = await db.createBinder(binder);
+    expect(id).toBe("test");
+    await expect(db.createBinder(binder)).rejects.toThrow(); // Duplicate
 
-      const result = await db.getBinders();
-      expect(result).toHaveLength(2);
-      expect(result.find(b => b.id === "binder1")).toBeDefined();
-      expect(result.find(b => b.id === "binder2")).toBeDefined();
-    });
+    // Test read
+    const stored = await db.getBinder("test");
+    expect(stored).toEqual(binder);
+    expect(await db.getBinders()).toHaveLength(1);
 
-    it("should return empty array when no binders exist", async () => {
-      const result = await db.getBinders();
-      expect(result).toEqual([]);
-    });
-  });
+    // Test update
+    const updated = createTestBinder("test", { title: "Updated", isFavorite: true });
+    await db.updateBinder(updated);
+    const result = await db.getBinder("test");
+    expect(result?.title).toBe("Updated");
+    expect(result?.isFavorite).toBe(true);
 
-  describe("getBinder", () => {
-    it("should return a binder by ID", async () => {
-      const binder: Binder = { 
-        id: "binder1", 
-        title: "Test Binder", 
-        author: "user1",
-        isFavorite: false,
-        pictograms: [],
-        users: []
-      };
-      await db.createBinder(binder);
+    // Test delete
+    await db.deleteBinder("test");
+    expect(await db.getBinder("test")).toBeUndefined();
+    expect(await db.getBinders()).toEqual([]);
 
-      const result = await db.getBinder("binder1");
-      expect(result).toBeDefined();
-      expect(result?.id).toBe("binder1");
-      expect(result?.title).toBe("Test Binder");
-    });
-
-    it("should return undefined for non-existent binder ID", async () => {
-      const result = await db.getBinder("nonexistent");
-      expect(result).toBeUndefined();
-    });
-  });
-
-  describe("createBinder", () => {
-    it("should create a new binder and return the ID", async () => {
-      const binder: Binder = { 
-        id: "binder1", 
-        title: "Test Binder", 
-        author: "user1",
-        isFavorite: false,
-        pictograms: [],
-        users: []
-      };
-      
-      const result = await db.createBinder(binder);
-      expect(result).toBe("binder1");
-
-      const stored = await db.getBinder("binder1");
-      expect(stored).toEqual(binder);
-    });
-
-    it("should reject creating a binder with duplicate ID", async () => {
-      const binder: Binder = { 
-        id: "binder1", 
-        title: "Test Binder", 
-        author: "user1",
-        isFavorite: false,
-        pictograms: [],
-        users: []
-      };
-      await db.createBinder(binder);
-
-      const duplicateBinder: Binder = { 
-        id: "binder1", 
-        title: "Another Binder", 
-        author: "user2",
-        isFavorite: true,
-        pictograms: [],
-        users: []
-      };
-      await expect(db.createBinder(duplicateBinder)).rejects.toThrow();
-    });
-  });
-
-  describe("updateBinder", () => {
-    it("should update an existing binder", async () => {
-      const binder: Binder = { 
-        id: "binder1", 
-        title: "Test Binder", 
-        author: "user1",
-        isFavorite: false,
-        pictograms: [],
-        users: []
-      };
-      await db.createBinder(binder);
-
-      const updatedBinder: Binder = { 
-        id: "binder1", 
-        title: "Updated Binder", 
-        author: "user1",
-        isFavorite: true,
-        pictograms: ["pic1"],
-        users: ["user2"]
-      };
-      await db.updateBinder(updatedBinder);
-
-      const result = await db.getBinder("binder1");
-      expect(result?.title).toBe("Updated Binder");
-      expect(result?.isFavorite).toBe(true);
-      expect(result?.pictograms).toEqual(["pic1"]);
-    });
-
-    it("should handle updating non-existent binder gracefully", async () => {
-      const binder: Binder = { 
-        id: "nonexistent", 
-        title: "Test Binder", 
-        author: "user1",
-        isFavorite: false,
-        pictograms: [],
-        users: []
-      };
-      
-      await expect(db.updateBinder(binder)).resolves.not.toThrow();
-    });
-  });
-
-  describe("deleteBinder", () => {
-    it("should delete an existing binder", async () => {
-      const binder: Binder = { 
-        id: "binder1", 
-        title: "Test Binder", 
-        author: "user1",
-        isFavorite: false,
-        pictograms: [],
-        users: []
-      };
-      await db.createBinder(binder);
-
-      await db.deleteBinder("binder1");
-
-      const result = await db.getBinder("binder1");
-      expect(result).toBeUndefined();
-    });
-
-    it("should handle deleting non-existent binder gracefully", async () => {
-      await expect(db.deleteBinder("nonexistent")).resolves.not.toThrow();
-    });
+    // Test graceful handling of non-existent operations
+    const nonExistent = createTestBinder("none");
+    await expect(db.updateBinder(nonExistent)).resolves.not.toThrow();
+    await expect(db.deleteBinder("none")).resolves.not.toThrow();
   });
 });

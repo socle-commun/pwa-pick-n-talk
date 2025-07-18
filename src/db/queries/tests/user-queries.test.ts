@@ -58,7 +58,7 @@ describe("User Queries", () => {
   describe("createUser", () => {
     it("should create a new user and return the ID", async () => {
       const user: User = { id: "user1", email: "test@example.com", name: "Test User" };
-      
+
       const result = await db.createUser(user);
       expect(result).toBe("user1");
 
@@ -90,7 +90,7 @@ describe("User Queries", () => {
 
     it("should handle updating non-existent user gracefully", async () => {
       const user: User = { id: "nonexistent", email: "test@example.com", name: "Test User" };
-      
+
       // This should not throw, but the user won't be found for update
       await expect(db.updateUser(user)).resolves.not.toThrow();
     });
