@@ -2,6 +2,48 @@
   "home": {
     "title": "Welcome to Pick'n'Talk"
   },
+  "homepage": {
+    "hero": {
+      "title": "Communicate with Confidence",
+      "subtitle": "Pick'n'Talk empowers communication through customizable pictogram binders, designed for everyone who needs alternative communication tools.",
+      "cta": {
+        "primary": "Get Started",
+        "secondary": "Learn More"
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join thousands of users who have improved their communication with Pick'n'Talk."
+    },
+    "features": {
+      "title": "Why Choose Pick'n'Talk?",
+      "items": {
+        "customizable": {
+          "title": "Fully Customizable",
+          "description": "Create personalized communication binders tailored to your specific needs and preferences."
+        },
+        "accessible": {
+          "title": "Accessible Design",
+          "description": "Built with accessibility in mind, supporting multiple languages and visual accessibility features."
+        },
+        "offline": {
+          "title": "Works Offline",
+          "description": "Use your communication tools anytime, anywhere - no internet connection required."
+        }
+      }
+    },
+    "authenticated": {
+      "welcome": "Welcome back, {{name}}!",
+      "quick_actions": "Quick Actions",
+      "recent_binders": "Recent Binders",
+      "no_binders": "No binders yet. Create your first one to get started!"
+    },
+    "empty_state": {
+      "title": "Let's Get You Started",
+      "subtitle": "It looks like this is your first time using Pick'n'Talk. Let's create your communication profile!",
+      "cta": "Create Your First Binder"
+    }
+  },
   "language": {
     "selector": {
       "label": "Language",
