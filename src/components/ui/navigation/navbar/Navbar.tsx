@@ -9,7 +9,7 @@ export default function Navbar({
   return (
     <nav
       {...props}
-      className={cn(className, "flex flex-1 items-center gap-4 px-4 py-2.5")}
+      className={cn(className, "flex flex-1 items-center gap-2 sm:gap-4 px-2 sm:px-4 py-2.5 min-w-0")}
     />
   );
 }

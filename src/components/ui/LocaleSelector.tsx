@@ -45,9 +45,9 @@ export default function LocaleSelector({
     return (
       <Combobox value={currentLanguage} onChange={handleLanguageChange}>
         <div className={cn("relative", className)}>
-          <ComboboxButton className="flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700">
-            <span className="text-lg">{currentLanguage.flag}</span>
-            <ChevronDownIcon className="h-4 w-4 text-zinc-400" />
+          <ComboboxButton className="flex items-center gap-1 sm:gap-2 rounded-lg border border-zinc-300 bg-white px-2 sm:px-3 py-2 text-sm shadow-sm hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700">
+            <span className="text-sm sm:text-lg">{currentLanguage.flag}</span>
+            <ChevronDownIcon className="h-3 w-3 sm:h-4 sm:w-4 text-zinc-400" />
           </ComboboxButton>
 
           <ComboboxOptions className="absolute right-0 z-10 mt-2 w-48 rounded-lg border border-zinc-200 bg-white py-1 shadow-lg focus:outline-none dark:border-zinc-600 dark:bg-zinc-800">

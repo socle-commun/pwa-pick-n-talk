@@ -12,7 +12,7 @@ export default function NavbarSection({
 
   return (
     <LayoutGroup id={id}>
-      <div {...props} className={cn(className, "flex items-center gap-3")} />
+      <div {...props} className={cn(className, "flex items-center gap-1 sm:gap-3 min-w-0")} />
     </LayoutGroup>
   );
 }
