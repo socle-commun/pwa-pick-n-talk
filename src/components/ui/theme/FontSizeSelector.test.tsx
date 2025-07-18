@@ -30,7 +30,7 @@ describe("FontSizeSelector", () => {
 
   it("should render without crashing", () => {
     render(<FontSizeSelector />);
-    
+
     expect(screen.getByText("Font Size")).toBeInTheDocument();
     expect(screen.getByText("normal")).toBeInTheDocument();
     expect(screen.getByText("100%")).toBeInTheDocument();
@@ -47,14 +47,14 @@ describe("FontSizeSelector", () => {
     });
 
     render(<FontSizeSelector />);
-    
+
     expect(screen.getByText("large")).toBeInTheDocument();
     expect(screen.getByText("113%")).toBeInTheDocument();
   });
 
   it("should render button with proper accessibility attributes", () => {
     render(<FontSizeSelector />);
-    
+
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("aria-haspopup", "listbox");
     expect(button).toHaveAttribute("aria-expanded", "false");
@@ -71,16 +71,16 @@ describe("FontSizeSelector", () => {
     });
 
     render(<FontSizeSelector />);
-    
+
     const button = screen.getByRole("button");
     const icon = button.querySelector("svg");
-    
+
     expect(icon).toHaveStyle({ transform: "scale(1.25)" });
   });
 
   it("should support custom className", () => {
     const { container } = render(<FontSizeSelector className="custom-class" />);
-    
+
     expect(container.firstChild).toHaveClass("custom-class");
   });
 
@@ -95,7 +95,7 @@ describe("FontSizeSelector", () => {
     });
 
     render(<FontSizeSelector />);
-    
+
     expect(screen.getByText("extra-large")).toBeInTheDocument();
     expect(screen.getByText("125%")).toBeInTheDocument();
   });

@@ -30,8 +30,8 @@ export default function FontSizeSelector({ className }: FontSizeSelectorProps) {
       <Combobox value={fontSize} onChange={(value) => value && setFontSize(value)}>
         <ComboboxButton className="relative w-full cursor-pointer rounded-lg border border-primary bg-secondary py-2 pl-3 pr-10 text-left shadow-sm focus:border-focus focus:outline-none focus:ring-1 focus:ring-focus">
           <div className="flex items-center gap-3">
-            <currentSize.icon 
-              className="h-5 w-5 text-secondary" 
+            <currentSize.icon
+              className="h-5 w-5 text-secondary"
               style={{ transform: `scale(${scale})` }}
             />
             <span className="font-medium text-primary">
@@ -65,8 +65,8 @@ export default function FontSizeSelector({ className }: FontSizeSelectorProps) {
             >
               {({ selected }) => (
                 <div className="flex items-center gap-3">
-                  <option.icon 
-                    className="h-5 w-5" 
+                  <option.icon
+                    className="h-5 w-5"
                     style={{ transform: `scale(${option.scale})` }}
                   />
                   <span className={cn("font-medium", selected && "font-semibold")}>

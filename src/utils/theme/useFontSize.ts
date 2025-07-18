@@ -52,7 +52,7 @@ export function useFontSize() {
   useEffect(() => {
     const html = document.documentElement;
     const scale = FONT_SIZE_SCALES[fontSize];
-    
+
     // Set CSS custom property for font size scaling
     html.style.setProperty("--font-size-scale", scale.toString());
   }, [fontSize]);
