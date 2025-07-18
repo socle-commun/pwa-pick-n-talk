@@ -1,34 +1,35 @@
-import { useTranslation } from "react-i18next";
 
 import LocaleSelector from "@/components/ui/LocaleSelector";
 import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
 import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
 import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
 import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
-import cn from "@/utils/cn";
+import PageSection from "@/components/partials/layout/PageSection";
+import PageTitle from "@/components/partials/layout/PageTitle";
+import PageGrid from "@/components/partials/layout/PageGrid";
 import SettingsSection from "@/components/partials/layout/SettingsSection";
+import { useTranslation } from "react-i18next";
 
 export default function SettingsPage() {
   const { t } = useTranslation();
-
   return (
-    <main className="space-y-8">
-      <h1 className={cn("text-2xl font-bold text-primary")}>{t("Settings", "Settings")}</h1>
-      <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
+    <PageSection>
+      <PageTitle>{t("Settings", "Settings")}</PageTitle>
+      <PageGrid>
         <SettingsSection title={t("settings.language.title", "Language")}> 
-          <div className="max-w-md">
+          <PageSection>
             <LocaleSelector />
-          </div>
+          </PageSection>
         </SettingsSection>
         <SettingsSection title={t("settings.accessibility.title", "Accessibility")}> 
-          <div className="max-w-md space-y-4">
+          <PageSection>
             <FontSizeSelector />
             <ThemeModeToggle />
             <HighContrastModeToggle />
             <DaltonismModeToggle />
-          </div>
+          </PageSection>
         </SettingsSection>
-      </div>
-    </main>
+      </PageGrid>
+    </PageSection>
   );
 }

@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/actions";
 import { Form, FormInput } from "@/components/ui/forms";
 import { ProfileEditSchema, type ProfileEditFormData } from "@/db/models/schemas/auth";
 
-import cn from "@/utils/cn";
 import PageSection from "@/components/partials/layout/PageSection";
 
 export default function ProfilePage() {
