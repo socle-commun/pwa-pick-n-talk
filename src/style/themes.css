@@ -18,3 +18,7 @@
 @import './themes/dark-protanopia.css';
 @import './themes/dark-deuteranopia.css';
 @import './themes/dark-tritanopia.css';
+
+/* High contrast themes */
+@import './themes/light-high-contrast.css';
+@import './themes/dark-high-contrast.css';
