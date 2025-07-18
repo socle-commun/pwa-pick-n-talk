@@ -114,7 +114,7 @@ export class PickNTalkDB extends Dexie {
       const binderCount = await this.binders.count();
       const pictogramCount = await this.pictograms.count();
       const categoryCount = await this.categories.count();
-      
+
       // Database is empty if there are no binders, pictograms, or categories
       return binderCount === 0 && pictogramCount === 0 && categoryCount === 0;
     } catch (error) {

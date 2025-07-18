@@ -27,7 +27,7 @@ export default function SetupPage() {
           </Button>
         </div>
       </div>
-      
+
       <div className={cn("grid md:grid-cols-2 gap-8 mt-16")}>
         <div className={cn("text-center p-6 rounded-lg bg-zinc-50 dark:bg-zinc-900")}>
           <div className={cn("size-12 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center")}>

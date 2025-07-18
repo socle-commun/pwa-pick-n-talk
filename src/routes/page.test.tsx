@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { describe, it, expect, vi, beforeEach } from "vitest";
@@ -93,7 +94,7 @@ describe("IndexPage", () => {
     mockIsEmptyDatabase = undefined;
 
     const { container } = renderWithRouter(<IndexPage />);
-    
+
     const logo = container.querySelector("svg");
     expect(logo).toBeInTheDocument();
     expect(logo).toHaveClass("animate-pulse");
@@ -105,19 +106,19 @@ describe("IndexPage", () => {
     mockIsEmptyDatabase = false; // Not empty, so non-authenticated user should see hero
 
     renderWithRouter(<IndexPage />);
-    
+
     // Check hero section
     expect(screen.getByText("Communicate with Confidence")).toBeInTheDocument();
     expect(screen.getByText("Pick'n'Talk empowers communication through customizable pictogram binders, designed for everyone who needs alternative communication tools.")).toBeInTheDocument();
     expect(screen.getAllByText("Get Started")).toHaveLength(2); // One in hero, one in CTA
     expect(screen.getByText("Learn More")).toBeInTheDocument();
-    
+
     // Check features section
     expect(screen.getByText("Why Choose Pick'n'Talk?")).toBeInTheDocument();
     expect(screen.getByText("Fully Customizable")).toBeInTheDocument();
     expect(screen.getByText("Accessible Design")).toBeInTheDocument();
     expect(screen.getByText("Works Offline")).toBeInTheDocument();
-    
+
     // Check CTA section
     expect(screen.getByText("Ready to Get Started?")).toBeInTheDocument();
     expect(screen.getByText("Join thousands of users who have improved their communication with Pick'n'Talk.")).toBeInTheDocument();
@@ -129,7 +130,7 @@ describe("IndexPage", () => {
     mockIsEmptyDatabase = false; // Database is not empty, so no redirect
 
     renderWithRouter(<IndexPage />);
-    
+
     expect(screen.getByText("Welcome back, John Doe!")).toBeInTheDocument();
     expect(screen.getByText("Let's Get You Started")).toBeInTheDocument();
     expect(screen.getByText("It looks like this is your first time using Pick'n'Talk. Let's create your communication profile!")).toBeInTheDocument();
@@ -145,7 +146,7 @@ describe("IndexPage", () => {
     mockIsEmptyDatabase = false; // Database is not empty, so no redirect
 
     renderWithRouter(<IndexPage />);
-    
+
     expect(screen.getByText("Welcome back, Jane Doe!")).toBeInTheDocument();
     expect(screen.getByText("Quick Actions")).toBeInTheDocument();
     expect(screen.getByText("Recent Binders")).toBeInTheDocument();
@@ -158,7 +159,7 @@ describe("IndexPage", () => {
     mockIsEmptyDatabase = false; // Not empty, so non-authenticated user should see hero
 
     const { container } = renderWithRouter(<IndexPage />);
-    
+
     const logo = container.querySelector("svg");
     expect(logo).toBeInTheDocument();
   });
@@ -169,7 +170,7 @@ describe("IndexPage", () => {
     mockIsEmptyDatabase = true; // Database is empty, should redirect
 
     renderWithRouter(<IndexPage />);
-    
+
     expect(mockNavigate).toHaveBeenCalledWith("/setup");
   });
 });
