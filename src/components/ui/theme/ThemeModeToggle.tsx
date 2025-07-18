@@ -1,13 +1,13 @@
-import { useTranslation } from 'react-i18next';
-import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from '@headlessui/react';
-import { ChevronDownIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { useTranslation } from "react-i18next";
+import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from "@headlessui/react";
+import { ChevronDownIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
-import { useThemeMode, type ThemeMode } from '@/utils/theme';
-import cn from '@/utils/cn';
+import { useThemeMode, type ThemeMode } from "@/utils/theme";
+import cn from "@/utils/cn";
 
 const THEME_MODES: Array<{ mode: ThemeMode; icon: typeof SunIcon }> = [
-  { mode: 'light', icon: SunIcon },
-  { mode: 'dark', icon: MoonIcon },
+  { mode: "light", icon: SunIcon },
+  { mode: "dark", icon: MoonIcon },
 ];
 
 interface ThemeModeToggleProps {
@@ -21,11 +21,11 @@ export default function ThemeModeToggle({ className }: ThemeModeToggleProps) {
   const currentMode = THEME_MODES.find(m => m.mode === themeMode) || THEME_MODES[0];
 
   return (
-    <div className={cn('relative', className)}>
+    <div className={cn("relative", className)}>
       <label className="block text-sm font-medium text-secondary mb-2">
-        {t('settings.theme.mode.label', 'Theme Mode')}
+        {t("settings.theme.mode.label", "Theme Mode")}
       </label>
-      
+
       <Combobox value={themeMode} onChange={(value) => value && setThemeMode(value)}>
         <ComboboxButton className="relative w-full cursor-pointer rounded-lg border border-primary bg-secondary py-2 pl-3 pr-10 text-left shadow-sm focus:border-focus focus:outline-none focus:ring-1 focus:ring-focus">
           <div className="flex items-center gap-3">
@@ -59,7 +59,7 @@ export default function ThemeModeToggle({ className }: ThemeModeToggleProps) {
               {({ selected }) => (
                 <div className="flex items-center gap-3">
                   <mode.icon className="h-5 w-5" />
-                  <span className={cn("font-medium", selected && "font-semibold")}> 
+                  <span className={cn("font-medium", selected && "font-semibold")}>
                     {t(`settings.theme.mode.${mode.mode}`, mode.mode)}
                   </span>
                 </div>

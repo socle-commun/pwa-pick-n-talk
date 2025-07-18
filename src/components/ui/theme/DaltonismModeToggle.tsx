@@ -7,10 +7,10 @@ import cn from "@/utils/cn";
 import { ColorPreview } from "./ColorPreview";
 
 const DALTONISM_MODES: Array<{ mode: DaltonismMode; icon: string }> = [
-  { mode: 'default', icon: '👁️' },
-  { mode: 'protanopia', icon: '🔴' },
-  { mode: 'deuteranopia', icon: '🟢' },
-  { mode: 'tritanopia', icon: '🔵' },
+  { mode: "default", icon: "👁️" },
+  { mode: "protanopia", icon: "🔴" },
+  { mode: "deuteranopia", icon: "🟢" },
+  { mode: "tritanopia", icon: "🔵" },
 ];
 
 interface DaltonismModeToggleProps {

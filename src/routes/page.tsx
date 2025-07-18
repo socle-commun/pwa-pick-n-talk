@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { useTranslation } from "react-i18next";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router";
@@ -38,7 +39,7 @@ export default function IndexPage() {
   // Authenticated user experience
   if (user) {
     const hasNoBinders = !binders || binders.length === 0;
-    
+
     return (
       <div className={cn("container mx-auto px-4 py-8 max-w-6xl")}>
         <div className={cn("text-center mb-8")}>

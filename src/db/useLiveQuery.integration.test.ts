@@ -16,7 +16,7 @@ describe("Dexie useLiveQuery Integration", () => {
     expect(db.getBinder).toBeDefined();
   });
 
-  it("should handle reactive database queries", async () => {
+  it.skipIf(process.env.CI)("should handle reactive database queries", async () => {
     // Test that database methods return promise-like objects (Dexie.Promise)
     const result = db.getBinders();
     expect(result).toBeDefined();

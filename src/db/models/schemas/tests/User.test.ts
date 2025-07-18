@@ -61,5 +61,7 @@ describe("User Schema Validation", () => {
     const { binders, ...userWithoutBinders } = validUser;
     const result = UserSchema.parse(userWithoutBinders);
     expect(result.binders).toEqual([]);
+    // Ensure destructured value is used to avoid linting errors
+    expect(binders).toBeDefined();
   });
 });
