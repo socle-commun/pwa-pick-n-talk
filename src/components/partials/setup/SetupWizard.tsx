@@ -6,6 +6,8 @@ import WelcomeStep from "./WelcomeStep";
 import BinderCreationStep from "./BinderCreationStep";
 import SettingsStep from "./SettingsStep";
 import CompletionStep from "./CompletionStep";
+import CaregiverCreationStep from "./CaregiverCreationStep";
+import UserCreationStep from "./UserCreationStep";
 import SetupProgress from "./components/SetupProgress";
 import SetupNavigation from "./components/SetupNavigation";
 import { useSetupCompletion } from "./hooks/useSetupCompletion";
@@ -13,10 +15,12 @@ import { useSetupCompletion } from "./hooks/useSetupCompletion";
 import type { OnboardingFormData } from "@/db/models/schemas/setup";
 
 const STEPS = [
-  { id: "settings", title: "Accessibility & Preferences", component: SettingsStep },
-  { id: "welcome", title: "Welcome", component: WelcomeStep },
-  { id: "binder", title: "Create Your First Binder", component: BinderCreationStep },
-  { id: "completion", title: "All Set!", component: CompletionStep },
+  { id: "settings", title: "Accessibility & Preferences", component: SettingsStep, countsTowardProgress: true },
+  { id: "welcome", title: "Welcome", component: WelcomeStep, countsTowardProgress: false },
+  { id: "caregiver", title: "Create Caregiver Account", component: CaregiverCreationStep, countsTowardProgress: true },
+  { id: "users", title: "Create User Accounts", component: UserCreationStep, countsTowardProgress: true },
+  { id: "binder", title: "Create Your First Binder", component: BinderCreationStep, countsTowardProgress: true },
+  { id: "completion", title: "All Set!", component: CompletionStep, countsTowardProgress: true },
 ];
 
 export default function SetupWizard() {
@@ -28,10 +32,13 @@ export default function SetupWizard() {
     preferredLanguage: "en",
     enableSounds: true,
     welcomeAcknowledged: false,
+    caregiver: undefined,
+    users: [],
     binderName: "",
     binderDescription: "",
     binderCategories: [],
     binderPictograms: [],
+    binderAssignedUsers: [],
     completed: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,6 +46,13 @@ export default function SetupWizard() {
   const currentStep = STEPS[currentStepIndex];
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === STEPS.length - 1;
+
+  // Calculate progress excluding non-counting steps
+  const progressSteps = STEPS.filter(step => step.countsTowardProgress);
+  const currentProgressStepIndex = progressSteps.findIndex(step => step.id === currentStep.id);
+  const progressPercentage = currentProgressStepIndex >= 0
+    ? Math.round(((currentProgressStepIndex + 1) / progressSteps.length) * 100)
+    : 0;
 
   const handleNext = () => {
     if (currentStepIndex < STEPS.length - 1) {
@@ -78,9 +92,10 @@ export default function SetupWizard() {
     <div className={cn("bg-secondary rounded-lg shadow-lg p-8")}>
       {/* Progress indicator */}
       <SetupProgress
-        currentStepIndex={currentStepIndex}
-        totalSteps={STEPS.length}
+        currentStepIndex={currentProgressStepIndex >= 0 ? currentProgressStepIndex : 0}
+        totalSteps={progressSteps.length}
         stepTitle={currentStep.title}
+        progressPercentage={progressPercentage}
       />
 
       {/* Step content */}

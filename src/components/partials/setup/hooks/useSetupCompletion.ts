@@ -7,7 +7,57 @@ export function useSetupCompletion() {
   const [user, setUser] = useAtom(userAtom);
 
   const completeSetup = async (formData: Partial<OnboardingFormData>) => {
-    if (!user) throw new Error("No user found");
+    const createdUserIds: string[] = [];
+
+    // Create caregiver account if provided
+    if (formData.caregiver) {
+      const caregiverId = crypto.randomUUID();
+      const caregiverUser = {
+        id: caregiverId,
+        name: formData.caregiver.name || "",
+        email: formData.caregiver.email || "",
+        hash: formData.caregiver.password || undefined,
+        role: "caregiver" as const,
+        settings: {
+          enableNotifications: formData.enableNotifications || true,
+          preferredLanguage: formData.preferredLanguage || "en",
+          enableSounds: formData.enableSounds || true,
+        },
+        binders: [],
+      };
+
+      await db.createUser(caregiverUser);
+      createdUserIds.push(caregiverId);
+
+      // If no current user, set caregiver as the current user
+      if (!user) {
+        localStorage.setItem("user", JSON.stringify(caregiverUser));
+        setUser(caregiverUser);
+      }
+    }
+
+    // Create user accounts
+    if (formData.users && formData.users.length > 0) {
+      for (const userData of formData.users) {
+        const userId = crypto.randomUUID();
+        const newUser = {
+          id: userId,
+          name: userData.name || "",
+          email: userData.email || "",
+          hash: userData.password || undefined,
+          role: "user" as const,
+          settings: {
+            enableNotifications: formData.enableNotifications || true,
+            preferredLanguage: formData.preferredLanguage || "en",
+            enableSounds: formData.enableSounds || true,
+          },
+          binders: [],
+        };
+
+        await db.createUser(newUser);
+        createdUserIds.push(userId);
+      }
+    }
 
     // Create binder if data exists
     if (formData.binderName) {
@@ -49,33 +99,48 @@ export function useSetupCompletion() {
         }
       }
 
+      // Determine which users should have access to the binder
+      const binderUsers = formData.binderAssignedUsers && formData.binderAssignedUsers.length > 0
+        ? formData.binderAssignedUsers
+        : createdUserIds; // Default to all created users
+
       // Create the binder
-      await db.createBinder({
-        id: binderId,
-        author: user.id,
-        properties: {
-          name: { en: formData.binderName },
-          description: { en: formData.binderDescription || "" },
-        },
-        pictograms: pictogramIds,
-        users: [user.id],
-        isFavorite: false,
-      });
+      const currentUser = user || (formData.caregiver ? { id: createdUserIds[0] } : null);
+      if (currentUser) {
+        await db.createBinder({
+          id: binderId,
+          author: currentUser.id,
+          properties: {
+            name: { en: formData.binderName },
+            description: { en: formData.binderDescription || "" },
+          },
+          pictograms: pictogramIds,
+          users: binderUsers,
+          isFavorite: false,
+        });
 
-      // Update user with the new binder
-      const updatedBinders = [...user.binders, binderId];
-      await db.updateUser({
-        ...user,
-        binders: updatedBinders,
-      });
+        // Update all assigned users with the new binder
+        for (const userId of binderUsers) {
+          const existingUser = await db.getUser(userId);
+          if (existingUser) {
+            const updatedBinders = [...existingUser.binders, binderId];
+            await db.updateUser({
+              ...existingUser,
+              binders: updatedBinders,
+            });
 
-      // Update local state
-      const updatedUser = {
-        ...user,
-        binders: updatedBinders,
-      };
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      setUser(updatedUser);
+            // Update local state if this is the current user
+            if (user && user.id === userId) {
+              const updatedUser = {
+                ...user,
+                binders: updatedBinders,
+              };
+              localStorage.setItem("user", JSON.stringify(updatedUser));
+              setUser(updatedUser);
+            }
+          }
+        }
+      }
     }
   };
 

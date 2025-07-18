@@ -8,6 +8,7 @@ import CategorySelector from "./components/CategorySelector";
 import PictogramSelector from "./components/PictogramSelector";
 import BinderBasicInfo from "./components/BinderBasicInfo";
 import BinderTipSection from "./components/BinderTipSection";
+import UserAssignmentSelector from "./components/UserAssignmentSelector";
 import { useBinderCreation } from "./hooks/useBinderCreation";
 
 interface BinderCreationStepProps {
@@ -37,6 +38,7 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
       ...formData,
       binderCategories: categories,
       binderPictograms: selectedPictograms,
+      binderAssignedUsers: data.binderAssignedUsers || [],
     };
     onUpdate(binderData);
     onNext();
@@ -67,6 +69,10 @@ export default function BinderCreationStep({ data, onUpdate, onNext }: BinderCre
           selectedCategory={selectedCategory}
           onCategorySelect={setSelectedCategory}
           onPictogramToggle={togglePictogram}
+        />
+        <UserAssignmentSelector
+          data={data}
+          onUpdate={onUpdate}
         />
         <BinderTipSection />
         <div className={cn("flex justify-end")}>
