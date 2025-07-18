@@ -7,6 +7,7 @@ export default function Brand({ className }: { className?: string }) {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       aria-hidden="true"
       role="img"
+      data-testid="logo"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 200 200"
       className={cn(className, "fill-current")}

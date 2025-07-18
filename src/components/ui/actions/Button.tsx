@@ -15,7 +15,11 @@ type ButtonProps = (
   | { color?: Color; outline?: never; plain?: never }
   | { color?: never; outline: true; plain?: never }
   | { color?: never; outline?: never; plain: true }
-) & { className?: string; children: React.ReactNode } & (
+) & {
+  className?: string;
+  children: React.ReactNode;
+  "data-testid"?: string;
+} & (
     | Omit<HeadlessButtonProps, "as" | "className">
     | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
   );

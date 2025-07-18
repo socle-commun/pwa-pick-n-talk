@@ -50,6 +50,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder={placeholder}
+          data-testid={`${name}-input`}
           data-invalid={isInvalid ? true : undefined}
           required={required}
           disabled={disabled}
