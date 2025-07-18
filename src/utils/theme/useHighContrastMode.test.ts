@@ -10,7 +10,7 @@ const mockLocalStorage = {
   removeItem: vi.fn(),
 };
 
-Object.defineProperty(window, 'localStorage', {
+Object.defineProperty(window, "localStorage", {
   value: mockLocalStorage,
 });
 
@@ -28,9 +28,9 @@ describe("useHighContrastMode", () => {
 
   it("should initialize with normal contrast mode by default", () => {
     mockLocalStorage.getItem.mockReturnValue(null);
-    
+
     const { result } = renderHook(() => useHighContrastMode());
-    
+
     expect(result.current.highContrastMode).toBe("normal");
     expect(result.current.isNormal).toBe(true);
     expect(result.current.isHighContrast).toBe(false);
@@ -38,9 +38,9 @@ describe("useHighContrastMode", () => {
 
   it("should initialize with stored high contrast mode", () => {
     mockLocalStorage.getItem.mockReturnValue("high-contrast");
-    
+
     const { result } = renderHook(() => useHighContrastMode());
-    
+
     expect(result.current.highContrastMode).toBe("high-contrast");
     expect(result.current.isNormal).toBe(false);
     expect(result.current.isHighContrast).toBe(true);
@@ -48,54 +48,54 @@ describe("useHighContrastMode", () => {
 
   it("should toggle between normal and high contrast modes", () => {
     mockLocalStorage.getItem.mockReturnValue("normal");
-    
+
     const { result } = renderHook(() => useHighContrastMode());
-    
+
     expect(result.current.highContrastMode).toBe("normal");
-    
+
     act(() => {
       result.current.toggleHighContrastMode();
     });
-    
+
     expect(result.current.highContrastMode).toBe("high-contrast");
-    
+
     act(() => {
       result.current.toggleHighContrastMode();
     });
-    
+
     expect(result.current.highContrastMode).toBe("normal");
   });
 
   it("should set high contrast mode directly", () => {
     mockLocalStorage.getItem.mockReturnValue("normal");
-    
+
     const { result } = renderHook(() => useHighContrastMode());
-    
+
     act(() => {
       result.current.setHighContrastMode("high-contrast");
     });
-    
+
     expect(result.current.highContrastMode).toBe("high-contrast");
     expect(result.current.isHighContrast).toBe(true);
   });
 
   it("should apply high-contrast class to document element", () => {
     mockLocalStorage.getItem.mockReturnValue("normal");
-    
+
     const { result } = renderHook(() => useHighContrastMode());
-    
+
     expect(document.documentElement.classList.contains("high-contrast")).toBe(false);
-    
+
     act(() => {
       result.current.setHighContrastMode("high-contrast");
     });
-    
+
     expect(document.documentElement.classList.contains("high-contrast")).toBe(true);
-    
+
     act(() => {
       result.current.setHighContrastMode("normal");
     });
-    
+
     expect(document.documentElement.classList.contains("high-contrast")).toBe(false);
   });
 
@@ -103,17 +103,17 @@ describe("useHighContrastMode", () => {
     mockLocalStorage.getItem.mockImplementation(() => {
       throw new Error("localStorage error");
     });
-    
+
     const { result } = renderHook(() => useHighContrastMode());
-    
+
     expect(result.current.highContrastMode).toBe("normal");
   });
 
   it("should ignore invalid stored values", () => {
     mockLocalStorage.getItem.mockReturnValue("invalid-value");
-    
+
     const { result } = renderHook(() => useHighContrastMode());
-    
+
     expect(result.current.highContrastMode).toBe("normal");
   });
 });
