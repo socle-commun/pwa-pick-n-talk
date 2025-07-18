@@ -1,10 +1,12 @@
 import { type PromiseExtended } from "dexie";
 
-import { type Category } from "@/db/models";
 import { type Pictogram } from "@/db/models";
 
 import { type PickNTalkDB } from "@/db/index";
 
+/**
+ * Get pictograms from a specific binder ID
+ */
 export function getPictogramsFromBinderId(
   this: PickNTalkDB,
   binderId: string
@@ -12,24 +14,26 @@ export function getPictogramsFromBinderId(
   return this.pictograms.where({ binder: binderId }).toArray();
 }
 
-export function getCategoriesFromBinderId(
+/**
+ * Create a new pictogram
+ */
+export function createPictogram(this: PickNTalkDB, pictogram: Pictogram): PromiseExtended<string> {
+  return this.pictograms.add(pictogram);
+}
+
+/**
+ * Update an existing pictogram
+ */
+export function updatePictogram(
   this: PickNTalkDB,
-  binderId: string
-): PromiseExtended<Category[]> {
-  return this.transaction("r", this.pictograms, this.categories, () => {
-    return this.getPictogramsFromBinderId(binderId).then((pictograms) => {
-      const categoryIds = new Set<string>();
-      pictograms.forEach((pictogram) => {
-        if (pictogram.categories) {
-          pictogram.categories.forEach((categoryId) => {
-            categoryIds.add(categoryId);
-          });
-        }
-      });
-      return this.categories
-        .where("id")
-        .anyOf(Array.from(categoryIds))
-        .toArray();
-    });
-  });
+  pictogram: Pictogram
+): PromiseExtended<void> {
+  return this.pictograms.update(pictogram.id, pictogram).then(() => {});
+}
+
+/**
+ * Delete a pictogram
+ */
+export function deletePictogram(this: PickNTalkDB, id: string): PromiseExtended<void> {
+  return this.pictograms.delete(id);
 }
