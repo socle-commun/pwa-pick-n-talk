@@ -1,0 +1,53 @@
+/**
+ * Dark theme - High Contrast + Tritanopia (blue-blind)
+ * Maximum contrast with colorblind-safe colors (avoid blue)
+ */
+:root.dark.high-contrast.daltonism-tritanopia {
+  /* Background colors - High contrast dark */
+  --bg-primary: rgb(0 0 0); /* Pure black background */
+  --bg-secondary: rgb(16 16 16); /* Very dark for cards, panels */
+  --bg-tertiary: rgb(8 8 8); /* Near black background */
+  --bg-overlay: rgba(255 255 255 / 0.2); /* Light overlays */
+  
+  /* Text colors - Maximum contrast */
+  --text-primary: rgb(255 255 255); /* Pure white text */
+  --text-secondary: rgb(255 255 255); /* White secondary text */
+  --text-tertiary: rgb(200 200 200); /* Light gray for muted text */
+  --text-inverse: rgb(0 0 0); /* Black text on light backgrounds */
+  
+  /* Border colors - Strong borders */
+  --border-primary: rgb(255 255 255); /* White borders */
+  --border-secondary: rgb(200 200 200); /* Light gray borders */
+  --border-focus: rgb(255 100 100); /* Bright red for focus (instead of blue) */
+  
+  /* Semantic colors - Success (use bright green) */
+  --success-primary: rgb(100 255 100); /* Bright green */
+  --success-secondary: rgb(0 80 0); /* Dark green background */
+  --success-text: rgb(200 255 200); /* Light green text */
+  --success-border: rgb(100 255 100); /* Green borders */
+  
+  /* Warning colors - Use red instead of yellow */
+  --warning-primary: rgb(255 100 100); /* Bright red instead of yellow */
+  --warning-secondary: rgb(80 0 0); /* Dark red background */
+  --warning-text: rgb(255 200 200); /* Light red text */
+  --warning-border: rgb(255 100 100); /* Red borders */
+  
+  /* Error colors - Use dark red */
+  --error-primary: rgb(255 80 80); /* Bright red */
+  --error-secondary: rgb(60 0 0); /* Very dark red background */
+  --error-text: rgb(255 180 180); /* Light red text */
+  --error-border: rgb(255 80 80); /* Red borders */
+  
+  /* Info colors - Use green instead of blue */
+  --info-primary: rgb(120 255 120); /* Bright green instead of blue */
+  --info-secondary: rgb(0 60 0); /* Dark green background */
+  --info-text: rgb(200 255 200); /* Light green text */
+  --info-border: rgb(120 255 120); /* Green borders */
+  
+  /* Interactive colors - Use red instead of blue */
+  --interactive-primary: rgb(255 100 100); /* Bright red instead of blue */
+  --interactive-secondary: rgb(160 160 160); /* Light gray */
+  --interactive-hover: rgb(255 120 120); /* Lighter red hover */
+  --interactive-active: rgb(255 140 140); /* Even lighter red active */
+  --interactive-disabled: rgb(80 80 80); /* Dark gray disabled */
+}

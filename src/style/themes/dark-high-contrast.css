@@ -1,0 +1,52 @@
+/**
+ * Dark theme - High Contrast (enhanced visibility)
+ */
+.dark.high-contrast {
+  /* Background colors - Maximum contrast */
+  --bg-primary: rgb(0 0 0); /* Pure black background */
+  --bg-secondary: rgb(0 0 0); /* Pure black for cards, panels */
+  --bg-tertiary: rgb(16 16 16); /* Very dark background */
+  --bg-overlay: rgba(0 0 0 / 0.9); /* Very strong overlays */
+  
+  /* Text colors - Maximum contrast */
+  --text-primary: rgb(255 255 255); /* Pure white text */
+  --text-secondary: rgb(255 255 255); /* White secondary text */
+  --text-tertiary: rgb(200 200 200); /* Light gray for muted text */
+  --text-inverse: rgb(0 0 0); /* Black text on light backgrounds */
+  
+  /* Border colors - Strong borders */
+  --border-primary: rgb(255 255 255); /* White borders */
+  --border-secondary: rgb(200 200 200); /* Light gray borders */
+  --border-focus: rgb(100 200 255); /* Bright cyan for focus */
+  
+  /* Semantic colors - High contrast variants */
+  --success-primary: rgb(0 255 0); /* Bright green */
+  --success-secondary: rgb(0 80 0); /* Dark green background */
+  --success-text: rgb(200 255 200); /* Light green text */
+  --success-border: rgb(0 200 0); /* Medium green borders */
+  
+  /* Warning colors */
+  --warning-primary: rgb(255 200 0); /* Bright yellow */
+  --warning-secondary: rgb(80 60 0); /* Dark yellow background */
+  --warning-text: rgb(255 240 200); /* Light yellow text */
+  --warning-border: rgb(255 180 0); /* Medium yellow borders */
+  
+  /* Error colors */
+  --error-primary: rgb(255 100 100); /* Bright red */
+  --error-secondary: rgb(80 0 0); /* Dark red background */
+  --error-text: rgb(255 200 200); /* Light red text */
+  --error-border: rgb(255 150 150); /* Medium red borders */
+  
+  /* Info colors */
+  --info-primary: rgb(100 200 255); /* Bright cyan */
+  --info-secondary: rgb(0 40 80); /* Dark blue background */
+  --info-text: rgb(200 240 255); /* Light cyan text */
+  --info-border: rgb(150 220 255); /* Medium cyan borders */
+  
+  /* Interactive colors - High contrast */
+  --interactive-primary: rgb(100 200 255); /* Bright cyan */
+  --interactive-secondary: rgb(160 160 160); /* Light gray */
+  --interactive-hover: rgb(150 220 255); /* Lighter cyan hover */
+  --interactive-active: rgb(200 240 255); /* Even lighter cyan active */
+  --interactive-disabled: rgb(80 80 80); /* Dark gray disabled */
+}
