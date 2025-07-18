@@ -54,6 +54,22 @@ vi.mock("@/hooks/useBinders", () => ({
   useBinders: () => mockBindersData,
 }));
 
+// Mock useIsEmptyDatabase hook
+let mockIsEmptyDatabase: any = undefined;
+vi.mock("@/hooks/useIsEmptyDatabase", () => ({
+  useIsEmptyDatabase: () => mockIsEmptyDatabase,
+}));
+
+// Mock react-router
+const mockNavigate = vi.fn();
+vi.mock("react-router", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
+
 function renderWithRouter(component: React.ReactElement) {
   return render(
     <MemoryRouter>
@@ -67,11 +83,14 @@ describe("IndexPage", () => {
     vi.clearAllMocks();
     mockUser = null;
     mockBindersData = undefined;
+    mockIsEmptyDatabase = undefined;
+    mockNavigate.mockClear();
   });
 
   it("shows loading state when user is null and binders are undefined", () => {
     mockUser = null;
     mockBindersData = undefined;
+    mockIsEmptyDatabase = undefined;
 
     const { container } = renderWithRouter(<IndexPage />);
     
@@ -83,6 +102,7 @@ describe("IndexPage", () => {
   it("renders non-authenticated user experience with hero and features", () => {
     mockUser = null;
     mockBindersData = [];
+    mockIsEmptyDatabase = false; // Not empty, so non-authenticated user should see hero
 
     renderWithRouter(<IndexPage />);
     
@@ -106,6 +126,7 @@ describe("IndexPage", () => {
   it("renders authenticated user with empty state when no binders", () => {
     mockUser = { name: "John Doe", email: "john@example.com" };
     mockBindersData = [];
+    mockIsEmptyDatabase = false; // Database is not empty, so no redirect
 
     renderWithRouter(<IndexPage />);
     
@@ -121,6 +142,7 @@ describe("IndexPage", () => {
       { id: "1", name: "Binder 1" },
       { id: "2", name: "Binder 2" }
     ];
+    mockIsEmptyDatabase = false; // Database is not empty, so no redirect
 
     renderWithRouter(<IndexPage />);
     
@@ -133,10 +155,21 @@ describe("IndexPage", () => {
   it("displays the logo component in all states", () => {
     mockUser = null;
     mockBindersData = [];
+    mockIsEmptyDatabase = false; // Not empty, so non-authenticated user should see hero
 
     const { container } = renderWithRouter(<IndexPage />);
     
     const logo = container.querySelector("svg");
     expect(logo).toBeInTheDocument();
+  });
+
+  it("redirects to setup when authenticated user has empty database", () => {
+    mockUser = { name: "John Doe", email: "john@example.com" };
+    mockBindersData = [];
+    mockIsEmptyDatabase = true; // Database is empty, should redirect
+
+    renderWithRouter(<IndexPage />);
+    
+    expect(mockNavigate).toHaveBeenCalledWith("/setup");
   });
 });

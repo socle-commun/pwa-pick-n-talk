@@ -17,6 +17,7 @@ const FeedbackPage = lazy(() => import("@/routes/feedback/page"));
 const PrivacyPage = lazy(() => import("@/routes/privacy/page"));
 const ProfilePage = lazy(() => import("@/routes/profile/page"));
 const SettingsPage = lazy(() => import("@/routes/settings/page"));
+const SetupPage = lazy(() => import("@/routes/setup/page"));
 
 const BindersPage = lazy(() => import("@/routes/binders/page"));
 const BinderPage = lazy(() => import("@/routes/binders/[uuid]/page"));
@@ -49,6 +50,7 @@ function App() {
             <Route path="privacy" element={<LazyRoute component={PrivacyPage} />} />
             <Route path="profile" element={<LazyRoute component={ProfilePage} />} />
             <Route path="settings" element={<LazyRoute component={SettingsPage} />} />
+            <Route path="setup" element={<LazyRoute component={SetupPage} />} />
 
             <Route path="binders">
               <Route index element={<LazyRoute component={BindersPage} />} />

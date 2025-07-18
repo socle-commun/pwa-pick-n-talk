@@ -1,10 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { useAtom } from "jotai";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 import Logo from "@/components/partials/global/Logo";
 import { Button } from "@/components/ui/actions";
 import { Heading } from "@/components/ui/typography";
 import { useBinders } from "@/hooks/useBinders";
+import { useIsEmptyDatabase } from "@/hooks/useIsEmptyDatabase";
 import { userAtom } from "@/utils/state/atoms";
 
 import cn from "@/utils/cn";
@@ -12,10 +15,19 @@ import cn from "@/utils/cn";
 export default function IndexPage() {
   const { t } = useTranslation();
   const [user] = useAtom(userAtom);
+  const navigate = useNavigate();
   const binders = useBinders();
+  const isEmptyDatabase = useIsEmptyDatabase();
 
-  // Show loading state while checking user and binders
-  if (!user && binders === undefined) {
+  // Redirect to setup if user is authenticated and database is empty
+  useEffect(() => {
+    if (user && isEmptyDatabase === true) {
+      navigate("/setup");
+    }
+  }, [user, isEmptyDatabase, navigate]);
+
+  // Show loading state while checking user, binders, and database state
+  if (!user && (binders === undefined || isEmptyDatabase === undefined)) {
     return (
       <div className={cn("flex items-center justify-center h-full p-4")}>
         <Logo className={cn("size-16 animate-pulse")} />
