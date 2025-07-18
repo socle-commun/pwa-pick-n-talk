@@ -22,17 +22,6 @@ export default function SetupPage() {
     }
   }, [user, navigate]);
 
-  // Redirect if setup is already completed (database not empty)
-  useEffect(() => {
-    const checkSetupStatus = async () => {
-      if (user && !(await db.isEmpty())) {
-        navigate("/");
-      }
-    };
-
-    checkSetupStatus();
-  }, [user, navigate]);
-
   if (!user) {
     return (
       <div className={cn("flex items-center justify-center h-full p-4")}>
