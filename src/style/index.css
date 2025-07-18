@@ -19,6 +19,9 @@
   --theme-bg-secondary: var(--bg-secondary, #fff);
   --theme-text-primary: var(--text-primary, #18181b);
   --theme-text-secondary: var(--text-secondary, #52525b);
+  
+  /* Font size accessibility scaling */
+  --font-size-scale: 1;
 }
 
 /* #endregion */
@@ -29,12 +32,14 @@
     @apply font-sans antialiased;
     background-color: var(--theme-bg-primary);
     color: var(--theme-text-primary);
+    font-size: calc(1rem * var(--font-size-scale));
   }
 
   html {
     @apply h-full;
     background-color: var(--theme-bg-primary);
     color: var(--theme-text-primary);
+    font-size: calc(1rem * var(--font-size-scale));
   }
 
   body {
