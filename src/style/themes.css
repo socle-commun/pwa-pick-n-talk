@@ -22,3 +22,11 @@
 /* High contrast themes */
 @import './themes/light-high-contrast.css';
 @import './themes/dark-high-contrast.css';
+
+/* High contrast daltonism variants */
+@import './themes/light-high-contrast-protanopia.css';
+@import './themes/light-high-contrast-deuteranopia.css';
+@import './themes/light-high-contrast-tritanopia.css';
+@import './themes/dark-high-contrast-protanopia.css';
+@import './themes/dark-high-contrast-deuteranopia.css';
+@import './themes/dark-high-contrast-tritanopia.css';

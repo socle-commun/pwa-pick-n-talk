@@ -1,0 +1,53 @@
+/**
+ * Dark theme - High Contrast + Deuteranopia (green-blind)
+ * Maximum contrast with colorblind-safe colors
+ */
+:root.dark.high-contrast.daltonism-deuteranopia {
+  /* Background colors - High contrast dark */
+  --bg-primary: rgb(0 0 0); /* Pure black background */
+  --bg-secondary: rgb(16 16 16); /* Very dark for cards, panels */
+  --bg-tertiary: rgb(8 8 8); /* Near black background */
+  --bg-overlay: rgba(255 255 255 / 0.2); /* Light overlays */
+  
+  /* Text colors - Maximum contrast */
+  --text-primary: rgb(255 255 255); /* Pure white text */
+  --text-secondary: rgb(255 255 255); /* White secondary text */
+  --text-tertiary: rgb(200 200 200); /* Light gray for muted text */
+  --text-inverse: rgb(0 0 0); /* Black text on light backgrounds */
+  
+  /* Border colors - Strong borders */
+  --border-primary: rgb(255 255 255); /* White borders */
+  --border-secondary: rgb(200 200 200); /* Light gray borders */
+  --border-focus: rgb(100 150 255); /* Bright blue for focus */
+  
+  /* Semantic colors - Success (use bright blue instead of green) */
+  --success-primary: rgb(100 150 255); /* Bright blue instead of green */
+  --success-secondary: rgb(0 0 80); /* Dark blue background */
+  --success-text: rgb(200 220 255); /* Light blue text */
+  --success-border: rgb(100 150 255); /* Blue borders */
+  
+  /* Warning colors - Safe orange */
+  --warning-primary: rgb(255 180 0); /* Bright orange */
+  --warning-secondary: rgb(80 60 0); /* Dark orange background */
+  --warning-text: rgb(255 220 150); /* Light orange text */
+  --warning-border: rgb(255 180 0); /* Orange borders */
+  
+  /* Error colors - Keep red (distinct from green) */
+  --error-primary: rgb(255 100 100); /* Bright red */
+  --error-secondary: rgb(80 0 0); /* Dark red background */
+  --error-text: rgb(255 200 200); /* Light red text */
+  --error-border: rgb(255 100 100); /* Red borders */
+  
+  /* Info colors - Use darker blue */
+  --info-primary: rgb(120 170 255); /* Bright blue */
+  --info-secondary: rgb(0 0 60); /* Dark blue background */
+  --info-text: rgb(200 220 255); /* Light blue text */
+  --info-border: rgb(120 170 255); /* Blue borders */
+  
+  /* Interactive colors - High contrast blue */
+  --interactive-primary: rgb(100 150 255); /* Bright blue */
+  --interactive-secondary: rgb(160 160 160); /* Light gray */
+  --interactive-hover: rgb(120 170 255); /* Lighter blue hover */
+  --interactive-active: rgb(140 190 255); /* Even lighter blue active */
+  --interactive-disabled: rgb(80 80 80); /* Dark gray disabled */
+}
