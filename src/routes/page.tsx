@@ -12,6 +12,7 @@ import { useIsEmptyDatabase } from "@/hooks/useIsEmptyDatabase";
 import { userAtom } from "@/utils/state/atoms";
 
 import cn from "@/utils/cn";
+import { HeroSection, FeaturesSection } from "@/components/partials/layout";
 
 export default function IndexPage() {
   const { t } = useTranslation();
@@ -86,37 +87,35 @@ export default function IndexPage() {
 
   // Non-authenticated user experience
   return (
-    <div className={cn("container mx-auto px-4 py-8 max-w-6xl")}>
-      {/* Hero Section */}
-      <section className={cn("text-center py-12 mb-16")}>
+    <div className={cn("container mx-auto px-4 py-8 max-w-6xl")}> 
+      <HeroSection>
         <Logo className={cn("size-24 mx-auto mb-8")} />
-        <Heading level={1} className={cn("text-4xl lg:text-5xl mb-6")}>
+        <Heading level={1} className={cn("text-4xl lg:text-5xl mb-6")}> 
           {t("homepage.hero.title")}
         </Heading>
-        <p className={cn("text-xl text-zinc-600 dark:text-zinc-400 mb-8 max-w-3xl mx-auto")}>
+        <p className={cn("text-xl text-zinc-600 dark:text-zinc-400 mb-8 max-w-3xl mx-auto")}> 
           {t("homepage.hero.subtitle")}
         </p>
-        <div className={cn("flex flex-col sm:flex-row gap-4 justify-center")}>
-          <Button href="/auth/sign-up" className={cn("px-8 py-3")}>
+        <div className={cn("flex flex-col sm:flex-row gap-4 justify-center")}> 
+          <Button href="/auth/sign-up" className={cn("px-8 py-3")}> 
             {t("homepage.hero.cta.primary")}
           </Button>
-          <Button href="#features" outline className={cn("px-8 py-3")}>
+          <Button href="#features" outline className={cn("px-8 py-3")}> 
             {t("homepage.hero.cta.secondary")}
           </Button>
         </div>
-      </section>
+      </HeroSection>
 
-      {/* Features Section */}
-      <section id="features" className={cn("py-16")}>
-        <div className={cn("text-center mb-12")}>
-          <Heading level={2} className={cn("text-3xl mb-4")}>
+      <FeaturesSection>
+        <div className={cn("text-center mb-12")}> 
+          <Heading level={2} className={cn("text-3xl mb-4")}> 
             {t("homepage.features.title")}
           </Heading>
         </div>
-        <div className={cn("grid md:grid-cols-3 gap-8")}>
+        <div className={cn("grid md:grid-cols-3 gap-8")}> 
           {/* Customizable Feature */}
-          <div className={cn("text-center p-6 rounded-lg bg-zinc-50 dark:bg-zinc-900")}>
-            <div className={cn("size-12 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center")}>
+          <div className={cn("text-center p-6 rounded-lg bg-zinc-50 dark:bg-zinc-900")}> 
+            <div className={cn("size-12 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center")}> 
               <svg className={cn("size-6 text-blue-600 dark:text-blue-400")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
               </svg>
@@ -160,7 +159,7 @@ export default function IndexPage() {
             </p>
           </div>
         </div>
-      </section>
+      </FeaturesSection>
 
       {/* Call to Action Section */}
       <section className={cn("text-center py-16")}>

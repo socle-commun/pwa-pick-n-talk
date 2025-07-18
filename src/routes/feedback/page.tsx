@@ -1,9 +1,7 @@
-import cn from "@/utils/cn";
+import PageSection from "@/components/partials/layout/PageSection";
 
 export default function FeedbackPage() {
   return (
-    <>
-      <h1 className={cn("")}>Feedback</h1>
-    </>
+    <PageSection title="Feedback">{/* TODO: Add feedback content */}</PageSection>
   );
 }

@@ -5,6 +5,7 @@ import { Form, FormInput } from "@/components/ui/forms";
 import { ProfileEditSchema, type ProfileEditFormData } from "@/db/models/schemas/auth";
 
 import cn from "@/utils/cn";
+import PageSection from "@/components/partials/layout/PageSection";
 
 export default function ProfilePage() {
   const { t } = useTranslation();
@@ -22,16 +23,8 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-8">
-      <h1 className={cn("text-2xl font-bold text-zinc-900 dark:text-white")}>
-        {t("profile.title", "Profile")}
-      </h1>
-
-      <div className="bg-zinc-50 dark:bg-zinc-800 p-6 rounded-lg">
-        <h2 className="text-lg font-semibold mb-4 text-zinc-900 dark:text-white">
-          {t("profile.edit.title", "Edit Profile")}
-        </h2>
-
+    <PageSection title={t("profile.title", "Profile")}> 
+      <PageSection title={t("profile.edit.title", "Edit Profile")} className="bg-zinc-50 dark:bg-zinc-800 p-6 rounded-lg">
         <Form<ProfileEditFormData>
           schema={ProfileEditSchema}
           initialValues={initialValues}
@@ -44,14 +37,12 @@ export default function ProfilePage() {
             type="text"
             required
           />
-
           <FormInput
             name="email"
             label={t("profile.edit.email", "Email")}
             type="email"
             required
           />
-
           <div className="space-y-2">
             <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
               {t("profile.edit.role", "Role")}
@@ -65,7 +56,6 @@ export default function ProfilePage() {
               <option value="professional">{t("profile.roles.professional", "Professional")}</option>
             </select>
           </div>
-
           <div className="flex gap-4">
             <Button type="submit" color="sky">
               {t("profile.edit.save", "Save Changes")}
@@ -75,7 +65,7 @@ export default function ProfilePage() {
             </Button>
           </div>
         </Form>
-      </div>
-    </div>
+      </PageSection>
+    </PageSection>
   );
 }

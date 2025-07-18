@@ -6,42 +6,29 @@ import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
 import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
 import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
 import cn from "@/utils/cn";
+import SettingsSection from "@/components/partials/layout/SettingsSection";
 
 export default function SettingsPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="space-y-8">
-      <h1 className={cn("text-2xl font-bold text-primary")}>
-        {t("Settings", "Settings")}
-      </h1>
-
+    <main className="space-y-8">
+      <h1 className={cn("text-2xl font-bold text-primary")}>{t("Settings", "Settings")}</h1>
       <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
-        <div className="space-y-6">
-          <div>
-            <h2 className="text-lg font-semibold text-primary mb-4">
-              {t("settings.language.title", "Language")}
-            </h2>
-            <div className="max-w-md">
-              <LocaleSelector />
-            </div>
+        <SettingsSection title={t("settings.language.title", "Language")}> 
+          <div className="max-w-md">
+            <LocaleSelector />
           </div>
-        </div>
-
-        <div className="space-y-6">
-          <div>
-            <h2 className="text-lg font-semibold text-primary mb-4">
-              {t("settings.accessibility.title", "Accessibility")}
-            </h2>
-            <div className="max-w-md space-y-4">
-              <FontSizeSelector />
-              <ThemeModeToggle />
-              <HighContrastModeToggle />
-              <DaltonismModeToggle />
-            </div>
+        </SettingsSection>
+        <SettingsSection title={t("settings.accessibility.title", "Accessibility")}> 
+          <div className="max-w-md space-y-4">
+            <FontSizeSelector />
+            <ThemeModeToggle />
+            <HighContrastModeToggle />
+            <DaltonismModeToggle />
           </div>
-        </div>
+        </SettingsSection>
       </div>
-    </div>
+    </main>
   );
 }

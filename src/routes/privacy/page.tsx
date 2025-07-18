@@ -1,9 +1,7 @@
-import cn from "@/utils/cn";
+import PageSection from "@/components/partials/layout/PageSection";
 
 export default function PrivacyPage() {
   return (
-    <>
-      <h1 className={cn("")}>Privacy</h1>
-    </>
+    <PageSection title="Privacy">{/* TODO: Add privacy content */}</PageSection>
   );
 }
