@@ -18,14 +18,14 @@ export default function Layout() {
   useEffect(() => {
     const checkSetupStatus = async () => {
       try {
-        if (user && 
-            await db.isEmpty() && 
-            !location.pathname.startsWith('/setup') &&
-            !location.pathname.startsWith('/auth/')) {
-          navigate('/setup');
+        if (user &&
+            await db.isEmpty() &&
+            !location.pathname.startsWith("/setup") &&
+            !location.pathname.startsWith("/auth/")) {
+          navigate("/setup");
         }
       } catch (error) {
-        console.error('Failed to check setup status:', error);
+        console.error("Failed to check setup status:", error);
       }
     };
 

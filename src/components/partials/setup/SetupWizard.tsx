@@ -1,19 +1,16 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useAtom } from "jotai";
 import { useNavigate } from "react-router";
-
-import { Button } from "@/components/ui/actions";
-import { userAtom } from "@/utils/state/atoms";
-import { db } from "@/db";
+import cn from "@/utils/cn";
 
 import WelcomeStep from "./WelcomeStep";
 import BinderCreationStep from "./BinderCreationStep";
 import SettingsStep from "./SettingsStep";
 import CompletionStep from "./CompletionStep";
+import SetupProgress from "./components/SetupProgress";
+import SetupNavigation from "./components/SetupNavigation";
+import { useSetupCompletion } from "./hooks/useSetupCompletion";
 
 import type { OnboardingFormData } from "@/db/models/schemas/setup";
-import cn from "@/utils/cn";
 
 const STEPS = [
   { id: "settings", title: "Accessibility & Preferences", component: SettingsStep },
@@ -23,9 +20,8 @@ const STEPS = [
 ];
 
 export default function SetupWizard() {
-  const { t } = useTranslation();
-  const [user, setUser] = useAtom(userAtom);
   const navigate = useNavigate();
+  const { completeSetup } = useSetupCompletion();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [formData, setFormData] = useState<Partial<OnboardingFormData>>({
     enableNotifications: true,
@@ -57,118 +53,38 @@ export default function SetupWizard() {
   };
 
   const handleSkip = () => {
-    // Skip setup and go directly to home
     navigate("/");
   };
 
-  const handleComplete = async () => {
-    if (!user) return;
+  const updateFormData = (data: Partial<OnboardingFormData>) => {
+    setFormData(prev => ({ ...prev, ...data }));
+  };
 
+  const handleComplete = async () => {
     setIsSubmitting(true);
     try {
-      // Create the binder if provided
-      if (formData.binderName) {
-        const binderId = crypto.randomUUID();
-        
-        // Create categories first if any were added
-        const categoryIds: string[] = [];
-        if (formData.binderCategories && formData.binderCategories.length > 0) {
-          for (const categoryData of formData.binderCategories) {
-            const categoryId = crypto.randomUUID();
-            await db.createCategory({
-              id: categoryId,
-              properties: {
-                name: { en: categoryData.name },
-              },
-              pictograms: [],
-            });
-            categoryIds.push(categoryId);
-          }
-        }
-
-        // Create pictograms if any were selected
-        const pictogramIds: string[] = [];
-        if (formData.binderPictograms && formData.binderPictograms.length > 0) {
-          // In a real implementation, you would fetch the actual pictogram data
-          // For now, we'll create placeholder pictograms based on the selection
-          for (let i = 0; i < formData.binderPictograms.length; i++) {
-            const pictogramId = formData.binderPictograms[i];
-            const newPictogramId = crypto.randomUUID();
-            await db.createPictogram({
-              id: newPictogramId,
-              binder: binderId,
-              isFavorite: false,
-              order: i, // Add required order field
-              properties: {
-                name: { en: pictogramId }, // Simplified for demo
-              },
-              categories: categoryIds, // Associate with created categories
-            });
-            pictogramIds.push(newPictogramId);
-          }
-        }
-
-        await db.createBinder({
-          id: binderId,
-          author: user.id,
-          properties: {
-            name: { en: formData.binderName },
-            description: { en: formData.binderDescription || "" },
-          },
-          pictograms: pictogramIds,
-          users: [user.id],
-          isFavorite: false,
-        });
-
-        // Update user with the new binder
-        const updatedBinders = [...user.binders, binderId];
-        await db.updateUser({ 
-          ...user,
-          binders: updatedBinders,
-        });
-
-        // Update local state
-        const updatedUser = { 
-          ...user, 
-          binders: updatedBinders,
-        };
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-        setUser(updatedUser);
-      }
-
+      await completeSetup(formData);
       navigate("/");
     } catch (error) {
-      console.error("Failed to complete setup:", error);
+      console.error("Error completing setup:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const updateFormData = (stepData: Partial<OnboardingFormData>) => {
-    setFormData({ ...formData, ...stepData });
-  };
-
   const CurrentStepComponent = currentStep.component;
 
   return (
-    <div className={cn("bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8")}>
+    <div className={cn("bg-secondary rounded-lg shadow-lg p-8")}>
       {/* Progress indicator */}
-      <div className={cn("mb-8")}>
-        <div className={cn("flex items-center justify-between text-sm text-zinc-500 dark:text-zinc-400 mb-2")}>
-          <span>{t("onboarding.progress.step", "Step")} {currentStepIndex + 1} {t("onboarding.progress.of", "of")} {STEPS.length}</span>
-          <span>{Math.round(((currentStepIndex + 1) / STEPS.length) * 100)}%</span>
-        </div>
-        <div className={cn("w-full bg-zinc-200 dark:bg-zinc-700 rounded-full h-2")}>
-          <div
-            className={cn("bg-sky-600 h-2 rounded-full transition-all duration-300")}
-            style={{ width: `${((currentStepIndex + 1) / STEPS.length) * 100}%` }}
-          />
-        </div>
-      </div>
+      <SetupProgress
+        currentStepIndex={currentStepIndex}
+        totalSteps={STEPS.length}
+        stepTitle={currentStep.title}
+      />
 
       {/* Step content */}
       <div className={cn("min-h-[400px] mb-8")}>
-        <h2 className={cn("text-2xl font-bold mb-4")}>{currentStep.title}</h2>
         <CurrentStepComponent
           data={formData}
           onUpdate={updateFormData}
@@ -178,37 +94,16 @@ export default function SetupWizard() {
       </div>
 
       {/* Navigation */}
-      <div className={cn("flex items-center justify-between")}>
-        <div className={cn("flex gap-2")}>
-          {!isFirstStep && (
-            <Button outline onClick={handlePrevious}>
-              {t("onboarding.navigation.previous", "Previous")}
-            </Button>
-          )}
-          <Button plain onClick={handleSkip} className={cn("text-zinc-500")}>
-            {t("onboarding.navigation.skip", "Skip Tutorial")}
-          </Button>
-        </div>
-
-        <div>
-          {isLastStep ? (
-            <Button 
-              onClick={handleComplete} 
-              disabled={isSubmitting}
-              className={cn("px-8")}
-            >
-              {isSubmitting 
-                ? t("onboarding.navigation.completing", "Completing...")
-                : t("onboarding.navigation.complete", "Complete Setup")
-              }
-            </Button>
-          ) : (
-            <Button onClick={handleNext} className={cn("px-8")}>
-              {t("onboarding.navigation.next", "Next")}
-            </Button>
-          )}
-        </div>
-      </div>
+      <SetupNavigation
+        currentStepIndex={currentStepIndex}
+        totalSteps={STEPS.length}
+        isFirstStep={isFirstStep}
+        isLastStep={isLastStep}
+        isSubmitting={isSubmitting}
+        onPrevious={handlePrevious}
+        onSkip={handleSkip}
+        onComplete={handleComplete}
+      />
     </div>
   );
 }

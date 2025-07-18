@@ -8,10 +8,10 @@ export const OnboardingSchema = z.object({
   enableNotifications: z.boolean().default(true),
   preferredLanguage: z.string().optional(),
   enableSounds: z.boolean().default(true),
-  
+
   // Step 2: Welcome
   welcomeAcknowledged: z.boolean().default(false),
-  
+
   // Step 3: Enhanced Binder Creation
   binderName: z.string().min(1, "validation.errors.field_empty").max(100, "validation.errors.string_too_long"),
   binderDescription: z.string().optional(),
@@ -21,7 +21,7 @@ export const OnboardingSchema = z.object({
     pictograms: z.array(z.string()).optional(),
   })).optional(),
   binderPictograms: z.array(z.string()).optional(),
-  
+
   // Step 4: Completion
   completed: z.boolean().default(false),
 });

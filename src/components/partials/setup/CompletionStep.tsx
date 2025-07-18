@@ -21,19 +21,19 @@ export default function CompletionStep({ data }: CompletionStepProps) {
     <div className={cn("text-center space-y-6")}>
       <div className={cn("space-y-4")}>
         <div className={cn("text-6xl mb-4")}>🎉</div>
-        
+
         <h3 className={cn("text-2xl font-bold")}>
           {t("onboarding.completion.title", "Congratulations, {{name}}!", { name: user?.name })}
         </h3>
-        
+
         <p className={cn("text-lg text-zinc-600 dark:text-zinc-400")}>
           {t("onboarding.completion.subtitle", "You're all set up and ready to start communicating!")}
         </p>
       </div>
 
       <div className={cn("grid md:grid-cols-2 gap-6 my-8")}>
-        <div className={cn("p-6 bg-green-50 dark:bg-green-900/20 rounded-lg")}>
-          <div className={cn("text-green-600 dark:text-green-400 text-3xl mb-3")}>✅</div>
+        <div className={cn("p-6 bg-success-secondary rounded-lg border border-success-border")}>
+          <div className={cn("text-success-text text-3xl mb-3")}>✅</div>
           <h4 className={cn("font-semibold mb-2")}>
             {t("onboarding.completion.setup.title", "Setup Complete")}
           </h4>
@@ -46,8 +46,8 @@ export default function CompletionStep({ data }: CompletionStepProps) {
           </ul>
         </div>
 
-        <div className={cn("p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg")}>
-          <div className={cn("text-blue-600 dark:text-blue-400 text-3xl mb-3")}>🚀</div>
+        <div className={cn("p-6 bg-info-secondary rounded-lg border border-info-border")}>
+          <div className={cn("text-info-text text-3xl mb-3")}>🚀</div>
           <h4 className={cn("font-semibold mb-2")}>
             {t("onboarding.completion.next.title", "What's Next?")}
           </h4>
@@ -65,7 +65,7 @@ export default function CompletionStep({ data }: CompletionStepProps) {
           💡 {t("onboarding.completion.tip.title", "Quick Tip")}
         </h4>
         <p className={cn("text-sky-700 dark:text-sky-300 text-sm")}>
-          {t("onboarding.completion.tip.content", 
+          {t("onboarding.completion.tip.content",
             "Check out the Help section in the app menu for tutorials, tips, and best practices for effective communication with pictograms."
           )}
         </p>
@@ -75,7 +75,7 @@ export default function CompletionStep({ data }: CompletionStepProps) {
         <Button href="/profile" outline className={cn("mr-4")}>
           {t("onboarding.completion.actions.profile", "View Profile")}
         </Button>
-        
+
         <Button href="/binders" className={cn("px-8")}>
           {t("onboarding.completion.actions.explore", "Start Exploring")}
         </Button>

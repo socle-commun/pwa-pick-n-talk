@@ -27,9 +27,9 @@ export default function WelcomeStep({ onUpdate, onNext }: WelcomeStepProps) {
         <p className={cn("text-lg")}>
           {t("onboarding.welcome.greeting", "Hello {{name}}! 👋", { name: user?.name })}
         </p>
-        
+
         <p className={cn("text-zinc-600 dark:text-zinc-400")}>
-          {t("onboarding.welcome.intro", 
+          {t("onboarding.welcome.intro",
             "Pick & Talk is a powerful communication app that helps you create personalized pictogram boards for enhanced communication."
           )}
         </p>
@@ -67,7 +67,7 @@ export default function WelcomeStep({ onUpdate, onNext }: WelcomeStepProps) {
         </div>
 
         <p className={cn("text-zinc-600 dark:text-zinc-400")}>
-          {t("onboarding.welcome.guide", 
+          {t("onboarding.welcome.guide",
             "This quick tutorial will help you create your first communication binder and configure your preferences."
           )}
         </p>
