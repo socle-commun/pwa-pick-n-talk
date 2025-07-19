@@ -15,7 +15,7 @@ export default function SetupProgress({
   progressPercentage: customProgressPercentage,
 }: SetupProgressProps) {
   const { t } = useTranslation();
-  const progressPercentage = customProgressPercentage ?? ((currentStepIndex + 1) / totalSteps) * 100;
+  const progressPercentage = Math.min(100, Math.max(0, customProgressPercentage ?? ((currentStepIndex + 1) / totalSteps) * 100));
 
   return (
     <div className={cn("mb-8")}>
