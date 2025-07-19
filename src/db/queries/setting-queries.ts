@@ -24,3 +24,17 @@ export function getSetting(this: PickNTalkDB, key: string): PromiseExtended<Sett
 export function createSetting(this: PickNTalkDB, setting: Setting): PromiseExtended<string> {
   return this.settings.add(setting);
 }
+
+/**
+ * Update an existing setting
+ */
+export function updateSetting(this: PickNTalkDB, setting: Setting): PromiseExtended<void> {
+  return this.settings.put(setting).then(() => {});
+}
+
+/**
+ * Create or update a setting (upsert)
+ */
+export function upsertSetting(this: PickNTalkDB, setting: Setting): PromiseExtended<string> {
+  return this.settings.put(setting);
+}

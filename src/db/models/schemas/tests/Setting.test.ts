@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+
 import { describe, it, expect } from "vitest";
 import { validateSetting, validateSettingSafe, isValidSetting } from "../Setting";
 
