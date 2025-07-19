@@ -84,7 +84,9 @@ export default function AuthManager() {
   return user ? (
     <UserProfile user={user} onLogout={userActions.logout} />
   ) : (
-    <LoginForm onLogin={userActions.login} />
+    <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
+      <LoginForm onLogin={userActions.login} />
+    </div>
   );
 }
 ```

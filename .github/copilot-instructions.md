@@ -50,6 +50,10 @@ applyTo: "**"
 - Structure Tailwind classes in order: layout → box model → typography → color → effects.
 - Use components from components/ui before creating new ones.
 - If you create a component, it must be generic, reusable, and documented.
+- See Tailwind UI Catalyst https://catalyst.tailwindui.com/docs
+- Always use the template for colors, backgrounds, and borders:
+- Never use Tailwind's color palette directly.
+- If you need more colors, you need to add them in the templates files first.
 
 ## 🛣️ React Router (see https://reactrouter.com/home)
 

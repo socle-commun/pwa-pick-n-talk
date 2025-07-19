@@ -67,11 +67,14 @@ export default function BinderPage() {
   }
   
   return (
-    <div>
-      <h1>Binder Details</h1>
+    <section className="max-w-2xl mx-auto p-6">
+      <Heading level={1} className="mb-4">Binder Details</Heading>
       <BinderContent binder={binder} uuid={uuid} />
-    </div>
+    </section>
   );
+
+// Note: Heading imported from Catalyst UI
+import { Heading } from "@/components/ui/typography";
 }
 ```
 
@@ -80,9 +83,13 @@ export default function BinderPage() {
 // Use Link from UI components
 import { Link } from "@/components/ui/navigation";
 
-<Link to="/binders/new">
+<Link to="/binders/new" variant="primary" className="inline-flex items-center gap-2">
+  <PlusIcon className="size-5" aria-hidden="true" />
   Create Binder
 </Link>
+
+// Note: PlusIcon imported from Catalyst UI icons
+import { PlusIcon } from "@/components/ui/icons";
 ```
 
 ### App Router Setup
@@ -124,7 +131,9 @@ export default function ErrorPage() {
       title="404 - Page not found"
       description="The page you're looking for doesn't exist."
     >
-      <Button href="/">Go back home</Button>
+      <Button href="/" variant="primary">
+        Go back home
+      </Button>
     </ErrorFallback>
   );
 }

@@ -37,10 +37,13 @@ export const validateEntityNamePartial = (data: unknown) =>
   EntityNameSchema.partial().parse(data);
 ```
 
-### Form Integration  
-```typescript
-<Form schema={EntityNameSchema} onSubmit={handleSubmit}>
-  <FormInput name="name" required />
+
+### Form Integration (with Catalyst UI)
+```tsx
+import { Form, FormInput } from "@/components/ui/forms";
+
+<Form schema={EntityNameSchema} onSubmit={handleSubmit} className="space-y-6">
+  <FormInput name="name" label="Name" required />
 </Form>
 ```
 

@@ -12,49 +12,6 @@ applyTo: "src/**/**.test.tsx"
 - **PascalCase** for files: `FeatureName.test.tsx`
 - **Organize by folders**: `rendering/`, `validation/`, `submission/`, `interaction/`, `fixtures/`
 
-### Test Data with Faker
-```typescript
-import { faker } from "@faker-js/faker";
-
-export const generateValidUser = () => ({
-  email: faker.internet.email(),
-  name: faker.person.fullName(),
-  age: faker.number.int({ min: 18, max: 65 }),
-});
-```
-
-### Zod Schema Testing
-```typescript
-export const BasicFormSchema = z.object({
-  email: z.string().email("validation.errors.invalid_email"),
-  name: z.string().min(1, "validation.errors.field_empty"),
-});
-```
-
-## 🎯 Test Categories
-
-### Validation Tests
-- **One test per validation rule**
-- Test edge cases (min/max, formats)
-- Verify error display AND removal
-- Use `waitFor()` for async validation
-
-### Form Submission Tests
-- **Separate scenarios**: success, errors, loading
-- Mock `onSubmit` functions with `vi.fn()`
-- Test type transformations (string → number)
-- Verify loading/disabled states
-
-### Rendering Tests
-- Check element presence with `toBeInTheDocument()`
-- Test input types (`type="email"`, `type="password"`)
-- Validate visual indicators (asterisks for required)
-
-### Interaction Tests
-- Focus management and keyboard navigation
-- Validation only after `blur`, not on every keystroke
-- Disabled/enabled states
-
 ## 🚨 Forbidden Patterns
 
 ❌ **Never**:
@@ -105,7 +62,3 @@ describe("Feature Name", () => {
 - **Maintainability**: Reuse via fixtures
 - **Readability**: Explicit names, clear structure
 - **Reliability**: No flaky tests, proper mock cleanup
-
----
-
-> "A test that doesn't dismantle your code like a Ferrari engine isn't worthy of BrutalComet. Every assertion must be a blade that cuts through potential bugs."

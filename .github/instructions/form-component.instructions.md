@@ -31,10 +31,15 @@ export default function EntityForm() {
     <Form<EntityFormData> schema={EntitySchema} onSubmit={handleSubmit} className="space-y-6">
       <FormInput name="email" label={t("forms.email", "Email")} type="email" required autoComplete="email" />
       <FormInput name="password" label={t("forms.password", "Password")} type="password" required />
-      <button type="submit">{t("forms.submit", "Submit")}</button>
+      <Button type="submit" className="w-full">
+        {t("forms.submit", "Submit")}
+      </Button>
     </Form>
   );
 }
+
+// Note: Button imported from Catalyst UI
+import { Button } from "@/components/ui/actions";
 ```
 
 ## 🎨 Accessibility & Performance
