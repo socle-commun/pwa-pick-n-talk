@@ -25,7 +25,6 @@ applyTo: "**"
 - Apply KISS, YAGNI, SOLID, DRY principles at all times.
 - Every file must start with a commented header: context, purpose.
 - Comment every function, component, and complex logic block.
-- No file should ever exceed 110 lines. If it does, split it and organize using composition.
 - Use explicit, descriptive names in English only.
 - Structure folders and files in kebab-case.
 - Components, types, interfaces: PascalCase. Variables, functions: camelCase. Constants: ALL_CAPS.
