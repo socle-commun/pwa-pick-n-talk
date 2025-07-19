@@ -53,14 +53,13 @@ applyTo: "**"
 
 ## 🛣️ React Router (see https://reactrouter.com/home)
 
-- Use the latest version of React Router.
-- Use hooks (useNavigate, useParams, useLocation) for navigation and params.
 - Structure routes in a dedicated folder (src/routes/).
 - Use <Outlet /> for nested rendering.
 - Navigation: always declarative (<Link>, <NavLink>), never imperative except in rare cases.
 - Handle navigation errors with dedicated pages.
 - Use lazy loading for heavy routes.
-- Never use "react-router-dom", use "react-router" instead or ui component like example below.
+- **React Router v7** - Use modern hooks (`useNavigate`, `useParams`, `useLocation`)
+- **Import from react-router** - Use `import { Outlet } from "react-router"`
 - **Navigation** - Declarative with UI components, avoid imperative navigation
 - **Error handling** - Dedicated error pages and boundaries
 
@@ -98,7 +97,7 @@ applyTo: "**"
 - Variables, functions: camelCase (e.g., fetchUser, handleClick).
 - Constants: ALL_CAPS (e.g., API_URL).
 - One component = one file. If a component exceeds 100 lines, split it.
-- Place UI components in src/components/ui/, pages in src/routes/, hooks in src/hooks/, types in src/
+- Place UI components in src/components/ui/, pages in src/routes/, hooks in src/hooks/, types in types/ folder.
 
 ## 📝 Documentation & Comments
 
