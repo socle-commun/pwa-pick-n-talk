@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { describe, it, expect, vi, beforeEach } from "vitest";

@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+
 import { describe, it, expect } from "vitest";
 import { PictogramSchema, validatePictogram, validatePictogramSafe, isValidPictogram } from "../Pictogram";
 

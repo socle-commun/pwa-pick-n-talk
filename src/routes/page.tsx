@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+
 import { useTranslation } from "react-i18next";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router";
