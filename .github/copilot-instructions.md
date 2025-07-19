@@ -41,7 +41,7 @@ applyTo: "**"
 - Use fragments (<>...</>) to avoid unnecessary divs.
 - Use props for downward data, callbacks for upward events.
 - Always type props and state with TypeScript.
-- Always use the [`cn`](src/utils/cn) utility for class names.
+- Always use the [`cn`](../src/utils/cn.ts) utility for class names.
 
 ## 🎨 Tailwind UI Catalyst (see https://catalyst.tailwindui.com/docs)
 
