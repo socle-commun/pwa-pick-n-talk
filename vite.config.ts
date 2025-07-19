@@ -20,21 +20,19 @@ export default mergeConfig(
             // Core React libraries
             "react": ["react", "react-dom"],
             "react-router": ["react-router"],
-            
+
             // State management
             "state-management": ["jotai"],
-            
+
             // UI libraries (split by size and usage)
-            "ui-headless": ["@headlessui/react"],
-            "ui-icons": ["@heroicons/react"],
-            "ui-animations": ["framer-motion"],
-            
+            "ui": ["@headlessui/react", "@heroicons/react", "framer-motion"],
+
             // Utilities
-            "utilities": ["clsx", "tailwind-merge"],
-            
+            "utils": ["clsx", "tailwind-merge"],
+
             // Database
             "database": ["dexie", "dexie-react-hooks"],
-            
+
             // i18n (keep together for efficiency)
             "i18n": [
               "i18next",
@@ -42,13 +40,12 @@ export default mergeConfig(
               "i18next-http-backend",
               "i18next-browser-languagedetector",
             ],
-            
+
             // Forms and validation
             "forms": ["react-hook-form", "zod"],
-            
+
             // Other utilities
             "crypto": ["bcryptjs"],
-            "faker": ["@faker-js/faker"],
           },
         },
       },
@@ -76,7 +73,7 @@ export default mergeConfig(
     },
     logLevel: "info",
     plugins: [
-      react(), 
+      react(),
       tailwindcss(),
       visualizer({
         filename: "dist/bundle-analyzer.html",
