@@ -16,6 +16,7 @@ applyTo: "**"
 - All commit messages **must** follow the [Gitmoji](https://gitmoji.dev/) convention.
 - prefer to commit in small, logical chunks.
 - Language: English
+- Always repair lint warnings before committing.
 
 ## Code Instructions
 
