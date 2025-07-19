@@ -47,10 +47,14 @@ export default function UserCreationStep({
       }
 
       // Check for duplicate emails
-      const duplicateIndex = users.findIndex((u, i) => i !== index && u.email === user.email);
-      if (duplicateIndex !== -1) {
-        newErrors[`user-${index}-email`] = `Email already used by User ${duplicateIndex + 1}`;
-      }
+      const seenEmails = new Set<string>();
+      users.forEach((u, i) => {
+        if (u.email && seenEmails.has(u.email)) {
+          newErrors[`user-${i}-email`] = `Email already used by another user`;
+        } else if (u.email) {
+          seenEmails.add(u.email);
+        }
+      });
     });
 
     setErrors(newErrors);
