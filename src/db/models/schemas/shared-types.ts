@@ -30,6 +30,7 @@ export const HistoryActionSchema = z.enum([
   "access",
   "share",
   "import",
-  "export"
+  "export",
+  "setupStarted"
 ]);
 export type HistoryAction = z.infer<typeof HistoryActionSchema>;

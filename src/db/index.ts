@@ -75,6 +75,8 @@ export class PickNTalkDB extends Dexie {
     this.getSettings = settingQueries.getSettings.bind(this);
     this.getSetting = settingQueries.getSetting.bind(this);
     this.createSetting = settingQueries.createSetting.bind(this);
+    this.updateSetting = settingQueries.updateSetting.bind(this);
+    this.upsertSetting = settingQueries.upsertSetting.bind(this);
 
     // Global queries
     this.getCategoriesFromPictograms = globalQueries.getCategoriesFromPictograms.bind(this);
@@ -117,6 +119,8 @@ export class PickNTalkDB extends Dexie {
   public getSettings!: () => PromiseExtended<Setting[]>;
   public getSetting!: (key: string) => PromiseExtended<Setting | undefined>;
   public createSetting!: (setting: Setting) => PromiseExtended<string>;
+  public updateSetting!: (setting: Setting) => PromiseExtended<number>;
+  public upsertSetting!: (setting: Setting) => PromiseExtended<string>;
 
   // Global queries
   public getCategoriesFromPictograms!: (pictograms: Pictogram[]) => PromiseExtended<Category[]>;
