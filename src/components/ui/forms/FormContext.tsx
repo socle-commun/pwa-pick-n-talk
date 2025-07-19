@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+
 import React, { useState, useCallback } from "react";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";

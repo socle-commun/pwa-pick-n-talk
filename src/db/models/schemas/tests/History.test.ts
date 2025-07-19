@@ -111,4 +111,25 @@ describe("History Schema Validation", () => {
     expect(() => validateHistory(invalidHistory)).toThrow();
     expect(isValidHistory(invalidHistory)).toBe(false);
   });
+
+  it("accepts setupStarted action", () => {
+    const setupStartedHistory = {
+      ...validHistory,
+      action: "setupStarted" as const,
+    };
+    expect(() => validateHistory(setupStartedHistory)).not.toThrow();
+    expect(isValidHistory(setupStartedHistory)).toBe(true);
+  });
+
+  it("validates all supported actions", () => {
+    const supportedActions = [
+      "create", "update", "delete", "access", "share", "import", "export", "setupStarted"
+    ] as const;
+
+    supportedActions.forEach(action => {
+      const history = { ...validHistory, action };
+      expect(() => validateHistory(history)).not.toThrow();
+      expect(isValidHistory(history)).toBe(true);
+    });
+  });
 });
