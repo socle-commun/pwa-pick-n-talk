@@ -87,12 +87,19 @@ export function deleteBinder(this: PickNTalkDB, binderId: string) {
 
 ## 🚨 Error Handling
 
-```typescript
+```tsx
 // Component level - let ErrorBoundary handle
-import { LoadingSpinner } from "@/components/ui/feedback";
+import { Spinner } from "@/components/ui/feedback";
+import { ErrorBoundary } from "@/components/ui/feedback";
 
-if (!data) return <LoadingSpinner />;
-if (error) throw error;
+if (!data) return (
+  <div className="flex items-center justify-center h-32">
+    <Spinner size="lg" aria-label="Loading..." />
+  </div>
+);
+if (error) return (
+  <ErrorBoundary error={error} />
+);
 
 // Query level - log and rethrow
 .catch(error => {

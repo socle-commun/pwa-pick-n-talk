@@ -4,7 +4,7 @@ applyTo: "src/components/ui/**"
 
 # UI Component Development Instructions
 
-Instructions for developing consistent, accessible, and maintainable UI components following established patterns after PR #27 integration.
+- See: https://catalyst.tailwindui.com/docs
 
 ---
 
@@ -47,11 +47,6 @@ export default forwardRef(function ComponentName(props, ref: ForwardedRef<HTMLEl
 className={cn(styles.base, variant && styles[variant], className)}
 ```
 
-### Dark Mode Support
-- **Built-in**: All components support `dark:` prefixes automatically
-- **Pseudo-elements**: Use `before:` and `after:` for complex layering with dark mode variants
-- **Colors**: Define both light and dark variants in color systems
-
 ### Accessibility Requirements
 - **ARIA**: Include proper ARIA attributes, especially `aria-hidden`, `aria-label`
 - **Focus**: Use `data-focus:outline-2` for focus management patterns
@@ -76,35 +71,6 @@ className={cn(styles.base, variant && styles[variant], className)}
 - **Selectors**: Target slots in CSS: `*:data-[slot=icon]:size-5`
 - **Flexibility**: Enable composition through slot-based styling patterns
 
----
-
-## 🧪 **Testing Requirements**
-
-### Vitest Patterns (NOT Jest!)
-- **Imports**: Always `import { vi, describe, it, expect } from "vitest"`
-- **Mocking**: Use `vi.mock()` and `vi.fn()` - never Jest equivalents
-- **Setup**: Use `beforeEach(() => vi.clearAllMocks())` for cleanup
-
-### Component Testing Standards
-```typescript
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-
-describe("ComponentName", () => {
-  it("should render without crashing", () => {
-    render(<Component>Content</Component>);
-    expect(screen.getByRole("button")).toBeInTheDocument();
-  });
-});
-```
-
-### Accessibility Testing
-- **Roles**: Test proper ARIA roles with `getByRole()`
-- **Labels**: Verify accessible names and descriptions
-- **Keyboard**: Test focus management and keyboard navigation
-
----
-
 ## 📚 **Documentation & Performance**
 
 ### Component API Documentation
@@ -121,31 +87,3 @@ describe("ComponentName", () => {
 - **Target**: Modern browsers with CSS custom properties support
 - **Touch**: Optimize for both pointer and touch interactions
 - **Responsive**: Design mobile-first with progressive enhancement
-
----
-
-## 🔗 **Related Files & Documentation**
-
-### Core Files
-- [`src/components/ui/index.ts`](../../../src/components/ui/index.ts) - Central component exports
-- [`src/utils/cn.ts`](../../../src/utils/cn.ts) - Class name utility function
-- [`docs/ui-components.md`](../../../docs/ui-components.md) - Complete UI library documentation
-
-### Component Categories
-- [`src/components/ui/actions/`](../../../src/components/ui/actions/) - Interactive components (buttons, touch targets)
-- [`src/components/ui/data-input/`](../../../src/components/ui/data-input/) - Form controls and inputs
-- [`src/components/ui/data-display/`](../../../src/components/ui/data-display/) - Data presentation components
-- [`src/components/ui/navigation/`](../../../src/components/ui/navigation/) - Navigation elements
-- [`src/components/ui/feedback/`](../../../src/components/ui/feedback/) - Alerts, dialogs, error boundaries
-- [`src/components/ui/typography/`](../../../src/components/ui/typography/) - Text and heading components
-- [`src/components/ui/layout/`](../../../src/components/ui/layout/) - Layout and structural components
-
-### Configuration & Testing
-- [`vitest.config.ts`](../../../vitest.config.ts) - Vitest testing configuration
-- [`package.json`](../../../package.json) - Dependencies (Headless UI, Tailwind CSS, testing)
-- [`vitest.setup.ts`](../../../vitest.setup.ts) - Test environment setup
-
-### Development Guidelines
-- [`.github/instructions/developer.instructions.md`](../developer.instructions.md) - General coding standards
-- [`.github/instructions/tester.instructions.md`](../tester.instructions.md) - Testing guidelines and patterns
-- [`README.md`](../../../README.md) - Project overview and setup
