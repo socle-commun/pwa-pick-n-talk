@@ -129,28 +129,3 @@ export default function ErrorPage() {
   );
 }
 ```
-
-## 🧪 Testing
-
-```tsx
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router";
-import { vi, describe, it, expect } from "vitest";
-import BinderPage from "@/routes/binders/[uuid]/page";
-
-const RouterWrapper = ({ children }: { children: React.ReactNode }) => (
-  <BrowserRouter>{children}</BrowserRouter>
-);
-
-describe("Routing", () => {
-  it("renders binder page with uuid", () => {
-    vi.mock("react-router", async () => ({
-      ...(await vi.importActual("react-router")),
-      useParams: () => ({ uuid: "test-uuid" }),
-    }));
-
-    render(<BinderPage />, { wrapper: RouterWrapper });
-    expect(screen.getByText("Binder Details")).toBeVisible();
-  });
-});
-```
