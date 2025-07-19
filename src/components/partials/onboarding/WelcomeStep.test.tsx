@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * @file WelcomeStep.test.tsx
  * @description Tests for the Welcome onboarding step component
@@ -124,7 +125,7 @@ describe("WelcomeStep", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     // Mock crypto.randomUUID using vi.stubGlobal
-    vi.stubGlobal('crypto', {
+    vi.stubGlobal("crypto", {
       randomUUID: vi.fn(() => "test-uuid-123"),
     });
   });
@@ -137,20 +138,20 @@ describe("WelcomeStep", () => {
   describe("Rendering", () => {
     it("should render welcome title and subtitle", () => {
       renderWelcomeStep();
-      
+
       expect(screen.getByText("Welcome to Pick'n'Talk!")).toBeInTheDocument();
       expect(screen.getByText(/Let's get you set up with your personalized communication experience/)).toBeInTheDocument();
     });
 
     it("should render the logo", () => {
       renderWelcomeStep();
-      
+
       expect(screen.getByTestId("logo")).toBeInTheDocument();
     });
 
     it("should render all settings components", () => {
       renderWelcomeStep();
-      
+
       expect(screen.getByTestId("locale-selector")).toBeInTheDocument();
       expect(screen.getByTestId("theme-toggle")).toBeInTheDocument();
       expect(screen.getByTestId("font-size-selector")).toBeInTheDocument();
@@ -160,14 +161,14 @@ describe("WelcomeStep", () => {
 
     it("should render action buttons", () => {
       renderWelcomeStep();
-      
+
       expect(screen.getByText("Start Setup Process")).toBeInTheDocument();
       expect(screen.getByText("Skip for Now")).toBeInTheDocument();
     });
 
     it("should render informational section", () => {
       renderWelcomeStep();
-      
+
       expect(screen.getByText("About the Setup Process")).toBeInTheDocument();
       expect(screen.getByText(/The setup process will guide you through creating/)).toBeInTheDocument();
     });
@@ -240,10 +241,10 @@ describe("WelcomeStep", () => {
       )?.[1];
 
       expect(languageChangeCallback).toBeDefined();
-      
+
       if (languageChangeCallback) {
         languageChangeCallback("fr");
-        
+
         await waitFor(() => {
           expect(mockUpsertSetting).toHaveBeenCalledWith({
             key: "language",
@@ -255,11 +256,11 @@ describe("WelcomeStep", () => {
 
     it("should cleanup language change listener on unmount", () => {
       const { unmount } = renderWelcomeStep();
-      
+
       expect(mockI18n.on).toHaveBeenCalledWith("languageChanged", expect.any(Function));
-      
+
       unmount();
-      
+
       expect(mockI18n.off).toHaveBeenCalledWith("languageChanged", expect.any(Function));
     });
   });
@@ -345,7 +346,7 @@ describe("WelcomeStep", () => {
   describe("Skip Button", () => {
     it("should render skip button as link to settings", () => {
       renderWelcomeStep();
-      
+
       const skipButton = screen.getByText("Skip for Now");
       expect(skipButton.closest("a")).toHaveAttribute("href", "/settings");
     });
@@ -354,20 +355,20 @@ describe("WelcomeStep", () => {
   describe("Accessibility", () => {
     it("should have proper heading hierarchy", () => {
       renderWelcomeStep();
-      
+
       const mainHeading = screen.getByRole("heading", { level: 1 });
       expect(mainHeading).toHaveTextContent("Welcome to Pick'n'Talk!");
-      
+
       const subHeading = screen.getByRole("heading", { level: 2 });
       expect(subHeading).toHaveTextContent("Global Settings");
-      
+
       const infoHeading = screen.getByRole("heading", { level: 3 });
       expect(infoHeading).toHaveTextContent("About the Setup Process");
     });
 
     it("should have proper button roles", () => {
       renderWelcomeStep();
-      
+
       const startButton = screen.getByRole("button", { name: /start setup process/i });
       expect(startButton).toBeInTheDocument();
     });

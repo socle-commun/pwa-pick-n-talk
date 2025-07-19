@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * @file WelcomeStep.tsx
  * @description First step of the onboarding flow - introduces the app and allows global settings configuration
@@ -60,8 +61,8 @@ export default function WelcomeStep({ className }: WelcomeStepProps) {
   // Save setting in real-time
   const saveSetting = useCallback(async (key: string, value: unknown) => {
     try {
-      const setting: Setting = { 
-        key, 
+      const setting: Setting = {
+        key,
         value: value as string | number | boolean | Record<string, never>
       };
       await db.upsertSetting(setting);
