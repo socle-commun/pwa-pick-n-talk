@@ -8,7 +8,7 @@ applyTo: "src/**/*.form.tsx"
 
 ## 📏 Core Rules
 
-- **Dedicated folders** - Each form gets its own folder: `src/routes/auth/sign-in/sign-in.form.tsx`
+- **Dedicated folders** - Each form gets its own folder: `src/components/partials/forms/`
 - **Zod validation** - Always use entity schemas from `@/db/models/schemas/`
 - **`.form.tsx` suffix** - Forms are NEVER used directly in other components except `.form.tsx` files
 - **Type safety** - Use TypeScript generics: `<Form<DataType> schema={Schema}>`
@@ -35,44 +35,6 @@ export default function EntityForm() {
     </Form>
   );
 }
-```
-
-## 🔗 Entity Schema Integration
-
-```typescript
-// src/db/models/schemas/EntityName.ts
-import { z } from "zod";
-
-export const EntitySchema = z.object({
-  email: z.string().email("validation.errors.invalid_email"),
-  password: z.string().min(16, "validation.errors.password_too_short"),
-  name: z.string().min(1, "validation.errors.field_empty").max(100, "validation.errors.string_too_long"),
-});
-
-export type EntityFormData = z.infer<typeof EntitySchema>;
-```
-
-## 🧪 Testing Pattern
-
-```typescript
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { vi, describe, it, expect } from "vitest";
-import EntityForm from "./entity.form";
-
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
-}));
-
-describe("EntityForm", () => {
-  it("validates email field on blur", async () => {
-    render(<EntityForm />);
-    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: "invalid-email" } });
-    fireEvent.blur(screen.getByLabelText(/email/i));
-    await waitFor(() => {
-      expect(screen.getByText(/validation.errors.invalid_email/)).toBeInTheDocument();
-    });
-  });
-});
 ```
 
 ## 🎨 Accessibility & Performance

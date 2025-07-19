@@ -2,6 +2,6 @@
 applyTo: "**"
 ---
 
-Quand l'utilisateur te demande de créer une issue, tu dois utiliser tes outils ou la commande gh si disponible pour créer une issue sur le serveur de github.
+When the user asks you to create an issue, you must use your tools or the gh command if available to create an issue on the GitHub server.
 
-Pour créer l'issue, tu dois t'aider des templates d'issue. Si aucun ne te semble pertinent, prend par défaut le template [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml).
+To create the issue, you should rely on the issue templates. If none of them seem relevant, use the [`Copilot Task Request`](../.github/ISSUE_TEMPLATE/copilot-task.yml) template by default.
