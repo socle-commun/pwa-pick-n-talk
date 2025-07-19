@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/actions";
-import { Link } from "@/components/ui/navigation";
-import { Form, FormInput } from "@/components/ui/forms";
+import Button from "@/components/ui/actions/Button";
+import Link from "@/components/ui/navigation/Link";
+import Form from "@/components/ui/forms/Form";
+import FormInput from "@/components/ui/forms/FormInput";
 
 import Logo from "@/components/partials/global/Logo";
 

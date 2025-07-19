@@ -1,4 +1,4 @@
-import { forwardRef, type ForwardedRef } from "react";
+import { forwardRef, type ComponentPropsWithoutRef, type ForwardedRef, type ReactNode } from "react";
 
 import {
   Button as HeadlessButton,
@@ -6,7 +6,7 @@ import {
 } from "@headlessui/react";
 
 import TouchTarget from "@/components/ui/actions/TouchTarget";
-import { Link } from "@/components/ui/navigation";
+import { Link } from "@/components/ui";
 
 import cn from "@/utils/cn";
 import { styles, type Color } from "./button.styles";
@@ -17,11 +17,11 @@ type ButtonProps = (
   | { color?: never; outline?: never; plain: true }
 ) & {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   "data-testid"?: string;
 } & (
     | Omit<HeadlessButtonProps, "as" | "className">
-    | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
+    | Omit<ComponentPropsWithoutRef<typeof Link>, "className">
   );
 
 export default forwardRef(function Button(

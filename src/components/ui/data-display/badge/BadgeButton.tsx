@@ -6,8 +6,8 @@ import {
 } from "@headlessui/react";
 
 import TouchTarget from "@/components/ui/actions/TouchTarget";
-import { Badge } from "@/components/ui/data-display";
-import { Link } from "@/components/ui/navigation";
+import { Badge } from "@/components/ui";
+import { Link } from "@/components/ui";
 
 import cn from "@/utils/cn";
 
@@ -50,9 +50,9 @@ export default forwardRef(function BadgeButton(
     children,
     ...props
   }: BadgeProps & { className?: string; children: React.ReactNode } & (
-      | Omit<HeadlessButtonProps, "as" | "className">
-      | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
-    ),
+    | Omit<HeadlessButtonProps, "as" | "className">
+    | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
+  ),
   ref: React.ForwardedRef<HTMLElement>
 ) {
   const classes = cn(

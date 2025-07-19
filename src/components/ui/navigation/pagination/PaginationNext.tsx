@@ -1,6 +1,6 @@
 import { type PropsWithChildren } from "react";
 
-import { Button } from "@/components/ui/actions";
+import Button from "@/components/ui/actions/Button";
 
 import cn from "@/utils/cn";
 

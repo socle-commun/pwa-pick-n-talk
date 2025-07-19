@@ -6,8 +6,8 @@ import {
 } from "@headlessui/react";
 
 import TouchTarget from "@/components/ui/actions/TouchTarget";
-import { Avatar } from "@/components/ui/data-display";
-import { Link } from "@/components/ui/navigation";
+import { Avatar } from "@/components/ui";
+import { Link } from "@/components/ui";
 
 import cn from "@/utils/cn";
 

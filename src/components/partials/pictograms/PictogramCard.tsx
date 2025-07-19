@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 
-import { Button } from "@/components/ui/actions";
+import Button from "@/components/ui/actions/Button";
 import { type Pictogram } from "@/db/models";
 import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
 import { getTranslation } from "@/utils/translation";

@@ -78,6 +78,7 @@ export class PickNTalkDB extends Dexie {
 
     // Global queries
     this.getCategoriesFromPictograms = globalQueries.getCategoriesFromPictograms.bind(this);
+    this.isEmpty = globalQueries.isEmpty.bind(this);
   }
 
   // Method declarations for TypeScript (these will be assigned in constructor)
@@ -120,22 +121,7 @@ export class PickNTalkDB extends Dexie {
 
   // Global queries
   public getCategoriesFromPictograms!: (pictograms: Pictogram[]) => PromiseExtended<Category[]>;
-
-  // Database state checks
-  public async isEmpty(): Promise<boolean> {
-    try {
-      const binderCount = await this.binders.count();
-      const pictogramCount = await this.pictograms.count();
-      const categoryCount = await this.categories.count();
-
-      // Database is empty if there are no binders, pictograms, or categories
-      return binderCount === 0 && pictogramCount === 0 && categoryCount === 0;
-    } catch (error) {
-      console.error("Failed to check if database is empty:", error);
-      // In case of error, assume database is not empty to avoid incorrect redirects
-      return false;
-    }
-  }
+  public isEmpty!: () => Promise<boolean>;
 }
 
 export const db = new PickNTalkDB();

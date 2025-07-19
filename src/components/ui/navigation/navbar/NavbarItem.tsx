@@ -11,7 +11,7 @@ import {
   Button as HeadlessButton,
 } from "@headlessui/react";
 
-import { Link } from "@/components/ui/navigation";
+import { Link } from "@/components/ui";
 import TouchTarget from "@/components/ui/actions/TouchTarget";
 
 import cn from "@/utils/cn";

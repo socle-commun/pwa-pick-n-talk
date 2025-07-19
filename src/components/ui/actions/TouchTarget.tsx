@@ -1,9 +1,11 @@
+import type { ReactNode } from "react";
+
 import cn from "@/utils/cn";
 
 export default function TouchTarget({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <>

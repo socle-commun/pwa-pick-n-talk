@@ -8,7 +8,7 @@ import {
   ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/20/solid";
 
-import { Button } from "@/components/ui/actions";
+import Button from "@/components/ui/actions/Button";
 import {
   Avatar,
   Dropdown,

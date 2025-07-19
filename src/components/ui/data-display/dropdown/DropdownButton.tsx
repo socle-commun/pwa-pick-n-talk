@@ -5,7 +5,7 @@ import {
   MenuButton as HeadlessMenuButton,
 } from "@headlessui/react";
 
-import { Button } from "@/components/ui/actions";
+import Button from "@/components/ui/actions/Button";
 
 export default function DropdownButton<T extends ElementType = typeof Button>({
   as = Button,

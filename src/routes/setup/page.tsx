@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
+import { AdjustmentsVerticalIcon, BoltIcon } from "@heroicons/react/24/solid";
 
 import Logo from "@/components/partials/global/Logo";
-import { Button } from "@/components/ui/actions";
+import Button from "@/components/ui/actions/Button";
 import { Heading } from "@/components/ui/typography";
 import cn from "@/utils/cn";
 
@@ -31,9 +32,7 @@ export default function SetupPage() {
       <div className={cn("grid md:grid-cols-2 gap-8 mt-16")}>
         <div className={cn("text-center p-6 rounded-lg bg-zinc-50 dark:bg-zinc-900")}>
           <div className={cn("size-12 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center")}>
-            <svg className={cn("size-6 text-blue-600 dark:text-blue-400")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-            </svg>
+            <AdjustmentsVerticalIcon className={cn("size-6 text-blue-600 dark:text-blue-400")} />
           </div>
           <Heading level={3} className={cn("text-xl mb-2")}>
             {t("setup.features.customize.title", "Customize Your Binder")}
@@ -45,9 +44,7 @@ export default function SetupPage() {
 
         <div className={cn("text-center p-6 rounded-lg bg-zinc-50 dark:bg-zinc-900")}>
           <div className={cn("size-12 mx-auto mb-4 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center")}>
-            <svg className={cn("size-6 text-green-600 dark:text-green-400")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+            <BoltIcon className={cn("size-6 text-green-600 dark:text-green-400")} />
           </div>
           <Heading level={3} className={cn("text-xl mb-2")}>
             {t("setup.features.quick.title", "Quick & Easy")}

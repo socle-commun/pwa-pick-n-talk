@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
 
 import { Divider } from "@/components/ui/layout";
-import { Button } from "@/components/ui/actions";
+import Button from "@/components/ui/actions/Button";
 
 import { type Binder } from "@/db/models";
 import { db } from "@/db";
