@@ -21,8 +21,7 @@
     "e2e:headed": "playwright test --config=e2e/playwright.config.ts --headed",
     "e2e:debug": "playwright test --config=e2e/playwright.config.ts --debug",
     "e2e:ui": "playwright test --config=e2e/playwright.config.ts --ui",
-    "e2e:report": "playwright show-report e2e/playwright-report",
-    "prepare": "husky"
+    "e2e:report": "playwright show-report e2e/playwright-report"
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
@@ -63,7 +62,6 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "fake-indexeddb": "^6.0.1",
     "globals": "^16.3.0",
-    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "playwright": "^1.54.1",
     "rollup-plugin-visualizer": "^6.0.3",

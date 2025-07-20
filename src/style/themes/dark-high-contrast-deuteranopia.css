@@ -44,6 +44,18 @@
   --info-text: rgb(200 220 255); /* Light blue text */
   --info-border: rgb(120 170 255); /* Blue borders */
   
+  /* Semantic colors - Feature (for onboarding highlights) */
+  --feature-primary-primary: rgb(200 150 255); /* Bright purple - safe for deuteranopia */
+  --feature-primary-secondary: rgb(60 0 100); /* Dark purple background */
+  --feature-primary-text: rgb(240 230 255); /* Light purple text */
+  --feature-primary-border: rgb(150 100 200); /* Medium purple borders */
+
+  --feature-secondary-primary: rgb(100 150 255); /* Bright blue instead of green for deuteranopia */
+  --feature-secondary-secondary: rgb(0 50 100); /* Dark blue background */
+  --feature-secondary-text: rgb(200 230 255); /* Light blue text */
+  --feature-secondary-border: rgb(120 170 255); /* Medium blue borders */
+
+  
   /* Interactive colors - High contrast blue */
   --interactive-primary: rgb(100 150 255); /* Bright blue */
   --interactive-secondary: rgb(160 160 160); /* Light gray */

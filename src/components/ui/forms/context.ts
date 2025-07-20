@@ -22,5 +22,4 @@ export type FormContextType<T = Record<string, unknown>> = {
   schema?: import("zod").ZodSchema<T>;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const FormContext = createContext<FormContextType<any> | null>(null);
+export const FormContext = createContext<FormContextType<Record<string, unknown>> | null>(null);

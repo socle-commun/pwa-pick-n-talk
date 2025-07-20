@@ -44,6 +44,18 @@
   --info-text: rgb(187 247 208); /* Light green text */
   --info-border: rgb(134 239 172); /* Green borders */
   
+  /* Semantic colors - Feature (for onboarding highlights) */
+  --feature-primary-primary: rgb(239 68 68); /* Red instead of indigo for tritanopia */
+  --feature-primary-secondary: rgb(185 28 28); /* Dark red background */
+  --feature-primary-text: rgb(254 202 202); /* Light red text */
+  --feature-primary-border: rgb(252 165 165); /* Red borders */
+
+  --feature-secondary-primary: rgb(34 197 94); /* Green is safe for tritanopia */
+  --feature-secondary-secondary: rgb(21 128 61); /* Dark green background */
+  --feature-secondary-text: rgb(240 253 244); /* Light green text */
+  --feature-secondary-border: rgb(187 247 208); /* Green borders */
+
+  
   /* Interactive colors - use red instead of blue */
   --interactive-primary: rgb(239 68 68); /* Red instead of blue */
   --interactive-secondary: rgb(148 163 184);

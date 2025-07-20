@@ -150,6 +150,47 @@
       "description": "Couleurs à fort contraste pour une meilleure visibilité"
     }
   },
+  "onboarding": {
+    "welcome": {
+      "title": "Bienvenue dans Pick'n'Talk !",
+      "subtitle": "Configurons votre expérience de communication personnalisée. D'abord, paramétrons vos préférences.",
+      "privacy": {
+        "title": "Vos données, votre contrôle",
+        "local_storage": "Tous vos classeurs de communication et données personnelles sont sauvegardés localement sur votre appareil. Aucune information n'est envoyée vers des serveurs externes sans votre consentement explicite.",
+        "synchronization": "Vous aurez la possibilité de synchroniser vos classeurs avec d'autres aidants et professionnels lorsque vous choisirez d'activer cette fonctionnalité, vous donnant un contrôle total sur le partage de données.",
+        "offline": "Pick'n'Talk fonctionne complètement hors ligne, garantissant que vos outils de communication sont toujours disponibles quand vous en avez besoin."
+      },
+      "settings": {
+        "title": "Vos préférences",
+        "language": {
+          "title": "Langue",
+          "description": "Choisissez votre langue préférée pour l'interface."
+        },
+        "theme": {
+          "title": "Apparence",
+          "description": "Personnalisez l'apparence de l'application."
+        },
+        "accessibility": {
+          "title": "Accessibilité",
+          "description": "Configurez les fonctionnalités d'accessibilité pour améliorer votre expérience."
+        }
+      },
+      "features": {
+        "customize": {
+          "title": "Configuration personnalisée",
+          "description": "Nous vous guiderons dans la création de votre premier classeur de communication avec des images et des mots qui vous importent."
+        },
+        "quick": {
+          "title": "Rapide et facile",
+          "description": "Commencez en quelques minutes seulement avec notre processus de configuration intuitif et nos tutoriels utiles."
+        }
+      },
+      "cta": {
+        "continue": "Continuer la configuration",
+        "skip": "Ignorer pour l'instant"
+      }
+    }
+  },
   "validation": {
     "errors": {
       "required": "Ce champ est obligatoire",

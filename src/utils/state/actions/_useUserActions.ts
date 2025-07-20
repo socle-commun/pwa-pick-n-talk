@@ -54,7 +54,7 @@ export default function useUserActions() {
         binders: [],
       })
       .then((id) => {
-        db.getUser(id).then((user) => {
+        db.getUser(id).then(async (user) => {
           if (!user) {
             throw new Error("User not found after registration");
           }
