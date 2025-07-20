@@ -62,13 +62,8 @@ export default function useUserActions() {
           localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
 
-          // Check if database is empty and redirect new users to setup
-          const isEmpty = await db.isEmpty();
-          if (isEmpty) {
-            navigate("/setup");
-          } else {
-            navigate("/");
-          }
+          // Always redirect to setup after registration
+          navigate("/setup");
         });
       });
   }
