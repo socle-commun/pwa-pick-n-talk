@@ -1,8 +1,6 @@
 
 import { useTranslation } from "react-i18next";
 import { useAtom } from "jotai";
-import { useNavigate } from "react-router";
-import { useEffect } from "react";
 
 import Logo from "@/components/partials/global/Logo";
 import { Button } from "@/components/ui/actions";
@@ -16,7 +14,6 @@ import cn from "@/utils/cn";
 export default function IndexPage() {
   const { t } = useTranslation();
   const [user] = useAtom(userAtom);
-  const navigate = useNavigate();
   const binders = useBinders();
   const isEmptyDatabase = useIsEmptyDatabase();
 

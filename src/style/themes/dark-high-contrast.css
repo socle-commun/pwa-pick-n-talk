@@ -43,6 +43,18 @@
   --info-text: rgb(200 240 255); /* Light cyan text */
   --info-border: rgb(150 220 255); /* Medium cyan borders */
   
+  /* Semantic colors - Feature (for onboarding highlights) */
+  --feature-primary-primary: rgb(200 150 255); /* Bright purple */
+  --feature-primary-secondary: rgb(60 0 100); /* Dark purple background */
+  --feature-primary-text: rgb(240 230 255); /* Light purple text */
+  --feature-primary-border: rgb(150 100 200); /* Medium purple borders */
+  
+  --feature-secondary-primary: rgb(100 255 100); /* Bright green */
+  --feature-secondary-secondary: rgb(0 80 0); /* Dark green background */
+  --feature-secondary-text: rgb(230 255 230); /* Light green text */
+  --feature-secondary-border: rgb(100 200 100); /* Medium green borders */
+
+  
   /* Interactive colors - High contrast */
   --interactive-primary: rgb(100 200 255); /* Bright cyan */
   --interactive-secondary: rgb(160 160 160); /* Light gray */

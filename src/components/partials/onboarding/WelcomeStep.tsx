@@ -147,30 +147,30 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
 
       {/* Information Section */}
       <div className={cn("grid md:grid-cols-2 gap-6 mb-8")}>
-        <div className={cn("text-center p-6 rounded-lg bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800")}>
-          <div className={cn("size-12 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center")}>
-            <svg className={cn("size-6 text-blue-600 dark:text-blue-400")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className={cn("text-center p-6 rounded-lg feature-primary-secondary border feature-primary-border")}>
+          <div className={cn("size-12 mx-auto mb-4 bg-tertiary rounded-full flex items-center justify-center")}>
+            <svg className={cn("size-6 feature-primary-primary")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
             </svg>
           </div>
           <Heading level={3} className={cn("text-lg mb-2")}>
             {t("onboarding.welcome.features.customize.title", "Personalized Setup")}
           </Heading>
-          <p className={cn("text-zinc-700 dark:text-zinc-300")}>
+          <p className={cn("feature-primary-text")}>
             {t("onboarding.welcome.features.customize.description", "We'll guide you through creating your first communication binder with pictures and words that matter to you.")}
           </p>
         </div>
 
-        <div className={cn("text-center p-6 rounded-lg bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800")}>
-          <div className={cn("size-12 mx-auto mb-4 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center")}>
-            <svg className={cn("size-6 text-green-600 dark:text-green-400")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className={cn("text-center p-6 rounded-lg feature-secondary-secondary border feature-secondary-border")}>
+          <div className={cn("size-12 mx-auto mb-4 bg-tertiary rounded-full flex items-center justify-center")}>
+            <svg className={cn("size-6 feature-secondary-primary")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
           <Heading level={3} className={cn("text-lg mb-2")}>
             {t("onboarding.welcome.features.quick.title", "Quick & Easy")}
           </Heading>
-          <p className={cn("text-zinc-700 dark:text-zinc-300")}>
+          <p className={cn("feature-secondary-text")}>
             {t("onboarding.welcome.features.quick.description", "Get started in just a few minutes with our intuitive setup process and helpful tutorials.")}
           </p>
         </div>
