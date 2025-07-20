@@ -55,6 +55,13 @@
   --feature-secondary-text: rgb(30 64 175); /* Blue text */
   --feature-secondary-border: rgb(147 197 253); /* Blue borders */
 
+  /* Semantic colors - Privacy (for data protection info) */
+  --privacy-primary: rgb(59 130 246); /* Main privacy color - same as info/secondary-feature for consistency */
+  --privacy-secondary: rgb(239 246 255); /* Light privacy background */
+  --privacy-text: rgb(30 64 175); /* Privacy text */
+  --privacy-border: rgb(191 219 254); /* Privacy borders */
+  --privacy-icon-bg: rgb(219 234 254); /* Privacy icon background */
+
   
   /* Interactive colors - same as default */
   --interactive-primary: rgb(59 130 246);
@@ -63,3 +70,60 @@
   --interactive-active: rgb(29 78 216);
   --interactive-disabled: rgb(148 163 184);
 }
+
+/* Utility classes for theme colors */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-overlay { background-color: var(--bg-overlay); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-inverse { color: var(--text-inverse); }
+
+.border-primary { border-color: var(--border-primary); }
+.border-secondary { border-color: var(--border-secondary); }
+.border-focus { border-color: var(--border-focus); }
+
+.success-primary { color: var(--success-primary); }
+.success-secondary { background-color: var(--success-secondary); }
+.success-text { color: var(--success-text); }
+.success-border { border-color: var(--success-border); }
+
+.warning-primary { color: var(--warning-primary); }
+.warning-secondary { background-color: var(--warning-secondary); }
+.warning-text { color: var(--warning-text); }
+.warning-border { border-color: var(--warning-border); }
+
+.error-primary { color: var(--error-primary); }
+.error-secondary { background-color: var(--error-secondary); }
+.error-text { color: var(--error-text); }
+.error-border { border-color: var(--error-border); }
+
+.info-primary { color: var(--info-primary); }
+.info-secondary { background-color: var(--info-secondary); }
+.info-text { color: var(--info-text); }
+.info-border { border-color: var(--info-border); }
+
+.feature-primary-primary { color: var(--feature-primary-primary); }
+.feature-primary-secondary { background-color: var(--feature-primary-secondary); }
+.feature-primary-text { color: var(--feature-primary-text); }
+.feature-primary-border { border-color: var(--feature-primary-border); }
+
+.feature-secondary-primary { color: var(--feature-secondary-primary); }
+.feature-secondary-secondary { background-color: var(--feature-secondary-secondary); }
+.feature-secondary-text { color: var(--feature-secondary-text); }
+.feature-secondary-border { border-color: var(--feature-secondary-border); }
+
+.privacy-primary { color: var(--privacy-primary); }
+.privacy-secondary { background-color: var(--privacy-secondary); }
+.privacy-text { color: var(--privacy-text); }
+.privacy-border { border-color: var(--privacy-border); }
+.privacy-icon-bg { background-color: var(--privacy-icon-bg); }
+
+.interactive-primary { color: var(--interactive-primary); }
+.interactive-secondary { color: var(--interactive-secondary); }
+.interactive-hover { color: var(--interactive-hover); }
+.interactive-active { color: var(--interactive-active); }
+.interactive-disabled { color: var(--interactive-disabled); }

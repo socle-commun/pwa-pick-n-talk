@@ -150,6 +150,47 @@
       "description": "High contrast colors for better visibility"
     }
   },
+  "onboarding": {
+    "welcome": {
+      "title": "Welcome to Pick'n'Talk!",
+      "subtitle": "Let's get you set up with your personalized communication experience. First, let's configure your preferences.",
+      "privacy": {
+        "title": "Your Data, Your Control",
+        "local_storage": "All your communication binders and personal data are saved locally on your device. No information is sent to external servers without your explicit consent.",
+        "synchronization": "You will have the option to synchronize your binders with other caregivers and professionals when you choose to enable this feature, giving you full control over data sharing.",
+        "offline": "Pick'n'Talk works completely offline, ensuring your communication tools are always available when you need them."
+      },
+      "settings": {
+        "title": "Your Preferences",
+        "language": {
+          "title": "Language",
+          "description": "Choose your preferred language for the interface."
+        },
+        "theme": {
+          "title": "Appearance",
+          "description": "Customize the look and feel of the application."
+        },
+        "accessibility": {
+          "title": "Accessibility",
+          "description": "Configure accessibility features to enhance your experience."
+        }
+      },
+      "features": {
+        "customize": {
+          "title": "Personalized Setup",
+          "description": "We'll guide you through creating your first communication binder with pictures and words that matter to you."
+        },
+        "quick": {
+          "title": "Quick & Easy",
+          "description": "Get started in just a few minutes with our intuitive setup process and helpful tutorials."
+        }
+      },
+      "cta": {
+        "continue": "Continue Setup",
+        "skip": "Skip for Now"
+      }
+    }
+  },
   "validation": {
     "errors": {
       "required": "This field is required",

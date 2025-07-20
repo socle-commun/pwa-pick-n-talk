@@ -54,6 +54,13 @@
   --feature-secondary-text: rgb(21 128 61); /* Secondary feature text */
   --feature-secondary-border: rgb(187 247 208); /* Secondary feature borders */
   
+  /* Semantic colors - Privacy (for data protection info) */
+  --privacy-primary: rgb(59 130 246); /* Main privacy color */
+  --privacy-secondary: rgb(239 246 255); /* Light privacy background */
+  --privacy-text: rgb(30 64 175); /* Privacy text */
+  --privacy-border: rgb(191 219 254); /* Privacy borders */
+  --privacy-icon-bg: rgb(219 234 254); /* Privacy icon background */
+  
   /* Interactive colors */
   --interactive-primary: rgb(59 130 246); /* Primary buttons, links */
   --interactive-secondary: rgb(100 116 139); /* Secondary buttons */
@@ -106,6 +113,12 @@
 .feature-secondary-secondary { background-color: var(--feature-secondary-secondary); }
 .feature-secondary-text { color: var(--feature-secondary-text); }
 .feature-secondary-border { border-color: var(--feature-secondary-border); }
+
+.privacy-primary { color: var(--privacy-primary); }
+.privacy-secondary { background-color: var(--privacy-secondary); }
+.privacy-text { color: var(--privacy-text); }
+.privacy-border { border-color: var(--privacy-border); }
+.privacy-icon-bg { background-color: var(--privacy-icon-bg); }
 
 .interactive-primary { color: var(--interactive-primary); }
 .interactive-secondary { color: var(--interactive-secondary); }

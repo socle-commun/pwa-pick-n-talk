@@ -150,6 +150,47 @@
       "description": "Colores de alto contraste para mejor visibilidad"
     }
   },
+  "onboarding": {
+    "welcome": {
+      "title": "¡Bienvenido a Pick'n'Talk!",
+      "subtitle": "Configuremos tu experiencia de comunicación personalizada. Primero, configuremos tus preferencias.",
+      "privacy": {
+        "title": "Tus datos, tu control",
+        "local_storage": "Todos tus álbumes de comunicación y datos personales se guardan localmente en tu dispositivo. No se envía información a servidores externos sin tu consentimiento explícito.",
+        "synchronization": "Tendrás la opción de sincronizar tus álbumes con otros cuidadores y profesionales cuando elijas habilitar esta función, dándote control total sobre el intercambio de datos.",
+        "offline": "Pick'n'Talk funciona completamente sin conexión, asegurando que tus herramientas de comunicación estén siempre disponibles cuando las necesites."
+      },
+      "settings": {
+        "title": "Tus preferencias",
+        "language": {
+          "title": "Idioma",
+          "description": "Elige tu idioma preferido para la interfaz."
+        },
+        "theme": {
+          "title": "Apariencia",
+          "description": "Personaliza la apariencia de la aplicación."
+        },
+        "accessibility": {
+          "title": "Accesibilidad",
+          "description": "Configura las funciones de accesibilidad para mejorar tu experiencia."
+        }
+      },
+      "features": {
+        "customize": {
+          "title": "Configuración personalizada",
+          "description": "Te guiaremos en la creación de tu primer álbum de comunicación con imágenes y palabras que te importan."
+        },
+        "quick": {
+          "title": "Rápido y fácil",
+          "description": "Comienza en solo unos minutos con nuestro proceso de configuración intuitivo y tutoriales útiles."
+        }
+      },
+      "cta": {
+        "continue": "Continuar configuración",
+        "skip": "Omitir por ahora"
+      }
+    }
+  },
   "validation": {
     "errors": {
       "required": "Este campo es obligatorio",
