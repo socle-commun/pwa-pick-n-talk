@@ -17,6 +17,11 @@ applyTo: "**"
 - prefer to commit in small, logical chunks.
 - Language: English
 - Always repair lint warnings before committing.
+- Never bypass linting rules. Do not add `eslint-disable` comments.
+- Never ignore file size or structure. Split components into reusable code.
+- Always respect the file architecture.
+- Prefer splitting logic into `utils/`, `hooks/`, and `partials/`.
+- If the component grows too much, refactor immediately.
 
 ## Code Instructions
 
@@ -151,3 +156,11 @@ applyTo: "**"
 - **Lazy Loading**: Use dynamic imports for large component sets
 - **Memoization**: Apply `React.memo()` only when necessary
 - **Bundle Size**: Keep individual components under 10KB when built
+
+## 🧱 Architecture Rules
+## Structure
+- `components/ui/` → atomic components (Button, Input, etc.)
+- `components/partials/` → composed components (forms, cards...)
+- `hooks/` → reusable hooks, 1 hook = 1 file
+- `types/` → interfaces, enums, types, Zod schemas
+- `utils/` → small pure functions, no side effects

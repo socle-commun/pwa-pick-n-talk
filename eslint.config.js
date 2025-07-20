@@ -59,6 +59,7 @@ export default tseslint.config(
           format: ["PascalCase"],
         },
       ],
+      'no-warning-comments': ['error', { terms: ['eslint-disable'], location: 'anywhere' }],
 
       // Code style rules (handled by Prettier)
       quotes: ["error", "double"],
