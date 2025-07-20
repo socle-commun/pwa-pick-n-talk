@@ -25,6 +25,7 @@ import Logo from "@/components/partials/global/Logo";
 
 import { db } from "@/db";
 import { type History, type Setting } from "@/db/models";
+import { HistoryActionSchema } from "@/db/models/schemas/shared-types";
 import cn from "@/utils/cn";
 
 interface WelcomeStepProps {
@@ -43,7 +44,7 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
         id: crypto.randomUUID(),
         entityType: "user",
         entityId: "system", // Using system for global setup events
-        action: HistoryActionSchema.setupStarted,
+        action: "setupStarted",
         performedBy: "system", // No user context yet in onboarding
         timestamp: new Date(),
         changes: {},
@@ -79,8 +80,8 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
     if (onContinue) {
       onContinue();
     } else {
-      // Default navigation to main setup flow
-      navigate("/setup");
+      // Default navigation to binder creation since we're now in setup
+      navigate("/binders/create");
     }
   };
 
