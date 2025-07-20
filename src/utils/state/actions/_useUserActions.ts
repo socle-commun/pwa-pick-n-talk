@@ -54,14 +54,21 @@ export default function useUserActions() {
         binders: [],
       })
       .then((id) => {
-        db.getUser(id).then((user) => {
+        db.getUser(id).then(async (user) => {
           if (!user) {
             throw new Error("User not found after registration");
           }
 
           localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
-          navigate("/");
+
+          // Check if database is empty and redirect new users to setup
+          const isEmpty = await db.isEmpty();
+          if (isEmpty) {
+            navigate("/setup");
+          } else {
+            navigate("/");
+          }
         });
       });
   }

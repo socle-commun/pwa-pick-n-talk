@@ -25,7 +25,6 @@ import Logo from "@/components/partials/global/Logo";
 
 import { db } from "@/db";
 import { type History, type Setting } from "@/db/models";
-import { HistoryActionSchema } from "@/db/models/schemas/shared-types";
 import cn from "@/utils/cn";
 
 interface WelcomeStepProps {

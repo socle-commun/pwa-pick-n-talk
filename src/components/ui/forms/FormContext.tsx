@@ -53,10 +53,9 @@ export default function FormProvider<T = Record<string, unknown>>({
     if (!schema) return true;
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const fieldSchema = (schema as any).shape?.[field];
+      const fieldSchema = (schema as Record<string, unknown>).shape?.[field];
       if (fieldSchema) {
-        fieldSchema.parse(getValue(field));
+        (fieldSchema as import("zod").ZodSchema).parse(getValue(field));
       }
 
       setErrors(prev => prev.filter(error => error.field !== field));

@@ -70,6 +70,12 @@ export default tseslint.config(
     },
   },
   {
+    files: ["**/*.test.{ts,tsx}", "**/__tests__/**/*.{ts,tsx}"],
+    rules: {
+      "max-lines": ["error", { "max": 500, "skipBlankLines": true, "skipComments": true }],
+    },
+  },
+  {
     files: ["**/*.d.ts"],
     rules: {
       "@typescript-eslint/naming-convention": "off",
