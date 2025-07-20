@@ -46,7 +46,7 @@ function FormContent<T>({ children, onSubmit, className }: {
   );
 }
 
-export default function Form<T = Record<string, unknown>>({
+export default function Form<T extends Record<string, any> = Record<string, unknown>>({
   children,
   schema,
   initialValues,

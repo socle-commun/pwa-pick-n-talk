@@ -22,4 +22,4 @@ export type FormContextType<T = Record<string, unknown>> = {
   schema?: import("zod").ZodSchema<T>;
 };
 
-export const FormContext = createContext<FormContextType<Record<string, unknown>> | null>(null);
+export const FormContext = createContext<FormContextType<any> | null>(null);
