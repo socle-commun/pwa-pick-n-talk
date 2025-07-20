@@ -52,6 +52,31 @@ vi.mock("@/utils/theme", () => ({
   }),
 }));
 
+// Mock theme components that cause test issues
+vi.mock("@/components/ui/theme/ColorPreview", () => ({
+  ColorPreview: () => <div data-testid="color-preview">Color Preview</div>,
+}));
+
+vi.mock("@/components/ui/LocaleSelector", () => ({
+  default: () => <div data-testid="locale-selector">Language Selector</div>,
+}));
+
+vi.mock("@/components/ui/theme/ThemeModeToggle", () => ({
+  default: () => <div data-testid="theme-toggle">Theme Toggle</div>,
+}));
+
+vi.mock("@/components/ui/theme/DaltonismModeToggle", () => ({
+  default: () => <div data-testid="daltonism-toggle">Daltonism Toggle</div>,
+}));
+
+vi.mock("@/components/ui/theme/FontSizeSelector", () => ({
+  default: () => <div data-testid="font-size-selector">Font Size Selector</div>,
+}));
+
+vi.mock("@/components/ui/theme/HighContrastModeToggle", () => ({
+  default: () => <div data-testid="high-contrast-toggle">High Contrast Toggle</div>,
+}));
+
 // Wrapper component that provides Router context
 const TestWrapper = ({ children }: { children: React.ReactNode }) => (
   <MemoryRouter>{children}</MemoryRouter>
