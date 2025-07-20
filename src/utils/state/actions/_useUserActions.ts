@@ -61,8 +61,6 @@ export default function useUserActions() {
 
           localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
-
-          // Always redirect to setup after registration
           navigate("/setup");
         });
       });
