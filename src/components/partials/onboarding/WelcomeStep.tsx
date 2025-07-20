@@ -92,9 +92,36 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
         <Heading level={1} className={cn("text-3xl lg:text-4xl mb-4")}>
           {t("onboarding.welcome.title", "Welcome to Pick'n'Talk!")}
         </Heading>
-        <p className={cn("text-lg text-zinc-600 dark:text-zinc-400 mb-6 max-w-2xl mx-auto")}>
+        <p className={cn("text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-2xl mx-auto")}>
           {t("onboarding.welcome.subtitle", "Let's get you set up with your personalized communication experience. First, let's configure your preferences.")}
         </p>
+
+        {/* Privacy and Data Information */}
+        <div className={cn("bg-blue-50 dark:bg-blue-950/30 rounded-lg p-6 mb-8 max-w-3xl mx-auto border border-blue-200 dark:border-blue-800")}>
+          <div className={cn("flex items-start gap-4")}>
+            <div className={cn("size-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-1")}>
+              <svg className={cn("size-5 text-blue-600 dark:text-blue-400")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div className={cn("flex-1")}>
+              <Heading level={3} className={cn("text-lg font-semibold text-blue-800 dark:text-blue-200 mb-3")}>
+                {t("onboarding.welcome.privacy.title", "Your Data, Your Control")}
+              </Heading>
+              <div className={cn("text-blue-700 dark:text-blue-300 space-y-3 text-sm leading-relaxed")}>
+                <p>
+                  {t("onboarding.welcome.privacy.local_storage", "All your communication binders and personal data are saved locally on your device. No information is sent to external servers without your explicit consent.")}
+                </p>
+                <p>
+                  {t("onboarding.welcome.privacy.synchronization", "You will have the option to synchronize your binders with other caregivers and professionals when you choose to enable this feature, giving you full control over data sharing.")}
+                </p>
+                <p>
+                  {t("onboarding.welcome.privacy.offline", "Pick'n'Talk works completely offline, ensuring your communication tools are always available when you need them.")}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Settings Configuration Section */}
