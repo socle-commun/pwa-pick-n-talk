@@ -43,7 +43,7 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
         id: crypto.randomUUID(),
         entityType: "user",
         entityId: "system", // Using system for global setup events
-        action: "setupStarted",
+        action: HistoryActionSchema.setupStarted,
         performedBy: "system", // No user context yet in onboarding
         timestamp: new Date(),
         changes: {},
