@@ -61,7 +61,7 @@ export default function useUserActions() {
 
           localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
-          navigate("/");
+          navigate("/setup");
         });
       });
   }
