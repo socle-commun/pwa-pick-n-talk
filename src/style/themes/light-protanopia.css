@@ -45,15 +45,15 @@
   --info-border: rgb(103 232 249); /* Cyan borders */
   
   /* Semantic colors - Feature (for onboarding highlights) */
-  --feature-primary-primary: rgb(99 102 241); /* Main primary feature color */
+  --feature-primary-primary: rgb(99 102 241); /* Main primary feature color - indigo safe for protanopia */
   --feature-primary-secondary: rgb(238 242 255); /* Light primary feature background */
   --feature-primary-text: rgb(67 56 202); /* Primary feature text */
   --feature-primary-border: rgb(196 181 253); /* Primary feature borders */
-  
-  --feature-secondary-primary: rgb(34 197 94); /* Main secondary feature color */
-  --feature-secondary-secondary: rgb(240 253 244); /* Light secondary feature background */
-  --feature-secondary-text: rgb(21 128 61); /* Secondary feature text */
-  --feature-secondary-border: rgb(187 247 208); /* Secondary feature borders */
+
+  --feature-secondary-primary: rgb(0 206 209); /* Cyan instead of green for protanopia */
+  --feature-secondary-secondary: rgb(207 250 254); /* Light cyan background */
+  --feature-secondary-text: rgb(21 94 117); /* Cyan text */
+  --feature-secondary-border: rgb(103 232 249); /* Cyan borders */
 
   
   /* Interactive colors - same as default */

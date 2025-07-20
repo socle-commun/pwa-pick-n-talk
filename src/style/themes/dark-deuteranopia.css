@@ -45,15 +45,15 @@
   --info-border: rgb(147 197 253);
   
   /* Semantic colors - Feature (for onboarding highlights) */
-  --feature-primary-primary: rgb(129 140 248); /* Main primary feature color */
+  --feature-primary-primary: rgb(129 140 248); /* Main primary feature color - indigo safe for deuteranopia */
   --feature-primary-secondary: rgb(67 56 202); /* Dark primary feature background */
   --feature-primary-text: rgb(238 242 255); /* Primary feature text */
   --feature-primary-border: rgb(196 181 253); /* Primary feature borders */
-  
-  --feature-secondary-primary: rgb(34 197 94); /* Main secondary feature color */
-  --feature-secondary-secondary: rgb(21 128 61); /* Dark secondary feature background */
-  --feature-secondary-text: rgb(240 253 244); /* Secondary feature text */
-  --feature-secondary-border: rgb(187 247 208); /* Secondary feature borders */
+
+  --feature-secondary-primary: rgb(96 165 250); /* Blue instead of green for deuteranopia */
+  --feature-secondary-secondary: rgb(30 64 175); /* Dark blue background */
+  --feature-secondary-text: rgb(219 234 254); /* Light blue text */
+  --feature-secondary-border: rgb(147 197 253); /* Blue borders */
 
   
   /* Interactive colors - same as dark default */
