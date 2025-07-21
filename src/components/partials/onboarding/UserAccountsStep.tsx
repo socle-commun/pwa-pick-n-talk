@@ -8,12 +8,11 @@
  * - Optional password functionality
  * - Fixed role (user)
  * - Personal settings configuration
- * - Real-time saving to users table via DexieJS
+ * - Real-time saving to users table via state management hooks
  */
 
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useLiveQuery } from "dexie-react-hooks";
 
 import { Button } from "@/components/ui/actions";
 import { Heading } from "@/components/ui/typography";
@@ -21,7 +20,7 @@ import { AccountTypeButton } from "@/components/ui/data-input";
 import { UserForm } from "@/components/partials/forms";
 
 import { type User } from "@/db/models";
-import { db } from "@/db";
+import { useUsers, useUserActions } from "@/utils/state/actions";
 import cn from "@/utils/cn";
 
 interface UserAccountsStepProps {
@@ -34,9 +33,10 @@ export default function UserAccountsStep({ onContinue, className }: UserAccounts
   const [showForm, setShowForm] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
 
-  // Get all users and filter by role in JavaScript
-  const allUsers = useLiveQuery(() => db.users.toArray(), []) || [];
-  const userRoleUsers = allUsers.filter(user => user.role === "user");
+  // Use hooks instead of direct db access
+  const { usersByRole } = useUsers();
+  const { deleteUserAccount } = useUserActions();
+  const userRoleUsers = usersByRole("user");
 
   const handleAddUser = useCallback(() => {
     setEditingUser(null);
@@ -51,13 +51,13 @@ export default function UserAccountsStep({ onContinue, className }: UserAccounts
   const handleDeleteUser = useCallback(async (user: User) => {
     if (window.confirm(t("forms.user.delete_confirm", "Are you sure you want to delete {{name}}?", { name: user.name }))) {
       try {
-        await db.deleteUser(user.id);
+        await deleteUserAccount(user.id);
       } catch (error) {
         console.error("Failed to delete user:", error);
         alert(t("forms.errors.delete_failed", "Failed to delete user"));
       }
     }
-  }, [t]);
+  }, [deleteUserAccount, t]);
 
   const handleUserSaved = useCallback(() => {
     setShowForm(false);
@@ -75,11 +75,11 @@ export default function UserAccountsStep({ onContinue, className }: UserAccounts
 
   const getUserIcon = () => (
     <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        strokeWidth={2} 
-        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" 
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
       />
     </svg>
   );

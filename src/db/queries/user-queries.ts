@@ -36,6 +36,13 @@ export function updateUser(
 }
 
 /**
+ * Get all users
+ */
+export function getAllUsers(this: PickNTalkDB): PromiseExtended<User[]> {
+  return this.users.toArray();
+}
+
+/**
  * Delete a user
  */
 export function deleteUser(this: PickNTalkDB, id: string) {

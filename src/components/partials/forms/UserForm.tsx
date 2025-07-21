@@ -7,7 +7,7 @@
  * - Support for caregiver and professional roles
  * - Optional password field
  * - Real-time validation using Zod schema
- * - Automatic saving to database
+ * - Automatic saving to database via state management hooks
  */
 
 import { useCallback, useState } from "react";
@@ -19,7 +19,7 @@ import { Heading } from "@/components/ui/typography";
 import { UserSettingsPanel } from "@/components/ui/data-input";
 
 import { UserSchema, type User, type Role } from "@/db/models";
-import { db } from "@/db";
+import { useUserActions } from "@/utils/state/actions";
 import cn from "@/utils/cn";
 
 // Form data schema for user creation/editing
@@ -57,7 +57,10 @@ export default function UserForm({
   const { t } = useTranslation();
   const [isSaving, setSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
-  const [userSettings, setUserSettings] = useState<Record<string, string | number | boolean | Record<string, any>>>(user?.settings || {});
+  const userSettings = user?.settings || {};
+
+  // Use hooks instead of direct db access
+  const { createUserAccount, updateUserAccount } = useUserActions();
 
   const isEditing = !!user;
   const isUserRole = role === "user";
@@ -68,24 +71,6 @@ export default function UserForm({
     password: "",
     role,
   };
-
-  const handleSettingChange = useCallback((key: string, value: unknown) => {
-    // Type-safe value casting for user settings
-    const typedValue = value as string | number | boolean | Record<string, any>;
-    const newSettings = { ...userSettings, [key]: typedValue };
-    setUserSettings(newSettings);
-
-    // Auto-save settings for existing users in real time
-    if (isEditing && user) {
-      const updatedUser = { ...user, settings: newSettings };
-      db.updateUser(updatedUser).catch(error => {
-        console.error("Failed to auto-save settings:", error);
-      });
-    }
-  }, [userSettings, isEditing, user]);
-
-  // Avoid unused variable warning
-  void handleSettingChange;
 
   const saveUser = useCallback(async (data: UserFormData) => {
     setSaving(true);
@@ -104,9 +89,9 @@ export default function UserForm({
       };
 
       if (isEditing) {
-        await db.updateUser(userData);
+        await updateUserAccount(userData);
       } else {
-        await db.createUser(userData);
+        await createUserAccount(userData);
       }
 
       setLastSaved(new Date());
@@ -117,7 +102,7 @@ export default function UserForm({
     } finally {
       setSaving(false);
     }
-  }, [user, isEditing, onSaved, t]);
+  }, [user, isEditing, userSettings, createUserAccount, updateUserAccount, onSaved, t]);
 
   const handleSubmit = async (data: UserFormData) => {
     await saveUser(data);
@@ -247,3 +232,4 @@ export default function UserForm({
     </div>
   );
 }
+

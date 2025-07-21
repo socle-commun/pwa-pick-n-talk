@@ -42,6 +42,7 @@ export class PickNTalkDB extends Dexie {
     // User queries
     this.getUser = userQueries.getUser.bind(this);
     this.getUserByEmail = userQueries.getUserByEmail.bind(this);
+    this.getAllUsers = userQueries.getAllUsers.bind(this);
     this.createUser = userQueries.createUser.bind(this);
     this.updateUser = userQueries.updateUser.bind(this);
     this.deleteUser = userQueries.deleteUser.bind(this);
@@ -86,6 +87,7 @@ export class PickNTalkDB extends Dexie {
   // User queries
   public getUser!: (id: string) => PromiseExtended<User | undefined>;
   public getUserByEmail!: (email: string) => PromiseExtended<User | undefined>;
+  public getAllUsers!: () => PromiseExtended<User[]>;
   public createUser!: (user: User) => PromiseExtended<string>;
   public updateUser!: (user: User) => PromiseExtended<void>;
   public deleteUser!: (id: string) => PromiseExtended<void>;

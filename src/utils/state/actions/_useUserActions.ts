@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 import { userAtom } from "@/utils/state/atoms";
 import { db } from "@/db";
+import type { User } from "@/db/models";
 
 export default function useUserActions() {
   const navigate = useNavigate();
@@ -66,9 +67,40 @@ export default function useUserActions() {
       });
   }
 
+  // User management operations for components
+  async function createUserAccount(userData: User): Promise<string> {
+    try {
+      return await db.createUser(userData);
+    } catch (error) {
+      console.error("Failed to create user:", error);
+      throw new Error("Failed to create user");
+    }
+  }
+
+  async function updateUserAccount(userData: User): Promise<void> {
+    try {
+      await db.updateUser(userData);
+    } catch (error) {
+      console.error("Failed to update user:", error);
+      throw new Error("Failed to update user");
+    }
+  }
+
+  async function deleteUserAccount(userId: string): Promise<void> {
+    try {
+      await db.deleteUser(userId);
+    } catch (error) {
+      console.error("Failed to delete user:", error);
+      throw new Error("Failed to delete user");
+    }
+  }
+
   return {
     login,
     logout,
     register,
+    createUserAccount,
+    updateUserAccount,
+    deleteUserAccount,
   };
 }
