@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 
 import AppProviders from "@/components/partials/global/AppProviders";
 import LazyRoute from "@/components/partials/global/LazyRoute";
+import { useDaltonismMode, useFontSize, useThemeMode } from "@/utils/theme";
 
 // Lazy-loaded route components
 const Layout = lazy(() => import("@/routes/layout"));
@@ -22,8 +23,6 @@ const SetupPage = lazy(() => import("@/routes/setup/page"));
 const BindersPage = lazy(() => import("@/routes/binders/page"));
 const BinderPage = lazy(() => import("@/routes/binders/[uuid]/page"));
 const BinderEditPage = lazy(() => import("@/routes/binders/[uuid]/edit/page"));
-
-import { useFontSize, useThemeMode, useDaltonismMode } from "@/utils/theme";
 
 function App() {
   // Initialize theme system

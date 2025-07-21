@@ -65,21 +65,25 @@ export default function UserForm({
     role,
   };
 
+  const createUserData = useCallback(async (data: UserFormData): Promise<User> => {
+    const bcrypt = await import("bcryptjs");
+
+    return {
+      id: user?.id || crypto.randomUUID(),
+      name: data.name,
+      email: data.email,
+      hash: data.password ? await bcrypt.hash(data.password, 10) : user?.hash,
+      role: data.role,
+      settings: user?.settings || {},
+      binders: user?.binders || [],
+    };
+  }, [user]);
+
   const saveUser = useCallback(async (data: UserFormData) => {
     setSaving(true);
 
     try {
-      const bcrypt = await import("bcryptjs");
-
-      const userData: User = {
-        id: user?.id || crypto.randomUUID(),
-        name: data.name,
-        email: data.email,
-        hash: data.password ? await bcrypt.hash(data.password, 10) : user?.hash,
-        role: data.role,
-        settings: user?.settings || {},
-        binders: user?.binders || [],
-      };
+      const userData = await createUserData(data);
 
       if (isEditing) {
         await db.updateUser(userData);
@@ -95,7 +99,7 @@ export default function UserForm({
     } finally {
       setSaving(false);
     }
-  }, [user, isEditing, onSaved, t]);
+  }, [createUserData, isEditing, onSaved, t]);
 
   const handleSubmit = async (data: UserFormData) => {
     await saveUser(data);
