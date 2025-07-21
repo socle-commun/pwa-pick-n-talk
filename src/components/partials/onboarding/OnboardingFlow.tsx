@@ -16,7 +16,7 @@ import { useNavigate } from "react-router";
 import { WelcomeStep, CaregiverAccountsStep, UserAccountsStep } from "@/components/partials/onboarding";
 import cn from "@/utils/cn";
 
-type OnboardingStep = "welcome" | "users" | "caregivers" | "complete";
+type OnboardingStep = "welcome" | "caregivers" | "users" | "complete";
 
 interface OnboardingFlowProps {
   initialStep?: OnboardingStep;
@@ -39,16 +39,16 @@ export default function OnboardingFlow({
     {
       key: "welcome",
       title: t("onboarding.steps.welcome", "Welcome & Settings"),
-      completed: ["users", "caregivers", "complete"].includes(currentStep),
-    },
-    {
-      key: "users",
-      title: t("onboarding.steps.users", "User Accounts"),
-      completed: ["caregivers", "complete"].includes(currentStep),
+      completed: ["caregivers", "users", "complete"].includes(currentStep),
     },
     {
       key: "caregivers",
       title: t("onboarding.steps.caregivers", "Caregiver Accounts"),
+      completed: ["users", "complete"].includes(currentStep),
+    },
+    {
+      key: "users",
+      title: t("onboarding.steps.users", "User Accounts"),
       completed: currentStep === "complete",
     },
   ];
@@ -58,12 +58,12 @@ export default function OnboardingFlow({
   const handleNextStep = () => {
     switch (currentStep) {
       case "welcome":
-        setCurrentStep("users");
-        break;
-      case "users":
         setCurrentStep("caregivers");
         break;
       case "caregivers":
+        setCurrentStep("users");
+        break;
+      case "users":
         setCurrentStep("complete");
         // Navigate to binders page or main app
         navigate("/binders");
@@ -75,10 +75,10 @@ export default function OnboardingFlow({
 
   const handlePreviousStep = () => {
     switch (currentStep) {
-      case "caregivers":
-        setCurrentStep("users");
-        break;
       case "users":
+        setCurrentStep("caregivers");
+        break;
+      case "caregivers":
         setCurrentStep("welcome");
         break;
       case "welcome":
@@ -91,10 +91,10 @@ export default function OnboardingFlow({
     switch (currentStep) {
       case "welcome":
         return <WelcomeStep onContinue={handleNextStep} />;
-      case "users":
-        return <UserAccountsStep onContinue={handleNextStep} />;
       case "caregivers":
         return <CaregiverAccountsStep onContinue={handleNextStep} />;
+      case "users":
+        return <UserAccountsStep onContinue={handleNextStep} />;
       default:
         return null;
     }

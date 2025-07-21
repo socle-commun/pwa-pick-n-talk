@@ -12,11 +12,14 @@ test.describe("User Accounts Setup", () => {
       }
     });
 
-    // Navigate to setup page and advance to user accounts step
+    // Navigate to setup page and advance to user accounts step (step 3)
     await page.goto("/setup");
 
-    // Wait for welcome step and continue to user accounts step
+    // Wait for welcome step and continue to caregiver accounts step (step 2)
     await page.getByRole("button", { name: "Continue Setup" }).click();
+
+    // Skip caregiver accounts to get to user accounts step (step 3)
+    await page.getByRole("button", { name: "Continue without accounts" }).click();
   });
 
   test("should display user accounts setup page", async ({ page }) => {
@@ -190,27 +193,27 @@ test.describe("User Accounts Setup", () => {
     await expect(page.getByRole("button", { name: "Add User Account" })).toBeVisible();
   });
 
-  test("should navigate back to welcome step", async ({ page }) => {
+  test("should navigate back to caregiver accounts step", async ({ page }) => {
     // Click back button
     await page.getByRole("button", { name: "← Back" }).click();
 
-    // Should be on welcome step
-    await expect(page.getByRole("heading", { name: "Welcome to Pick'n'Talk!" })).toBeVisible();
+    // Should be on caregiver accounts step
+    await expect(page.getByRole("heading", { name: "Setup Caregiver Accounts" })).toBeVisible();
   });
 
-  test("should continue to caregiver accounts step", async ({ page }) => {
+  test("should complete setup flow from user accounts step", async ({ page }) => {
     // Create a user account
     await page.getByRole("button", { name: "Add User Account" }).click();
     await page.getByTestId("name-input").fill("Test User");
     await page.getByTestId("email-input").fill("test@example.com");
     await page.getByRole("button", { name: "Create User" }).click();
 
-    // Continue to next step (caregiver accounts)
+    // Continue to complete the setup (should navigate to binders)
     await page.getByRole("button", { name: "Continue with 1 user account(s)" }).click();
 
-    // Should navigate to caregiver accounts step
-    await expect(page.getByRole("heading", { name: "Setup Caregiver Accounts" })).toBeVisible();
-    await expect(page.getByText("Add caregivers and professionals")).toBeVisible();
+    // Should navigate to binders page (end of setup)
+    await page.waitForURL("/binders");
+    await expect(page).toHaveURL("/binders");
   });
 
   test("should show user icon and styling", async ({ page }) => {
@@ -235,12 +238,8 @@ test.describe("User Accounts Setup", () => {
     await page.getByTestId("email-input").fill("complete@test.com");
     await page.getByRole("button", { name: "Create User" }).click();
 
-    // Continue to caregiver step
+    // Continue to complete the setup
     await page.getByRole("button", { name: "Continue with 1 user account(s)" }).click();
-    await expect(page.getByRole("heading", { name: "Setup Caregiver Accounts" })).toBeVisible();
-
-    // Skip caregiver accounts
-    await page.getByRole("button", { name: "Continue without accounts" }).click();
 
     // Should navigate to binders page (end of setup)
     await page.waitForURL("/binders");
@@ -257,8 +256,9 @@ test.describe("User Accounts Setup", () => {
     // Refresh the page
     await page.reload();
 
-    // Navigate back to user accounts step
-    await page.getByRole("button", { name: "Continue Setup" }).click();
+    // Navigate back to user accounts step (step 3)
+    await page.getByRole("button", { name: "Continue Setup" }).click(); // Step 1 -> 2
+    await page.getByRole("button", { name: "Continue without accounts" }).click(); // Step 2 -> 3
 
     // User should still be visible
     await expect(page.getByText("Persistent User")).toBeVisible();
