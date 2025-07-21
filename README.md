@@ -26,4 +26,6 @@ Pick'n'Talk s'adresse aux personnes en situation de handicap de la parole, aux a
 
 Favoriser l'autonomie et l'inclusion en offrant un outil simple, flexible et efficace pour communiquer au quotidien 🤝.
 
+# Copilot
 
+Copilot doit lire et utiliser le [fichier suivant](.github/copilot-instructions.md)
