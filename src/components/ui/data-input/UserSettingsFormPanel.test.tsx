@@ -3,7 +3,7 @@
  * @description Test suite for UserSettingsFormPanel component.
  */
 
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import { MemoryRouter } from "react-router";
 
