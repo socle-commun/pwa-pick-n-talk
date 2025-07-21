@@ -16,7 +16,7 @@ interface BinderContentProps {
 
 export function BinderContent({ binder, uuid }: BinderContentProps) {
   const { i18n } = useTranslation();
-  
+
   if (binder === undefined) {
     return <LoadingSpinner message="Loading binder..." />;
   }
