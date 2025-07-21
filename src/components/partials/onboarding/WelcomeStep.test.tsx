@@ -3,7 +3,7 @@
  * @description Tests for WelcomeStep component.
  */
 
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 
@@ -135,16 +135,15 @@ describe("WelcomeStep", () => {
         </TestWrapper>
       );
 
-      await waitFor(() => {
-        expect(db.createHistory).toHaveBeenCalledWith(
-          expect.objectContaining({
-            entityType: "user",
-            entityId: "system",
-            action: "setupStarted",
-            performedBy: "system",
-          })
-        );
-      });
+      // Verify history creation directly
+      expect(db.createHistory).toHaveBeenCalledWith(
+        expect.objectContaining({
+          entityType: "user",
+          entityId: "system",
+          action: "setupStarted",
+          performedBy: "system",
+        })
+      );
     });
 
     it("should initialize tutorial setting on mount", async () => {
@@ -154,11 +153,10 @@ describe("WelcomeStep", () => {
         </TestWrapper>
       );
 
-      await waitFor(() => {
-        expect(db.upsertSetting).toHaveBeenCalledWith({
-          key: "tutorial",
-          value: true,
-        });
+      // Verify setting initialization directly
+      expect(db.upsertSetting).toHaveBeenCalledWith({
+        key: "tutorial",
+        value: true,
       });
     });
   });
