@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import { Form, FormInput } from "@/components/ui/forms";
 import { Button } from "@/components/ui/actions";
 import { Heading } from "@/components/ui/typography";
+import { UserSettingsPanel } from "@/components/ui/data-input";
 
 import { UserSchema, type User, type Role } from "@/db/models";
 import { db } from "@/db";
@@ -40,7 +41,7 @@ type UserFormData = {
 
 interface UserFormProps {
   user?: User;
-  role: "caregiver" | "professional";
+  role: "user" | "caregiver" | "professional";
   onSaved?: (user: User) => void;
   onCancel?: () => void;
   className?: string;
@@ -56,8 +57,10 @@ export default function UserForm({
   const { t } = useTranslation();
   const [isSaving, setSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [userSettings, setUserSettings] = useState<Record<string, string | number | boolean | Record<string, any>>>(user?.settings || {});
 
   const isEditing = !!user;
+  const isUserRole = role === "user";
 
   const initialValues: UserFormData = {
     name: user?.name || "",
@@ -65,6 +68,24 @@ export default function UserForm({
     password: "",
     role,
   };
+
+  const handleSettingChange = useCallback((key: string, value: unknown) => {
+    // Type-safe value casting for user settings
+    const typedValue = value as string | number | boolean | Record<string, any>;
+    const newSettings = { ...userSettings, [key]: typedValue };
+    setUserSettings(newSettings);
+
+    // Auto-save settings for existing users in real time
+    if (isEditing && user) {
+      const updatedUser = { ...user, settings: newSettings };
+      db.updateUser(updatedUser).catch(error => {
+        console.error("Failed to auto-save settings:", error);
+      });
+    }
+  }, [userSettings, isEditing, user]);
+
+  // Avoid unused variable warning
+  void handleSettingChange;
 
   const saveUser = useCallback(async (data: UserFormData) => {
     setSaving(true);
@@ -78,7 +99,7 @@ export default function UserForm({
         email: data.email,
         hash: data.password ? await bcrypt.hash(data.password, 10) : user?.hash,
         role: data.role,
-        settings: user?.settings || {},
+        settings: userSettings,
         binders: user?.binders || [],
       };
 
@@ -186,6 +207,13 @@ export default function UserForm({
             {t("forms.user.role_help", "Role is determined by the account type being created")}
           </p>
         </div>
+
+        {/* Personal Settings for User Role */}
+        {isUserRole && (
+          <div className="border-t border-zinc-200 dark:border-zinc-700 pt-6">
+            <UserSettingsPanel />
+          </div>
+        )}
 
         <div className="flex gap-4">
           <Button

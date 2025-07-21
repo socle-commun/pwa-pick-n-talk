@@ -13,10 +13,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-import { WelcomeStep, CaregiverAccountsStep } from "@/components/partials/onboarding";
+import { WelcomeStep, CaregiverAccountsStep, UserAccountsStep } from "@/components/partials/onboarding";
 import cn from "@/utils/cn";
 
-type OnboardingStep = "welcome" | "caregivers" | "complete";
+type OnboardingStep = "welcome" | "users" | "caregivers" | "complete";
 
 interface OnboardingFlowProps {
   initialStep?: OnboardingStep;
@@ -39,7 +39,12 @@ export default function OnboardingFlow({
     {
       key: "welcome",
       title: t("onboarding.steps.welcome", "Welcome & Settings"),
-      completed: currentStep !== "welcome",
+      completed: ["users", "caregivers", "complete"].includes(currentStep),
+    },
+    {
+      key: "users",
+      title: t("onboarding.steps.users", "User Accounts"),
+      completed: ["caregivers", "complete"].includes(currentStep),
     },
     {
       key: "caregivers",
@@ -53,6 +58,9 @@ export default function OnboardingFlow({
   const handleNextStep = () => {
     switch (currentStep) {
       case "welcome":
+        setCurrentStep("users");
+        break;
+      case "users":
         setCurrentStep("caregivers");
         break;
       case "caregivers":
@@ -68,6 +76,9 @@ export default function OnboardingFlow({
   const handlePreviousStep = () => {
     switch (currentStep) {
       case "caregivers":
+        setCurrentStep("users");
+        break;
+      case "users":
         setCurrentStep("welcome");
         break;
       case "welcome":
@@ -80,6 +91,8 @@ export default function OnboardingFlow({
     switch (currentStep) {
       case "welcome":
         return <WelcomeStep onContinue={handleNextStep} />;
+      case "users":
+        return <UserAccountsStep onContinue={handleNextStep} />;
       case "caregivers":
         return <CaregiverAccountsStep onContinue={handleNextStep} />;
       default:

@@ -127,6 +127,32 @@
       "delete_failed": "Échec de la suppression de l'utilisateur"
     }
   },
+  "settings": {
+    "personal": {
+      "title": "Préférences Personnelles",
+      "subtitle": "Personnalisez votre expérience avec des paramètres adaptés."
+    },
+    "language": {
+      "title": "Langue"
+    },
+    "appearance": {
+      "title": "Apparence"
+    },
+    "accessibility": {
+      "title": "Accessibilité",
+      "daltonism": {
+        "label": "Support du Daltonisme",
+        "info": "Mode daltonisme mis à jour et couleurs prévisualisées ci-dessous."
+      }
+    },
+    "theme": {
+      "mode": {
+        "label": "Mode de Thème",
+        "light": "Clair",
+        "dark": "Sombre"
+      }
+    }
+  },
   "binder": {
     "edit": {
       "title": "Modifier le classeur",
@@ -186,6 +212,14 @@
     }
   },
   "onboarding": {
+    "steps": {
+      "welcome": "Bienvenue et Paramètres",
+      "users": "Comptes Utilisateurs",
+      "caregivers": "Comptes Aidants"
+    },
+    "navigation": {
+      "back": "Retour"
+    },
     "welcome": {
       "title": "Bienvenue dans Pick'n'Talk !",
       "subtitle": "Configurons votre expérience de communication personnalisée. D'abord, paramétrons vos préférences.",
@@ -224,6 +258,16 @@
         "continue": "Continuer la configuration",
         "skip": "Ignorer pour l'instant"
       }
+    },
+    "users": {
+      "title": "Configuration des Comptes Utilisateurs",
+      "subtitle": "Créez des comptes pour les utilisateurs principaux de communication. Configurez leurs préférences personnelles et paramètres d'accessibilité.",
+      "add_user": "Ajouter un Compte Utilisateur",
+      "user_description": "Créer un compte pour quelqu'un qui utilisera les classeurs de communication",
+      "existing_accounts": "Comptes Utilisateurs Créés",
+      "continue_with_accounts": "Continuer avec {{count}} compte(s) utilisateur(s)",
+      "skip_accounts": "Continuer sans comptes utilisateurs",
+      "settings_configured": "{{count}} paramètres personnels configurés"
     },
     "caregivers": {
       "title": "Configuration des Comptes Aidants",

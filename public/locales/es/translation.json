@@ -151,6 +151,14 @@
     }
   },
   "onboarding": {
+    "steps": {
+      "welcome": "Bienvenida y Configuración",
+      "users": "Cuentas de Usuarios",
+      "caregivers": "Cuentas de Cuidadores"
+    },
+    "navigation": {
+      "back": "Atrás"
+    },
     "welcome": {
       "title": "¡Bienvenido a Pick'n'Talk!",
       "subtitle": "Configuremos tu experiencia de comunicación personalizada. Primero, configuremos tus preferencias.",
@@ -189,6 +197,16 @@
         "continue": "Continuar configuración",
         "skip": "Omitir por ahora"
       }
+    },
+    "users": {
+      "title": "Configurar Cuentas de Usuarios",
+      "subtitle": "Cree cuentas para los usuarios principales de comunicación. Configure sus preferencias personales y configuraciones de accesibilidad.",
+      "add_user": "Agregar Cuenta de Usuario",
+      "user_description": "Crear una cuenta para alguien que usará las carpetas de comunicación",
+      "existing_accounts": "Cuentas de Usuarios Creadas",
+      "continue_with_accounts": "Continuar con {{count}} cuenta(s) de usuario(s)",
+      "skip_accounts": "Continuar sin cuentas de usuarios",
+      "settings_configured": "{{count}} configuraciones personales configuradas"
     },
     "caregivers": {
       "title": "Configurar Cuentas de Cuidadores",
@@ -235,6 +253,32 @@
     "errors": {
       "save_failed": "Error al guardar el usuario",
       "delete_failed": "Error al eliminar el usuario"
+    }
+  },
+  "settings": {
+    "personal": {
+      "title": "Preferencias Personales",
+      "subtitle": "Personalice su experiencia con configuraciones adaptadas."
+    },
+    "language": {
+      "title": "Idioma"
+    },
+    "appearance": {
+      "title": "Apariencia"
+    },
+    "accessibility": {
+      "title": "Accesibilidad",
+      "daltonism": {
+        "label": "Soporte para Daltonismo",
+        "info": "Modo de daltonismo actualizado y colores previsualizados a continuación."
+      }
+    },
+    "theme": {
+      "mode": {
+        "label": "Modo de Tema",
+        "light": "Claro",
+        "dark": "Oscuro"
+      }
     }
   },
   "validation": {

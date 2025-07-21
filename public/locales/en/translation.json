@@ -127,6 +127,32 @@
       "delete_failed": "Failed to delete user"
     }
   },
+  "settings": {
+    "personal": {
+      "title": "Personal Preferences",
+      "subtitle": "Customize your experience with personalized settings."
+    },
+    "language": {
+      "title": "Language"
+    },
+    "appearance": {
+      "title": "Appearance"
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "daltonism": {
+        "label": "Daltonism Support",
+        "info": "Daltonism mode updated and colors previewed below."
+      }
+    },
+    "theme": {
+      "mode": {
+        "label": "Theme Mode",
+        "light": "Light",
+        "dark": "Dark"
+      }
+    }
+  },
   "binder": {
     "edit": {
       "title": "Edit Binder",
@@ -186,6 +212,14 @@
     }
   },
   "onboarding": {
+    "steps": {
+      "welcome": "Welcome & Settings",
+      "users": "User Accounts", 
+      "caregivers": "Caregiver Accounts"
+    },
+    "navigation": {
+      "back": "Back"
+    },
     "welcome": {
       "title": "Welcome to Pick'n'Talk!",
       "subtitle": "Let's get you set up with your personalized communication experience. First, let's configure your preferences.",
@@ -224,6 +258,16 @@
         "continue": "Continue Setup",
         "skip": "Skip for Now"
       }
+    },
+    "users": {
+      "title": "Setup User Accounts",
+      "subtitle": "Create accounts for the primary communication users. Configure their personal preferences and accessibility settings.",
+      "add_user": "Add User Account",
+      "user_description": "Create an account for someone who will use communication binders",
+      "existing_accounts": "Created User Accounts", 
+      "continue_with_accounts": "Continue with {{count}} user account(s)",
+      "skip_accounts": "Continue without user accounts",
+      "settings_configured": "{{count}} personal settings configured"
     },
     "caregivers": {
       "title": "Setup Caregiver Accounts",
