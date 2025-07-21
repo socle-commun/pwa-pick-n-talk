@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
 import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from "@headlessui/react";
 import { ChevronDownIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 
-import { useThemeMode, type ThemeMode } from "@/utils/theme";
 import cn from "@/utils/cn";
+import { useThemeMode, type ThemeMode } from "@/utils/theme";
 
 const THEME_MODES: Array<{ mode: ThemeMode; icon: typeof SunIcon }> = [
   { mode: "light", icon: SunIcon },

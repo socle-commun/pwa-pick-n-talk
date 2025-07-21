@@ -1,13 +1,10 @@
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/actions";
-import { Link } from "@/components/ui/navigation";
-import { Form, FormInput } from "@/components/ui/forms";
-
 import Logo from "@/components/partials/global/Logo";
-
+import { Button } from "@/components/ui/actions";
+import { Form, FormInput } from "@/components/ui/forms";
+import { Link } from "@/components/ui/navigation";
 import { ForgotPasswordSchema, type ForgotPasswordFormData } from "@/db/models/schemas/auth";
-
 import cn from "@/utils/cn";
 
 export default function ForgotPasswordPage() {

@@ -1,17 +1,17 @@
 
-import { useTranslation } from "react-i18next";
 import { useAtom } from "jotai";
-import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import Logo from "@/components/partials/global/Logo";
 import { Button } from "@/components/ui/actions";
 import { Heading } from "@/components/ui/typography";
 import { useBinders } from "@/hooks/useBinders";
 import { useIsEmptyDatabase } from "@/hooks/useIsEmptyDatabase";
+import cn from "@/utils/cn";
 import { userAtom } from "@/utils/state/atoms";
 
-import cn from "@/utils/cn";
 
 export default function IndexPage() {
   const { t } = useTranslation();

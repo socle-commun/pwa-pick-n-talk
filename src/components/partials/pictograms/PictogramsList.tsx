@@ -1,6 +1,7 @@
-import { PictogramsGridLayout } from "./PictogramsGridLayout";
 import { LoadingSpinner, EmptyState } from "@/components/ui/feedback";
 import { type Pictogram } from "@/db/models";
+
+import { PictogramsGridLayout } from "./PictogramsGridLayout";
 
 interface PictogramsListProps {
   pictograms: Pictogram[] | null | undefined;

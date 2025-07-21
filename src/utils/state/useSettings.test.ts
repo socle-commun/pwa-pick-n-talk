@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
+
 import { getSetting, setSetting } from "@/utils/state/useSettings";
 
 // Mock localStorage

@@ -2,6 +2,7 @@
  * Unit tests for user-queries.ts
  */
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+
 import "fake-indexeddb/auto";
 import { PickNTalkDB } from "../../index";
 import type { User } from "../../models";

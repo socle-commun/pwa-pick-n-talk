@@ -1,6 +1,6 @@
+import { Provider as JotaiProvider } from "jotai";
 import { type ReactNode } from "react";
 
-import { Provider as JotaiProvider } from "jotai";
 
 interface AppProvidersProps {
   children: ReactNode;

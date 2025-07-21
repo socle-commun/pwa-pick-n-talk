@@ -10,6 +10,7 @@
  */
 
 import { type ReactNode } from "react";
+
 import { Heading } from "@/components/ui/typography";
 import cn from "@/utils/cn";
 

@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, test, expect } from "vitest";
+
 import Combobox from "./Combobox";
 
 const testOptions = [

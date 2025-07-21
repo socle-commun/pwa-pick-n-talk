@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 
 import {
   Combobox,
@@ -7,6 +6,7 @@ import {
   ComboboxOptions,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useTranslation } from "react-i18next";
 
 import cn from "@/utils/cn";
 

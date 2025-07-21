@@ -1,6 +1,7 @@
-import PictogramCard from "./PictogramCard";
 import { type Pictogram } from "@/db/models";
 import cn from "@/utils/cn";
+
+import PictogramCard from "./PictogramCard";
 
 export interface PictogramsGridLayoutProps {
   pictograms: Pictogram[];

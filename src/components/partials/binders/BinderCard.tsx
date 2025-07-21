@@ -1,16 +1,13 @@
-import { type MouseEvent } from "react";
-
-import { useTranslation } from "react-i18next";
 import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
+import { type MouseEvent } from "react";
+import { useTranslation } from "react-i18next";
 
-import { Divider } from "@/components/ui/layout";
 import { Button } from "@/components/ui/actions";
-
-import { type Binder } from "@/db/models";
+import { Divider } from "@/components/ui/layout";
 import { db } from "@/db";
-import { getTranslation } from "@/utils/translation";
-
+import { type Binder } from "@/db/models";
 import cn from "@/utils/cn";
+import { getTranslation } from "@/utils/translation";
 
 export default function BinderCard({
   binder,

@@ -1,6 +1,7 @@
 import { Component, type ReactNode } from "react";
-import cn from "@/utils/cn";
+
 import { Button } from "@/components/ui";
+import cn from "@/utils/cn";
 
 interface Props {
   children: ReactNode;

@@ -6,19 +6,16 @@ import { type History } from "@/db/models";
 import { type Pictogram } from "@/db/models";
 import { type Setting } from "@/db/models";
 import type { User } from "@/db/models";
-
-
-
 import { populate } from "@/db/populate";
 
 // Import extracted methods organized by domain
-import * as userQueries from "@/db/queries/user-queries";
 import * as binderQueries from "@/db/queries/binder-queries";
-import * as pictogramQueries from "@/db/queries/pictogram-queries";
 import * as categoryQueries from "@/db/queries/category-queries";
-import * as historyQueries from "@/db/queries/history-queries";
-import * as settingQueries from "@/db/queries/setting-queries";
 import * as globalQueries from "@/db/queries/global-queries";
+import * as historyQueries from "@/db/queries/history-queries";
+import * as pictogramQueries from "@/db/queries/pictogram-queries";
+import * as settingQueries from "@/db/queries/setting-queries";
+import * as userQueries from "@/db/queries/user-queries";
 
 export class PickNTalkDB extends Dexie {
   binders!: Table<Binder, string>;

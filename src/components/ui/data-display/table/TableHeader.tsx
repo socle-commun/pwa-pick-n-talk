@@ -1,7 +1,6 @@
 import { useContext, type ComponentPropsWithoutRef } from "react";
 
 import { TableContext } from "@/components/ui/data-display";
-
 import cn from "@/utils/cn";
 
 export default function TableHeader({

@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 
-import FontSizeSelector from "./FontSizeSelector";
 import * as fontSizeHook from "@/utils/theme/useFontSize";
+
+import FontSizeSelector from "./FontSizeSelector";
 
 // Mock the translation hook
 vi.mock("react-i18next", () => ({

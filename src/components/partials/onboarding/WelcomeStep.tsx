@@ -14,15 +14,14 @@ import { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
+import Logo from "@/components/partials/global/Logo";
 import { Button } from "@/components/ui/actions";
-import { Heading } from "@/components/ui/typography";
 import LocaleSelector from "@/components/ui/LocaleSelector";
-import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
 import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
 import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
 import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
-import Logo from "@/components/partials/global/Logo";
-
+import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
+import { Heading } from "@/components/ui/typography";
 import { db } from "@/db";
 import { type History, type Setting } from "@/db/models";
 import cn from "@/utils/cn";

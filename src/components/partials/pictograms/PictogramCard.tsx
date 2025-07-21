@@ -1,12 +1,12 @@
+import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/components/ui/actions";
 import { type Pictogram } from "@/db/models";
+import cn from "@/utils/cn";
 import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
 import { getTranslation } from "@/utils/translation";
-import cn from "@/utils/cn";
 
 export interface PictogramCardProps {
   pictogram: Pictogram;
