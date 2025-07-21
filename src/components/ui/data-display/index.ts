@@ -4,3 +4,5 @@ export * from "./description-list";
 export * from "./dropdown";
 export * from "./listbox";
 export * from "./table";
+
+export { default as UserAccountCard } from "./UserAccountCard";

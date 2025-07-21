@@ -36,7 +36,7 @@ export class PerformanceMonitor {
   /**
    * Handle web vital metrics
    */
-  private handleMetric(name: string, metric: any) {
+  private handleMetric(name: string, metric: { value: number }) {
     this.metrics[name] = metric.value;
 
     if (this.isDevelopment) {

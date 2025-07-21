@@ -5,6 +5,8 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { MemoryRouter } from "react-router";
 
 import IndexPage from "./page";
+import type { User } from "@/db/models";
+import type { Binder } from "@/db/models";
 
 // Mock react-i18next
 const mockT = vi.fn((key: string, options?: { name?: string }) => {
@@ -40,7 +42,7 @@ vi.mock("react-i18next", () => ({
 }));
 
 // Mock jotai
-let mockUser: any = null;
+let mockUser: User | null = null;
 vi.mock("jotai", async (importOriginal) => {
   const actual = await importOriginal();
   return {
@@ -50,13 +52,13 @@ vi.mock("jotai", async (importOriginal) => {
 });
 
 // Mock useBinders hook
-let mockBindersData: any = undefined;
+let mockBindersData: Binder[] | undefined = undefined;
 vi.mock("@/hooks/useBinders", () => ({
   useBinders: () => mockBindersData,
 }));
 
 // Mock useIsEmptyDatabase hook
-let mockIsEmptyDatabase: any = undefined;
+let mockIsEmptyDatabase: boolean | undefined = undefined;
 vi.mock("@/hooks/useIsEmptyDatabase", () => ({
   useIsEmptyDatabase: () => mockIsEmptyDatabase,
 }));

@@ -189,6 +189,52 @@
         "continue": "Continuar configuración",
         "skip": "Omitir por ahora"
       }
+    },
+    "caregivers": {
+      "title": "Configurar Cuentas de Cuidadores",
+      "subtitle": "Agregue cuidadores y profesionales que ayudarán a gestionar las carpetas de comunicación.",
+      "add_caregiver": "Agregar Cuidador",
+      "add_professional": "Agregar Profesional",
+      "caregiver_description": "Miembros de la familia, amigos o personas de apoyo",
+      "professional_description": "Trabajadores de la salud, terapeutas, educadores",
+      "existing_accounts": "Cuentas Creadas",
+      "continue_with_accounts": "Continuar con {{count}} cuenta(s)",
+      "skip_accounts": "Continuar sin cuentas"
+    }
+  },
+  "users": {
+    "roles": {
+      "user": "Usuario",
+      "caregiver": "Cuidador",
+      "professional": "Profesional"
+    }
+  },
+  "forms": {
+    "user": {
+      "name": "Nombre Completo",
+      "name_placeholder": "Ingrese el nombre completo",
+      "email": "Dirección de Email",
+      "email_placeholder": "Ingrese la dirección de email",
+      "password": "Contraseña",
+      "password_placeholder": "Ingrese la contraseña (opcional)",
+      "password_placeholder_edit": "Dejar en blanco para mantener la contraseña actual",
+      "password_help": "La contraseña es opcional. Si no se establece, el usuario deberá crear una en su primer inicio de sesión.",
+      "role": "Rol",
+      "role_help": "El rol está determinado por el tipo de cuenta que se está creando",
+      "create_title": "Agregar {{role}}",
+      "edit_title": "Editar {{role}}",
+      "create": "Crear {{role}}",
+      "update": "Actualizar {{role}}",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "cancel": "Cancelar",
+      "saving": "Guardando...",
+      "last_saved": "Última guardado: {{time}}",
+      "delete_confirm": "¿Está seguro de que desea eliminar {{name}}?"
+    },
+    "errors": {
+      "save_failed": "Error al guardar el usuario",
+      "delete_failed": "Error al eliminar el usuario"
     }
   },
   "validation": {

@@ -24,7 +24,7 @@ export const getSetting = (key: string): Setting | null => {
  * @param key - The setting key
  * @param value - The setting value to store
  */
-export const setSetting = (key: string, value: any): void => {
+export const setSetting = (key: string, value: string | number | boolean): void => {
   try {
     const setting: Setting = { key, value };
     const result = validateSettingSafe(setting);

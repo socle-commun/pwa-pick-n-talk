@@ -92,6 +92,41 @@
       "professional": "Professionnel"
     }
   },
+  "users": {
+    "roles": {
+      "user": "Utilisateur",
+      "caregiver": "Aidant",
+      "professional": "Professionnel"
+    }
+  },
+  "forms": {
+    "user": {
+      "name": "Nom Complet",
+      "name_placeholder": "Saisir le nom complet",
+      "email": "Adresse Email",
+      "email_placeholder": "Saisir l'adresse email",
+      "password": "Mot de passe",
+      "password_placeholder": "Saisir le mot de passe (optionnel)",
+      "password_placeholder_edit": "Laisser vide pour conserver le mot de passe actuel",
+      "password_help": "Le mot de passe est optionnel. S'il n'est pas défini, l'utilisateur devra en créer un lors de sa première connexion.",
+      "role": "Rôle",
+      "role_help": "Le rôle est déterminé par le type de compte créé",
+      "create_title": "Ajouter {{role}}",
+      "edit_title": "Modifier {{role}}",
+      "create": "Créer {{role}}",
+      "update": "Mettre à jour {{role}}",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "cancel": "Annuler",
+      "saving": "Sauvegarde...",
+      "last_saved": "Dernière sauvegarde : {{time}}",
+      "delete_confirm": "Êtes-vous sûr de vouloir supprimer {{name}} ?"
+    },
+    "errors": {
+      "save_failed": "Échec de la sauvegarde de l'utilisateur",
+      "delete_failed": "Échec de la suppression de l'utilisateur"
+    }
+  },
   "binder": {
     "edit": {
       "title": "Modifier le classeur",
@@ -189,6 +224,17 @@
         "continue": "Continuer la configuration",
         "skip": "Ignorer pour l'instant"
       }
+    },
+    "caregivers": {
+      "title": "Configuration des Comptes Aidants",
+      "subtitle": "Ajoutez des aidants et professionnels qui aideront à gérer les classeurs de communication.",
+      "add_caregiver": "Ajouter un Aidant",
+      "add_professional": "Ajouter un Professionnel",
+      "caregiver_description": "Membres de la famille, amis ou personnes de soutien",
+      "professional_description": "Professionnels de santé, thérapeutes, éducateurs",
+      "existing_accounts": "Comptes Créés",
+      "continue_with_accounts": "Continuer avec {{count}} compte(s)",
+      "skip_accounts": "Continuer sans comptes"
     }
   },
   "validation": {

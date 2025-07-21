@@ -28,14 +28,16 @@ export default forwardRef(function Button(
   { color, outline, plain, className, children, ...props }: ButtonProps,
   ref: ForwardedRef<HTMLElement>
 ) {
+  const getButtonVariant = () => {
+    if (outline) return styles.outline;
+    if (plain) return styles.plain;
+    return cn(styles.solid, styles.colors[color ?? "dark/zinc"]);
+  };
+
   const classes = cn(
     styles.base,
     className,
-    outline
-      ? styles.outline
-      : plain
-        ? styles.plain
-        : cn(styles.solid, styles.colors[color ?? "dark/zinc"])
+    getButtonVariant()
   );
 
   return "href" in props ? (

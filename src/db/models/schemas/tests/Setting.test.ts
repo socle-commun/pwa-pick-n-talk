@@ -106,7 +106,7 @@ describe("Setting Schema Validation", () => {
   });
 
   it("rejects setting with invalid value type", () => {
-    const invalidSetting = { key: "test", value: Symbol("invalid") as any };
+    const invalidSetting = { key: "test", value: Symbol("invalid") as unknown };
     expect(() => validateSetting(invalidSetting)).toThrow();
     expect(isValidSetting(invalidSetting)).toBe(false);
   });

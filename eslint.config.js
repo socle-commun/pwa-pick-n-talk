@@ -3,11 +3,12 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
+import sonarjs from "eslint-plugin-sonarjs";
 
 export default tseslint.config(
   { ignores: ["dist", "node_modules", "coverage", "*.config.js", "*.config.ts"] },
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended, sonarjs.configs.recommended],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
@@ -16,11 +17,14 @@ export default tseslint.config(
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "sonar": sonarjs,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      "sonarjs/todo-tag": 0,
+      "sonarjs/no-hardcoded-passwords": 0,
       "react-refresh/only-export-components": [
-        "warn",
+        "error",
         { allowConstantExport: true },
       ],
       // TypeScript specific rules
@@ -28,8 +32,8 @@ export default tseslint.config(
         "error",
         { argsIgnorePattern: "^_" },
       ],
-      "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-non-null-assertion": "warn",
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-non-null-assertion": "error",
 
       // General code quality rules
       "prefer-const": "error",

@@ -114,6 +114,11 @@
 .feature-secondary-text { color: var(--feature-secondary-text); }
 .feature-secondary-border { border-color: var(--feature-secondary-border); }
 
+.info-primary { color: var(--info-primary); }
+.info-secondary { background-color: var(--info-secondary); }
+.info-text { color: var(--info-text); }
+.info-border { border-color: var(--info-border); }
+
 .privacy-primary { color: var(--privacy-primary); }
 .privacy-secondary { background-color: var(--privacy-secondary); }
 .privacy-text { color: var(--privacy-text); }
