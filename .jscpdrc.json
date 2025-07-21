@@ -1,0 +1,7 @@
+{
+  "threshold": 3,
+  "ignore": [
+    "**/themes/*.css"
+  ],
+  "reporters": ["console"]
+}

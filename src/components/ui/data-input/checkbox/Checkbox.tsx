@@ -4,6 +4,7 @@ import {
 } from "@headlessui/react";
 
 import cn from "@/utils/cn";
+
 import { base, colors, type Color } from "./checkbox.styles";
 
 export default function Checkbox({

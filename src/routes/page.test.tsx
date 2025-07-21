@@ -1,12 +1,13 @@
 
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { MemoryRouter } from "react-router";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 
-import IndexPage from "./page";
 import type { User } from "@/db/models";
 import type { Binder } from "@/db/models";
+
+import IndexPage from "./page";
 
 // Mock react-i18next
 const mockT = vi.fn((key: string, options?: { name?: string }) => {

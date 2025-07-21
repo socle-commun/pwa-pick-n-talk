@@ -1,13 +1,11 @@
 import { useTranslation } from "react-i18next";
 
 import Logo from "@/components/partials/global/Logo";
-
 import { Button } from "@/components/ui/actions";
 import { Form, FormInput } from "@/components/ui/forms";
-import useUserActions from "@/utils/state/actions/_useUserActions";
 import { SignUpSchema, type SignUpFormData } from "@/db/models/schemas/auth";
-
 import cn from "@/utils/cn";
+import useUserActions from "@/utils/state/actions/_useUserActions";
 
 export default function SignUpPage() {
   const { t } = useTranslation();

@@ -1,14 +1,13 @@
-import { useState, type PropsWithChildren, type ReactNode } from "react";
-
 import {
   Dialog as HeadlessDialog,
   DialogBackdrop as HeadlessDialogBackdrop,
   DialogPanel as HeadlessDialogPanel,
   CloseButton as HeadlessCloseButton,
 } from "@headlessui/react";
+import { useState, type PropsWithChildren, type ReactNode } from "react";
+
 
 import { NavbarItem } from "@/components/ui/navigation";
-
 import cn from "@/utils/cn";
 
 function OpenMenuIcon() {

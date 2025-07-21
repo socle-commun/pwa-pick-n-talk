@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
 import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from "@headlessui/react";
 import { ChevronDownIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 
-import { useFontSize, type FontSize } from "@/utils/theme";
 import cn from "@/utils/cn";
+import { useFontSize, type FontSize } from "@/utils/theme";
 
 const FONT_SIZE_OPTIONS: Array<{ size: FontSize; icon: typeof DocumentTextIcon; scale: number }> = [
   { size: "normal", icon: DocumentTextIcon, scale: 1.0 },

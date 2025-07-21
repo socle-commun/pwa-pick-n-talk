@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+
 import { CategorySchema, validateCategory, validateCategorySafe, isValidCategory } from "../Category";
 
 describe("Category Schema Validation", () => {

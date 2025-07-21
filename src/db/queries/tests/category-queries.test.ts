@@ -2,6 +2,7 @@
  * Unit tests for category-queries.ts
  */
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+
 import "fake-indexeddb/auto";
 import { PickNTalkDB } from "../../index";
 import type { Category } from "../../models";
@@ -29,7 +30,7 @@ describe("Category Queries", () => {
     await db.delete();
   });
 
-  it("should handle all CRUD operations correctly", async () => {
+  it("should handle create and read operations", async () => {
     // Test empty state
     expect(await db.getCategories()).toEqual([]);
     expect(await db.getCategory("nonexistent")).toBeUndefined();
@@ -44,6 +45,11 @@ describe("Category Queries", () => {
     const stored = await db.getCategory("test");
     expect(stored).toEqual(category);
     expect(await db.getCategories()).toHaveLength(1);
+  });
+
+  it("should handle update operations", async () => {
+    const category = createTestCategory("test", { name: "Animals", color: "#00FF00" });
+    await db.createCategory(category);
 
     // Test update
     const updated = createTestCategory("test", { name: "Updated Animals", color: "#0000FF", pictograms: ["pic1"] });
@@ -52,13 +58,19 @@ describe("Category Queries", () => {
     expect(result?.name).toBe("Updated Animals");
     expect(result?.color).toBe("#0000FF");
     expect(result?.pictograms).toEqual(["pic1"]);
+  });
+
+  it("should handle delete operations", async () => {
+    const category = createTestCategory("test", { name: "Animals", color: "#00FF00" });
+    await db.createCategory(category);
 
     // Test delete
     await db.deleteCategory("test");
     expect(await db.getCategory("test")).toBeUndefined();
     expect(await db.getCategories()).toEqual([]);
+  });
 
-    // Test graceful handling of non-existent operations
+  it("should handle non-existent operations gracefully", async () => {
     const nonExistent = createTestCategory("none");
     await expect(db.updateCategory(nonExistent)).resolves.not.toThrow();
     await expect(db.deleteCategory("none")).resolves.not.toThrow();

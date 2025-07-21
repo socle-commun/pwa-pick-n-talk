@@ -1,13 +1,13 @@
+
+import AuthManager from "@/components/partials/global/AuthManager";
+import Brand from "@/components/partials/global/Brand";
+import LocaleSelector from "@/components/ui/LocaleSelector";
 import {
   Navbar,
   NavbarSection,
   NavbarSpacer,
   Link,
 } from "@/components/ui/navigation";
-
-import Brand from "@/components/partials/global/Brand";
-import AuthManager from "@/components/partials/global/AuthManager";
-import LocaleSelector from "@/components/ui/LocaleSelector";
 
 export default function NavBar() {
   return (
