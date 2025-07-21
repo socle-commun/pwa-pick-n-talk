@@ -3,10 +3,9 @@
  * @description Helper utilities for UserForm component.
  */
 
-import type { TFunction } from "react-i18next";
 import type { Role } from "@/db/models";
 
-export const getRoleDisplayName = (role: Role, t: TFunction) => {
+export const getRoleDisplayName = (role: Role, t: (key: string, fallback?: string, params?: Record<string, unknown>) => string) => {
   switch (role) {
     case "caregiver":
       return t("users.roles.caregiver", "Caregiver");

@@ -5,3 +5,4 @@
 
 export { default as FormLanguageSelector } from "./FormLanguageSelector";
 export { default as FormToggleField } from "./FormToggleField";
+export { default as FormDaltonismModeSelector } from "./FormDaltonismModeSelector";

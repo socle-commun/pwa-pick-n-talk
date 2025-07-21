@@ -20,6 +20,7 @@ import { UserSettingsFormPanel } from "@/components/ui/data-input";
 import { UserSchema, type User, type Role } from "@/db/models";
 import { useUserActions } from "@/utils/state/actions";
 import { getRoleDisplayName } from "./user-form-utils";
+import { type DaltonismMode } from "@/utils/theme";
 import cn from "@/utils/cn";
 
 const UserFormSchema = UserSchema.partial({
@@ -30,14 +31,14 @@ const UserFormSchema = UserSchema.partial({
     language: z.string().default("en"),
     themeMode: z.enum(["light", "dark"]).default("light"),
     fontSize: z.enum(["normal", "large", "extra-large"]).default("normal"),
-    daltonism: z.boolean().default(false),
+    daltonismMode: z.enum(["default", "protanopia", "deuteranopia", "tritanopia"]).default("default"),
     highContrast: z.boolean().default(false),
-  }).default({ language: "en", themeMode: "light", fontSize: "normal", daltonism: false, highContrast: false }),
+  }).default({ language: "en", themeMode: "light", fontSize: "normal", daltonismMode: "default", highContrast: false }),
 });
 
 type UserFormData = {
   name: string; email: string; password?: string; role: Role;
-  settings: { language: string; themeMode: "light" | "dark"; fontSize: "normal" | "large" | "extra-large"; daltonism: boolean; highContrast: boolean; };
+  settings: { language: string; themeMode: "light" | "dark"; fontSize: "normal" | "large" | "extra-large"; daltonismMode: DaltonismMode; highContrast: boolean; };
 };
 
 interface UserFormProps {
@@ -59,11 +60,11 @@ export default function UserForm({ user, role, onSaved, onCancel, className }: U
     password: "",
     role,
     settings: {
-      language: user?.settings?.language || "en",
-      themeMode: (user?.settings?.themeMode as "light" | "dark") || "light",
-      fontSize: (user?.settings?.fontSize as "normal" | "large" | "extra-large") || "normal",
-      daltonism: user?.settings?.daltonism || false,
-      highContrast: user?.settings?.highContrast || false,
+      language: typeof user?.settings?.language === "string" ? user.settings.language : "en",
+      themeMode: (user?.settings?.themeMode === "light" || user?.settings?.themeMode === "dark") ? user.settings.themeMode : "light",
+      fontSize: (user?.settings?.fontSize === "normal" || user?.settings?.fontSize === "large" || user?.settings?.fontSize === "extra-large") ? user.settings.fontSize : "normal",
+      daltonismMode: (user?.settings?.daltonismMode === "protanopia" || user?.settings?.daltonismMode === "deuteranopia" || user?.settings?.daltonismMode === "tritanopia") ? user.settings.daltonismMode : "default",
+      highContrast: typeof user?.settings?.highContrast === "boolean" ? user.settings.highContrast : false,
     },
   };
 

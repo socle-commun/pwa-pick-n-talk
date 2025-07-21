@@ -33,7 +33,7 @@ const mockFormContext = {
       case "settings.language": return "en";
       case "settings.themeMode": return "light";
       case "settings.fontSize": return "normal";
-      case "settings.daltonism": return false;
+      case "settings.daltonismMode": return "default";
       case "settings.highContrast": return false;
       default: return undefined;
     }
@@ -128,18 +128,19 @@ describe("UserSettingsFormPanel", () => {
   });
 
   describe("form integration", () => {
-    it("should call setValue when toggle buttons are clicked", () => {
+    it("should show proper controls", () => {
       render(
         <TestWrapper>
           <UserSettingsFormPanel />
         </TestWrapper>
       );
 
-      // Find toggle button for daltonism setting
-      const daltonismToggle = screen.getByRole("button", { name: "Color Blindness Support" });
-      fireEvent.click(daltonismToggle);
+      // Check that daltonism selector (now a combobox) exists with default value
+      const daltonismSelector = screen.getByRole("button", { name: /👁️ default/ });
+      const highContrastToggle = screen.getByRole("button", { name: "High Contrast" });
 
-      expect(mockFormContext.setValue).toHaveBeenCalledWith(true);
+      expect(daltonismSelector).toBeInTheDocument();
+      expect(highContrastToggle).toBeInTheDocument();
     });
 
     it("should show proper button states for toggles", () => {
@@ -149,10 +150,10 @@ describe("UserSettingsFormPanel", () => {
         </TestWrapper>
       );
 
-      const daltonismToggle = screen.getByRole("button", { name: "Color Blindness Support" });
+      const daltonismSelector = screen.getByRole("button", { name: /👁️ default/ });
       const highContrastToggle = screen.getByRole("button", { name: "High Contrast" });
 
-      expect(daltonismToggle).toBeInTheDocument();
+      expect(daltonismSelector).toBeInTheDocument();
       expect(highContrastToggle).toBeInTheDocument();
     });
   });

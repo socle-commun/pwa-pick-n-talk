@@ -26,7 +26,7 @@ import {
 import { Field, Label } from "./fieldset";
 import { useFormField } from "@/components/ui/forms/hooks";
 import { Heading } from "@/components/ui/typography";
-import { FormLanguageSelector, FormToggleField } from "./form-fields";
+import { FormLanguageSelector, FormToggleField, FormDaltonismModeSelector } from "./form-fields";
 
 import cn from "@/utils/cn";
 import type { ThemeMode, FontSize } from "@/utils/theme";
@@ -68,7 +68,7 @@ function FormThemeModeSelector({ className }: { className?: string }) {
           </span>
         </ComboboxButton>
 
-        <ComboboxOptions className="absolute z-10 mt-1 w-full overflow-auto rounded-md border border-zinc-200 bg-white py-1 shadow-lg focus:outline-none dark:border-zinc-600 dark:bg-zinc-800">
+        <ComboboxOptions className="absolute z-10 mt-1 min-w-full max-w-xs overflow-auto rounded-md border border-zinc-200 bg-white py-1 shadow-lg focus:outline-none dark:border-zinc-600 dark:bg-zinc-800">
           {THEME_MODES.map((mode) => (
             <ComboboxOption
               key={mode.mode}
@@ -121,7 +121,7 @@ function FormFontSizeSelector({ className }: { className?: string }) {
           </span>
         </ComboboxButton>
 
-        <ComboboxOptions className="absolute z-10 mt-1 w-full overflow-auto rounded-md border border-zinc-200 bg-white py-1 shadow-lg focus:outline-none dark:border-zinc-600 dark:bg-zinc-800">
+        <ComboboxOptions className="absolute z-10 mt-1 min-w-full max-w-xs overflow-auto rounded-md border border-zinc-200 bg-white py-1 shadow-lg focus:outline-none dark:border-zinc-600 dark:bg-zinc-800">
           {FONT_SIZE_OPTIONS.map((option) => (
             <ComboboxOption
               key={option.size}
@@ -193,10 +193,7 @@ export default function UserSettingsFormPanel({
           {t("settings.accessibility.title", "Accessibility")}
         </Heading>
         <div className="grid sm:grid-cols-2 gap-4">
-          <FormToggleField
-            name="settings.daltonism"
-            label={t("settings.accessibility.daltonism.label", "Color Blindness Support")}
-          />
+          <FormDaltonismModeSelector />
           <FormToggleField
             name="settings.highContrast"
             label={t("settings.accessibility.highContrast.label", "High Contrast")}
