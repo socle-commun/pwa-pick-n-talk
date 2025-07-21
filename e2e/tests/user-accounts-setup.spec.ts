@@ -14,7 +14,7 @@ test.describe("User Accounts Setup", () => {
 
     // Navigate to setup page and advance to user accounts step
     await page.goto("/setup");
-    
+
     // Wait for welcome step and continue to user accounts step
     await page.getByRole("button", { name: "Continue Setup" }).click();
   });
@@ -84,14 +84,14 @@ test.describe("User Accounts Setup", () => {
     // Personal settings should be visible for user role
     await expect(page.getByText("Personal Preferences")).toBeVisible();
     await expect(page.getByText("Customize your experience with personalized settings")).toBeVisible();
-    
+
     // Check individual settings sections
     await expect(page.getByText("Language")).toBeVisible();
     await expect(page.getByText("Appearance")).toBeVisible();
     await expect(page.getByText("Accessibility")).toBeVisible();
 
     // Check that theme components are present
-    await expect(page.locator('[data-testid*="theme"], [data-testid*="locale"], [data-testid*="font"], [data-testid*="daltonism"], [data-testid*="contrast"]')).toHaveCount({ min: 1 });
+    await expect(page.locator("[data-testid*=\"theme\"], [data-testid*=\"locale\"], [data-testid*=\"font\"], [data-testid*=\"daltonism\"], [data-testid*=\"contrast\"]")).toHaveCount({ min: 1 });
   });
 
   test("should create multiple user accounts", async ({ page }) => {

@@ -10,7 +10,7 @@ import { MemoryRouter } from "react-router";
 import UserForm from "./UserForm";
 
 // Mock react-i18next
-const mockT = vi.fn((key: string, defaultValue?: string, options?: any) => {
+const mockT = vi.fn((key: string, defaultValue?: string, options?: { role?: string }) => {
   if (options?.role !== undefined) {
     return defaultValue?.replace("{{role}}", options.role) || key;
   }
@@ -31,10 +31,13 @@ vi.mock("@/db", () => ({
   },
 }));
 
-// Mock UserSettingsPanel
+// Mock UserSettingsPanel and UserSettingsFormPanel
 vi.mock("@/components/ui/data-input", () => ({
   UserSettingsPanel: () => (
     <div data-testid="user-settings-panel">Personal Settings</div>
+  ),
+  UserSettingsFormPanel: () => (
+    <div data-testid="user-settings-form-panel">Form Personal Settings</div>
   ),
 }));
 
@@ -67,7 +70,7 @@ describe("UserForm with User Role", () => {
         </TestWrapper>
       );
 
-      expect(screen.getByTestId("user-settings-panel")).toBeInTheDocument();
+      expect(screen.getByTestId("user-settings-form-panel")).toBeInTheDocument();
     });
 
     it("should not show personal settings panel for caregiver role", () => {
@@ -77,7 +80,7 @@ describe("UserForm with User Role", () => {
         </TestWrapper>
       );
 
-      expect(screen.queryByTestId("user-settings-panel")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("user-settings-form-panel")).not.toBeInTheDocument();
     });
 
     it("should not show personal settings panel for professional role", () => {
@@ -87,7 +90,7 @@ describe("UserForm with User Role", () => {
         </TestWrapper>
       );
 
-      expect(screen.queryByTestId("user-settings-panel")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("user-settings-form-panel")).not.toBeInTheDocument();
     });
 
     it("should display correct role name for user", () => {
@@ -115,7 +118,7 @@ describe("UserForm with User Role", () => {
       expect(screen.getByText("Email Address")).toBeInTheDocument();
       expect(screen.getByText("Password")).toBeInTheDocument();
       expect(screen.getByText("Role")).toBeInTheDocument();
-      
+
       // Also check for the actual input elements by test ids
       expect(screen.getByTestId("name-input")).toBeInTheDocument();
       expect(screen.getByTestId("email-input")).toBeInTheDocument();

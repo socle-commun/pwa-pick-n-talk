@@ -135,7 +135,7 @@ describe("UserSettingsPanel", () => {
 
       // Check that section headings are present
       const languageSection = screen.getByText("Language");
-      const appearanceSection = screen.getByText("Appearance"); 
+      const appearanceSection = screen.getByText("Appearance");
       const accessibilitySection = screen.getByText("Accessibility");
 
       expect(languageSection).toBeInTheDocument();

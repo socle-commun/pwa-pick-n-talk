@@ -11,7 +11,7 @@ import UserAccountsStep from "./UserAccountsStep";
 import { db } from "@/db";
 
 // Mock react-i18next
-const mockT = vi.fn((key: string, defaultValue?: string, options?: any) => {
+const mockT = vi.fn((key: string, defaultValue?: string, options?: { count?: number; name?: string }) => {
   if (options?.count !== undefined) {
     return defaultValue?.replace("{{count}}", options.count) || key;
   }
@@ -55,7 +55,7 @@ vi.mock("dexie-react-hooks", () => ({
 
 // Mock UserForm component
 vi.mock("@/components/partials/forms", () => ({
-  UserForm: ({ onSaved, onCancel }: any) => (
+  UserForm: ({ onSaved, onCancel }: { onSaved: (user: unknown) => void; onCancel: () => void }) => (
     <div data-testid="user-form">
       <button onClick={() => onSaved({ id: "new-user", name: "New User", role: "user" })}>
         Save User
@@ -191,7 +191,7 @@ describe("UserAccountsStep", () => {
     it("should handle user deletion with confirmation", async () => {
       // Mock window.confirm
       const mockConfirm = vi.spyOn(window, "confirm").mockImplementation(() => true);
-      
+
       render(
         <TestWrapper>
           <UserAccountsStep />
