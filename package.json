@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:analyze": "npm run build && open dist/bundle-analyzer.html",
+    "validate": "npm run lint:fix && npm run test && npm run e2e && npm run detect-dup",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix --max-warnings 0",
     "detect-dup": "jscpd src/ --reporters console,html --threshold 3",

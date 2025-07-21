@@ -97,7 +97,7 @@ export default tseslint.config(
       ],
       'no-warning-comments': ['error', { terms: ['eslint-disable'], location: 'anywhere' }],
 
-      // Code style rules (handled by Prettier)
+      // Code style rules 
       quotes: ["error", "double"],
       semi: ["error", "always"],
       "eol-last": ["error", "always"],
