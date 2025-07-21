@@ -3,7 +3,7 @@ applyTo: "**"
 ---
 
 - Always use git blame and git log to understand the context before taking decision.
-- Always validate your changes with `npm run lint` and `npm run test` before committing.
+- Always validate your changes with `npm run validate` before committing.
 - Always look at the project [instructions](./instructions/) and [documentation](../docs/).
 - Always put documentation in the `docs/` directory.
 - Concise responses, organized blocks.
