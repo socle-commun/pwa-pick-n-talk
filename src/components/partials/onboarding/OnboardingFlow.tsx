@@ -16,16 +16,16 @@ import { useNavigate } from "react-router";
 import { WelcomeStep, CaregiverAccountsStep } from "@/components/partials/onboarding";
 import cn from "@/utils/cn";
 
-type OnboardingStep = 'welcome' | 'caregivers' | 'complete';
+type OnboardingStep = "welcome" | "caregivers" | "complete";
 
 interface OnboardingFlowProps {
   initialStep?: OnboardingStep;
   className?: string;
 }
 
-export default function OnboardingFlow({ 
-  initialStep = 'welcome',
-  className 
+export default function OnboardingFlow({
+  initialStep = "welcome",
+  className
 }: OnboardingFlowProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -37,14 +37,14 @@ export default function OnboardingFlow({
     completed?: boolean;
   }> = [
     {
-      key: 'welcome',
-      title: t('onboarding.steps.welcome', 'Welcome & Settings'),
-      completed: currentStep !== 'welcome',
+      key: "welcome",
+      title: t("onboarding.steps.welcome", "Welcome & Settings"),
+      completed: currentStep !== "welcome",
     },
     {
-      key: 'caregivers',
-      title: t('onboarding.steps.caregivers', 'Caregiver Accounts'),
-      completed: currentStep === 'complete',
+      key: "caregivers",
+      title: t("onboarding.steps.caregivers", "Caregiver Accounts"),
+      completed: currentStep === "complete",
     },
   ];
 
@@ -52,35 +52,35 @@ export default function OnboardingFlow({
 
   const handleNextStep = () => {
     switch (currentStep) {
-      case 'welcome':
-        setCurrentStep('caregivers');
+      case "welcome":
+        setCurrentStep("caregivers");
         break;
-      case 'caregivers':
-        setCurrentStep('complete');
+      case "caregivers":
+        setCurrentStep("complete");
         // Navigate to binders page or main app
-        navigate('/binders');
+        navigate("/binders");
         break;
       default:
-        navigate('/binders');
+        navigate("/binders");
     }
   };
 
   const handlePreviousStep = () => {
     switch (currentStep) {
-      case 'caregivers':
-        setCurrentStep('welcome');
+      case "caregivers":
+        setCurrentStep("welcome");
         break;
-      case 'welcome':
+      case "welcome":
       default:
-        navigate('/');
+        navigate("/");
     }
   };
 
   const renderCurrentStep = () => {
     switch (currentStep) {
-      case 'welcome':
+      case "welcome":
         return <WelcomeStep onContinue={handleNextStep} />;
-      case 'caregivers':
+      case "caregivers":
         return <CaregiverAccountsStep onContinue={handleNextStep} />;
       default:
         return null;
@@ -137,14 +137,14 @@ export default function OnboardingFlow({
       </main>
 
       {/* Step Navigation (optional footer) */}
-      {currentStep !== 'welcome' && (
+      {currentStep !== "welcome" && (
         <div className="bg-white dark:bg-zinc-800 border-t border-zinc-200 dark:border-zinc-700 p-4">
           <div className="container mx-auto max-w-2xl">
             <button
               onClick={handlePreviousStep}
               className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
             >
-              ← {t('onboarding.navigation.back', 'Back')}
+              ← {t("onboarding.navigation.back", "Back")}
             </button>
           </div>
         </div>

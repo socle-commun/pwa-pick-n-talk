@@ -92,6 +92,41 @@
       "professional": "Professional"
     }
   },
+  "users": {
+    "roles": {
+      "user": "User",
+      "caregiver": "Caregiver",
+      "professional": "Professional"
+    }
+  },
+  "forms": {
+    "user": {
+      "name": "Full Name",
+      "name_placeholder": "Enter full name",
+      "email": "Email Address",
+      "email_placeholder": "Enter email address",
+      "password": "Password",
+      "password_placeholder": "Enter password (optional)",
+      "password_placeholder_edit": "Leave blank to keep current password",
+      "password_help": "Password is optional. If not set, the user will need to create one on first sign-in.",
+      "role": "Role",
+      "role_help": "Role is determined by the account type being created",
+      "create_title": "Add {{role}}",
+      "edit_title": "Edit {{role}}",
+      "create": "Create {{role}}",
+      "update": "Update {{role}}",
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "saving": "Saving...",
+      "last_saved": "Last saved: {{time}}",
+      "delete_confirm": "Are you sure you want to delete {{name}}?"
+    },
+    "errors": {
+      "save_failed": "Failed to save user",
+      "delete_failed": "Failed to delete user"
+    }
+  },
   "binder": {
     "edit": {
       "title": "Edit Binder",
@@ -189,6 +224,17 @@
         "continue": "Continue Setup",
         "skip": "Skip for Now"
       }
+    },
+    "caregivers": {
+      "title": "Setup Caregiver Accounts",
+      "subtitle": "Add caregivers and professionals who will help manage communication binders.",
+      "add_caregiver": "Add Caregiver",
+      "add_professional": "Add Professional",
+      "caregiver_description": "Family members, friends, or support persons",
+      "professional_description": "Healthcare workers, therapists, educators",
+      "existing_accounts": "Created Accounts",
+      "continue_with_accounts": "Continue with {{count}} account(s)",
+      "skip_accounts": "Continue without accounts"
     }
   },
   "validation": {
