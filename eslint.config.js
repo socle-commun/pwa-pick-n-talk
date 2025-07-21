@@ -3,7 +3,7 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
-import sonarjs from "eslint-plugin-sonarjs";
+import sonarjs from "eslint-plugin-sonarjs"; import vitest from "eslint-plugin-vitest";
 
 export default tseslint.config(
   { ignores: ["dist", "node_modules", "coverage", "*.config.js", "*.config.ts"] },
@@ -17,7 +17,7 @@ export default tseslint.config(
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
-      "sonar": sonarjs,
+      "sonar": sonarjs
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -75,7 +75,21 @@ export default tseslint.config(
   },
   {
     files: ["**/*.test.{ts,tsx}", "**/__tests__/**/*.{ts,tsx}"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        vi: true,
+      },
+    },
+    plugins: {
+      vitest,
+    },
     rules: {
+      ...vitest.configs.recommended.rules,
+      "vitest/no-disabled-tests": "error",
+      "vitest/no-focused-tests": "error",
+      "vitest/expect-expect": "error",
       "max-lines": ["error", { "max": 500, "skipBlankLines": true, "skipComments": true }],
     },
   },
