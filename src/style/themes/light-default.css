@@ -119,16 +119,6 @@
 .info-text { color: var(--info-text); }
 .info-border { border-color: var(--info-border); }
 
-.feature-primary-primary { color: var(--feature-primary-primary); }
-.feature-primary-secondary { background-color: var(--feature-primary-secondary); }
-.feature-primary-text { color: var(--feature-primary-text); }
-.feature-primary-border { border-color: var(--feature-primary-border); }
-
-.feature-secondary-primary { color: var(--feature-secondary-primary); }
-.feature-secondary-secondary { background-color: var(--feature-secondary-secondary); }
-.feature-secondary-text { color: var(--feature-secondary-text); }
-.feature-secondary-border { border-color: var(--feature-secondary-border); }
-
 .privacy-primary { color: var(--privacy-primary); }
 .privacy-secondary { background-color: var(--privacy-secondary); }
 .privacy-text { color: var(--privacy-text); }
