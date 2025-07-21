@@ -1,8 +1,9 @@
 import { PictogramsGridLayout } from "./PictogramsGridLayout";
 import { LoadingSpinner, EmptyState } from "@/components/ui/feedback";
+import { type Pictogram } from "@/db/models";
 
 interface PictogramsListProps {
-  pictograms: any;
+  pictograms: Pictogram[] | null | undefined;
   className?: string;
 }
 
@@ -11,7 +12,7 @@ export function PictogramsList({ pictograms, className }: PictogramsListProps) {
     return <LoadingSpinner message="Loading pictograms..." />;
   }
 
-  if (pictograms.length === 0) {
+  if (!pictograms || pictograms.length === 0) {
     return (
       <EmptyState
         title="No pictograms found"

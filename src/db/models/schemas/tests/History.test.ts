@@ -48,7 +48,7 @@ describe("History Schema Validation", () => {
   });
 
   it("rejects invalid entityType", () => {
-    const invalidHistory = { ...validHistory, entityType: "invalid" as any };
+    const invalidHistory = { ...validHistory, entityType: "invalid" as unknown };
     expect(() => validateHistory(invalidHistory)).toThrow();
     expect(isValidHistory(invalidHistory)).toBe(false);
   });
@@ -63,7 +63,7 @@ describe("History Schema Validation", () => {
   });
 
   it("rejects invalid action", () => {
-    const invalidHistory = { ...validHistory, action: "invalid" as any };
+    const invalidHistory = { ...validHistory, action: "invalid" as unknown };
     expect(() => validateHistory(invalidHistory)).toThrow();
     expect(isValidHistory(invalidHistory)).toBe(false);
   });
@@ -107,7 +107,7 @@ describe("History Schema Validation", () => {
   });
 
   it("rejects history with invalid timestamp", () => {
-    const invalidHistory = { ...validHistory, timestamp: "not-a-date" as any };
+    const invalidHistory = { ...validHistory, timestamp: "not-a-date" as unknown };
     expect(() => validateHistory(invalidHistory)).toThrow();
     expect(isValidHistory(invalidHistory)).toBe(false);
   });

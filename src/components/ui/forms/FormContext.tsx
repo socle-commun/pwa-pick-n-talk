@@ -11,7 +11,7 @@ type FormProviderProps<T> = {
   onSubmit?: (values: T) => Promise<void> | void;
 };
 
-export default function FormProvider<T extends Record<string, any> = Record<string, unknown>>({
+export default function FormProvider<T extends Record<string, unknown> = Record<string, unknown>>({
   children,
   schema,
   initialValues = {},
@@ -54,10 +54,10 @@ export default function FormProvider<T extends Record<string, any> = Record<stri
 
     try {
       // Type assertion to access shape for object schemas
-      const schemaWithShape = schema as any;
+      const schemaWithShape = schema as { shape?: Record<string, unknown> };
       const fieldSchema = schemaWithShape.shape?.[field];
       if (fieldSchema) {
-        fieldSchema.parse(getValue(field));
+        (fieldSchema as { parse: (value: unknown) => unknown }).parse(getValue(field));
       }
 
       setErrors(prev => prev.filter(error => error.field !== field));

@@ -193,12 +193,15 @@ export default function UserForm({
             disabled={isSaving}
             className="flex-1 sm:flex-none"
           >
-            {isSaving
-              ? t("forms.user.saving", "Saving...")
-              : isEditing
-                ? t("forms.user.update", "Update {{role}}", { role: getRoleDisplayName(role) })
-                : t("forms.user.create", "Create {{role}}", { role: getRoleDisplayName(role) })
-            }
+            {(() => {
+              if (isSaving) {
+                return t("forms.user.saving", "Saving...");
+              }
+              if (isEditing) {
+                return t("forms.user.update", "Update {{role}}", { role: getRoleDisplayName(role) });
+              }
+              return t("forms.user.create", "Create {{role}}", { role: getRoleDisplayName(role) });
+            })()}
           </Button>
 
           {onCancel && (

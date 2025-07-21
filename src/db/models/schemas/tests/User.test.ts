@@ -29,7 +29,7 @@ describe("User Schema Validation", () => {
   });
 
   it("rejects user with invalid role", () => {
-    const invalidUser = { ...validUser, role: "admin" as any };
+    const invalidUser = { ...validUser, role: "admin" as unknown };
     expect(() => validateUser(invalidUser)).toThrow();
     expect(isValidUser(invalidUser)).toBe(false);
   });

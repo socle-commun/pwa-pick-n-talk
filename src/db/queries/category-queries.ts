@@ -1,6 +1,6 @@
 import { type PromiseExtended } from "dexie";
 
-import { type Category } from "@/db/models";
+import { type Category, type Pictogram } from "@/db/models";
 
 import { type PickNTalkDB } from "@/db/index";
 
@@ -26,19 +26,24 @@ export function getCategoriesFromBinderId(
   this: PickNTalkDB,
   binderId: string
 ): PromiseExtended<Category[]> {
+  const extractCategoryIds = (pictograms: Pictogram[]): string[] => {
+    const categoryIds = new Set<string>();
+    for (const pictogram of pictograms) {
+      if (pictogram.categories) {
+        for (const categoryId of pictogram.categories) {
+          categoryIds.add(categoryId);
+        }
+      }
+    }
+    return Array.from(categoryIds);
+  };
+
   return this.transaction("r", this.pictograms, this.categories, () => {
     return this.getPictogramsFromBinderId(binderId).then((pictograms) => {
-      const categoryIds = new Set<string>();
-      pictograms.forEach((pictogram) => {
-        if (pictogram.categories) {
-          pictogram.categories.forEach((categoryId) => {
-            categoryIds.add(categoryId);
-          });
-        }
-      });
+      const categoryIds = extractCategoryIds(pictograms);
       return this.categories
         .where("id")
-        .anyOf(Array.from(categoryIds))
+        .anyOf(categoryIds)
         .toArray();
     });
   });

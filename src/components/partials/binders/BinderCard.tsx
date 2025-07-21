@@ -1,7 +1,6 @@
 import { type MouseEvent } from "react";
 
 import { useTranslation } from "react-i18next";
-// import { useNavigate } from "react-router";
 import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
 
 import { Divider } from "@/components/ui/layout";

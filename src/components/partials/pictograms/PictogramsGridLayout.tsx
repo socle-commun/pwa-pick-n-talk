@@ -1,8 +1,9 @@
 import PictogramCard from "./PictogramCard";
+import { type Pictogram } from "@/db/models";
 import cn from "@/utils/cn";
 
 export interface PictogramsGridLayoutProps {
-  pictograms: any[];
+  pictograms: Pictogram[];
   className?: string;
 }
 
@@ -14,8 +15,8 @@ export function PictogramsGridLayout({ pictograms, className }: PictogramsGridLa
         className
       )}
     >
-      {pictograms.map((pictogram: any) => (
-        <PictogramCard key={pictogram.uuid} pictogram={pictogram} />
+      {pictograms.map((pictogram: Pictogram) => (
+        <PictogramCard key={pictogram.id} pictogram={pictogram} />
       ))}
     </div>
   );
