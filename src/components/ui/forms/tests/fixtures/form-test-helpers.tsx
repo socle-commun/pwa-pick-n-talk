@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
 import { z } from "zod";
 
-import { Form, FormInput } from "../Form";
+import { Form, FormInput } from "../../Form";
 
 /**
  * Common i18next mock for form tests
