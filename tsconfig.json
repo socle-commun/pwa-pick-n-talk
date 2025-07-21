@@ -3,6 +3,11 @@
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
     "strict": true
+    ,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "references": [
     { "path": "./tsconfig.app.json" },

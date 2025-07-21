@@ -22,8 +22,22 @@ export default tseslint.config(
       "sonar": sonarjs,
       "import": eslintPluginImport,
     },
+    settings: {
+      "import/resolver": {
+        typescript: {
+          project: ["./tsconfig.json"],
+        },
+      },
+    },
     rules: {
       ...reactHooks.configs.recommended.rules,
+
+      // Complexity
+      "complexity": ["warn", 10],
+      "max-depth": ["warn", 4],
+      "max-params": ["warn", 4],
+      "max-statements": ["warn", 20],
+      "max-nested-callbacks": ["warn", 3],
 
       // Import 
 
