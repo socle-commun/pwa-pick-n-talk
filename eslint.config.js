@@ -3,7 +3,9 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
-import sonarjs from "eslint-plugin-sonarjs"; import vitest from "eslint-plugin-vitest";
+import sonarjs from "eslint-plugin-sonarjs";
+import vitest from "eslint-plugin-vitest";
+import eslintPluginImport from "eslint-plugin-import";
 
 export default tseslint.config(
   { ignores: ["dist", "node_modules", "coverage", "*.config.js", "*.config.ts"] },
@@ -17,10 +19,26 @@ export default tseslint.config(
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
-      "sonar": sonarjs
+      "sonar": sonarjs,
+      "import": eslintPluginImport,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+
+      // Import 
+
+      "import/no-unresolved": "error",
+      "import/order": [
+        "error",
+        {
+          "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+          "alphabetize": { order: "asc", caseInsensitive: true },
+          "newlines-between": "always"
+        }
+      ],
+
+      // Sonar
+
       "sonarjs/todo-tag": 0,
       "sonarjs/no-hardcoded-passwords": 0,
       "react-refresh/only-export-components": [
