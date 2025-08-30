@@ -4,7 +4,6 @@ import { mergeConfig } from "vite";
 import vitestConfig from "./vitest.config";
 
 import react from "@vitejs/plugin-react-swc";
-import tailwindcss from "@tailwindcss/vite";
 import { visualizer } from "rollup-plugin-visualizer";
 
 import { resolve } from "path";
@@ -25,6 +24,8 @@ export default mergeConfig(
             "state-management": ["jotai"],
             
             // UI libraries (split by size and usage)
+            "ui-mui": ["@mui/material", "@mui/icons-material"],
+            "ui-emotion": ["@emotion/react", "@emotion/styled"],
             "ui-headless": ["@headlessui/react"],
             "ui-icons": ["@heroicons/react"],
             "ui-animations": ["framer-motion"],
@@ -77,7 +78,6 @@ export default mergeConfig(
     logLevel: "info",
     plugins: [
       react(), 
-      tailwindcss(),
       visualizer({
         filename: "dist/bundle-analyzer.html",
         open: false,

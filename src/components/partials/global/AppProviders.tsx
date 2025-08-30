@@ -1,5 +1,6 @@
 import { Provider as JotaiProvider } from "jotai";
 import { type ReactNode } from "react";
+import { AppThemeProvider } from "@/theme";
 
 
 interface AppProvidersProps {
@@ -7,5 +8,11 @@ interface AppProvidersProps {
 }
 
 export default function AppProviders({ children }: AppProvidersProps) {
-  return <JotaiProvider>{children}</JotaiProvider>;
+  return (
+    <JotaiProvider>
+      <AppThemeProvider>
+        {children}
+      </AppThemeProvider>
+    </JotaiProvider>
+  );
 }
