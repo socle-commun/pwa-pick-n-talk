@@ -1,7 +1,6 @@
 import React from "react";
 import { z } from "zod";
 
-import FormProvider from "./FormContext";
 import { useForm } from "./hooks";
 
 type FormProps<T> = {
@@ -49,20 +48,12 @@ function FormContent<T>({ children, onSubmit, className }: {
 
 export default function Form<T extends Record<string, unknown> = Record<string, unknown>>({
   children,
-  schema,
-  initialValues,
   onSubmit,
   className,
 }: FormProps<T>) {
   return (
-    <FormProvider<T>
-      schema={schema}
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-    >
-      <FormContent<T> onSubmit={onSubmit} className={className}>
-        {children}
-      </FormContent>
-    </FormProvider>
+    <FormContent<T> onSubmit={onSubmit} className={className}>
+      {children}
+    </FormContent>
   );
 }

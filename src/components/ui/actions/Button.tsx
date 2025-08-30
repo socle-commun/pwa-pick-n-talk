@@ -8,7 +8,6 @@
 import { Button as MuiButton, type ButtonProps as MuiButtonProps } from "@mui/material";
 import { forwardRef, type ForwardedRef } from "react";
 
-import TouchTarget from "@/components/ui/actions/TouchTarget";
 import { Link } from "@/components/ui/navigation";
 
 // Import existing types for backward compatibility
@@ -146,7 +145,7 @@ export default forwardRef<HTMLElement, ButtonProps>(function Button(
         className={className}
         ref={ref as ForwardedRef<HTMLAnchorElement>}
       >
-        <TouchTarget>{children}</TouchTarget>
+        {children}
       </Link>
     );
   }

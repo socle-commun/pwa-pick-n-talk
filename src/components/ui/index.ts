@@ -11,6 +11,7 @@
  * - Typography: Text and heading components
  * - Feedback: Alerts, dialogs, and status indicators
  * - Forms: Form validation and submission components
+ * - Theme: Theme control components
  */
 
 // Actions
@@ -36,6 +37,12 @@ export * from "./feedback";
 
 // Forms
 export * from "./forms";
+
+// Theme controls
+export { default as DaltonismModeToggle } from "./theme/DaltonismModeToggle";
+export { default as FontSizeSelector } from "./theme/FontSizeSelector";
+export { default as HighContrastModeToggle } from "./theme/HighContrastModeToggle";
+export { default as ThemeModeToggle } from "./theme/ThemeModeToggle";
 
 // Standalone components
 export { default as LocaleSelector } from "./LocaleSelector";
