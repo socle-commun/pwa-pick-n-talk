@@ -1,8 +1,12 @@
+/**
+ * FormInput Component - MUI Integration
+ * 
+ * Migrated from Headless UI to Material-UI while maintaining the exact same API.
+ * Uses MUI TextField with integrated form validation and error handling.
+ */
+
 import React, { forwardRef } from "react";
-
-import { Field, Label, ErrorMessage } from "../data-input/fieldset";
-import Input from "../data-input/input/Input";
-
+import { TextField } from "@mui/material";
 import { useFormField } from "./hooks";
 
 type FormInputProps = {
@@ -13,7 +17,7 @@ type FormInputProps = {
   required?: boolean;
   disabled?: boolean;
   className?: string;
-} & Omit<React.ComponentProps<typeof Input>, "name">;
+} & Omit<React.ComponentProps<typeof TextField>, "name" | "label" | "type" | "required" | "disabled" | "error" | "helperText" | "value" | "onChange" | "onBlur">;
 
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   ({ name, label, placeholder, type = "text", required, disabled, className, ...props }, ref) => {
@@ -37,29 +41,75 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       validate();
     };
 
+    // Prepare the label with required indicator
+    const displayLabel = label ? (
+      required ? `${label} *` : label
+    ) : undefined;
+
     return (
-      <Field className={className}>
-        {label && (
-          <Label>
-            {label}
-            {required && <span className="text-red-500 ml-1">*</span>}
-          </Label>
-        )}
-        <Input
-          ref={ref}
-          type={type}
-          value={value as string || ""}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          placeholder={placeholder}
-          data-testid={`${name}-input`}
-          data-invalid={isInvalid ? true : undefined}
-          required={required}
-          disabled={disabled}
-          {...props}
-        />
-        {error && <ErrorMessage>{error.message}</ErrorMessage>}
-      </Field>
+      <TextField
+        ref={ref}
+        name={name}
+        label={displayLabel}
+        type={type}
+        value={value as string || ""}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        placeholder={placeholder}
+        error={isInvalid}
+        helperText={error?.message}
+        required={required}
+        disabled={disabled}
+        className={className}
+        inputProps={{
+          "data-testid": `${name}-input`,
+          "data-invalid": isInvalid ? true : undefined,
+        }}
+        variant="outlined"
+        fullWidth
+        size="small"
+        sx={{
+          // Custom styling to match our design system
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: 'var(--bg-secondary)',
+            '& fieldset': {
+              borderColor: 'var(--border-primary)',
+            },
+            '&:hover fieldset': {
+              borderColor: 'var(--border-focus)',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'var(--border-focus)',
+            },
+            '&.Mui-error fieldset': {
+              borderColor: 'var(--error-primary)',
+            },
+          },
+          '& .MuiInputLabel-root': {
+            color: 'var(--text-secondary)',
+            '&.Mui-focused': {
+              color: 'var(--border-focus)',
+            },
+            '&.Mui-error': {
+              color: 'var(--error-primary)',
+            },
+          },
+          '& .MuiOutlinedInput-input': {
+            color: 'var(--text-primary)',
+            '&::placeholder': {
+              color: 'var(--text-tertiary)',
+              opacity: 1,
+            },
+          },
+          '& .MuiFormHelperText-root': {
+            color: 'var(--error-primary)',
+            '&.Mui-error': {
+              color: 'var(--error-primary)',
+            },
+          },
+        }}
+        {...props}
+      />
     );
   }
 );
