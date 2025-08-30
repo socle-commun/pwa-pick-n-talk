@@ -1,23 +1,30 @@
-import {
-  type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription,
-} from "@headlessui/react";
-
+import { DialogContentText } from "@mui/material";
 import Text from "@/components/ui/typography/text/Text";
-import cn from "@/utils/cn";
+
+interface DialogDescriptionProps {
+  className?: string;
+  children: React.ReactNode;
+  sx?: any;
+}
 
 export default function DialogDescription({
   className,
+  children,
+  sx,
   ...props
-}: { className?: string } & Omit<
-  HeadlessDescriptionProps<typeof Text>,
-  "as" | "className"
->) {
+}: DialogDescriptionProps) {
   return (
-    <HeadlessDescription
-      as={Text}
+    <DialogContentText
+      component={Text}
+      className={className}
+      sx={{
+        mt: 1,
+        textWrap: 'pretty',
+        ...sx
+      }}
       {...props}
-      className={cn(className, "mt-2 text-pretty")}
-    />
+    >
+      {children}
+    </DialogContentText>
   );
 }

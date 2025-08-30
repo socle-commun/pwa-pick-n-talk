@@ -7,7 +7,7 @@
 
 import React, { useMemo } from 'react';
 import { ThemeProvider as MuiThemeProvider, CssBaseline } from '@mui/material';
-import { createAppTheme } from './mui-theme';
+import { createMuiTheme } from '@/utils/theme/mui-theme';
 import { useThemeMode, useDaltonismMode, useFontSize, useHighContrastMode } from '@/utils/theme';
 
 interface AppThemeProviderProps {
@@ -20,18 +20,18 @@ interface AppThemeProviderProps {
 export function AppThemeProvider({ children }: AppThemeProviderProps) {
   const { themeMode } = useThemeMode();
   const { daltonismMode } = useDaltonismMode();
-  const { fontSize } = useFontSize();
+  const { scale } = useFontSize(); // Use scale instead of fontSize
   const { highContrastMode } = useHighContrastMode();
 
   // Create MUI theme based on current settings
   const muiTheme = useMemo(() => {
-    return createAppTheme({
+    return createMuiTheme(
       themeMode,
       daltonismMode,
-      fontSize,
       highContrastMode,
-    });
-  }, [themeMode, daltonismMode, fontSize, highContrastMode]);
+      scale
+    );
+  }, [themeMode, daltonismMode, scale, highContrastMode]);
 
   return (
     <MuiThemeProvider theme={muiTheme}>
