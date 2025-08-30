@@ -1,26 +1,26 @@
-import {
-  type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription,
-} from "@headlessui/react";
-
-import cn from "@/utils/cn";
+import { Typography } from "@mui/material";
 
 export default function ErrorMessage({
   className,
+  sx,
   ...props
-}: { className?: string } & Omit<
-  HeadlessDescriptionProps,
-  "as" | "className"
->) {
+}: { className?: string; sx?: any } & React.ComponentPropsWithoutRef<"div">) {
   return (
-    <HeadlessDescription
+    <Typography
       data-slot="error"
       role="alert"
+      variant="body2"
+      color="error"
       {...props}
-      className={cn(
-        className,
-        "text-base/6 text-red-600 data-disabled:opacity-50 sm:text-sm/6 dark:text-red-500"
-      )}
+      className={className}
+      sx={{
+        fontSize: { xs: '1rem', sm: '0.875rem' },
+        lineHeight: 1.5,
+        '&[data-disabled]': {
+          opacity: 0.5,
+        },
+        ...sx
+      }}
     />
   );
 }

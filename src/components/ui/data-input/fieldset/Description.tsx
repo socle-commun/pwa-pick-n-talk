@@ -1,25 +1,25 @@
-import {
-  type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription,
-} from "@headlessui/react";
-
-import cn from "@/utils/cn";
+import { Typography } from "@mui/material";
 
 export default function Description({
   className,
+  sx,
   ...props
-}: { className?: string } & Omit<
-  HeadlessDescriptionProps,
-  "as" | "className"
->) {
+}: { className?: string; sx?: any } & React.ComponentPropsWithoutRef<"div">) {
   return (
-    <HeadlessDescription
+    <Typography
       data-slot="description"
+      variant="body2"
+      color="text.secondary"
       {...props}
-      className={cn(
-        className,
-        "text-base/6 text-zinc-500 data-disabled:opacity-50 sm:text-sm/6 dark:text-zinc-400"
-      )}
+      className={className}
+      sx={{
+        fontSize: { xs: '1rem', sm: '0.875rem' },
+        lineHeight: 1.5,
+        '&[data-disabled]': {
+          opacity: 0.5,
+        },
+        ...sx
+      }}
     />
   );
 }

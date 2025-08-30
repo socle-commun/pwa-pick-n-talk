@@ -1,25 +1,45 @@
-import {
-  type RadioGroupProps as HeadlessRadioGroupProps,
-  RadioGroup as HeadlessRadioGroup,
-} from "@headlessui/react";
+import { 
+  RadioGroup as MuiRadioGroup,
+  type RadioGroupProps as MuiRadioGroupProps 
+} from "@mui/material";
+import { Box } from "@mui/material";
 
-import cn from "@/utils/cn";
+interface RadioGroupProps extends MuiRadioGroupProps {
+  className?: string;
+  sx?: any;
+}
 
 export default function RadioGroup({
   className,
+  sx,
+  children,
   ...props
-}: { className?: string } & Omit<HeadlessRadioGroupProps, "as" | "className">) {
+}: RadioGroupProps) {
   return (
-    <HeadlessRadioGroup
+    <Box
       data-slot="control"
-      {...props}
-      className={cn(
-        className,
-        // Basic groups
-        "space-y-3 **:data-[slot=label]:font-normal",
-        // With descriptions
-        "has-data-[slot=description]:space-y-6 has-data-[slot=description]:**:data-[slot=label]:font-medium"
-      )}
-    />
+      className={className}
+      sx={{
+        '& > *': {
+          marginBottom: 3,
+        },
+        '& [data-slot="label"]': {
+          fontWeight: 'normal',
+        },
+        '&:has([data-slot="description"])': {
+          '& > *': {
+            marginBottom: 6,
+          },
+          '& [data-slot="label"]': {
+            fontWeight: 'medium',
+          },
+        },
+        ...sx
+      }}
+    >
+      <MuiRadioGroup {...props}>
+        {children}
+      </MuiRadioGroup>
+    </Box>
   );
 }

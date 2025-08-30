@@ -1,50 +1,30 @@
 import {
-  type CheckboxProps as HeadlessCheckboxProps,
-  Checkbox as HeadlessCheckbox,
-} from "@headlessui/react";
+  Checkbox as MuiCheckbox,
+  type CheckboxProps as MuiCheckboxProps,
+} from "@mui/material";
 
-import cn from "@/utils/cn";
-
-import { base, colors, type Color } from "./checkbox.styles";
+interface CheckboxProps extends Omit<MuiCheckboxProps, "color"> {
+  color?: "primary" | "secondary" | "default";
+  className?: string;
+}
 
 export default function Checkbox({
-  color = "dark/zinc",
+  color = "primary",
   className,
+  sx,
   ...props
-}: {
-  color?: Color;
-  className?: string;
-} & Omit<HeadlessCheckboxProps, "as" | "className">) {
+}: CheckboxProps) {
   return (
-    <HeadlessCheckbox
-      data-slot="control"
+    <MuiCheckbox
+      color={color}
+      className={className}
+      sx={{
+        '&.MuiCheckbox-root': {
+          padding: 1,
+        },
+        ...sx
+      }}
       {...props}
-      className={cn(className, "group inline-flex focus:outline-hidden")}
-    >
-      <span className={cn([base, colors[color]])}>
-        <svg
-          className="size-4 stroke-(--checkbox-check) opacity-0 group-data-checked:opacity-100 sm:h-3.5 sm:w-3.5"
-          viewBox="0 0 14 14"
-          fill="none"
-        >
-          {/* Checkmark icon */}
-          <path
-            className="opacity-100 group-data-indeterminate:opacity-0"
-            d="M3 8L6 11L11 3.5"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          {/* Indeterminate icon */}
-          <path
-            className="opacity-0 group-data-indeterminate:opacity-100"
-            d="M3 7H11"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-    </HeadlessCheckbox>
+    />
   );
 }

@@ -1,5 +1,4 @@
 import { Button, Box } from "@mui/material";
-import { motion } from "framer-motion";
 import { forwardRef } from "react";
 
 interface SidebarItemProps {
@@ -51,16 +50,16 @@ export default forwardRef<HTMLButtonElement, SidebarItemProps>(
     return (
       <Box sx={{ position: 'relative' }} className={className}>
         {current && (
-          <motion.span
-            layoutId="current-indicator"
-            style={{
+          <Box
+            sx={{
               position: 'absolute',
-              top: 8,
-              bottom: 8,
-              left: -16,
-              width: 2,
+              top: 1,
+              bottom: 1,
+              left: -2,
+              width: 0.25,
               borderRadius: 999,
-              backgroundColor: 'currentColor',
+              backgroundColor: 'primary.main',
+              transition: 'all 0.2s ease-in-out',
             }}
           />
         )}

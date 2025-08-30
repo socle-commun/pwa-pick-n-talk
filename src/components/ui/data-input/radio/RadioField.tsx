@@ -1,31 +1,58 @@
-import {
-  type FieldProps as HeadlessFieldProps,
-  Field as HeadlessField,
-} from "@headlessui/react";
+import { 
+  FormControlLabel,
+  type FormControlLabelProps 
+} from "@mui/material";
+import { Box } from "@mui/material";
 
-import cn from "@/utils/cn";
+interface RadioFieldProps extends Omit<FormControlLabelProps, "control"> {
+  className?: string;
+  sx?: any;
+  control: React.ReactElement;
+}
 
 export default function RadioField({
   className,
+  sx,
+  control,
+  label,
   ...props
-}: { className?: string } & Omit<HeadlessFieldProps, "as" | "className">) {
+}: RadioFieldProps) {
   return (
-    <HeadlessField
+    <Box
       data-slot="field"
-      {...props}
-      className={cn(
-        className,
-        // Base layout
-        "grid grid-cols-[1.125rem_1fr] gap-x-4 gap-y-1 sm:grid-cols-[1rem_1fr]",
-        // Control layout
-        "*:data-[slot=control]:col-start-1 *:data-[slot=control]:row-start-1 *:data-[slot=control]:mt-0.75 sm:*:data-[slot=control]:mt-1",
-        // Label layout
-        "*:data-[slot=label]:col-start-2 *:data-[slot=label]:row-start-1",
-        // Description layout
-        "*:data-[slot=description]:col-start-2 *:data-[slot=description]:row-start-2",
-        // With description
-        "has-data-[slot=description]:**:data-[slot=label]:font-medium"
-      )}
-    />
+      className={className}
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: { xs: '1.125rem 1fr', sm: '1rem 1fr' },
+        gap: { x: 4, y: 1 },
+        '& [data-slot="control"]': {
+          gridColumnStart: 1,
+          gridRowStart: 1,
+          mt: { xs: 0.75, sm: 1 },
+        },
+        '& [data-slot="label"]': {
+          gridColumnStart: 2,
+          gridRowStart: 1,
+        },
+        '& [data-slot="description"]': {
+          gridColumnStart: 2,
+          gridRowStart: 2,
+        },
+        '&:has([data-slot="description"]) [data-slot="label"]': {
+          fontWeight: 'medium',
+        },
+        ...sx
+      }}
+    >
+      <FormControlLabel
+        control={control}
+        label={label}
+        {...props}
+        sx={{
+          margin: 0,
+          alignItems: 'flex-start',
+        }}
+      />
+    </Box>
   );
 }

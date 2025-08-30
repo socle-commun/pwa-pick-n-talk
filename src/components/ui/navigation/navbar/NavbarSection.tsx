@@ -1,18 +1,22 @@
-import { LayoutGroup } from "framer-motion";
-import { useId, type ComponentPropsWithoutRef } from "react";
-
-
-import cn from "@/utils/cn";
+import { Box } from "@mui/material";
+import { type ComponentPropsWithoutRef } from "react";
 
 export default function NavbarSection({
   className,
+  sx,
   ...props
-}: ComponentPropsWithoutRef<"div">) {
-  const id = useId();
-
+}: ComponentPropsWithoutRef<"div"> & { sx?: any }) {
   return (
-    <LayoutGroup id={id}>
-      <div {...props} className={cn(className, "flex items-center gap-1 sm:gap-3 min-w-0")} />
-    </LayoutGroup>
+    <Box 
+      {...props} 
+      className={className}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: { xs: 1, sm: 3 },
+        minWidth: 0,
+        ...sx
+      }}
+    />
   );
 }

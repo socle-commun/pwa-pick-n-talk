@@ -1,5 +1,4 @@
 import { Button, Box } from "@mui/material";
-import { motion } from "framer-motion";
 import { forwardRef } from "react";
 
 interface NavbarItemProps {
@@ -51,16 +50,16 @@ export default forwardRef<HTMLButtonElement, NavbarItemProps>(
   return (
     <Box sx={{ position: 'relative' }} className={className}>
       {current && (
-        <motion.span
-          layoutId="current-indicator"
-          style={{
+        <Box
+          sx={{
             position: 'absolute',
-            left: 8,
-            right: 8,
-            bottom: -10,
-            height: 2,
+            left: 1,
+            right: 1,
+            bottom: -1.25,
+            height: 0.25,
             borderRadius: 999,
-            backgroundColor: 'currentColor',
+            backgroundColor: 'primary.main',
+            transition: 'all 0.2s ease-in-out',
           }}
         />
       )}
