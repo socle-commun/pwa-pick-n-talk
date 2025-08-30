@@ -2,7 +2,7 @@
 export default function FeedbackPage() {
   return (
     <>
-      <h1 className={cn("")}>Feedback</h1>
+      <h1>Feedback</h1>
     </>
   );
 }

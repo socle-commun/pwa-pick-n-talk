@@ -1,36 +1,32 @@
-import {
-  type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription,
-} from "@headlessui/react";
+import { Chip, type ChipProps } from "@mui/material";
+import { forwardRef } from "react";
 
-import cn from "@/utils/cn";
-
-export default function DropdownShortcut({
-  keys,
-  className,
-  ...props
-}: { keys: string | string[]; className?: string } & Omit<
-  HeadlessDescriptionProps<"kbd">,
-  "as" | "className"
->) {
-  return (
-    <HeadlessDescription
-      as="kbd"
-      {...props}
-      className={cn(className, "col-start-5 row-start-1 flex justify-self-end")}
-    >
-      {(Array.isArray(keys) ? keys : keys.split("")).map((char, index) => (
-        <kbd
-          key={index}
-          className={cn([
-            "min-w-[2ch] text-center font-sans text-zinc-400 capitalize group-data-focus:text-white forced-colors:group-data-focus:text-[HighlightText]",
-            // Make sure key names that are longer than one character (like "Tab") have extra space
-            index > 0 && char.length > 1 && "pl-1",
-          ])}
-        >
-          {char}
-        </kbd>
-      ))}
-    </HeadlessDescription>
-  );
+export interface DropdownShortcutProps extends Omit<ChipProps, "label"> {
+  keys: string | string[];
 }
+
+export default forwardRef<HTMLDivElement, DropdownShortcutProps>(
+  function DropdownShortcut({ keys, ...props }, ref) {
+    const keyString = Array.isArray(keys) ? keys.join("+") : keys;
+    
+    return (
+      <Chip
+        ref={ref}
+        label={keyString}
+        size="small"
+        sx={{
+          height: 20,
+          fontSize: "0.7rem",
+          fontFamily: "monospace",
+          backgroundColor: (theme) =>
+            theme.palette.mode === "dark"
+              ? "rgba(255, 255, 255, 0.1)"
+              : "rgba(0, 0, 0, 0.08)",
+          color: (theme) => theme.palette.text.secondary,
+          marginLeft: "auto",
+        }}
+        {...props}
+      />
+    );
+  }
+);

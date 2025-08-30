@@ -1,5 +1,5 @@
 import { createTheme, alpha } from '@mui/material/styles';
-import { ThemeMode, DaltonismMode, HighContrastMode } from '@/types/theme';
+import type { ThemeMode, DaltonismMode, HighContrastMode } from '@/utils/theme';
 
 // CSS Custom Property Mappings
 const getCSSVarColor = (varName: string) => `var(--${varName})`;

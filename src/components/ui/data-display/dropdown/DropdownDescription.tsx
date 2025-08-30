@@ -1,25 +1,26 @@
-import {
-  type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription,
-} from "@headlessui/react";
+import { Typography, type TypographyProps } from "@mui/material";
+import { forwardRef, type ReactNode } from "react";
 
-import cn from "@/utils/cn";
-
-export default function DropdownDescription({
-  className,
-  ...props
-}: { className?: string } & Omit<
-  HeadlessDescriptionProps,
-  "as" | "className"
->) {
-  return (
-    <HeadlessDescription
-      data-slot="description"
-      {...props}
-      className={cn(
-        className,
-        "col-span-2 col-start-2 row-start-2 text-sm/5 text-zinc-500 group-data-focus:text-white sm:text-xs/5 dark:text-zinc-400 forced-colors:group-data-focus:text-[HighlightText]"
-      )}
-    />
-  );
+export interface DropdownDescriptionProps extends Omit<TypographyProps, "children"> {
+  children?: ReactNode;
 }
+
+export default forwardRef<HTMLSpanElement, DropdownDescriptionProps>(
+  function DropdownDescription({ children, ...props }, ref) {
+    return (
+      <Typography
+        ref={ref}
+        variant="caption"
+        component="span"
+        sx={{
+          color: (theme) => theme.palette.text.secondary,
+          display: "block",
+          marginTop: 0.5,
+        }}
+        {...props}
+      >
+        {children}
+      </Typography>
+    );
+  }
+);

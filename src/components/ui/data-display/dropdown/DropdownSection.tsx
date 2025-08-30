@@ -1,25 +1,26 @@
-import {
-  type MenuSectionProps as HeadlessMenuSectionProps,
-  MenuSection as HeadlessMenuSection,
-} from "@headlessui/react";
+import { Box, type BoxProps } from "@mui/material";
+import { forwardRef, type ReactNode } from "react";
 
-import cn from "@/utils/cn";
-
-export default function DropdownSection({
-  className,
-  ...props
-}: { className?: string } & Omit<
-  HeadlessMenuSectionProps,
-  "as" | "className"
->) {
-  return (
-    <HeadlessMenuSection
-      {...props}
-      className={cn(
-        className,
-        // Define grid at the section level instead of the item level if subgrid is supported
-        "col-span-full supports-[grid-template-columns:subgrid]:grid supports-[grid-template-columns:subgrid]:grid-cols-[auto_1fr_1.5rem_0.5rem_auto]"
-      )}
-    />
-  );
+export interface DropdownSectionProps extends Omit<BoxProps, "children"> {
+  children?: ReactNode;
 }
+
+export default forwardRef<HTMLDivElement, DropdownSectionProps>(
+  function DropdownSection({ children, ...props }, ref) {
+    return (
+      <Box
+        ref={ref}
+        component="div"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 0.5,
+          padding: "4px 0",
+        }}
+        {...props}
+      >
+        {children}
+      </Box>
+    );
+  }
+);

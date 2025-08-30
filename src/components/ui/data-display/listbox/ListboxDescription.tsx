@@ -1,21 +1,29 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { Typography, type TypographyProps } from "@mui/material";
+import { forwardRef, type ReactNode } from "react";
 
-import cn from "@/utils/cn";
-
-export default function ListboxDescription({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<"span">) {
-  return (
-    <span
-      {...props}
-      className={cn(
-        className,
-        "flex flex-1 overflow-hidden text-zinc-500 group-data-focus/option:text-white before:w-2 before:min-w-0 before:shrink dark:text-zinc-400"
-      )}
-    >
-      <span className="flex-1 truncate">{children}</span>
-    </span>
-  );
+export interface ListboxDescriptionProps extends Omit<TypographyProps, "children"> {
+  children?: ReactNode;
 }
+
+export default forwardRef<HTMLSpanElement, ListboxDescriptionProps>(
+  function ListboxDescription({ children, ...props }, ref) {
+    return (
+      <Typography
+        ref={ref}
+        variant="caption"
+        component="span"
+        sx={{
+          color: (theme: any) => theme.palette.text.secondary,
+          display: "block",
+          textOverflow: "ellipsis",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+          marginTop: 0.5,
+        }}
+        {...props}
+      >
+        {children}
+      </Typography>
+    );
+  }
+);

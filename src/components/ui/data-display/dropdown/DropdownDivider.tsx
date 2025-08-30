@@ -1,24 +1,22 @@
-import {
-  type MenuSeparatorProps as HeadlessMenuSeparatorProps,
-  MenuSeparator as HeadlessMenuSeparator,
-} from "@headlessui/react";
+import { Divider, type DividerProps } from "@mui/material";
+import { forwardRef } from "react";
 
-import cn from "@/utils/cn";
+export interface DropdownDividerProps extends DividerProps {}
 
-export default function DropdownDivider({
-  className,
-  ...props
-}: { className?: string } & Omit<
-  HeadlessMenuSeparatorProps,
-  "as" | "className"
->) {
-  return (
-    <HeadlessMenuSeparator
-      {...props}
-      className={cn(
-        className,
-        "col-span-full mx-3.5 my-1 h-px border-0 bg-zinc-950/5 sm:mx-3 dark:bg-white/10 forced-colors:bg-[CanvasText]"
-      )}
-    />
-  );
-}
+export default forwardRef<HTMLHRElement, DropdownDividerProps>(
+  function DropdownDivider(props, ref) {
+    return (
+      <Divider
+        ref={ref}
+        sx={{
+          margin: "4px 8px",
+          backgroundColor: (theme) =>
+            theme.palette.mode === "dark"
+              ? "rgba(255, 255, 255, 0.1)"
+              : "rgba(0, 0, 0, 0.08)",
+        }}
+        {...props}
+      />
+    );
+  }
+);
