@@ -1,21 +1,25 @@
 import { LayoutGroup } from "framer-motion";
 import { useId } from "react";
-
-
-import cn from "@/utils/cn";
+import { Box } from "@mui/material";
 
 export default function SidebarSection({
   className,
+  sx,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: React.ComponentPropsWithoutRef<"div"> & { sx?: any }) {
   const id = useId();
 
   return (
     <LayoutGroup id={id}>
-      <div
+      <Box
         {...props}
-        data-slot="section"
-        className={cn(className, "flex flex-col gap-0.5")}
+        className={className}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 0.25,
+          ...sx
+        }}
       />
     </LayoutGroup>
   );

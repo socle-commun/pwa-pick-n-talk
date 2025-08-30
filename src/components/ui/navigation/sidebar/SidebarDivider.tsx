@@ -1,18 +1,21 @@
 import { type ComponentPropsWithoutRef } from "react";
-
-import cn from "@/utils/cn";
+import { Divider } from "@mui/material";
 
 export default function SidebarDivider({
   className,
+  sx,
   ...props
-}: ComponentPropsWithoutRef<"hr">) {
+}: ComponentPropsWithoutRef<"hr"> & { sx?: any }) {
   return (
-    <hr
+    <Divider
       {...props}
-      className={cn(
-        className,
-        "my-4 border-t border-zinc-950/5 lg:-mx-4 dark:border-white/5"
-      )}
+      className={className}
+      sx={{
+        my: 2,
+        mx: { lg: -2 },
+        borderColor: 'divider',
+        ...sx
+      }}
     />
   );
 }

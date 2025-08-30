@@ -1,18 +1,26 @@
 import { type ComponentPropsWithoutRef } from "react";
-
-import cn from "@/utils/cn";
+import { Box } from "@mui/material";
 
 export default function SidebarHeader({
   className,
+  sx,
   ...props
-}: ComponentPropsWithoutRef<"div">) {
+}: ComponentPropsWithoutRef<"div"> & { sx?: any }) {
   return (
-    <div
+    <Box
       {...props}
-      className={cn(
-        className,
-        "flex flex-col border-b border-zinc-950/5 p-4 dark:border-white/5 [&>[data-slot=section]+[data-slot=section]]:mt-2.5"
-      )}
+      className={className}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        borderBottom: 1,
+        borderColor: 'divider',
+        p: 2,
+        '& > * + *': {
+          mt: 1.25,
+        },
+        ...sx
+      }}
     />
   );
 }

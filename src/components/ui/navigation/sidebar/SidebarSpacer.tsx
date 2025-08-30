@@ -1,16 +1,21 @@
 import { type ComponentPropsWithoutRef } from "react";
-
-import cn from "@/utils/cn";
+import { Box } from "@mui/material";
 
 export default function SidebarSpacer({
   className,
+  sx,
   ...props
-}: ComponentPropsWithoutRef<"div">) {
+}: ComponentPropsWithoutRef<"div"> & { sx?: any }) {
   return (
-    <div
+    <Box
       aria-hidden="true"
       {...props}
-      className={cn(className, "mt-8 flex-1")}
+      className={className}
+      sx={{
+        mt: 4,
+        flex: 1,
+        ...sx
+      }}
     />
   );
 }

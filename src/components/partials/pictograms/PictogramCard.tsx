@@ -83,13 +83,24 @@ export default function PictogramCard({
         <Button
           onClick={handleSpeak}
           disabled={isSpeaking || !word}
-          className={"p-2 rounded-full",
-            "hover:scale-105 active:scale-95 transition-transform duration-150",
-            isSpeaking ? "opacity-50 cursor-not-allowed" : "}
-          color="blue"
+          color="primary"
+          sx={{
+            minWidth: 'auto',
+            borderRadius: '50%',
+            p: 1,
+            opacity: isSpeaking ? 0.5 : 1,
+            cursor: isSpeaking ? 'not-allowed' : 'pointer',
+            transition: 'transform 150ms ease',
+            '&:hover': {
+              transform: 'scale(1.05)',
+            },
+            '&:active': {
+              transform: 'scale(0.95)',
+            },
+          }}
         >
-          <SpeakerWaveIcon className={"size-5"} />
-          <span className={"sr-only"}>
+          <SpeakerWaveIcon sx={{ fontSize: 20 }} />
+          <span style={{ position: 'absolute', left: '-9999px' }}>
             {isSpeaking ? "Speaking..." : `Speak "${word}"`}
           </span>
         </Button>

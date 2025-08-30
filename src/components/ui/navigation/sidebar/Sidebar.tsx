@@ -1,12 +1,23 @@
 import { type ComponentPropsWithoutRef } from "react";
-
-import cn from "@/utils/cn";
+import { Box } from "@mui/material";
 
 export default function Sidebar({
   className,
+  sx,
   ...props
-}: ComponentPropsWithoutRef<"nav">) {
+}: ComponentPropsWithoutRef<"nav"> & { sx?: any }) {
   return (
-    <nav {...props} className={cn(className, "flex h-full min-h-0 flex-col")} />
+    <Box 
+      component="nav" 
+      {...props} 
+      className={className}
+      sx={{
+        display: 'flex',
+        height: '100%',
+        minHeight: 0,
+        flexDirection: 'column',
+        ...sx
+      }}
+    />
   );
 }

@@ -1,79 +1,102 @@
-import {
-  type ButtonProps as HeadlessButtonProps,
-  CloseButton as HeadlessCloseButton,
-  Button as HeadlessButton,
-} from "@headlessui/react";
+import { Button, ListItem, ListItemButton, Box } from "@mui/material";
 import { motion } from "framer-motion";
 import { forwardRef, type ForwardedRef } from "react";
-
-
-
-import TouchTarget from "@/components/ui/actions/TouchTarget";
 import { Link } from "@/components/ui/navigation";
-import cn from "@/utils/cn";
+
+interface SidebarItemProps {
+  current?: boolean;
+  className?: string;
+  children: React.ReactNode;
+  href?: string;
+  onClick?: () => void;
+  sx?: any;
+}
 
 export default forwardRef(function SidebarItem(
   {
     current,
     className,
     children,
+    href,
+    onClick,
+    sx,
     ...props
-  }: { current?: boolean; className?: string; children: React.ReactNode } & (
-    | Omit<HeadlessButtonProps, "as" | "className">
-    | Omit<HeadlessButtonProps<typeof Link>, "as" | "className">
-  ),
+  }: SidebarItemProps,
   ref: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
 ) {
-  const classes = cn(
-    // Base
-    "flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-base/6 font-medium text-zinc-950 sm:py-2 sm:text-sm/5",
-    // Leading icon/icon-only
-    "*:data-[slot=icon]:size-6 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:fill-zinc-500 sm:*:data-[slot=icon]:size-5",
-    // Trailing icon (down chevron or similar)
-    "*:last:data-[slot=icon]:ml-auto *:last:data-[slot=icon]:size-5 sm:*:last:data-[slot=icon]:size-4",
-    // Avatar
-    "*:data-[slot=avatar]:-m-0.5 *:data-[slot=avatar]:size-7 sm:*:data-[slot=avatar]:size-6",
-    // Hover
-    "data-hover:bg-zinc-950/5 data-hover:*:data-[slot=icon]:fill-zinc-950",
-    // Active
-    "data-active:bg-zinc-950/5 data-active:*:data-[slot=icon]:fill-zinc-950",
-    // Current
-    "data-current:*:data-[slot=icon]:fill-zinc-950",
-    // Dark mode
-    "dark:text-white dark:*:data-[slot=icon]:fill-zinc-400",
-    "dark:data-hover:bg-white/5 dark:data-hover:*:data-[slot=icon]:fill-white",
-    "dark:data-active:bg-white/5 dark:data-active:*:data-[slot=icon]:fill-white",
-    "dark:data-current:*:data-[slot=icon]:fill-white"
-  );
+  const baseStyles = {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    gap: 1.5,
+    borderRadius: 1.5,
+    px: 1,
+    py: { xs: 1.25, sm: 1 },
+    textAlign: 'left',
+    fontSize: { xs: '1rem', sm: '0.875rem' },
+    fontWeight: 500,
+    color: 'text.primary',
+    textTransform: 'none',
+    justifyContent: 'flex-start',
+    minHeight: 'auto',
+    '&:hover': {
+      backgroundColor: 'action.hover',
+    },
+    '&:active': {
+      backgroundColor: 'action.selected',
+    },
+    ...sx
+  };
 
   return (
-    <span className={cn(className, "relative")}>
+    <Box sx={{ position: 'relative' }} className={className}>
       {current && (
         <motion.span
           layoutId="current-indicator"
-          className="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-zinc-950 dark:bg-white"
+          style={{
+            position: 'absolute',
+            top: 8,
+            bottom: 8,
+            left: -16,
+            width: 2,
+            borderRadius: 999,
+            backgroundColor: 'currentColor',
+          }}
         />
       )}
-      {"href" in props ? (
-        <HeadlessCloseButton
-          as={Link}
+      {href ? (
+        <Button
+          component={Link}
+          href={href}
           {...props}
-          className={classes}
-          data-current={current ? "true" : undefined}
+          sx={{
+            ...baseStyles,
+            ...(current && {
+              backgroundColor: 'action.selected',
+              fontWeight: 600,
+            }),
+          }}
           ref={ref}
         >
-          <TouchTarget>{children}</TouchTarget>
-        </HeadlessCloseButton>
+          {children}
+        </Button>
       ) : (
-        <HeadlessButton
+        <Button
           {...props}
-          className={cn("cursor-default", classes)}
-          data-current={current ? "true" : undefined}
+          onClick={onClick}
+          sx={{
+            ...baseStyles,
+            cursor: onClick ? 'pointer' : 'default',
+            ...(current && {
+              backgroundColor: 'action.selected',
+              fontWeight: 600,
+            }),
+          }}
           ref={ref}
         >
-          <TouchTarget>{children}</TouchTarget>
-        </HeadlessButton>
+          {children}
+        </Button>
       )}
-    </span>
+    </Box>
   );
 });
