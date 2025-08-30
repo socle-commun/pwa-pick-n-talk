@@ -1,22 +1,27 @@
-import {
-  type LabelProps as HeadlessLabelProps,
-  Label as HeadlessLabel,
-} from "@headlessui/react";
+import { InputLabel, type InputLabelProps } from "@mui/material";
+import { forwardRef, type ReactNode } from "react";
 
-import cn from "@/utils/cn";
-
-export default function Label({
-  className,
-  ...props
-}: { className?: string } & Omit<HeadlessLabelProps, "as" | "className">) {
-  return (
-    <HeadlessLabel
-      data-slot="label"
-      {...props}
-      className={cn(
-        className,
-        "text-base/6 select-none data-disabled:opacity-50 sm:text-sm/6"
-      )}
-    />
-  );
+export interface LabelProps extends Omit<InputLabelProps, "children"> {
+  children?: ReactNode;
 }
+
+export default forwardRef<HTMLLabelElement, LabelProps>(
+  function Label({ children, ...props }, ref) {
+    return (
+      <InputLabel
+        ref={ref}
+        sx={{
+          fontSize: { xs: "1rem", sm: "0.875rem" },
+          lineHeight: 1.5,
+          userSelect: "none",
+          "&.Mui-disabled": {
+            opacity: 0.5,
+          },
+        }}
+        {...props}
+      >
+        {children}
+      </InputLabel>
+    );
+  }
+);

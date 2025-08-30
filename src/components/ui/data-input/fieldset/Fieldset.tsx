@@ -1,21 +1,28 @@
-import {
-  type FieldsetProps as HeadlessFieldsetProps,
-  Fieldset as HeadlessFieldset,
-} from "@headlessui/react";
+import { Box, type BoxProps } from "@mui/material";
+import { forwardRef, type ReactNode } from "react";
 
-import cn from "@/utils/cn";
-
-export default function Fieldset({
-  className,
-  ...props
-}: { className?: string } & Omit<HeadlessFieldsetProps, "as" | "className">) {
-  return (
-    <HeadlessFieldset
-      {...props}
-      className={cn(
-        className,
-        "*:data-[slot=text]:mt-1 [&>*+[data-slot=control]]:mt-6"
-      )}
-    />
-  );
+export interface FieldsetProps extends Omit<BoxProps, "children"> {
+  children?: ReactNode;
 }
+
+export default forwardRef<HTMLFieldSetElement, FieldsetProps>(
+  function Fieldset({ children, ...props }, ref) {
+    return (
+      <Box
+        ref={ref}
+        component="fieldset"
+        sx={{
+          border: "none",
+          padding: 0,
+          margin: 0,
+          "& > *:not(:first-of-type)": {
+            marginTop: 3,
+          },
+        }}
+        {...props}
+      >
+        {children}
+      </Box>
+    );
+  }
+);

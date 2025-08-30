@@ -1,24 +1,26 @@
-import {
-  type DialogTitleProps as HeadlessDialogTitleProps,
-  DialogTitle as HeadlessDialogTitle,
-} from "@headlessui/react";
+import { DialogTitle, type DialogTitleProps } from "@mui/material";
+import { forwardRef, type ReactNode } from "react";
 
-import cn from "@/utils/cn";
-
-export default function AlertTitle({
-  className,
-  ...props
-}: { className?: string } & Omit<
-  HeadlessDialogTitleProps,
-  "as" | "className"
->) {
-  return (
-    <HeadlessDialogTitle
-      {...props}
-      className={cn(
-        className,
-        "text-center text-base/6 font-semibold text-balance text-zinc-950 sm:text-left sm:text-sm/6 sm:text-wrap dark:text-white"
-      )}
-    />
-  );
+export interface AlertTitleProps extends Omit<DialogTitleProps, "children"> {
+  children?: ReactNode;
 }
+
+export default forwardRef<HTMLHeadingElement, AlertTitleProps>(
+  function AlertTitle({ children, ...props }, ref) {
+    return (
+      <DialogTitle
+        ref={ref}
+        sx={{
+          textAlign: { xs: "center", sm: "left" },
+          fontSize: { xs: "1rem", sm: "0.875rem" },
+          fontWeight: 600,
+          lineHeight: 1.5,
+          color: (theme: any) => theme.palette.text.primary,
+        }}
+        {...props}
+      >
+        {children}
+      </DialogTitle>
+    );
+  }
+);

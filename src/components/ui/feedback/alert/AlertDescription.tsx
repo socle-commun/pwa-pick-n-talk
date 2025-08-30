@@ -1,23 +1,26 @@
-import {
-  type DescriptionProps as HeadlessDescriptionProps,
-  Description as HeadlessDescription,
-} from "@headlessui/react";
+import { Typography, type TypographyProps } from "@mui/material";
+import { forwardRef, type ReactNode } from "react";
 
-import Text from "@/components/ui/typography/text/Text";
-import cn from "@/utils/cn";
-
-export default function AlertDescription({
-  className,
-  ...props
-}: { className?: string } & Omit<
-  HeadlessDescriptionProps<typeof Text>,
-  "as" | "className"
->) {
-  return (
-    <HeadlessDescription
-      as={Text}
-      {...props}
-      className={cn(className, "mt-2 text-center text-pretty sm:text-left")}
-    />
-  );
+export interface AlertDescriptionProps extends Omit<TypographyProps, "children"> {
+  children?: ReactNode;
 }
+
+export default forwardRef<HTMLParagraphElement, AlertDescriptionProps>(
+  function AlertDescription({ children, ...props }, ref) {
+    return (
+      <Typography
+        ref={ref}
+        variant="body2"
+        component="p"
+        sx={{
+          marginTop: 2,
+          textAlign: { xs: "center", sm: "left" },
+          color: (theme: any) => theme.palette.text.secondary,
+        }}
+        {...props}
+      >
+        {children}
+      </Typography>
+    );
+  }
+);
