@@ -1,14 +1,7 @@
-import {
-  type ButtonProps as HeadlessButtonProps,
-  Button as HeadlessButton,
-} from "@headlessui/react";
+import { IconButton, Button } from "@mui/material";
 import { forwardRef, type ComponentPropsWithoutRef } from "react";
-
-
-import TouchTarget from "@/components/ui/actions/TouchTarget";
 import { Avatar } from "@/components/ui/data-display";
 import { Link } from "@/components/ui/navigation";
-import cn from "@/utils/cn";
 
 type AvatarButtonProps = {
   src?: string | null;
@@ -16,6 +9,9 @@ type AvatarButtonProps = {
   initials?: string;
   alt?: string;
   className?: string;
+  href?: string;
+  onClick?: () => void;
+  sx?: any;
 };
 
 export default forwardRef(function AvatarButton(
@@ -25,35 +21,49 @@ export default forwardRef(function AvatarButton(
     initials,
     alt,
     className,
+    href,
+    onClick,
+    sx,
     ...props
-  }: AvatarButtonProps &
-    (
-      | Omit<HeadlessButtonProps, "as" | "className">
-      | Omit<ComponentPropsWithoutRef<typeof Link>, "className">
-    ),
+  }: AvatarButtonProps,
   ref: React.ForwardedRef<HTMLElement>
 ) {
-  const classes = cn(
-    className,
-    square ? "rounded-[20%]" : "rounded-full",
-    "relative inline-grid focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500"
-  );
+  const baseStyles = {
+    borderRadius: square ? 2 : '50%',
+    padding: 0,
+    minWidth: 'auto',
+    '&:focus': {
+      outline: 2,
+      outlineOffset: 2,
+      outlineColor: 'primary.main',
+    },
+    ...sx
+  };
 
-  return "href" in props ? (
-    <Link
+  if (href) {
+    return (
+      <IconButton
+        component={Link}
+        href={href}
+        {...props}
+        className={className}
+        sx={baseStyles}
+        ref={ref}
+      >
+        <Avatar src={src} square={square} initials={initials} alt={alt} />
+      </IconButton>
+    );
+  }
+
+  return (
+    <IconButton
       {...props}
-      className={classes}
-      ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+      onClick={onClick}
+      className={className}
+      sx={baseStyles}
+      ref={ref}
     >
-      <TouchTarget>
-        <Avatar src={src} square={square} initials={initials} alt={alt} />
-      </TouchTarget>
-    </Link>
-  ) : (
-    <HeadlessButton {...props} className={classes} ref={ref}>
-      <TouchTarget>
-        <Avatar src={src} square={square} initials={initials} alt={alt} />
-      </TouchTarget>
-    </HeadlessButton>
+      <Avatar src={src} square={square} initials={initials} alt={alt} />
+    </IconButton>
   );
 });

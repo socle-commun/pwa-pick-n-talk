@@ -1,24 +1,32 @@
-import {
-  type DialogTitleProps as HeadlessDialogTitleProps,
-  DialogTitle as HeadlessDialogTitle,
-} from "@headlessui/react";
+import { DialogTitle as MuiDialogTitle, Typography } from "@mui/material";
 
-import cn from "@/utils/cn";
+interface DialogTitleProps {
+  className?: string;
+  children: React.ReactNode;
+  sx?: any;
+}
 
 export default function DialogTitle({
   className,
+  children,
+  sx,
   ...props
-}: { className?: string } & Omit<
-  HeadlessDialogTitleProps,
-  "as" | "className"
->) {
+}: DialogTitleProps) {
   return (
-    <HeadlessDialogTitle
+    <MuiDialogTitle
+      className={className}
+      sx={{
+        fontSize: { xs: '1.125rem', sm: '1rem' },
+        lineHeight: 1.5,
+        fontWeight: 600,
+        textWrap: 'balance',
+        p: 0,
+        mb: 2,
+        ...sx
+      }}
       {...props}
-      className={cn(
-        className,
-        "text-lg/6 font-semibold text-balance text-zinc-950 sm:text-base/6 dark:text-white"
-      )}
-    />
+    >
+      {children}
+    </MuiDialogTitle>
   );
 }

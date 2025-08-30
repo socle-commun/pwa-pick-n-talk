@@ -1,16 +1,26 @@
-import cn from "@/utils/cn";
+import { DialogActions as MuiDialogActions } from "@mui/material";
 
 export default function DialogActions({
   className,
+  sx,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: React.ComponentPropsWithoutRef<"div"> & { sx?: any }) {
   return (
-    <div
+    <MuiDialogActions
       {...props}
-      className={cn(
-        className,
-        "mt-8 flex flex-col-reverse items-center justify-end gap-3 *:w-full sm:flex-row sm:*:w-auto"
-      )}
+      className={className}
+      sx={{
+        mt: 4,
+        flexDirection: { xs: 'column-reverse', sm: 'row' },
+        gap: 1.5,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        p: 0,
+        '& > *': {
+          width: { xs: '100%', sm: 'auto' },
+        },
+        ...sx
+      }}
     />
   );
 }
