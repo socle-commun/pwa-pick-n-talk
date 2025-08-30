@@ -19,7 +19,7 @@ export default function Switch({
       color={color}
       className={className}
       sx={{
-        '&.MuiSwitch-root': {
+        "&.MuiSwitch-root": {
           padding: 1,
         },
         ...sx

@@ -17,8 +17,8 @@ export default function DialogDescription({
       className={className}
       sx={{
         mt: 1,
-        textWrap: 'pretty',
-        color: 'text.secondary',
+        textWrap: "pretty",
+        color: "text.secondary",
         lineHeight: 1.5,
         ...sx
       }}

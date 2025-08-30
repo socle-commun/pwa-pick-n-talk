@@ -86,7 +86,7 @@ export default function PictogramCard({
           className="min-w-0 rounded-full p-2 opacity-75 hover:opacity-100 transition-all duration-150 hover:scale-105 active:scale-95"
         >
           <SpeakerWaveIcon className="size-5" />
-          <span style={{ position: 'absolute', left: '-9999px' }}>
+          <span style={{ position: "absolute", left: "-9999px" }}>
             {isSpeaking ? "Speaking..." : `Speak "${word}"`}
           </span>
         </Button>

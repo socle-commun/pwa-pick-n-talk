@@ -13,7 +13,7 @@ export default function TextLink({
   sx,
   ...props
 }: TextLinkProps) {
-  const linkProps = to 
+  const linkProps = to
     ? { component: RouterLink, to }
     : { href };
 

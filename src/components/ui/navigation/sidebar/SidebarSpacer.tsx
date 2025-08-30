@@ -1,5 +1,5 @@
-import { type ComponentPropsWithoutRef } from "react";
 import { Box } from "@mui/material";
+import { type ComponentPropsWithoutRef } from "react";
 
 export default function SidebarSpacer({
   className,

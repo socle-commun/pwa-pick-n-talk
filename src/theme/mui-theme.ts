@@ -1,12 +1,13 @@
 /**
  * MUI Theme Configuration
- * 
+ *
  * This file creates MUI themes that integrate with the existing theme system
  * while preserving all 16 theme variants (light/dark × 4 daltonism types × normal/high contrast)
  */
 
-import { createTheme, type Theme } from '@mui/material/styles';
-import type { DaltonismMode, ThemeMode, FontSize, HighContrastMode } from '@/utils/theme';
+import { createTheme, type Theme } from "@mui/material/styles";
+
+import type { DaltonismMode, ThemeMode, FontSize, HighContrastMode } from "@/utils/theme";
 
 export interface ThemeOptions {
   themeMode: ThemeMode;
@@ -19,9 +20,9 @@ export interface ThemeOptions {
  * Font size scale mappings (same as existing system)
  */
 const FONT_SIZE_SCALES: Record<FontSize, number> = {
-  'normal': 1.0,
-  'large': 1.125,
-  'extra-large': 1.25
+  "normal": 1.0,
+  "large": 1.125,
+  "extra-large": 1.25
 };
 
 /**
@@ -30,7 +31,7 @@ const FONT_SIZE_SCALES: Record<FontSize, number> = {
 export function createAppTheme(options: ThemeOptions): Theme {
   const { themeMode, fontSize } = options;
   const fontScale = FONT_SIZE_SCALES[fontSize];
-  
+
   // Base theme configuration
   const theme = createTheme({
     palette: {
@@ -38,31 +39,31 @@ export function createAppTheme(options: ThemeOptions): Theme {
       // We'll use CSS variables for colors to maintain compatibility
       // with the existing 16-theme system
       primary: {
-        main: 'var(--interactive-primary)',
+        main: "var(--interactive-primary)",
       },
       secondary: {
-        main: 'var(--interactive-secondary)',
+        main: "var(--interactive-secondary)",
       },
       background: {
-        default: 'var(--bg-primary)',
-        paper: 'var(--bg-secondary)',
+        default: "var(--bg-primary)",
+        paper: "var(--bg-secondary)",
       },
       text: {
-        primary: 'var(--text-primary)',
-        secondary: 'var(--text-secondary)',
+        primary: "var(--text-primary)",
+        secondary: "var(--text-secondary)",
       },
       error: {
-        main: 'var(--error-primary)',
+        main: "var(--error-primary)",
       },
       warning: {
-        main: 'var(--warning-primary)',
+        main: "var(--warning-primary)",
       },
       success: {
-        main: 'var(--success-primary)',
+        main: "var(--success-primary)",
       },
     },
     typography: {
-      fontFamily: '"Nunito", "Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: "\"Nunito\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
       fontSize: 14 * fontScale,
       // Scale all font variants by the accessibility scale
       h1: {
@@ -95,8 +96,8 @@ export function createAppTheme(options: ThemeOptions): Theme {
       MuiButton: {
         styleOverrides: {
           root: {
-            textTransform: 'none', // No automatic uppercase
-            borderRadius: '0.5rem', // Match our border radius
+            textTransform: "none", // No automatic uppercase
+            borderRadius: "0.5rem", // Match our border radius
             fontWeight: 500,
           },
         },
@@ -105,16 +106,16 @@ export function createAppTheme(options: ThemeOptions): Theme {
         styleOverrides: {
           root: {
             // Use our CSS variables for consistency
-            '& .MuiOutlinedInput-root': {
-              backgroundColor: 'var(--bg-secondary)',
-              '& fieldset': {
-                borderColor: 'var(--border-primary)',
+            "& .MuiOutlinedInput-root": {
+              backgroundColor: "var(--bg-secondary)",
+              "& fieldset": {
+                borderColor: "var(--border-primary)",
               },
-              '&:hover fieldset': {
-                borderColor: 'var(--border-focus)',
+              "&:hover fieldset": {
+                borderColor: "var(--border-focus)",
               },
-              '&.Mui-focused fieldset': {
-                borderColor: 'var(--border-focus)',
+              "&.Mui-focused fieldset": {
+                borderColor: "var(--border-focus)",
               },
             },
           },
@@ -123,8 +124,8 @@ export function createAppTheme(options: ThemeOptions): Theme {
       MuiPaper: {
         styleOverrides: {
           root: {
-            backgroundColor: 'var(--bg-secondary)',
-            borderRadius: '0.5rem',
+            backgroundColor: "var(--bg-secondary)",
+            borderRadius: "0.5rem",
           },
         },
       },

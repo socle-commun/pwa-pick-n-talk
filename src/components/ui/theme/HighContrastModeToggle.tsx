@@ -1,6 +1,6 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { useTranslation } from "react-i18next";
 import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 import { useHighContrastMode, type HighContrastMode } from "@/utils/theme";
 
@@ -32,7 +32,7 @@ export default function HighContrastModeToggle() {
           if (!mode) return value;
           const IconComponent = mode.icon;
           return (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <IconComponent style={{ width: 20, height: 20 }} />
               <span>{t(`settings.accessibility.high_contrast.${value}`, value)}</span>
             </Box>
@@ -43,7 +43,7 @@ export default function HighContrastModeToggle() {
           const IconComponent = mode.icon;
           return (
             <MenuItem key={mode.mode} value={mode.mode}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
                 <IconComponent style={{ width: 20, height: 20 }} />
                 <span>{t(`settings.accessibility.high_contrast.${mode.mode}`, mode.mode)}</span>
               </Box>

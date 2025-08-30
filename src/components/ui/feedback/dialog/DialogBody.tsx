@@ -6,8 +6,8 @@ export default function DialogBody({
   ...props
 }: React.ComponentPropsWithoutRef<"div"> & { sx?: any }) {
   return (
-    <Box 
-      {...props} 
+    <Box
+      {...props}
       className={className}
       sx={{
         mt: 3,

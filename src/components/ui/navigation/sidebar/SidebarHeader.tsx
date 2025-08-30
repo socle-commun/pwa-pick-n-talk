@@ -1,5 +1,5 @@
-import { type ComponentPropsWithoutRef } from "react";
 import { Box } from "@mui/material";
+import { type ComponentPropsWithoutRef } from "react";
 
 export default function SidebarHeader({
   className,
@@ -11,12 +11,12 @@ export default function SidebarHeader({
       {...props}
       className={className}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         borderBottom: 1,
-        borderColor: 'divider',
+        borderColor: "divider",
         p: 2,
-        '& > * + *': {
+        "& > * + *": {
           mt: 1.25,
         },
         ...sx

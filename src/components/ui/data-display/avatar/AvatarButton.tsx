@@ -1,5 +1,6 @@
 import { IconButton } from "@mui/material";
 import { forwardRef } from "react";
+
 import { Avatar } from "@/components/ui/data-display";
 
 type AvatarButtonProps = {
@@ -29,13 +30,13 @@ export default forwardRef<HTMLButtonElement, AvatarButtonProps>(
     ref
   ) {
     const baseStyles = {
-      borderRadius: square ? 2 : '50%',
+      borderRadius: square ? 2 : "50%",
       padding: 0,
-      minWidth: 'auto',
-      '&:focus': {
+      minWidth: "auto",
+      "&:focus": {
         outline: 2,
         outlineOffset: 2,
-        outlineColor: 'primary.main',
+        outlineColor: "primary.main",
       },
       ...sx
     };

@@ -1,6 +1,6 @@
+import { Check as CheckIcon } from "@mui/icons-material";
 import { MenuItem, type MenuItemProps } from "@mui/material";
 import { forwardRef, type ReactNode } from "react";
-import { Check as CheckIcon } from "@mui/icons-material";
 
 export interface ListboxOptionProps extends Omit<MenuItemProps, "children" | "value"> {
   children?: ReactNode;
@@ -39,13 +39,13 @@ export default forwardRef<HTMLLIElement, ListboxOptionProps>(
         {...props}
       >
         {selected && (
-          <CheckIcon 
-            sx={{ 
-              fontSize: 16, 
+          <CheckIcon
+            sx={{
+              fontSize: 16,
               marginRight: 0.5,
-              color: (theme: any) => 
+              color: (theme: any) =>
                 selected ? theme.palette.primary.contrastText : theme.palette.text.secondary
-            }} 
+            }}
           />
         )}
         {children}

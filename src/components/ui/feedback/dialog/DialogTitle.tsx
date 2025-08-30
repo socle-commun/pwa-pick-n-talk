@@ -16,10 +16,10 @@ export default function DialogTitle({
     <MuiDialogTitle
       className={className}
       sx={{
-        fontSize: { xs: '1.125rem', sm: '1rem' },
+        fontSize: { xs: "1.125rem", sm: "1rem" },
         lineHeight: 1.5,
         fontWeight: 600,
-        textWrap: 'balance',
+        textWrap: "balance",
         p: 0,
         mb: 2,
         ...sx

@@ -19,7 +19,7 @@ export default function Checkbox({
       color={color}
       className={className}
       sx={{
-        '&.MuiCheckbox-root': {
+        "&.MuiCheckbox-root": {
           padding: 1,
         },
         ...sx

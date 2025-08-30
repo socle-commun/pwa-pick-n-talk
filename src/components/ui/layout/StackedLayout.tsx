@@ -1,3 +1,4 @@
+import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import {
   Drawer,
   IconButton,
@@ -5,7 +6,6 @@ import {
   // useTheme, // TODO: For responsive sidebar
   // useMediaQuery, // TODO: For responsive sidebar
 } from "@mui/material";
-import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import { useState, type PropsWithChildren } from "react";
 
 function MobileSidebar({
@@ -19,24 +19,24 @@ function MobileSidebar({
       open={open}
       onClose={close}
       sx={{
-        display: { lg: 'none' },
-        '& .MuiDrawer-paper': {
+        display: { lg: "none" },
+        "& .MuiDrawer-paper": {
           width: 320,
-          maxWidth: '80vw',
+          maxWidth: "80vw",
           p: 1,
         },
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          height: '100%',
-          flexDirection: 'column',
+          display: "flex",
+          height: "100%",
+          flexDirection: "column",
           borderRadius: 2,
-          backgroundColor: 'background.paper',
+          backgroundColor: "background.paper",
           boxShadow: 3,
           border: 1,
-          borderColor: 'divider',
+          borderColor: "divider",
         }}
       >
         <Box sx={{ px: 2, pt: 1.5, mb: -1.5 }}>
@@ -66,11 +66,11 @@ export default function StackedLayout({
   return (
     <Box
       sx={{
-        position: 'relative',
-        display: 'flex',
-        minHeight: '100vh',
-        width: '100%',
-        flexDirection: 'column',
+        position: "relative",
+        display: "flex",
+        minHeight: "100vh",
+        width: "100%",
+        flexDirection: "column",
       }}
     >
       {/* Sidebar on mobile */}
@@ -82,12 +82,12 @@ export default function StackedLayout({
       <Box
         component="header"
         sx={{
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
           px: 2,
         }}
       >
-        <Box sx={{ py: 1.25, display: { lg: 'none' } }}>
+        <Box sx={{ py: 1.25, display: { lg: "none" } }}>
           <IconButton
             onClick={() => setShowSidebar(true)}
             aria-label="Open navigation"
@@ -103,9 +103,9 @@ export default function StackedLayout({
       <Box
         component="main"
         sx={{
-          display: 'flex',
+          display: "flex",
           flex: 1,
-          flexDirection: 'column',
+          flexDirection: "column",
           p: { lg: 1 },
         }}
       >
@@ -115,10 +115,10 @@ export default function StackedLayout({
             p: { xs: 3, lg: 0 },
             borderRadius: { lg: 2 },
             border: 1,
-            borderColor: 'divider',
+            borderColor: "divider",
           }}
         >
-          <Box sx={{ mx: 'auto', maxWidth: '72rem' }}>{children}</Box>
+          <Box sx={{ mx: "auto", maxWidth: "72rem" }}>{children}</Box>
         </Box>
       </Box>
     </Box>

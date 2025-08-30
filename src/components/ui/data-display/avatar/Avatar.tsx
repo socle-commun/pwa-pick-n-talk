@@ -25,13 +25,13 @@ export default function Avatar({
       alt={alt}
       className={className}
       sx={{
-        borderRadius: square ? 2 : '50%',
+        borderRadius: square ? 2 : "50%",
         border: 1,
-        borderColor: 'divider',
-        fontSize: '48px',
+        borderColor: "divider",
+        fontSize: "48px",
         fontWeight: 500,
-        textTransform: 'uppercase',
-        userSelect: 'none',
+        textTransform: "uppercase",
+        userSelect: "none",
         ...sx
       }}
       {...props}

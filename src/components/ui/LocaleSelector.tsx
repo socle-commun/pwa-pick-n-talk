@@ -1,6 +1,6 @@
 
-import { useTranslation } from "react-i18next";
 import { MenuItem, Select, FormControl, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface Language {
   code: string;
@@ -59,16 +59,16 @@ export default function LocaleSelector({
           renderValue={(value) => {
             const lang = SUPPORTED_LANGUAGES.find(l => l.code === value);
             return (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <span style={{ fontSize: '1rem' }}>{lang?.flag}</span>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <span style={{ fontSize: "1rem" }}>{lang?.flag}</span>
               </Box>
             );
           }}
         >
           {SUPPORTED_LANGUAGES.map((language) => (
             <MenuItem key={language.code} value={language.code}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <span style={{ fontSize: '1.25rem' }}>{language.flag}</span>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                <span style={{ fontSize: "1.25rem" }}>{language.flag}</span>
                 <span>{t(`language.selector.${getLanguageKey(language.code)}`)}</span>
               </Box>
             </MenuItem>
@@ -87,17 +87,17 @@ export default function LocaleSelector({
         renderValue={(value) => {
           const lang = SUPPORTED_LANGUAGES.find(l => l.code === value);
           return (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <span style={{ fontSize: '1.25rem' }}>{lang?.flag}</span>
-              <span>{t(`language.selector.${getLanguageKey(lang?.code || 'en')}`)}</span>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+              <span style={{ fontSize: "1.25rem" }}>{lang?.flag}</span>
+              <span>{t(`language.selector.${getLanguageKey(lang?.code || "en")}`)}</span>
             </Box>
           );
         }}
       >
         {SUPPORTED_LANGUAGES.map((language) => (
           <MenuItem key={language.code} value={language.code}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <span style={{ fontSize: '1.25rem' }}>{language.flag}</span>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+              <span style={{ fontSize: "1.25rem" }}>{language.flag}</span>
               <span>{t(`language.selector.${getLanguageKey(language.code)}`)}</span>
             </Box>
           </MenuItem>

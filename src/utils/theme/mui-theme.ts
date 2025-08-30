@@ -1,5 +1,6 @@
-import { createTheme, alpha } from '@mui/material/styles';
-import type { ThemeMode, DaltonismMode, HighContrastMode } from '@/utils/theme';
+import { createTheme, alpha } from "@mui/material/styles";
+
+import type { ThemeMode, DaltonismMode, HighContrastMode } from "@/utils/theme";
 
 // CSS Custom Property Mappings
 const getCSSVarColor = (varName: string) => `var(--${varName})`;
@@ -7,43 +8,43 @@ const getCSSVarColor = (varName: string) => `var(--${varName})`;
 // Base theme configuration
 const baseThemeOptions = {
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
     h1: {
-      fontSize: '2.5rem',
+      fontSize: "2.5rem",
       fontWeight: 700,
       lineHeight: 1.2,
     },
     h2: {
-      fontSize: '2rem',
+      fontSize: "2rem",
       fontWeight: 600,
       lineHeight: 1.3,
     },
     h3: {
-      fontSize: '1.75rem',
+      fontSize: "1.75rem",
       fontWeight: 600,
       lineHeight: 1.4,
     },
     h4: {
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
       fontWeight: 600,
       lineHeight: 1.4,
     },
     h5: {
-      fontSize: '1.25rem',
+      fontSize: "1.25rem",
       fontWeight: 600,
       lineHeight: 1.5,
     },
     h6: {
-      fontSize: '1.125rem',
+      fontSize: "1.125rem",
       fontWeight: 600,
       lineHeight: 1.5,
     },
     body1: {
-      fontSize: '1rem',
+      fontSize: "1rem",
       lineHeight: 1.6,
     },
     body2: {
-      fontSize: '0.875rem',
+      fontSize: "0.875rem",
       lineHeight: 1.6,
     },
   },
@@ -55,7 +56,7 @@ const baseThemeOptions = {
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none' as const,
+          textTransform: "none" as const,
           fontWeight: 500,
         },
       },
@@ -63,7 +64,7 @@ const baseThemeOptions = {
     MuiTextField: {
       styleOverrides: {
         root: {
-          '& .MuiOutlinedInput-root': {
+          "& .MuiOutlinedInput-root": {
             borderRadius: 8,
           },
         },
@@ -88,100 +89,100 @@ const baseThemeOptions = {
 
 // Light theme palette using CSS variables
 const lightPalette = {
-  mode: 'light' as const,
+  mode: "light" as const,
   background: {
-    default: getCSSVarColor('bg-primary'),
-    paper: getCSSVarColor('bg-secondary'),
+    default: getCSSVarColor("bg-primary"),
+    paper: getCSSVarColor("bg-secondary"),
   },
   text: {
-    primary: getCSSVarColor('text-primary'),
-    secondary: getCSSVarColor('text-secondary'),
+    primary: getCSSVarColor("text-primary"),
+    secondary: getCSSVarColor("text-secondary"),
   },
   primary: {
-    main: getCSSVarColor('interactive-primary'),
-    dark: getCSSVarColor('interactive-hover'),
+    main: getCSSVarColor("interactive-primary"),
+    dark: getCSSVarColor("interactive-hover"),
   },
   secondary: {
-    main: getCSSVarColor('interactive-secondary'),
+    main: getCSSVarColor("interactive-secondary"),
   },
   error: {
-    main: getCSSVarColor('error-primary'),
-    light: getCSSVarColor('error-secondary'),
+    main: getCSSVarColor("error-primary"),
+    light: getCSSVarColor("error-secondary"),
   },
   warning: {
-    main: getCSSVarColor('warning-primary'),
-    light: getCSSVarColor('warning-secondary'),
+    main: getCSSVarColor("warning-primary"),
+    light: getCSSVarColor("warning-secondary"),
   },
   info: {
-    main: getCSSVarColor('info-primary'),
-    light: getCSSVarColor('info-secondary'),
+    main: getCSSVarColor("info-primary"),
+    light: getCSSVarColor("info-secondary"),
   },
   success: {
-    main: getCSSVarColor('success-primary'),
-    light: getCSSVarColor('success-secondary'),
+    main: getCSSVarColor("success-primary"),
+    light: getCSSVarColor("success-secondary"),
   },
-  divider: getCSSVarColor('border-primary'),
+  divider: getCSSVarColor("border-primary"),
   action: {
-    hover: alpha(getCSSVarColor('interactive-primary'), 0.04),
-    selected: alpha(getCSSVarColor('interactive-primary'), 0.08),
-    disabled: getCSSVarColor('interactive-disabled'),
+    hover: alpha(getCSSVarColor("interactive-primary"), 0.04),
+    selected: alpha(getCSSVarColor("interactive-primary"), 0.08),
+    disabled: getCSSVarColor("interactive-disabled"),
   },
 };
 
 // Dark theme palette using CSS variables
 const darkPalette = {
-  mode: 'dark' as const,
+  mode: "dark" as const,
   background: {
-    default: getCSSVarColor('bg-primary'),
-    paper: getCSSVarColor('bg-secondary'),
+    default: getCSSVarColor("bg-primary"),
+    paper: getCSSVarColor("bg-secondary"),
   },
   text: {
-    primary: getCSSVarColor('text-primary'),
-    secondary: getCSSVarColor('text-secondary'),
+    primary: getCSSVarColor("text-primary"),
+    secondary: getCSSVarColor("text-secondary"),
   },
   primary: {
-    main: getCSSVarColor('interactive-primary'),
-    dark: getCSSVarColor('interactive-hover'),
+    main: getCSSVarColor("interactive-primary"),
+    dark: getCSSVarColor("interactive-hover"),
   },
   secondary: {
-    main: getCSSVarColor('interactive-secondary'),
+    main: getCSSVarColor("interactive-secondary"),
   },
   error: {
-    main: getCSSVarColor('error-primary'),
-    light: getCSSVarColor('error-secondary'),
+    main: getCSSVarColor("error-primary"),
+    light: getCSSVarColor("error-secondary"),
   },
   warning: {
-    main: getCSSVarColor('warning-primary'),
-    light: getCSSVarColor('warning-secondary'),
+    main: getCSSVarColor("warning-primary"),
+    light: getCSSVarColor("warning-secondary"),
   },
   info: {
-    main: getCSSVarColor('info-primary'),
-    light: getCSSVarColor('info-secondary'),
+    main: getCSSVarColor("info-primary"),
+    light: getCSSVarColor("info-secondary"),
   },
   success: {
-    main: getCSSVarColor('success-primary'),
-    light: getCSSVarColor('success-secondary'),
+    main: getCSSVarColor("success-primary"),
+    light: getCSSVarColor("success-secondary"),
   },
-  divider: getCSSVarColor('border-primary'),
+  divider: getCSSVarColor("border-primary"),
   action: {
-    hover: alpha(getCSSVarColor('interactive-primary'), 0.08),
-    selected: alpha(getCSSVarColor('interactive-primary'), 0.12),
-    disabled: getCSSVarColor('interactive-disabled'),
+    hover: alpha(getCSSVarColor("interactive-primary"), 0.08),
+    selected: alpha(getCSSVarColor("interactive-primary"), 0.12),
+    disabled: getCSSVarColor("interactive-disabled"),
   },
 };
 
 // High contrast adjustments
 const getHighContrastOverrides = (isHighContrast: boolean) => {
   if (!isHighContrast) return {};
-  
+
   return {
     components: {
       MuiButton: {
         styleOverrides: {
           root: {
             borderWidth: 2,
-            '&:focus': {
-              outline: `3px solid ${getCSSVarColor('border-focus')}`,
+            "&:focus": {
+              outline: `3px solid ${getCSSVarColor("border-focus")}`,
               outlineOffset: 2,
             },
           },
@@ -190,10 +191,10 @@ const getHighContrastOverrides = (isHighContrast: boolean) => {
       MuiTextField: {
         styleOverrides: {
           root: {
-            '& .MuiOutlinedInput-root': {
+            "& .MuiOutlinedInput-root": {
               borderWidth: 2,
-              '&:focus-within': {
-                outline: `3px solid ${getCSSVarColor('border-focus')}`,
+              "&:focus-within": {
+                outline: `3px solid ${getCSSVarColor("border-focus")}`,
                 outlineOffset: 2,
               },
             },
@@ -211,12 +212,12 @@ export const createMuiTheme = (
   highContrastMode: HighContrastMode,
   fontSizeMode: number = 1
 ) => {
-  const isDark = themeMode === 'dark';
-  const isHighContrast = highContrastMode === 'high-contrast';
-  
+  const isDark = themeMode === "dark";
+  const isHighContrast = highContrastMode === "high-contrast";
+
   const palette = isDark ? darkPalette : lightPalette;
   const highContrastOverrides = getHighContrastOverrides(isHighContrast);
-  
+
   return createTheme({
     ...baseThemeOptions,
     palette,
@@ -261,4 +262,4 @@ export const createMuiTheme = (
 };
 
 // Default theme
-export const defaultTheme = createMuiTheme('light', 'default', 'normal', 1);
+export const defaultTheme = createMuiTheme("light", "default", "normal", 1);

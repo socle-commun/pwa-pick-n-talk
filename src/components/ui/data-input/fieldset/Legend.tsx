@@ -13,11 +13,11 @@ export default function Legend({
       {...props}
       className={className}
       sx={{
-        fontSize: { xs: '1rem', sm: '0.875rem' },
+        fontSize: { xs: "1rem", sm: "0.875rem" },
         lineHeight: 1.5,
         fontWeight: 600,
-        color: 'text.primary',
-        '&[data-disabled]': {
+        color: "text.primary",
+        "&[data-disabled]": {
           opacity: 0.5,
         },
         ...sx

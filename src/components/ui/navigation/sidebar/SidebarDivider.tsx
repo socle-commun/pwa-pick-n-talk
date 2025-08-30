@@ -1,5 +1,5 @@
-import { type ComponentPropsWithoutRef } from "react";
 import { Divider } from "@mui/material";
+import { type ComponentPropsWithoutRef } from "react";
 
 export default function SidebarDivider({
   className,
@@ -13,7 +13,7 @@ export default function SidebarDivider({
       sx={{
         my: 2,
         mx: { lg: -2 },
-        borderColor: 'divider',
+        borderColor: "divider",
         ...sx
       }}
     />

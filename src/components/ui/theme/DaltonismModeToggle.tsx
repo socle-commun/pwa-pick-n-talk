@@ -1,7 +1,7 @@
 import { EyeIcon } from "@heroicons/react/24/outline";
+import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
 
 import { useDaltonismMode, type DaltonismMode } from "@/utils/theme";
 
@@ -43,9 +43,9 @@ export default function DaltonismModeToggle(_props: DaltonismModeToggleProps) {
         renderValue={(value) => {
           const mode = DALTONISM_MODES.find(m => m.mode === value);
           return (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <EyeIcon style={{ width: 20, height: 20 }} />
-              <span style={{ fontSize: '1rem' }}>{mode?.icon}</span>
+              <span style={{ fontSize: "1rem" }}>{mode?.icon}</span>
               <span>{t(`accessibility.daltonism.options.${value === "default" ? "none" : value}.label`, value)}</span>
             </Box>
           );
@@ -53,10 +53,10 @@ export default function DaltonismModeToggle(_props: DaltonismModeToggleProps) {
       >
         {DALTONISM_MODES.map((mode) => (
           <MenuItem key={mode.mode} value={mode.mode}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <EyeIcon style={{ width: 20, height: 20 }} />
-              <span style={{ fontSize: '1rem' }}>{mode.icon}</span>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: "1rem" }}>{mode.icon}</span>
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
                 <span>{t(`accessibility.daltonism.options.${mode.mode === "default" ? "none" : mode.mode}.label`, mode.mode)}</span>
                 <ColorPreview daltonismType={mode.mode} />
               </Box>
@@ -64,16 +64,16 @@ export default function DaltonismModeToggle(_props: DaltonismModeToggleProps) {
           </MenuItem>
         ))}
       </Select>
-      
+
       {infoVisible && (
-        <Box sx={{ 
-          mt: 1, 
-          p: 1, 
-          bgcolor: 'info.main', 
-          color: 'info.contrastText', 
+        <Box sx={{
+          mt: 1,
+          p: 1,
+          bgcolor: "info.main",
+          color: "info.contrastText",
           borderRadius: 1,
-          fontSize: '0.75rem',
-          transition: 'opacity 0.3s'
+          fontSize: "0.75rem",
+          transition: "opacity 0.3s"
         }}>
           {t("settings.accessibility.daltonism.info", "Daltonism mode updated and colors previewed below.")}
         </Box>

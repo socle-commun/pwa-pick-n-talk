@@ -1,6 +1,6 @@
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
-import { useTranslation } from "react-i18next";
 import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 import { useThemeMode, type ThemeMode } from "@/utils/theme";
 
@@ -36,7 +36,7 @@ export default function ThemeModeToggle(_props: ThemeModeToggleProps) {
           if (!mode) return value;
           const IconComponent = mode.icon;
           return (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <IconComponent style={{ width: 20, height: 20 }} />
               <span>{t(`settings.theme.mode.${value}`, value)}</span>
             </Box>
@@ -47,7 +47,7 @@ export default function ThemeModeToggle(_props: ThemeModeToggleProps) {
           const IconComponent = mode.icon;
           return (
             <MenuItem key={mode.mode} value={mode.mode}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
                 <IconComponent style={{ width: 20, height: 20 }} />
                 <span>{t(`settings.theme.mode.${mode.mode}`, mode.mode)}</span>
               </Box>

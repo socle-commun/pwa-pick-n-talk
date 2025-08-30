@@ -1,5 +1,5 @@
-import { type ComponentPropsWithoutRef } from "react";
 import { Typography } from "@mui/material";
+import { type ComponentPropsWithoutRef } from "react";
 
 export default function SidebarLabel({
   className,
@@ -12,9 +12,9 @@ export default function SidebarLabel({
       {...props}
       className={className}
       sx={{
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
         ...sx
       }}
     />

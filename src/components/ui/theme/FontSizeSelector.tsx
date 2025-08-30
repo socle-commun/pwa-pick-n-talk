@@ -1,6 +1,6 @@
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
-import { useTranslation } from "react-i18next";
 import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 import { useFontSize, type FontSize } from "@/utils/theme";
 
@@ -33,7 +33,7 @@ export default function FontSizeSelector() {
           if (!option) return value;
           const IconComponent = option.icon;
           return (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <IconComponent style={{ width: 20, height: 20, transform: `scale(${option.scale})` }} />
               <span>{t(`settings.accessibility.font_size.${value}`, value)}</span>
             </Box>
@@ -44,10 +44,10 @@ export default function FontSizeSelector() {
           const IconComponent = option.icon;
           return (
             <MenuItem key={option.size} value={option.size}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
                 <IconComponent style={{ width: 20, height: 20, transform: `scale(${option.scale})` }} />
                 <span>{t(`settings.accessibility.font_size.${option.size}`, option.size)}</span>
-                <span style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                <span style={{ fontSize: "0.75rem", opacity: 0.7 }}>
                   ({Math.round(option.scale * 100)}%)
                 </span>
               </Box>

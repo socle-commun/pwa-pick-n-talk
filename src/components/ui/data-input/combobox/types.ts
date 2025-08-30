@@ -1,4 +1,4 @@
-import { type ComboboxProps as HeadlessComboboxProps } from "@headlessui/react";
+import { type AutocompleteProps } from "@mui/material";
 import { type ReactElement } from "react";
 
 export interface ComboboxProps<T> {
@@ -14,4 +14,4 @@ export interface ComboboxProps<T> {
 }
 
 export type ComboboxComponentProps<T> = ComboboxProps<T> &
-  Omit<HeadlessComboboxProps<T, false>, "as" | "multiple" | "children">;
+  Omit<AutocompleteProps<T, false, false, false>, "renderInput" | "options" | "children">;

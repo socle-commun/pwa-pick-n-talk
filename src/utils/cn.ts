@@ -11,15 +11,15 @@ export default function cn(...classes: ClassValue[]): string {
     for (const item of items) {
       if (Array.isArray(item)) {
         result.push(...flatten(item));
-      } else if (typeof item === 'string') {
+      } else if (typeof item === "string") {
         result.push(item);
       }
     }
     return result;
   };
-  
+
   return flatten(classes)
     .filter(Boolean)
-    .join(' ')
+    .join(" ")
     .trim();
 }

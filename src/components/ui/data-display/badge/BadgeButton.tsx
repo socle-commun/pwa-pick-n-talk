@@ -2,29 +2,29 @@ import { Chip } from "@mui/material";
 import React, { forwardRef } from "react";
 
 const colorMap = {
-  red: 'error',
-  orange: 'warning', 
-  amber: 'warning',
-  yellow: 'warning',
-  lime: 'success',
-  green: 'success',
-  emerald: 'success',
-  teal: 'info',
-  cyan: 'info',
-  sky: 'info',
-  blue: 'primary',
-  indigo: 'primary',
-  violet: 'secondary',
-  purple: 'secondary',
-  fuchsia: 'secondary',
-  pink: 'secondary',
-  rose: 'error',
-  zinc: 'default',
+  red: "error",
+  orange: "warning",
+  amber: "warning",
+  yellow: "warning",
+  lime: "success",
+  green: "success",
+  emerald: "success",
+  teal: "info",
+  cyan: "info",
+  sky: "info",
+  blue: "primary",
+  indigo: "primary",
+  violet: "secondary",
+  purple: "secondary",
+  fuchsia: "secondary",
+  pink: "secondary",
+  rose: "error",
+  zinc: "default",
 } as const;
 
-type BadgeButtonProps = { 
+type BadgeButtonProps = {
   color?: keyof typeof colorMap;
-  className?: string; 
+  className?: string;
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
@@ -46,15 +46,15 @@ export default forwardRef<HTMLDivElement, BadgeButtonProps>(
   ) {
     const baseStyles = {
       borderRadius: 1.5,
-      fontSize: { xs: '0.75rem', sm: '0.625rem' },
-      height: 'auto',
+      fontSize: { xs: "0.75rem", sm: "0.625rem" },
+      height: "auto",
       px: 0.75,
       py: 0.25,
       fontWeight: 500,
-      '&:focus': {
+      "&:focus": {
         outline: 2,
         outlineOffset: 2,
-        outlineColor: 'primary.main',
+        outlineColor: "primary.main",
       },
       ...sx
     };

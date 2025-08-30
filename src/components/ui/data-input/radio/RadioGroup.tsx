@@ -1,6 +1,6 @@
-import { 
+import {
   RadioGroup as MuiRadioGroup,
-  type RadioGroupProps as MuiRadioGroupProps 
+  type RadioGroupProps as MuiRadioGroupProps
 } from "@mui/material";
 import { Box } from "@mui/material";
 
@@ -20,18 +20,18 @@ export default function RadioGroup({
       data-slot="control"
       className={className}
       sx={{
-        '& > *': {
+        "& > *": {
           marginBottom: 3,
         },
-        '& [data-slot="label"]': {
-          fontWeight: 'normal',
+        "& [data-slot=\"label\"]": {
+          fontWeight: "normal",
         },
-        '&:has([data-slot="description"])': {
-          '& > *': {
+        "&:has([data-slot=\"description\"])": {
+          "& > *": {
             marginBottom: 6,
           },
-          '& [data-slot="label"]': {
-            fontWeight: 'medium',
+          "& [data-slot=\"label\"]": {
+            fontWeight: "medium",
           },
         },
         ...sx

@@ -19,7 +19,7 @@ export default function Radio({
       color={color}
       className={className}
       sx={{
-        '&.MuiRadio-root': {
+        "&.MuiRadio-root": {
           padding: 1,
         },
         ...sx

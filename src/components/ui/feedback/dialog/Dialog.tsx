@@ -8,15 +8,15 @@ import {
 import type { ReactNode } from "react";
 
 const sizeMap = {
-  xs: 'xs',
-  sm: 'sm', 
-  md: 'md',
-  lg: 'lg',
-  xl: 'xl',
-  '2xl': 'xl',
-  '3xl': 'xl',
-  '4xl': 'xl',
-  '5xl': 'xl',
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
+  "2xl": "xl",
+  "3xl": "xl",
+  "4xl": "xl",
+  "5xl": "xl",
 } as const;
 
 interface DialogProps {
@@ -38,7 +38,7 @@ export default function Dialog({
   ...props
 }: DialogProps) {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <MuiDialog
@@ -49,15 +49,15 @@ export default function Dialog({
       fullWidth
       className={className}
       sx={{
-        '& .MuiDialog-paper': {
-          borderRadius: { xs: '24px 24px 0 0', sm: 2 },
+        "& .MuiDialog-paper": {
+          borderRadius: { xs: "24px 24px 0 0", sm: 2 },
           p: { xs: 4, sm: 3 },
           margin: { xs: 0, sm: 2 },
-          maxHeight: { xs: 'calc(100% - 24px)', sm: 'calc(100% - 64px)' },
-          width: { xs: '100%', sm: 'auto' },
+          maxHeight: { xs: "calc(100% - 24px)", sm: "calc(100% - 64px)" },
+          width: { xs: "100%", sm: "auto" },
         },
-        '& .MuiBackdrop-root': {
-          backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        "& .MuiBackdrop-root": {
+          backgroundColor: "rgba(0, 0, 0, 0.25)",
         },
         ...sx
       }}

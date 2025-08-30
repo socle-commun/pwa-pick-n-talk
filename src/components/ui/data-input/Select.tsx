@@ -1,4 +1,4 @@
-import { 
+import {
   Select as MuiSelect,
   FormControl,
   type SelectProps as MuiSelectProps
@@ -25,7 +25,7 @@ export default forwardRef(function Select(
         variant="outlined"
         {...props}
         sx={{
-          '& .MuiOutlinedInput-root': {
+          "& .MuiOutlinedInput-root": {
             borderRadius: 2,
           },
           ...sx

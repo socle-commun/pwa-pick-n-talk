@@ -26,12 +26,10 @@ export default mergeConfig(
             // UI libraries (split by size and usage)
             "ui-mui": ["@mui/material", "@mui/icons-material"],
             "ui-emotion": ["@emotion/react", "@emotion/styled"],
-            "ui-headless": ["@headlessui/react"],
             "ui-icons": ["@heroicons/react"],
-            "ui-animations": ["framer-motion"],
             
             // Utilities
-            "utilities": ["clsx", "tailwind-merge"],
+            "utilities": [],
             
             // Database
             "database": ["dexie", "dexie-react-hooks"],

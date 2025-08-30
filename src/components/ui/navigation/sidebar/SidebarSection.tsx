@@ -10,8 +10,8 @@ export default function SidebarSection({
       {...props}
       className={className}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         gap: 0.25,
         ...sx
       }}

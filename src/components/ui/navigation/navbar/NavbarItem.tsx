@@ -24,42 +24,42 @@ export default forwardRef<HTMLButtonElement, NavbarItemProps>(
     ref
   ) {
   const baseStyles = {
-    position: 'relative',
-    display: 'flex',
+    position: "relative",
+    display: "flex",
     minWidth: 0,
-    alignItems: 'center',
+    alignItems: "center",
     gap: 1.5,
     borderRadius: 2,
     p: 1,
-    textAlign: 'left',
-    fontSize: { xs: '1rem', sm: '0.875rem' },
+    textAlign: "left",
+    fontSize: { xs: "1rem", sm: "0.875rem" },
     fontWeight: 500,
-    color: 'text.primary',
-    textTransform: 'none',
-    justifyContent: 'flex-start',
-    minHeight: 'auto',
-    '&:hover': {
-      backgroundColor: 'action.hover',
+    color: "text.primary",
+    textTransform: "none",
+    justifyContent: "flex-start",
+    minHeight: "auto",
+    "&:hover": {
+      backgroundColor: "action.hover",
     },
-    '&:active': {
-      backgroundColor: 'action.selected',
+    "&:active": {
+      backgroundColor: "action.selected",
     },
     ...sx
   };
 
   return (
-    <Box sx={{ position: 'relative' }} className={className}>
+    <Box sx={{ position: "relative" }} className={className}>
       {current && (
         <Box
           sx={{
-            position: 'absolute',
+            position: "absolute",
             left: 1,
             right: 1,
             bottom: -1.25,
             height: 0.25,
             borderRadius: 999,
-            backgroundColor: 'primary.main',
-            transition: 'all 0.2s ease-in-out',
+            backgroundColor: "primary.main",
+            transition: "all 0.2s ease-in-out",
           }}
         />
       )}
@@ -70,9 +70,9 @@ export default forwardRef<HTMLButtonElement, NavbarItemProps>(
           {...props}
           sx={{
             ...baseStyles,
-            textDecoration: 'none',
+            textDecoration: "none",
             ...(current && {
-              backgroundColor: 'action.selected',
+              backgroundColor: "action.selected",
               fontWeight: 600,
             }),
           }}
@@ -85,9 +85,9 @@ export default forwardRef<HTMLButtonElement, NavbarItemProps>(
           onClick={onClick}
           sx={{
             ...baseStyles,
-            cursor: onClick ? 'pointer' : 'default',
+            cursor: onClick ? "pointer" : "default",
             ...(current && {
-              backgroundColor: 'action.selected',
+              backgroundColor: "action.selected",
               fontWeight: 600,
             }),
           }}

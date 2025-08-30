@@ -1,6 +1,6 @@
-import { 
+import {
   FormControlLabel,
-  type FormControlLabelProps 
+  type FormControlLabelProps
 } from "@mui/material";
 import { Box } from "@mui/material";
 
@@ -22,24 +22,24 @@ export default function SwitchField({
       data-slot="field"
       className={className}
       sx={{
-        display: 'grid',
-        gridTemplateColumns: '1fr auto',
+        display: "grid",
+        gridTemplateColumns: "1fr auto",
         gap: { x: 8, y: 1 },
-        '& [data-slot="control"]': {
+        "& [data-slot=\"control\"]": {
           gridColumnStart: 2,
-          alignSelf: 'flex-start',
+          alignSelf: "flex-start",
           mt: { sm: 0.5 },
         },
-        '& [data-slot="label"]': {
+        "& [data-slot=\"label\"]": {
           gridColumnStart: 1,
           gridRowStart: 1,
         },
-        '& [data-slot="description"]': {
+        "& [data-slot=\"description\"]": {
           gridColumnStart: 1,
           gridRowStart: 2,
         },
-        '&:has([data-slot="description"]) [data-slot="label"]': {
-          fontWeight: 'medium',
+        "&:has([data-slot=\"description\"]) [data-slot=\"label\"]": {
+          fontWeight: "medium",
         },
         ...sx
       }}
@@ -51,9 +51,9 @@ export default function SwitchField({
         {...props}
         sx={{
           margin: 0,
-          alignItems: 'flex-start',
-          justifyContent: 'space-between',
-          width: '100%',
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          width: "100%",
         }}
       />
     </Box>

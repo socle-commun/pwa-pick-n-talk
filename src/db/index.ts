@@ -1,4 +1,5 @@
 import Dexie, { type PromiseExtended, type Table } from "dexie";
+
 import { type Binder } from "@/db/models";
 import { type Category } from "@/db/models";
 import { type History } from "@/db/models";

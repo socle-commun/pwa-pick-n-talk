@@ -1,36 +1,37 @@
 /**
  * MUI Button Component - Proof of Concept
- * 
+ *
  * This is a transitional component that bridges the gap between our existing Button API
  * and MUI's Button component while maintaining backward compatibility.
  */
 
-import { forwardRef, type ForwardedRef } from "react";
 import { Button as MuiButtonComponent, type ButtonProps as MuiButtonProps } from "@mui/material";
+import { forwardRef, type ForwardedRef } from "react";
+
+import TouchTarget from "@/components/ui/actions/TouchTarget";
 import { Link } from "@/components/ui/navigation";
 
 // Import TouchTarget for now to maintain compatibility
-import TouchTarget from "@/components/ui/actions/TouchTarget";
 
 // Color mapping from our existing system to MUI
-type Color = 'blue' | 'red' | 'green' | 'yellow' | 'purple' | 'gray' | 'zinc' | 'dark/zinc';
+type Color = "blue" | "red" | "green" | "yellow" | "purple" | "gray" | "zinc" | "dark/zinc";
 
-const colorToMuiVariant = (color?: Color): MuiButtonProps['color'] => {
+const colorToMuiVariant = (color?: Color): MuiButtonProps["color"] => {
   switch (color) {
-    case 'blue':
-      return 'primary';
-    case 'red':
-      return 'error';
-    case 'green':
-      return 'success';
-    case 'yellow':
-    case 'purple':
-      return 'secondary';
-    case 'gray':
-    case 'zinc':
-    case 'dark/zinc':
+    case "blue":
+      return "primary";
+    case "red":
+      return "error";
+    case "green":
+      return "success";
+    case "yellow":
+    case "purple":
+      return "secondary";
+    case "gray":
+    case "zinc":
+    case "dark/zinc":
     default:
-      return 'primary';
+      return "primary";
   }
 };
 
@@ -52,7 +53,7 @@ export default forwardRef<HTMLElement, ButtonProps>(function MuiButton(
   ref
 ) {
   // Determine MUI variant based on our props
-  const variant = outline ? 'outlined' : plain ? 'text' : 'contained';
+  const variant = outline ? "outlined" : plain ? "text" : "contained";
   const muiColor = colorToMuiVariant(color);
 
   if ("href" in props && props.href) {

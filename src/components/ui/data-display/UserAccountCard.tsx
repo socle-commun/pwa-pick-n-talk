@@ -40,11 +40,11 @@ export default function UserAccountCard({
   };
 
   return (
-    <Card 
-      sx={{ 
+    <Card
+      sx={{
         p: 2,
-        backgroundColor: (theme) => 
-          theme.palette.mode === 'dark' ? 'grey.800' : 'grey.50'
+        backgroundColor: (theme) =>
+          theme.palette.mode === "dark" ? "grey.800" : "grey.50"
       }}
     >
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>

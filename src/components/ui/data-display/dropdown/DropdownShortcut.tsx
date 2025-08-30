@@ -8,7 +8,7 @@ export interface DropdownShortcutProps extends Omit<ChipProps, "label"> {
 export default forwardRef<HTMLDivElement, DropdownShortcutProps>(
   function DropdownShortcut({ keys, ...props }, ref) {
     const keyString = Array.isArray(keys) ? keys.join("+") : keys;
-    
+
     return (
       <Chip
         ref={ref}

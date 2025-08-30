@@ -1,6 +1,6 @@
-import { 
+import {
   FormControlLabel,
-  type FormControlLabelProps 
+  type FormControlLabelProps
 } from "@mui/material";
 import { Box } from "@mui/material";
 
@@ -22,24 +22,24 @@ export default function RadioField({
       data-slot="field"
       className={className}
       sx={{
-        display: 'grid',
-        gridTemplateColumns: { xs: '1.125rem 1fr', sm: '1rem 1fr' },
+        display: "grid",
+        gridTemplateColumns: { xs: "1.125rem 1fr", sm: "1rem 1fr" },
         gap: { x: 4, y: 1 },
-        '& [data-slot="control"]': {
+        "& [data-slot=\"control\"]": {
           gridColumnStart: 1,
           gridRowStart: 1,
           mt: { xs: 0.75, sm: 1 },
         },
-        '& [data-slot="label"]': {
+        "& [data-slot=\"label\"]": {
           gridColumnStart: 2,
           gridRowStart: 1,
         },
-        '& [data-slot="description"]': {
+        "& [data-slot=\"description\"]": {
           gridColumnStart: 2,
           gridRowStart: 2,
         },
-        '&:has([data-slot="description"]) [data-slot="label"]': {
-          fontWeight: 'medium',
+        "&:has([data-slot=\"description\"]) [data-slot=\"label\"]": {
+          fontWeight: "medium",
         },
         ...sx
       }}
@@ -50,7 +50,7 @@ export default function RadioField({
         {...props}
         sx={{
           margin: 0,
-          alignItems: 'flex-start',
+          alignItems: "flex-start",
         }}
       />
     </Box>

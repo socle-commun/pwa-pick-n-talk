@@ -13,9 +13,9 @@ export default function Description({
       {...props}
       className={className}
       sx={{
-        fontSize: { xs: '1rem', sm: '0.875rem' },
+        fontSize: { xs: "1rem", sm: "0.875rem" },
         lineHeight: 1.5,
-        '&[data-disabled]': {
+        "&[data-disabled]": {
           opacity: 0.5,
         },
         ...sx

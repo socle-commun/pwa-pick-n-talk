@@ -1,3 +1,4 @@
+import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import {
   Drawer,
   IconButton,
@@ -5,7 +6,6 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import { useState, type PropsWithChildren, type ReactNode } from "react";
 
 function MobileSidebar({
@@ -19,24 +19,24 @@ function MobileSidebar({
       open={open}
       onClose={close}
       sx={{
-        display: { lg: 'none' },
-        '& .MuiDrawer-paper': {
+        display: { lg: "none" },
+        "& .MuiDrawer-paper": {
           width: 320,
-          maxWidth: '80vw',
+          maxWidth: "80vw",
           p: 1,
         },
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          height: '100%',
-          flexDirection: 'column',
+          display: "flex",
+          height: "100%",
+          flexDirection: "column",
           borderRadius: 2,
-          backgroundColor: 'background.paper',
+          backgroundColor: "background.paper",
           boxShadow: 3,
           border: 1,
-          borderColor: 'divider',
+          borderColor: "divider",
         }}
       >
         <Box sx={{ px: 2, pt: 1.5, mb: -1.5 }}>
@@ -61,24 +61,24 @@ export default function SidebarLayout({
 }: PropsWithChildren<{ navbar: ReactNode; sidebar: ReactNode }>) {
   const [showSidebar, setShowSidebar] = useState(false);
   const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <Box
       sx={{
-        position: 'relative',
-        display: 'flex',
-        minHeight: '100vh',
-        width: '100%',
-        backgroundColor: { xs: 'background.paper', lg: 'background.default' },
-        flexDirection: { xs: 'column', lg: 'row' },
+        position: "relative",
+        display: "flex",
+        minHeight: "100vh",
+        width: "100%",
+        backgroundColor: { xs: "background.paper", lg: "background.default" },
+        flexDirection: { xs: "column", lg: "row" },
       }}
     >
       {/* Sidebar on desktop */}
       {isLargeScreen && (
         <Box
           sx={{
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             bottom: 0,
             left: 0,
@@ -98,8 +98,8 @@ export default function SidebarLayout({
       <Box
         component="header"
         sx={{
-          display: { lg: 'none' },
-          alignItems: 'center',
+          display: { lg: "none" },
+          alignItems: "center",
           px: 2,
         }}
       >
@@ -119,11 +119,11 @@ export default function SidebarLayout({
       <Box
         component="main"
         sx={{
-          display: 'flex',
+          display: "flex",
           flex: 1,
-          flexDirection: 'column',
+          flexDirection: "column",
           pb: 1,
-          pl: { lg: '256px' },
+          pl: { lg: "256px" },
           pt: { lg: 1 },
           pr: { lg: 1 },
         }}
@@ -133,13 +133,13 @@ export default function SidebarLayout({
             flexGrow: 1,
             p: { xs: 3, lg: 5 },
             borderRadius: { lg: 2 },
-            backgroundColor: { lg: 'background.paper' },
+            backgroundColor: { lg: "background.paper" },
             boxShadow: { lg: 1 },
             border: { lg: 1 },
-            borderColor: { lg: 'divider' },
+            borderColor: { lg: "divider" },
           }}
         >
-          <Box sx={{ mx: 'auto', maxWidth: '72rem' }}>{children}</Box>
+          <Box sx={{ mx: "auto", maxWidth: "72rem" }}>{children}</Box>
         </Box>
       </Box>
     </Box>

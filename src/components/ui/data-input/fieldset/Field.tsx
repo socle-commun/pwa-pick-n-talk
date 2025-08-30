@@ -10,23 +10,23 @@ export default function Field({
       {...props}
       className={className}
       sx={{
-        '& > [data-slot="label"] + [data-slot="control"]': {
+        "& > [data-slot=\"label\"] + [data-slot=\"control\"]": {
           mt: 3,
         },
-        '& > [data-slot="label"] + [data-slot="description"]': {
+        "& > [data-slot=\"label\"] + [data-slot=\"description\"]": {
           mt: 1,
         },
-        '& > [data-slot="description"] + [data-slot="control"]': {
+        "& > [data-slot=\"description\"] + [data-slot=\"control\"]": {
           mt: 3,
         },
-        '& > [data-slot="control"] + [data-slot="description"]': {
+        "& > [data-slot=\"control\"] + [data-slot=\"description\"]": {
           mt: 3,
         },
-        '& > [data-slot="control"] + [data-slot="error"]': {
+        "& > [data-slot=\"control\"] + [data-slot=\"error\"]": {
           mt: 3,
         },
-        '& [data-slot="label"]': {
-          fontWeight: 'medium',
+        "& [data-slot=\"label\"]": {
+          fontWeight: "medium",
         },
         ...sx
       }}

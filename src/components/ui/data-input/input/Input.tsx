@@ -1,4 +1,4 @@
-import { 
+import {
   TextField,
   type TextFieldProps
 } from "@mui/material";
@@ -37,7 +37,7 @@ export default forwardRef(function Input(
       {...props}
       className={className}
       sx={{
-        '& .MuiOutlinedInput-root': {
+        "& .MuiOutlinedInput-root": {
           borderRadius: 2,
         },
         ...sx

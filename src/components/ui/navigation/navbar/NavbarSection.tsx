@@ -7,12 +7,12 @@ export default function NavbarSection({
   ...props
 }: ComponentPropsWithoutRef<"div"> & { sx?: any }) {
   return (
-    <Box 
-      {...props} 
+    <Box
+      {...props}
       className={className}
       sx={{
-        display: 'flex',
-        alignItems: 'center',
+        display: "flex",
+        alignItems: "center",
         gap: { xs: 1, sm: 3 },
         minWidth: 0,
         ...sx

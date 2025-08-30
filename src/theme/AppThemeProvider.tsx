@@ -1,14 +1,15 @@
 /**
  * MUI Theme Provider Integration
- * 
+ *
  * This component integrates MUI's ThemeProvider with our existing theme system,
  * preserving all 16 theme variants and accessibility settings.
  */
 
-import React, { useMemo } from 'react';
-import { ThemeProvider as MuiThemeProvider, CssBaseline } from '@mui/material';
-import { createMuiTheme } from '@/utils/theme/mui-theme';
-import { useThemeMode, useDaltonismMode, useFontSize, useHighContrastMode } from '@/utils/theme';
+import { ThemeProvider as MuiThemeProvider, CssBaseline } from "@mui/material";
+import React, { useMemo } from "react";
+
+import { useThemeMode, useDaltonismMode, useFontSize, useHighContrastMode } from "@/utils/theme";
+import { createMuiTheme } from "@/utils/theme/mui-theme";
 
 interface AppThemeProviderProps {
   children: React.ReactNode;
