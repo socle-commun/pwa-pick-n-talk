@@ -1,4 +1,4 @@
-import { Avatar as MuiAvatar, Box } from "@mui/material";
+import { Avatar as MuiAvatar } from "@mui/material";
 import { type ComponentPropsWithoutRef } from "react";
 
 type AvatarProps = {

@@ -1,17 +1,24 @@
-import cn from "@/utils/cn";
+import { Typography, type TypographyProps } from "@mui/material";
+
+type TextProps = TypographyProps<"p", { component?: "p" }>;
 
 export default function Text({
-  className,
+  children,
+  sx,
   ...props
-}: React.ComponentPropsWithoutRef<"p">) {
+}: TextProps) {
   return (
-    <p
-      data-slot="text"
-      className={cn(
-        className,
-        "text-base/6 text-zinc-500 sm:text-sm/6 dark:text-zinc-400"
-      )}
+    <Typography
+      component="p"
+      variant="body1"
+      sx={{
+        color: "text.secondary",
+        lineHeight: 1.5,
+        ...sx,
+      }}
       {...props}
-    />
+    >
+      {children}
+    </Typography>
   );
 }

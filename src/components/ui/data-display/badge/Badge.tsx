@@ -25,12 +25,14 @@ const colorMap = {
 type BadgeProps = { 
   color?: keyof typeof colorMap;
   sx?: any;
+  children?: React.ReactNode;
 };
 
 export default function Badge({
   color = "zinc",
   className,
   sx,
+  children,
   ...props
 }: BadgeProps & ComponentPropsWithoutRef<"span">) {
   return (
@@ -38,6 +40,7 @@ export default function Badge({
       size="small"
       variant="filled"
       color={colorMap[color] as any}
+      label={children}
       className={className}
       sx={{
         fontSize: { xs: '0.75rem', sm: '0.625rem' },

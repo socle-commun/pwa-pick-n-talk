@@ -94,10 +94,11 @@ export default function OnboardingFlow({
           <div className="flex items-center justify-between max-w-2xl mx-auto">
             {steps.map((step, index) => (
               <div key={step.key} className="flex items-center">
-                <div className={"flex items-center justify-center size-8 rounded-full text-sm font-medium",
+                <div className={`flex items-center justify-center size-8 rounded-full text-sm font-medium ${
                   index <= currentStepIndex
                     ? "bg-blue-600 text-white"
-                    : "bg-zinc-200 dark:bg-zinc-600 text-zinc-600 dark:text-zinc-400"}>
+                    : "bg-zinc-200 dark:bg-zinc-600 text-zinc-600 dark:text-zinc-400"
+                }`}>
                   {step.completed ? (
                     <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -106,17 +107,19 @@ export default function OnboardingFlow({
                     index + 1
                   )}
                 </div>
-                <span className={"ml-2 text-sm font-medium hidden sm:inline",
+                <span className={`ml-2 text-sm font-medium hidden sm:inline ${
                   index <= currentStepIndex
                     ? "text-blue-600 dark:text-blue-400"
-                    : "text-zinc-600 dark:text-zinc-400"}>
+                    : "text-zinc-600 dark:text-zinc-400"
+                }`}>
                   {step.title}
                 </span>
                 {index < steps.length - 1 && (
-                  <div className={"hidden sm:block mx-4 h-px w-12",
+                  <div className={`hidden sm:block mx-4 h-px w-12 ${
                     index < currentStepIndex
                       ? "bg-blue-600"
-                      : "bg-zinc-200 dark:bg-zinc-600"} />
+                      : "bg-zinc-200 dark:bg-zinc-600"
+                  }`} />
                 )}
               </div>
             ))}

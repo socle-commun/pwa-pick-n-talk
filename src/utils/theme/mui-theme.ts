@@ -55,7 +55,7 @@ const baseThemeOptions = {
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none',
+          textTransform: 'none' as const,
           fontWeight: 500,
         },
       },
@@ -171,7 +171,7 @@ const darkPalette = {
 };
 
 // High contrast adjustments
-const getHighContrastOverrides = (isHighContrast: boolean, isDark: boolean) => {
+const getHighContrastOverrides = (isHighContrast: boolean) => {
   if (!isHighContrast) return {};
   
   return {
@@ -207,7 +207,7 @@ const getHighContrastOverrides = (isHighContrast: boolean, isDark: boolean) => {
 // Create theme function
 export const createMuiTheme = (
   themeMode: ThemeMode,
-  daltonismMode: DaltonismMode,
+  _daltonismMode: DaltonismMode, // Currently unused but kept for future daltonism support
   highContrastMode: HighContrastMode,
   fontSizeMode: number = 1
 ) => {
@@ -215,7 +215,7 @@ export const createMuiTheme = (
   const isHighContrast = highContrastMode === 'high-contrast';
   
   const palette = isDark ? darkPalette : lightPalette;
-  const highContrastOverrides = getHighContrastOverrides(isHighContrast, isDark);
+  const highContrastOverrides = getHighContrastOverrides(isHighContrast);
   
   return createTheme({
     ...baseThemeOptions,

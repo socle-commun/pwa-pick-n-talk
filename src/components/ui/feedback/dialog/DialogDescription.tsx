@@ -1,5 +1,4 @@
 import { DialogContentText } from "@mui/material";
-import Text from "@/components/ui/typography/text/Text";
 
 interface DialogDescriptionProps {
   className?: string;
@@ -15,11 +14,12 @@ export default function DialogDescription({
 }: DialogDescriptionProps) {
   return (
     <DialogContentText
-      component={Text}
       className={className}
       sx={{
         mt: 1,
         textWrap: 'pretty',
+        color: 'text.secondary',
+        lineHeight: 1.5,
         ...sx
       }}
       {...props}

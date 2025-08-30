@@ -1,13 +1,22 @@
-import cn from "@/utils/cn";
+import { Typography, type TypographyProps } from "@mui/material";
 
 export default function Strong({
-  className,
+  children,
+  sx,
   ...props
-}: React.ComponentPropsWithoutRef<"strong">) {
+}: Omit<TypographyProps, "component" | "variant"> & React.ComponentPropsWithoutRef<"strong">) {
   return (
-    <strong
-      className={cn(className, "font-medium text-zinc-950 dark:text-white")}
+    <Typography
+      component="strong"
+      variant="inherit"
+      sx={{
+        fontWeight: 500,
+        color: "text.primary",
+        ...sx,
+      }}
       {...props}
-    />
+    >
+      {children}
+    </Typography>
   );
 }

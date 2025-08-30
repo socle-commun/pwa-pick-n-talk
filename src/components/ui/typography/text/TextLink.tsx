@@ -1,17 +1,37 @@
-import Link from "@/components/ui/navigation/Link";
-import cn from "@/utils/cn";
+import { Link, type LinkProps } from "@mui/material";
+import { Link as RouterLink } from "react-router";
+
+type TextLinkProps = LinkProps & {
+  to?: string;
+  href?: string;
+};
 
 export default function TextLink({
-  className,
+  to,
+  href,
+  children,
+  sx,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Link>) {
+}: TextLinkProps) {
+  const linkProps = to 
+    ? { component: RouterLink, to }
+    : { href };
+
   return (
     <Link
-      className={cn(
-        className,
-        "text-zinc-950 underline decoration-zinc-950/50 data-hover:decoration-zinc-950 dark:text-white dark:decoration-white/50 dark:data-hover:decoration-white"
-      )}
+      {...linkProps}
+      sx={{
+        color: "text.primary",
+        textDecoration: "underline",
+        textDecorationColor: "rgba(0, 0, 0, 0.5)",
+        "&:hover": {
+          textDecorationColor: "currentColor",
+        },
+        ...sx,
+      }}
       {...props}
-    />
+    >
+      {children}
+    </Link>
   );
 }

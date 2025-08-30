@@ -1,16 +1,30 @@
-import cn from "@/utils/cn";
+import { Typography, type TypographyProps } from "@mui/material";
 
 export default function Code({
-  className,
+  children,
+  sx,
   ...props
-}: React.ComponentPropsWithoutRef<"code">) {
+}: Omit<TypographyProps, "component" | "variant"> & React.ComponentPropsWithoutRef<"code">) {
   return (
-    <code
-      className={cn(
-        className,
-        "rounded-sm border border-zinc-950/10 bg-zinc-950/2.5 px-0.5 text-sm font-medium text-zinc-950 sm:text-[0.8125rem] dark:border-white/20 dark:bg-white/5 dark:text-white"
-      )}
+    <Typography
+      component="code"
+      variant="body2"
+      sx={{
+        fontFamily: "monospace",
+        fontSize: "0.875rem",
+        fontWeight: 500,
+        backgroundColor: "action.hover",
+        color: "text.primary",
+        px: 0.5,
+        py: 0.25,
+        borderRadius: 0.5,
+        border: "1px solid",
+        borderColor: "divider",
+        ...sx,
+      }}
       {...props}
-    />
+    >
+      {children}
+    </Typography>
   );
 }

@@ -18,7 +18,6 @@ import {
   DropdownLabel,
   DropdownMenu,
 } from "@/components/ui/data-display";
-import { NavbarItem } from "@/components/ui/navigation";
 import useUserActions from "@/utils/state/actions/_useUserActions";
 import { userAtom } from "@/utils/state/atoms";
 import getInitials from "@/utils/text/getInitials";
@@ -29,10 +28,10 @@ export default function AuthManager() {
 
   return user ? (
     <Dropdown>
-      <DropdownButton as={NavbarItem}>
+      <DropdownButton>
         <Avatar initials={getInitials(user.name ? user.name : "")} />
       </DropdownButton>
-      <DropdownMenu className="min-w-64" anchor="bottom end">
+      <DropdownMenu className="min-w-64">
         <DropdownItem href="/profile">
           <UserIcon />
           <DropdownLabel>Profile</DropdownLabel>

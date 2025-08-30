@@ -1,8 +1,8 @@
 import {
   Dialog as MuiDialog,
   DialogContent,
-  useTheme,
-  useMediaQuery,
+  // useTheme, // TODO: For responsive dialog sizing
+  // useMediaQuery, // TODO: For responsive dialog sizing
 } from "@mui/material";
 import { type ReactNode } from "react";
 

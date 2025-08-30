@@ -1,12 +1,11 @@
 import {
-  Dialog,
   Drawer,
   IconButton,
   Box,
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { MenuIcon, CloseIcon } from "@mui/icons-material";
+import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import { useState, type PropsWithChildren, type ReactNode } from "react";
 
 function MobileSidebar({

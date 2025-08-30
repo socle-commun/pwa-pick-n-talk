@@ -1,7 +1,7 @@
 import {
   Dialog as MuiDialog,
   DialogContent,
-  Backdrop,
+  // Backdrop, // TODO: Custom backdrop usage
   useTheme,
   useMediaQuery,
 } from "@mui/material";

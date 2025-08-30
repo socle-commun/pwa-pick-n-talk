@@ -9,11 +9,11 @@
  * - Accessible and responsive design
  */
 
+import { Card, CardContent, Box, Typography, Stack } from "@mui/material";
 import { type ReactNode } from "react";
 
 import { Button } from "@/components/ui/actions";
 import { type User, type Role } from "@/db/models";
-import cn from "@/utils/cn";
 
 interface UserAccountCardProps {
   user: User;
@@ -34,51 +34,63 @@ export default function UserAccountCard({
   editLabel,
   deleteLabel,
   getRoleDisplayName,
-  className,
 }: UserAccountCardProps) {
-  const getIconStyles = (role: Role) => {
-    return role === "caregiver"
-      ? "feature-primary-secondary dark:bg-[color:var(--feature-primary-primary)]/20 feature-primary-primary dark:feature-primary-text"
-      : "feature-secondary-secondary dark:bg-[color:var(--feature-secondary-primary)]/20 feature-secondary-primary dark:feature-secondary-text";
+  const getIconColor = (role: Role) => {
+    return role === "caregiver" ? "primary.main" : "secondary.main";
   };
 
   return (
-    <div
-      className={cn(
-        "flex items-center justify-between p-4 bg-zinc-50 dark:bg-zinc-800 rounded-lg",
-        className
-      )}
+    <Card 
+      sx={{ 
+        p: 2,
+        backgroundColor: (theme) => 
+          theme.palette.mode === 'dark' ? 'grey.800' : 'grey.50'
+      }}
     >
-      <div className="flex items-center gap-4">
-        <div className={cn(
-          "size-10 rounded-full flex items-center justify-center",
-          getIconStyles(user.role)
-        )}>
-          {icon}
-        </div>
-        <div>
-          <h3 className="font-medium text-zinc-900 dark:text-zinc-100">{user.name}</h3>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            {user.email} • {getRoleDisplayName(user.role)}
-          </p>
-        </div>
-      </div>
-      <div className="flex gap-2">
-        <Button
-          outline
-          onClick={() => onEdit(user)}
-          className="text-sm px-3 py-1"
-        >
-          {editLabel}
-        </Button>
-        <Button
-          color="red"
-          onClick={() => onDelete(user)}
-          className="text-sm px-3 py-1"
-        >
-          {deleteLabel}
-        </Button>
-      </div>
-    </div>
+      <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
+        <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Box
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: getIconColor(user.role),
+                color: "white",
+              }}
+            >
+              {icon}
+            </Box>
+            <Box>
+              <Typography variant="h6" sx={{ fontWeight: 500 }}>
+                {user.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {user.email} • {getRoleDisplayName(user.role)}
+              </Typography>
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={1}>
+            <Button
+              outline
+              onClick={() => onEdit(user)}
+              className="text-sm px-3 py-1"
+            >
+              {editLabel}
+            </Button>
+            <Button
+              color="red"
+              onClick={() => onDelete(user)}
+              className="text-sm px-3 py-1"
+            >
+              {deleteLabel}
+            </Button>
+          </Stack>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 }

@@ -1,11 +1,6 @@
 import { Button, Box } from "@mui/material";
 import { motion } from "framer-motion";
-import {
-  forwardRef,
-  type ComponentPropsWithoutRef,
-  type ForwardedRef,
-} from "react";
-import { Link } from "@/components/ui/navigation";
+import { forwardRef } from "react";
 
 interface NavbarItemProps {
   current?: boolean;
@@ -16,18 +11,19 @@ interface NavbarItemProps {
   sx?: any;
 }
 
-export default forwardRef(function NavbarItem(
-  {
-    current,
-    className,
-    children,
-    href,
-    onClick,
-    sx,
-    ...props
-  }: NavbarItemProps,
-  ref: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
-) {
+export default forwardRef<HTMLButtonElement, NavbarItemProps>(
+  function NavbarItem(
+    {
+      current,
+      className,
+      children,
+      href,
+      onClick,
+      sx,
+      ...props
+    },
+    ref
+  ) {
   const baseStyles = {
     position: 'relative',
     display: 'flex',
@@ -70,17 +66,17 @@ export default forwardRef(function NavbarItem(
       )}
       {href ? (
         <Button
-          component={Link}
+          component="a"
           href={href}
           {...props}
           sx={{
             ...baseStyles,
+            textDecoration: 'none',
             ...(current && {
               backgroundColor: 'action.selected',
               fontWeight: 600,
             }),
           }}
-          ref={ref}
         >
           {children}
         </Button>

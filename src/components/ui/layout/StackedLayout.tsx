@@ -2,10 +2,10 @@ import {
   Drawer,
   IconButton,
   Box,
-  useTheme,
-  useMediaQuery,
+  // useTheme, // TODO: For responsive sidebar
+  // useMediaQuery, // TODO: For responsive sidebar
 } from "@mui/material";
-import { MenuIcon, CloseIcon } from "@mui/icons-material";
+import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
 import { useState, type PropsWithChildren } from "react";
 
 function MobileSidebar({
@@ -60,8 +60,8 @@ export default function StackedLayout({
   children,
 }: PropsWithChildren<{ navbar: React.ReactNode; sidebar: React.ReactNode }>) {
   const [showSidebar, setShowSidebar] = useState(false);
-  const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
+  // const theme = useTheme();
+  // const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg')); // TODO: Use for responsive sidebar
 
   return (
     <Box

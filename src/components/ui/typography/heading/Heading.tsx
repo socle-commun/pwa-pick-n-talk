@@ -1,25 +1,30 @@
+import { Typography, type TypographyProps } from "@mui/material";
 import { type ComponentPropsWithoutRef } from "react";
-
-import cn from "@/utils/cn";
 
 type HeadingProps = {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
-} & ComponentPropsWithoutRef<"h1" | "h2" | "h3" | "h4" | "h5" | "h6">;
+} & Omit<TypographyProps, "variant"> & ComponentPropsWithoutRef<"h1" | "h2" | "h3" | "h4" | "h5" | "h6">;
 
 export default function Heading({
-  className,
   level = 1,
+  children,
+  sx,
   ...props
 }: HeadingProps) {
-  const Element: `h${typeof level}` = `h${level}`;
+  const variant = `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
   return (
-    <Element
+    <Typography
+      variant={variant}
+      component={variant}
+      sx={{
+        fontWeight: 600,
+        color: "text.primary",
+        ...sx,
+      }}
       {...props}
-      className={cn(
-        className,
-        "text-4xl font-semibold text-zinc-950 dark:text-white"
-      )}
-    />
+    >
+      {children}
+    </Typography>
   );
 }

@@ -1,4 +1,4 @@
-import { DialogTitle as MuiDialogTitle, Typography } from "@mui/material";
+import { DialogTitle as MuiDialogTitle } from "@mui/material";
 
 interface DialogTitleProps {
   className?: string;

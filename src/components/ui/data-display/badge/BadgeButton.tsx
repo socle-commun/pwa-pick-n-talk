@@ -1,6 +1,5 @@
-import { Chip, IconButton } from "@mui/material";
+import { Chip } from "@mui/material";
 import React, { forwardRef } from "react";
-import { Link } from "@/components/ui/navigation";
 
 const colorMap = {
   red: 'error',
@@ -32,63 +31,64 @@ type BadgeButtonProps = {
   sx?: any;
 };
 
-export default forwardRef(function BadgeButton(
-  {
-    color = "zinc",
-    className,
-    children,
-    href,
-    onClick,
-    sx,
-    ...props
-  }: BadgeButtonProps,
-  ref: React.ForwardedRef<HTMLElement>
-) {
-  const baseStyles = {
-    borderRadius: 1.5,
-    fontSize: { xs: '0.75rem', sm: '0.625rem' },
-    height: 'auto',
-    px: 0.75,
-    py: 0.25,
-    fontWeight: 500,
-    '&:focus': {
-      outline: 2,
-      outlineOffset: 2,
-      outlineColor: 'primary.main',
+export default forwardRef<HTMLDivElement, BadgeButtonProps>(
+  function BadgeButton(
+    {
+      color = "zinc",
+      className,
+      children,
+      href,
+      onClick,
+      sx,
+      ...props
     },
-    ...sx
-  };
+    ref
+  ) {
+    const baseStyles = {
+      borderRadius: 1.5,
+      fontSize: { xs: '0.75rem', sm: '0.625rem' },
+      height: 'auto',
+      px: 0.75,
+      py: 0.25,
+      fontWeight: 500,
+      '&:focus': {
+        outline: 2,
+        outlineOffset: 2,
+        outlineColor: 'primary.main',
+      },
+      ...sx
+    };
 
-  if (href) {
+    if (href) {
+      return (
+        <Chip
+          component="a"
+          href={href}
+          size="small"
+          variant="filled"
+          color={colorMap[color] as any}
+          label={children}
+          className={className}
+          clickable
+          sx={baseStyles}
+          {...props}
+        />
+      );
+    }
+
     return (
       <Chip
-        component={Link}
-        href={href}
         size="small"
         variant="filled"
         color={colorMap[color] as any}
         label={children}
         className={className}
-        clickable
+        clickable={!!onClick}
+        onClick={onClick}
         sx={baseStyles}
         {...props}
         ref={ref}
       />
     );
   }
-
-  return (
-    <Chip
-      size="small"
-      variant="filled"
-      color={colorMap[color] as any}
-      label={children}
-      className={className}
-      clickable={!!onClick}
-      onClick={onClick}
-      sx={baseStyles}
-      {...props}
-      ref={ref}
-    />
-  );
-});
+);
