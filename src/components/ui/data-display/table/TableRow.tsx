@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
 import { TableContext, TableRowContext } from "@/components/ui/data-display";
-
 import cn from "@/utils/cn";
 
 export default function TableRow({

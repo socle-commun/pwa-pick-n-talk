@@ -1,5 +1,4 @@
 import Link from "@/components/ui/navigation/Link";
-
 import cn from "@/utils/cn";
 
 export default function TextLink({

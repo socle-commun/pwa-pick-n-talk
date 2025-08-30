@@ -13,12 +13,11 @@
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Form, FormInput } from "@/components/ui/forms";
 import { Button } from "@/components/ui/actions";
+import { Form, FormInput } from "@/components/ui/forms";
 import { Heading } from "@/components/ui/typography";
-
-import { UserSchema, type User, type Role } from "@/db/models";
 import { db } from "@/db";
+import { UserSchema, type User, type Role } from "@/db/models";
 import cn from "@/utils/cn";
 
 // Form data schema for user creation/editing

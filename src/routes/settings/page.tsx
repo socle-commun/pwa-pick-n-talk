@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 
 import LocaleSelector from "@/components/ui/LocaleSelector";
-import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
 import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
-import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
 import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
+import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
+import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
 import cn from "@/utils/cn";
 
 export default function SettingsPage() {

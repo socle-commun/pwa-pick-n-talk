@@ -1,12 +1,11 @@
+import { DataInteractive } from "@headlessui/react";
 import {
   forwardRef,
   type ComponentPropsWithoutRef,
   type ForwardedRef,
 } from "react";
-
 import { NavLink } from "react-router";
 
-import { DataInteractive } from "@headlessui/react";
 
 export default forwardRef(function Link(
   props: { href: string } & ComponentPropsWithoutRef<"a">,

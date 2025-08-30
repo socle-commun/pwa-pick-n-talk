@@ -1,5 +1,5 @@
-import { type ReactElement } from "react";
 import { type ComboboxProps as HeadlessComboboxProps } from "@headlessui/react";
+import { type ReactElement } from "react";
 
 export interface ComboboxProps<T> {
   options: T[];

@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
-
 import AppProviders from "@/components/partials/global/AppProviders";
 import LazyRoute from "@/components/partials/global/LazyRoute";
 

@@ -4,7 +4,6 @@ import {
 } from "@headlessui/react";
 
 import Text from "@/components/ui/typography/text/Text";
-
 import cn from "@/utils/cn";
 
 export default function AlertDescription({

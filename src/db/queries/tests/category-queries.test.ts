@@ -2,6 +2,7 @@
  * Unit tests for category-queries.ts
  */
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+
 import "fake-indexeddb/auto";
 import { PickNTalkDB } from "../../index";
 import type { Category } from "../../models";

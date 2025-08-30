@@ -1,6 +1,6 @@
+import { LayoutGroup } from "framer-motion";
 import { useId } from "react";
 
-import { LayoutGroup } from "framer-motion";
 
 import cn from "@/utils/cn";
 

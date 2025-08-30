@@ -1,11 +1,11 @@
-import { type ReactNode } from "react";
-
 import {
   type DialogProps as HeadlessDialogProps,
   Dialog as HeadlessDialog,
   DialogBackdrop as HeadlessDialogBackdrop,
   DialogPanel as HeadlessDialogPanel,
 } from "@headlessui/react";
+import { type ReactNode } from "react";
+
 
 import cn from "@/utils/cn";
 

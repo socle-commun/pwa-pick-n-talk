@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
 import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from "@headlessui/react";
 import { ChevronDownIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 
-import { useHighContrastMode, type HighContrastMode } from "@/utils/theme";
 import cn from "@/utils/cn";
+import { useHighContrastMode, type HighContrastMode } from "@/utils/theme";
 
 const HIGH_CONTRAST_MODES: Array<{ mode: HighContrastMode; icon: typeof EyeIcon }> = [
   { mode: "normal", icon: EyeIcon },

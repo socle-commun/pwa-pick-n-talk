@@ -2,6 +2,7 @@
  * Unit tests for binder-queries.ts
  */
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+
 import "fake-indexeddb/auto";
 import { PickNTalkDB } from "../../index";
 import type { Binder } from "../../models";

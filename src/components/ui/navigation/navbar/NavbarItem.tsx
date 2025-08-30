@@ -1,19 +1,18 @@
 import {
+  type ButtonProps as HeadlessButtonProps,
+  Button as HeadlessButton,
+} from "@headlessui/react";
+import { motion } from "framer-motion";
+import {
   forwardRef,
   type ComponentPropsWithoutRef,
   type ForwardedRef,
 } from "react";
 
-import { motion } from "framer-motion";
 
-import {
-  type ButtonProps as HeadlessButtonProps,
-  Button as HeadlessButton,
-} from "@headlessui/react";
 
-import { Link } from "@/components/ui/navigation";
 import TouchTarget from "@/components/ui/actions/TouchTarget";
-
+import { Link } from "@/components/ui/navigation";
 import cn from "@/utils/cn";
 
 export default forwardRef(function NavbarItem(

@@ -1,5 +1,3 @@
-import { useAtom } from "jotai";
-
 import {
   UserIcon,
   Cog8ToothIcon,
@@ -7,6 +5,8 @@ import {
   LightBulbIcon,
   ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/20/solid";
+import { useAtom } from "jotai";
+
 
 import { Button } from "@/components/ui/actions";
 import {
@@ -19,11 +19,9 @@ import {
   DropdownMenu,
 } from "@/components/ui/data-display";
 import { NavbarItem } from "@/components/ui/navigation";
-
+import cn from "@/utils/cn";
 import useUserActions from "@/utils/state/actions/_useUserActions";
 import { userAtom } from "@/utils/state/atoms";
-
-import cn from "@/utils/cn";
 import getInitials from "@/utils/text/getInitials";
 
 export default function AuthManager() {

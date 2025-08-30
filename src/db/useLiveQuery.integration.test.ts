@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
 import { useLiveQuery } from "dexie-react-hooks";
+import { describe, it, expect } from "vitest";
 
 import { db } from "@/db";
 

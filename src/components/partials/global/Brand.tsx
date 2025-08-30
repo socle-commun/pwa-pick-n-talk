@@ -1,5 +1,4 @@
 import Logo from "@/components/partials/global/Logo";
-
 import cn from "@/utils/cn";
 
 export default function Brand() {

@@ -1,9 +1,9 @@
+import Brand from "@/components/partials/global/Brand";
 import Sidebar from "@/components/ui/navigation/sidebar/Sidebar";
 import SidebarBody from "@/components/ui/navigation/sidebar/SidebarBody";
 import SidebarHeader from "@/components/ui/navigation/sidebar/SidebarHeader";
 import SidebarSection from "@/components/ui/navigation/sidebar/SidebarSection";
 
-import Brand from "@/components/partials/global/Brand";
 
 export default function NavBar() {
   return (

@@ -4,11 +4,12 @@
  */
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { vi, describe, it, expect, beforeEach } from "vitest";
 import { MemoryRouter } from "react-router";
+import { vi, describe, it, expect, beforeEach } from "vitest";
+
+import { db } from "@/db";
 
 import WelcomeStep from "./WelcomeStep";
-import { db } from "@/db";
 
 // Mock react-i18next
 const mockT = vi.fn((key: string, defaultValue?: string) => defaultValue || key);

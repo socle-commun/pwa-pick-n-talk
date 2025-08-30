@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/actions";
 import { Form, FormInput } from "@/components/ui/forms";
 import { ProfileEditSchema, type ProfileEditFormData } from "@/db/models/schemas/auth";
-
 import cn from "@/utils/cn";
 
 export default function ProfilePage() {

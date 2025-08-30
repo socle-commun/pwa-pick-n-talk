@@ -2,6 +2,7 @@
  * User CRUD and edge case tests for PickNTalkDB
  */
 import { vi, describe, it, expect, beforeAll, afterAll } from "vitest";
+
 import "fake-indexeddb/auto";
 import { PickNTalkDB } from "../index";
 

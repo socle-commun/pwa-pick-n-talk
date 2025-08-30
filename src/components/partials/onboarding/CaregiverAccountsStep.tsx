@@ -10,18 +10,17 @@
  * - Real-time saving to users table via DexieJS
  */
 
+import { useLiveQuery } from "dexie-react-hooks";
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useLiveQuery } from "dexie-react-hooks";
 
-import { Button } from "@/components/ui/actions";
-import { Heading } from "@/components/ui/typography";
-import { AccountTypeButton } from "@/components/ui/data-input";
-import { UserAccountCard } from "@/components/ui/data-display";
 import { UserForm } from "@/components/partials/forms";
-
-import { type User, type Role } from "@/db/models";
+import { Button } from "@/components/ui/actions";
+import { UserAccountCard } from "@/components/ui/data-display";
+import { AccountTypeButton } from "@/components/ui/data-input";
+import { Heading } from "@/components/ui/typography";
 import { db } from "@/db";
+import { type User, type Role } from "@/db/models";
 import cn from "@/utils/cn";
 
 interface CaregiverAccountsStepProps {

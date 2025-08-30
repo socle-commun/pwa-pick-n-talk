@@ -1,8 +1,7 @@
 import { useContext, useState, type ComponentPropsWithoutRef } from "react";
 
-import { Link } from "@/components/ui/navigation";
 import { TableContext, TableRowContext } from "@/components/ui/data-display";
-
+import { Link } from "@/components/ui/navigation";
 import cn from "@/utils/cn";
 
 export default function TableCell({

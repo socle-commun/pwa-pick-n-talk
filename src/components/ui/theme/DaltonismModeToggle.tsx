@@ -1,9 +1,11 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
 import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from "@headlessui/react";
 import { ChevronDownIcon, EyeIcon } from "@heroicons/react/24/outline";
-import { useDaltonismMode, type DaltonismMode } from "@/utils/theme";
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 import cn from "@/utils/cn";
+import { useDaltonismMode, type DaltonismMode } from "@/utils/theme";
+
 import { ColorPreview } from "./ColorPreview";
 
 const DALTONISM_MODES: Array<{ mode: DaltonismMode; icon: string }> = [
