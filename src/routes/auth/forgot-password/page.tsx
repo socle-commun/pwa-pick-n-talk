@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/actions";
 import { Form, FormInput } from "@/components/ui/forms";
 import { Link } from "@/components/ui/navigation";
 import { ForgotPasswordSchema, type ForgotPasswordFormData } from "@/db/models/schemas/auth";
-import cn from "@/utils/cn";
 
 export default function ForgotPasswordPage() {
   const { t } = useTranslation();
@@ -20,7 +19,7 @@ export default function ForgotPasswordPage() {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
-          <Logo className={cn("size-16")} />
+          <Logo className={"size-16"} />
           <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight">
             {t("auth.forgot_password.title", "Reset your password")}
           </h2>

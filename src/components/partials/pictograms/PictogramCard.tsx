@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/actions";
 import { type Pictogram } from "@/db/models";
-import cn from "@/utils/cn";
 import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
 import { getTranslation } from "@/utils/translation";
 
@@ -52,26 +51,20 @@ export default function PictogramCard({
 
   return (
     <div
-      className={cn(
-        "flex flex-col items-center p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md hover:shadow-lg transition-shadow",
-        "border border-zinc-200 dark:border-zinc-700",
-        className
-      )}
+      className={`flex flex-col items-center p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-zinc-200 dark:border-zinc-700 ${className || ""}`}
     >
       {/* Pictogram Image */}
-      <div className={cn("w-24 h-24 mb-3 flex items-center justify-center")}>
+      <div className={"w-24 h-24 mb-3 flex items-center justify-center"}>
         {imageUrl ? (
           <img
             src={imageUrl}
             alt={word}
-            className={cn("max-w-full max-h-full object-contain")}
+            className={"max-w-full max-h-full object-contain"}
           />
         ) : (
           <div
-            className={cn(
-              "w-full h-full bg-zinc-100 dark:bg-zinc-700 rounded-md",
-              "flex items-center justify-center text-zinc-400"
-            )}
+            className={"w-full h-full bg-zinc-100 dark:bg-zinc-700 rounded-md",
+              "flex items-center justify-center text-zinc-400"}
           >
             No Image
           </div>
@@ -80,9 +73,7 @@ export default function PictogramCard({
 
       {/* Word Label */}
       <div
-        className={cn(
-          "text-lg font-medium text-center mb-2 text-zinc-900 dark:text-zinc-100"
-        )}
+        className={"text-lg font-medium text-center mb-2 text-zinc-900 dark:text-zinc-100"}
       >
         {word}
       </div>
@@ -92,15 +83,13 @@ export default function PictogramCard({
         <Button
           onClick={handleSpeak}
           disabled={isSpeaking || !word}
-          className={cn(
-            "p-2 rounded-full",
+          className={"p-2 rounded-full",
             "hover:scale-105 active:scale-95 transition-transform duration-150",
-            isSpeaking ? "opacity-50 cursor-not-allowed" : ""
-          )}
+            isSpeaking ? "opacity-50 cursor-not-allowed" : "}
           color="blue"
         >
-          <SpeakerWaveIcon className={cn("size-5")} />
-          <span className={cn("sr-only")}>
+          <SpeakerWaveIcon className={"size-5"} />
+          <span className={"sr-only"}>
             {isSpeaking ? "Speaking..." : `Speak "${word}"`}
           </span>
         </Button>

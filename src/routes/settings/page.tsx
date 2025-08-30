@@ -5,14 +5,13 @@ import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
 import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
 import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
 import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
-import cn from "@/utils/cn";
 
 export default function SettingsPage() {
   const { t } = useTranslation();
 
   return (
     <div className="space-y-8">
-      <h1 className={cn("text-2xl font-bold text-primary")}>
+      <h1 className={"text-2xl font-bold text-primary"}>
         {t("Settings", "Settings")}
       </h1>
 

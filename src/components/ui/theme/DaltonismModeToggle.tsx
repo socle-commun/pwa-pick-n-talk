@@ -1,9 +1,8 @@
-import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from "@headlessui/react";
-import { ChevronDownIcon, EyeIcon } from "@heroicons/react/24/outline";
+import { EyeIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
 
-import cn from "@/utils/cn";
 import { useDaltonismMode, type DaltonismMode } from "@/utils/theme";
 
 import { ColorPreview } from "./ColorPreview";
@@ -19,74 +18,66 @@ interface DaltonismModeToggleProps {
   className?: string;
 }
 
-export default function DaltonismModeToggle({ className }: DaltonismModeToggleProps) {
+export default function DaltonismModeToggle(_props: DaltonismModeToggleProps) {
   const { t } = useTranslation();
   const { daltonismMode, setDaltonismMode } = useDaltonismMode();
-  const currentMode = DALTONISM_MODES.find(m => m.mode === daltonismMode) || DALTONISM_MODES[0];
   const [infoVisible, setInfoVisible] = React.useState(false);
 
+  const handleDaltonismChange = (event: any) => {
+    const newMode = event.target.value as DaltonismMode;
+    setDaltonismMode(newMode);
+    setInfoVisible(true);
+    setTimeout(() => setInfoVisible(false), 2500);
+  };
+
   return (
-    <div className={cn("relative", className)}>
-      <label className="block text-sm font-medium text-secondary mb-2">
+    <FormControl fullWidth size="small">
+      <InputLabel id="daltonism-mode-label">
         {t("settings.accessibility.daltonism.label", "Daltonism Support")}
-      </label>
-      <Combobox
+      </InputLabel>
+      <Select
+        labelId="daltonism-mode-label"
         value={daltonismMode}
-        onChange={(value) => {
-          if (value) {
-            setDaltonismMode(value);
-            setInfoVisible(true);
-            setTimeout(() => setInfoVisible(false), 2500);
-          }
+        onChange={handleDaltonismChange}
+        label={t("settings.accessibility.daltonism.label", "Daltonism Support")}
+        renderValue={(value) => {
+          const mode = DALTONISM_MODES.find(m => m.mode === value);
+          return (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <EyeIcon style={{ width: 20, height: 20 }} />
+              <span style={{ fontSize: '1rem' }}>{mode?.icon}</span>
+              <span>{t(`accessibility.daltonism.options.${value === "default" ? "none" : value}.label`, value)}</span>
+            </Box>
+          );
         }}
       >
-        <ComboboxButton className="relative w-full cursor-pointer rounded-lg border border-primary bg-secondary py-2 pl-3 pr-10 text-left shadow-sm focus:border-focus focus:outline-none focus:ring-1 focus:ring-focus">
-          <div className="flex items-center gap-3">
-            <EyeIcon className="h-5 w-5 text-secondary" />
-            <span className="text-lg">{currentMode.icon}</span>
-            <span className="font-medium text-primary">
-              {t(`accessibility.daltonism.options.${daltonismMode === "default" ? "none" : daltonismMode}.label`, daltonismMode)}
-            </span>
-            <ColorPreview daltonismType={daltonismMode} className="ml-2" />
-          </div>
-          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-            <ChevronDownIcon className="h-5 w-5 text-secondary" />
-          </span>
-        </ComboboxButton>
-        <ComboboxOptions className="absolute z-10 mt-1 w-full overflow-auto rounded-md bg-secondary py-1 shadow-lg ring-1 ring-primary ring-opacity-5 focus:outline-none">
-          {DALTONISM_MODES.map((mode) => (
-            <ComboboxOption
-              key={mode.mode}
-              value={mode.mode}
-              className={({ active, selected }) =>
-                cn(
-                  "relative cursor-pointer select-none py-2 pl-3 pr-9 transition-colors",
-                  "hover:bg-interactive-primary hover:text-primary",
-                  active && "bg-interactive-primary text-primary",
-                  selected && "bg-interactive-primary font-semibold",
-                  "dark:hover:bg-white/10 dark:hover:text-inverse",
-                  active && "dark:bg-white/10 dark:text-inverse",
-                  selected && "dark:bg-white/10 dark:font-semibold"
-                )
-              }
-            >
-              {({ selected }) => (
-                <div className="flex items-center gap-3">
-                  <EyeIcon className="h-5 w-5" />
-                  <span className="text-lg">{mode.icon}</span>
-                  <span className={cn("font-medium", selected && "font-semibold")}>{t(`accessibility.daltonism.options.${mode.mode === "default" ? "none" : mode.mode}.label`, mode.mode)}</span>
-                  <ColorPreview daltonismType={mode.mode} className="ml-2" />
-                </div>
-              )}
-            </ComboboxOption>
-          ))}
-        </ComboboxOptions>
-      </Combobox>
+        {DALTONISM_MODES.map((mode) => (
+          <MenuItem key={mode.mode} value={mode.mode}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <EyeIcon style={{ width: 20, height: 20 }} />
+              <span style={{ fontSize: '1rem' }}>{mode.icon}</span>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                <span>{t(`accessibility.daltonism.options.${mode.mode === "default" ? "none" : mode.mode}.label`, mode.mode)}</span>
+                <ColorPreview daltonismType={mode.mode} />
+              </Box>
+            </Box>
+          </MenuItem>
+        ))}
+      </Select>
+      
       {infoVisible && (
-        <div className="mt-2 text-xs text-info bg-info/10 rounded px-2 py-1 transition-opacity duration-300">
+        <Box sx={{ 
+          mt: 1, 
+          p: 1, 
+          bgcolor: 'info.main', 
+          color: 'info.contrastText', 
+          borderRadius: 1,
+          fontSize: '0.75rem',
+          transition: 'opacity 0.3s'
+        }}>
           {t("settings.accessibility.daltonism.info", "Daltonism mode updated and colors previewed below.")}
-        </div>
+        </Box>
       )}
-    </div>
+    </FormControl>
   );
 }

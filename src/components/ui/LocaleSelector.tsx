@@ -1,14 +1,6 @@
 
-import {
-  Combobox,
-  ComboboxButton,
-  ComboboxOption,
-  ComboboxOptions,
-} from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useTranslation } from "react-i18next";
-
-import cn from "@/utils/cn";
+import { MenuItem, Select, FormControl, Box } from "@mui/material";
 
 interface Language {
   code: string;
@@ -37,12 +29,10 @@ const getLanguageKey = (code: string): string => {
 };
 
 interface LocaleSelectorProps {
-  className?: string;
   variant?: "compact" | "full";
 }
 
 export default function LocaleSelector({
-  className,
   variant = "full",
 }: LocaleSelectorProps) {
   const { t, i18n } = useTranslation();
@@ -51,85 +41,68 @@ export default function LocaleSelector({
     (lang) => lang.code === i18n.language
   ) || SUPPORTED_LANGUAGES[0];
 
-  const handleLanguageChange = (language: Language) => {
-    i18n.changeLanguage(language.code);
+  const handleLanguageChange = (event: any) => {
+    const selectedLanguage = SUPPORTED_LANGUAGES.find(lang => lang.code === event.target.value);
+    if (selectedLanguage) {
+      i18n.changeLanguage(selectedLanguage.code);
+    }
   };
 
   if (variant === "compact") {
     return (
-      <Combobox value={currentLanguage} onChange={handleLanguageChange}>
-        <div className={cn("relative", className)}>
-          <ComboboxButton className="flex items-center gap-1 sm:gap-2 rounded-lg border border-zinc-300 bg-white px-2 sm:px-3 py-2 text-sm shadow-sm hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700">
-            <span className="text-sm sm:text-lg">{currentLanguage.flag}</span>
-            <ChevronDownIcon className="h-3 w-3 sm:h-4 sm:w-4 text-zinc-400" />
-          </ComboboxButton>
-
-          <ComboboxOptions className="absolute right-0 z-10 mt-2 w-48 rounded-lg border border-zinc-200 bg-white py-1 shadow-lg focus:outline-none dark:border-zinc-600 dark:bg-zinc-800">
-            {SUPPORTED_LANGUAGES.map((language) => (
-              <ComboboxOption
-                key={language.code}
-                value={language}
-                className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm hover:bg-zinc-100 data-[focus]:bg-blue-100 data-[selected]:bg-blue-50 dark:text-white dark:hover:bg-zinc-700 dark:data-[focus]:bg-blue-900 dark:data-[selected]:bg-blue-900"
-              >
-                <span className="text-lg">{language.flag}</span>
+      <FormControl size="small" sx={{ minWidth: 120 }}>
+        <Select
+          value={currentLanguage.code}
+          onChange={handleLanguageChange}
+          variant="outlined"
+          size="small"
+          renderValue={(value) => {
+            const lang = SUPPORTED_LANGUAGES.find(l => l.code === value);
+            return (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <span style={{ fontSize: '1rem' }}>{lang?.flag}</span>
+              </Box>
+            );
+          }}
+        >
+          {SUPPORTED_LANGUAGES.map((language) => (
+            <MenuItem key={language.code} value={language.code}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <span style={{ fontSize: '1.25rem' }}>{language.flag}</span>
                 <span>{t(`language.selector.${getLanguageKey(language.code)}`)}</span>
-              </ComboboxOption>
-            ))}
-          </ComboboxOptions>
-        </div>
-      </Combobox>
+              </Box>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     );
   }
 
   return (
-    <div className={cn("space-y-2", className)}>
-      <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-        {t("language.selector.label")}
-      </label>
-
-      <Combobox value={currentLanguage} onChange={handleLanguageChange}>
-        <div className="relative">
-          <ComboboxButton className="relative w-full cursor-pointer rounded-lg border border-zinc-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-600 dark:bg-zinc-800">
-            <div className="flex items-center gap-3">
-              <span className="text-lg">{currentLanguage.flag}</span>
-              <span className="block truncate text-zinc-900 dark:text-white">
-                {t(`language.selector.${getLanguageKey(currentLanguage.code)}`)}
-              </span>
-            </div>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <ChevronDownIcon className="h-5 w-5 text-zinc-400" aria-hidden="true" />
-            </span>
-          </ComboboxButton>
-
-          <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-zinc-200 bg-white py-1 shadow-lg focus:outline-none dark:border-zinc-600 dark:bg-zinc-800">
-            {SUPPORTED_LANGUAGES.map((language) => (
-              <ComboboxOption
-                key={language.code}
-                value={language}
-                className="relative cursor-pointer select-none py-2 pl-3 pr-9 hover:bg-zinc-100 data-[focus]:bg-blue-100 data-[selected]:bg-blue-50 dark:text-white dark:hover:bg-zinc-700 dark:data-[focus]:bg-blue-900 dark:data-[selected]:bg-blue-900"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-lg">{language.flag}</span>
-                  <span className="block truncate font-normal">
-                    {t(`language.selector.${getLanguageKey(language.code)}`)}
-                  </span>
-                  {language.code === currentLanguage.code && (
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-blue-600">
-                      <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                  )}
-                </div>
-              </ComboboxOption>
-            ))}
-          </ComboboxOptions>
-        </div>
-      </Combobox>
-    </div>
+    <FormControl fullWidth>
+      <Select
+        value={currentLanguage.code}
+        onChange={handleLanguageChange}
+        variant="outlined"
+        renderValue={(value) => {
+          const lang = SUPPORTED_LANGUAGES.find(l => l.code === value);
+          return (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <span style={{ fontSize: '1.25rem' }}>{lang?.flag}</span>
+              <span>{t(`language.selector.${getLanguageKey(lang?.code || 'en')}`)}</span>
+            </Box>
+          );
+        }}
+      >
+        {SUPPORTED_LANGUAGES.map((language) => (
+          <MenuItem key={language.code} value={language.code}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <span style={{ fontSize: '1.25rem' }}>{language.flag}</span>
+              <span>{t(`language.selector.${getLanguageKey(language.code)}`)}</span>
+            </Box>
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/actions";
 import { Form, FormInput } from "@/components/ui/forms";
 import { BinderFormSchema, type BinderFormData } from "@/db/models/schemas/auth";
-import cn from "@/utils/cn";
 
 export default function BinderEditPage() {
   const { t } = useTranslation();
@@ -22,7 +21,7 @@ export default function BinderEditPage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-8">
-      <h1 className={cn("text-2xl font-bold text-zinc-900 dark:text-white")}>
+      <h1 className={"text-2xl font-bold text-zinc-900 dark:text-white"}>
         {t("binder.edit.title", "Edit Binder")}
       </h1>
 

@@ -1,4 +1,3 @@
-import cn from "@/utils/cn";
 
 export default function PrivacyPage() {
   return (

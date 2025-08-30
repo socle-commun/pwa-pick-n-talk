@@ -21,7 +21,6 @@ import { AccountTypeButton } from "@/components/ui/data-input";
 import { Heading } from "@/components/ui/typography";
 import { db } from "@/db";
 import { type User, type Role } from "@/db/models";
-import cn from "@/utils/cn";
 
 interface CaregiverAccountsStepProps {
   onContinue?: () => void;
@@ -100,7 +99,7 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
   };
 
   return (
-    <div className={cn("container mx-auto px-4 py-8 max-w-4xl", className)}>
+    <div className={`container mx-auto px-4 py-8 max-w-4xl ${className}`}>
       {/* Header Section */}
       <div className="text-center mb-8">
         <Heading level={1} className="text-3xl lg:text-4xl mb-4">

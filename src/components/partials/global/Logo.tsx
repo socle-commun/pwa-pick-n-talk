@@ -1,4 +1,3 @@
-import cn from "@/utils/cn";
 
 export default function Brand({ className }: { className?: string }) {
   return (
@@ -10,7 +9,7 @@ export default function Brand({ className }: { className?: string }) {
       data-testid="logo"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 200 200"
-      className={cn(className, "fill-current")}
+      className={`${className} fill-current`}
     >
       <path transform="translate(100 100)">
         <animate

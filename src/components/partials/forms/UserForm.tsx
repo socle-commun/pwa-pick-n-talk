@@ -18,7 +18,6 @@ import { Form, FormInput } from "@/components/ui/forms";
 import { Heading } from "@/components/ui/typography";
 import { db } from "@/db";
 import { UserSchema, type User, type Role } from "@/db/models";
-import cn from "@/utils/cn";
 
 // Form data schema for user creation/editing
 const UserFormSchema = UserSchema.partial({
@@ -115,7 +114,7 @@ export default function UserForm({
   };
 
   return (
-    <div className={cn("space-y-6", className)}>
+    <div className={`space-y-6 ${className}`}>
       <div className="flex items-center justify-between">
         <Heading level={3} className="text-lg font-medium">
           {isEditing

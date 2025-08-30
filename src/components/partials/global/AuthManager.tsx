@@ -19,7 +19,6 @@ import {
   DropdownMenu,
 } from "@/components/ui/data-display";
 import { NavbarItem } from "@/components/ui/navigation";
-import cn from "@/utils/cn";
 import useUserActions from "@/utils/state/actions/_useUserActions";
 import { userAtom } from "@/utils/state/atoms";
 import getInitials from "@/utils/text/getInitials";
@@ -63,7 +62,7 @@ export default function AuthManager() {
       </DropdownMenu>
     </Dropdown>
   ) : (
-    <div className={cn("flex items-center gap-2 max-lg:hidden")}>
+    <div className={"flex items-center gap-2 max-lg:hidden"}>
       <Button href="/auth/sign-up">Sign Up</Button>
       <Button href="/auth/sign-in" outline>
         Sign In

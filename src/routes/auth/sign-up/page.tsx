@@ -4,7 +4,6 @@ import Logo from "@/components/partials/global/Logo";
 import { Button } from "@/components/ui/actions";
 import { Form, FormInput } from "@/components/ui/forms";
 import { SignUpSchema, type SignUpFormData } from "@/db/models/schemas/auth";
-import cn from "@/utils/cn";
 import useUserActions from "@/utils/state/actions/_useUserActions";
 
 export default function SignUpPage() {
@@ -19,7 +18,7 @@ export default function SignUpPage() {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
-          <Logo className={cn("size-16")} />
+          <Logo className={"size-16"} />
           <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight">
             {t("auth.signup.title", "Create your account")}
           </h2>

@@ -1,7 +1,6 @@
 import { Component, type ReactNode } from "react";
 
 import { Button } from "@/components/ui";
-import cn from "@/utils/cn";
 
 interface Props {
   children: ReactNode;
@@ -34,11 +33,11 @@ export class DatabaseErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div className={cn("flex flex-col items-center justify-center p-8")}>
-            <div className={cn("text-red-600 dark:text-red-400 text-xl mb-2")}>
+          <div className={"flex flex-col items-center justify-center p-8"}>
+            <div className={"text-red-600 dark:text-red-400 text-xl mb-2"}>
               ⚠️ Something went wrong
             </div>
-            <div className={cn("text-zinc-600 dark:text-zinc-400 text-center")}>
+            <div className={"text-zinc-600 dark:text-zinc-400 text-center"}>
               Failed to load data from the database.
               <br />
               Please try refreshing the page.

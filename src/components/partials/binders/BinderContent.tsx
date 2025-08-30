@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { BinderHeader } from "@/components/partials/binders/BinderHeader";
 import { LoadingSpinner, ErrorFallback } from "@/components/ui/feedback";
 import { type Binder } from "@/db/models";
-import cn from "@/utils/cn";
 import { getTranslation } from "@/utils/translation";
 
 // Lazy load the PictogramsGrid component
@@ -36,7 +35,7 @@ export function BinderContent({ binder, uuid }: BinderContentProps) {
   const description = getTranslation(binder.properties, i18n.language, "description");
 
   return (
-    <div className={cn("min-h-full")}>
+    <div className={"min-h-full"}>
       <BinderHeader title={title} description={description} />
       <Suspense fallback={<LoadingSpinner message="Loading pictograms..." />}>
         <PictogramsGrid binderId={uuid} />
