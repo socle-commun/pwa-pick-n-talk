@@ -10,18 +10,17 @@
  * - Tutorial preparation
  */
 
+import { Button, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import Logo from "@/components/partials/global/Logo";
-import { Button, Typography } from "@mui/material";
 import LocaleSelector from "@/components/ui/LocaleSelector";
 import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
 import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
 import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
 import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
-
 import { db } from "@/db";
 import { type History, type Setting } from "@/db/models";
 

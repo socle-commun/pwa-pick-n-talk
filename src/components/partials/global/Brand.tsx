@@ -6,7 +6,7 @@ export default function Brand() {
       <Logo className={"size-7 sm:size-8 flex-shrink-0"} />
       <span className={"font-logo text-lg sm:text-2xl font-bold theme-text-primary truncate"}>Pick'n'Talk</span>
       <span
-        
+
       >
         {__APP_VERSION__}
       </span>

@@ -1,6 +1,6 @@
+import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@mui/material";
 import { Form, FormInput } from "@/components/ui/forms";
 import { ProfileEditSchema, type ProfileEditFormData } from "@/db/models/schemas/auth";
 
@@ -34,7 +34,7 @@ export default function ProfilePage() {
           schema={ProfileEditSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          
+
         >
           <FormInput
             name="name"
@@ -56,7 +56,7 @@ export default function ProfilePage() {
             </label>
             <select
               name="role"
-              
+
             >
               <option value="user">{t("profile.roles.user", "User")}</option>
               <option value="caregiver">{t("profile.roles.caregiver", "Caregiver")}</option>

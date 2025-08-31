@@ -1,9 +1,9 @@
 import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
 import { Divider } from "@mui/material";
+import { Button } from "@mui/material";
 import { type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@mui/material";
 import { db } from "@/db";
 import { type Binder } from "@/db/models";
 import { getTranslation } from "@/utils/translation";
@@ -29,7 +29,7 @@ export default function BinderCard({
     >
       <Button
         href={`/${binder.id}`}
-        sx={{ display: 'flex', flexDirection: 'column', gap: 1, backgroundColor: 'transparent' }}
+        sx={{ display: "flex", flexDirection: "column", gap: 1, backgroundColor: "transparent" }}
       >
         <div className={"text-2xl font-bold theme-text-primary"}>{title}</div>
         <div

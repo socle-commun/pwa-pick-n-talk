@@ -1,12 +1,12 @@
 
 import { Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import Logo from "@/components/partials/global/Logo";
-import { Typography } from "@mui/material";
 import { useBinders } from "@/hooks/useBinders";
 import { useIsEmptyDatabase } from "@/hooks/useIsEmptyDatabase";
 import { userAtom } from "@/utils/state/atoms";

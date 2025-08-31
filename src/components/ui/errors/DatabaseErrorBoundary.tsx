@@ -32,26 +32,26 @@ export class DatabaseErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              p: 4 
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              p: 4
             }}
           >
-            <Typography 
-              variant="h5" 
-              color="error" 
+            <Typography
+              variant="h5"
+              color="error"
               sx={{ mb: 1 }}
             >
               ⚠️ Something went wrong
             </Typography>
-            <Typography 
-              variant="body1" 
-              color="text.secondary" 
-              sx={{ textAlign: 'center', mb: 2 }}
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ textAlign: "center", mb: 2 }}
             >
               Failed to load data from the database.
               <br />

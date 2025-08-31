@@ -1,9 +1,9 @@
+import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import Logo from "@/components/partials/global/Logo";
-import { Button } from "@mui/material";
-import { Form, FormInput } from "@/components/ui/forms";
 import Link from "@/components/partials/navigation/Link";
+import { Form, FormInput } from "@/components/ui/forms";
 import { SignInSchema, type SignInFormData } from "@/db/models/schemas/auth";
 import useUserActions from "@/utils/state/actions/_useUserActions";
 
@@ -30,7 +30,7 @@ export default function SignInPage() {
             <Form<SignInFormData>
               schema={SignInSchema}
               onSubmit={handleSubmit}
-              
+
             >
               <FormInput
                 name="email"

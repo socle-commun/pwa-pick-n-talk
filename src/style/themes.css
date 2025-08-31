@@ -1,32 +1,8 @@
 /**
- * Theme System - All theme CSS files
- * This file imports all individual theme CSS files
+ * Theme System - TypeScript Migration
+ * CSS themes have been migrated to TypeScript theme definitions
+ * This file is kept for potential future CSS overrides if needed
  */
 
-/* Base theme - Light with default colors */
-@import './themes/light-default.css';
-
-/* Dark theme - Default colors */
-@import './themes/dark-default.css';
-
-/* Light theme - Daltonism variants */
-@import './themes/light-protanopia.css';
-@import './themes/light-deuteranopia.css';
-@import './themes/light-tritanopia.css';
-
-/* Dark theme - Daltonism variants */
-@import './themes/dark-protanopia.css';
-@import './themes/dark-deuteranopia.css';
-@import './themes/dark-tritanopia.css';
-
-/* High contrast themes */
-@import './themes/light-high-contrast.css';
-@import './themes/dark-high-contrast.css';
-
-/* High contrast daltonism variants */
-@import './themes/light-high-contrast-protanopia.css';
-@import './themes/light-high-contrast-deuteranopia.css';
-@import './themes/light-high-contrast-tritanopia.css';
-@import './themes/dark-high-contrast-protanopia.css';
-@import './themes/dark-high-contrast-deuteranopia.css';
-@import './themes/dark-high-contrast-tritanopia.css';
+/* All theme definitions are now in TypeScript files in src/theme/ */
+/* This provides better type safety and integration with MUI */

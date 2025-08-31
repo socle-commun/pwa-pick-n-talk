@@ -12,26 +12,26 @@ export function ErrorFallback({
   action
 }: ErrorFallbackProps) {
   return (
-    <Box 
-      sx={{ 
-        display: "flex", 
-        flexDirection: "column", 
-        alignItems: "center", 
-        justifyContent: "center", 
-        p: 4 
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        p: 4
       }}
     >
-      <Typography 
-        variant="h6" 
-        color="error" 
+      <Typography
+        variant="h6"
+        color="error"
         sx={{ mb: 1, textAlign: "center" }}
       >
         ⚠️ {title}
       </Typography>
       {description && (
-        <Typography 
-          variant="body2" 
-          color="text.secondary" 
+        <Typography
+          variant="body2"
+          color="text.secondary"
           sx={{ textAlign: "center", mb: 2 }}
         >
           {description}

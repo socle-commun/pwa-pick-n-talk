@@ -17,9 +17,9 @@
  */
 
 import { Card, CardContent, Box, Typography, Stack } from "@mui/material";
+import { Button } from "@mui/material";
 import { type ReactNode } from "react";
 
-import { Button } from "@mui/material";
 import { type User, type Role } from "@/db/models";
 
 interface UserAccountCardProps {
@@ -84,14 +84,14 @@ export default function UserAccountCard({
             <Button
               variant="outlined"
               onClick={() => onEdit(user)}
-              
+
             >
               {editLabel}
             </Button>
             <Button
               color="error"
               onClick={() => onDelete(user)}
-              
+
             >
               {deleteLabel}
             </Button>

@@ -1,6 +1,6 @@
+import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@mui/material";
 import { Form, FormInput } from "@/components/ui/forms";
 import { BinderFormSchema, type BinderFormData } from "@/db/models/schemas/auth";
 
@@ -30,7 +30,7 @@ export default function BinderEditPage() {
           schema={BinderFormSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          
+
         >
           <FormInput
             name="id"
@@ -52,11 +52,11 @@ export default function BinderEditPage() {
               type="checkbox"
               id="isFavorite"
               name="isFavorite"
-              
+
             />
             <label
               htmlFor="isFavorite"
-              
+
             >
               {t("binder.edit.is_favorite", "Mark as favorite")}
             </label>

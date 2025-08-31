@@ -4,9 +4,10 @@ import { Box } from "@mui/material";
 import AuthManager from "@/components/partials/global/AuthManager";
 import Brand from "@/components/partials/global/Brand";
 import LocaleSelector from "@/components/ui/LocaleSelector";
+
+import Link from "./Link";
 import Navbar from "./navbar/Navbar";
 import NavbarSection from "./navbar/NavbarSection";
-import Link from "./Link";
 
 export default function NavBar() {
   return (

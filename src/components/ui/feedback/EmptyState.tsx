@@ -14,13 +14,13 @@ export function EmptyState({
   action
 }: EmptyStateProps) {
   return (
-    <Box 
-      sx={{ 
-        display: "flex", 
-        flexDirection: "column", 
-        alignItems: "center", 
-        justifyContent: "center", 
-        p: 4 
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        p: 4
       }}
     >
       {icon && (
@@ -28,17 +28,17 @@ export function EmptyState({
           {icon}
         </Box>
       )}
-      <Typography 
-        variant="h6" 
-        color="text.secondary" 
+      <Typography
+        variant="h6"
+        color="text.secondary"
         sx={{ mb: 1, textAlign: "center" }}
       >
         {title}
       </Typography>
       {description && (
-        <Typography 
-          variant="body2" 
-          color="text.secondary" 
+        <Typography
+          variant="body2"
+          color="text.secondary"
           sx={{ textAlign: "center", mb: 2 }}
         >
           {description}

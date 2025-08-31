@@ -16,22 +16,22 @@ export function LoadingSpinner({
   };
 
   return (
-    <Box 
-      sx={{ 
-        display: "flex", 
-        alignItems: "center", 
-        justifyContent: "center", 
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         p: 4,
         flexDirection: "column",
         gap: 2
       }}
     >
-      <CircularProgress 
-        size={sizeMap[size]} 
+      <CircularProgress
+        size={sizeMap[size]}
         color="primary"
       />
-      <Typography 
-        variant="body2" 
+      <Typography
+        variant="body2"
         color="text.secondary"
       >
         {message}

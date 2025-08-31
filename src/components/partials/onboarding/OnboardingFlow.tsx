@@ -138,7 +138,7 @@ export default function OnboardingFlow({
           <div >
             <button
               onClick={handlePreviousStep}
-              
+
             >
               ← {t("onboarding.navigation.back", "Back")}
             </button>

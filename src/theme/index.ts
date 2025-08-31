@@ -5,4 +5,6 @@
  */
 
 export { AppThemeProvider } from "./AppThemeProvider";
-export { createAppTheme, type ThemeOptions } from "./mui-theme";
+export { createMuiTheme, getCurrentTheme } from "./mui-theme";
+export { allThemeVariants, getThemeVariantById } from "./theme-variants";
+export type { ColorTokens, ThemeVariant } from "./types";

@@ -10,10 +10,10 @@
  * - Automatic saving to database
  */
 
+import { Button, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button, Typography } from "@mui/material";
 import { Form, FormInput } from "@/components/ui/forms";
 import { db } from "@/db";
 import { UserSchema, type User, type Role } from "@/db/models";
@@ -135,7 +135,7 @@ export default function UserForm({
         schema={UserFormSchema}
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        
+
       >
         <div >
           <FormInput
@@ -188,7 +188,7 @@ export default function UserForm({
           <Button
             type="submit"
             disabled={isSaving}
-            
+
           >
             {(() => {
               if (isSaving) {
@@ -206,7 +206,7 @@ export default function UserForm({
               type="button"
               variant="outlined"
               onClick={onCancel}
-              
+
             >
               {t("forms.user.cancel", "Cancel")}
             </Button>

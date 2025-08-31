@@ -1,8 +1,8 @@
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
+import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@mui/material";
 import { type Pictogram } from "@/db/models";
 import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
 import { getTranslation } from "@/utils/translation";
@@ -63,7 +63,7 @@ export default function PictogramCard({
           />
         ) : (
           <div
-            
+
           >
             No Image
           </div>
@@ -83,7 +83,7 @@ export default function PictogramCard({
           onClick={handleSpeak}
           disabled={isSpeaking || !word}
           color="inherit"
-          
+
         >
           <SpeakerWaveIcon  />
           <span style={{ position: "absolute", left: "-9999px" }}>

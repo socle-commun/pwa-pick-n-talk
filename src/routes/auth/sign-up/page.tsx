@@ -1,7 +1,7 @@
+import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import Logo from "@/components/partials/global/Logo";
-import { Button } from "@mui/material";
 import { Form, FormInput } from "@/components/ui/forms";
 import { SignUpSchema, type SignUpFormData } from "@/db/models/schemas/auth";
 import useUserActions from "@/utils/state/actions/_useUserActions";
@@ -29,7 +29,7 @@ export default function SignUpPage() {
             <Form<SignUpFormData>
               schema={SignUpSchema}
               onSubmit={handleSubmit}
-              
+
             >
               <FormInput
                 name="name"

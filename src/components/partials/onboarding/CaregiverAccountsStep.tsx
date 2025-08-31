@@ -10,15 +10,13 @@
  * - Real-time saving to users table via DexieJS
  */
 
+import { Button, Card, CardContent, Box, Typography } from "@mui/material";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { UserForm } from "@/components/partials/forms";
-import { Button, Card, CardContent, Box, Typography } from "@mui/material";
 import UserAccountCard from "@/components/partials/user/UserAccountCard";
-
-
 import { db } from "@/db";
 import { type User, type Role } from "@/db/models";
 
@@ -113,24 +111,24 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
       {/* Account Type Selection */}
       {!showForm && (
         <div>
-          <Card 
-            sx={{ 
-              p: 3, 
-              border: '2px dashed',
-              borderColor: 'primary.main',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              '&:hover': {
-                borderColor: 'primary.dark',
-                backgroundColor: 'primary.light',
+          <Card
+            sx={{
+              p: 3,
+              border: "2px dashed",
+              borderColor: "primary.main",
+              cursor: "pointer",
+              transition: "all 0.2s",
+              "&:hover": {
+                borderColor: "primary.dark",
+                backgroundColor: "primary.light",
                 opacity: 0.8
               },
               mb: 2
             }}
             onClick={() => handleAddUser("caregiver")}
           >
-            <CardContent sx={{ textAlign: 'center', p: 0, '&:last-child': { pb: 0 } }}>
-              <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center', color: 'primary.main' }}>
+            <CardContent sx={{ textAlign: "center", p: 0, "&:last-child": { pb: 0 } }}>
+              <Box sx={{ mb: 2, display: "flex", justifyContent: "center", color: "primary.main" }}>
                 {getAccountTypeIcon("caregiver")}
               </Box>
               <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
@@ -142,23 +140,23 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
             </CardContent>
           </Card>
 
-          <Card 
-            sx={{ 
-              p: 3, 
-              border: '2px dashed',
-              borderColor: 'secondary.main',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              '&:hover': {
-                borderColor: 'secondary.dark',
-                backgroundColor: 'secondary.light',
+          <Card
+            sx={{
+              p: 3,
+              border: "2px dashed",
+              borderColor: "secondary.main",
+              cursor: "pointer",
+              transition: "all 0.2s",
+              "&:hover": {
+                borderColor: "secondary.dark",
+                backgroundColor: "secondary.light",
                 opacity: 0.8
               }
             }}
             onClick={() => handleAddUser("professional")}
           >
-            <CardContent sx={{ textAlign: 'center', p: 0, '&:last-child': { pb: 0 } }}>
-              <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center', color: 'secondary.main' }}>
+            <CardContent sx={{ textAlign: "center", p: 0, "&:last-child": { pb: 0 } }}>
+              <Box sx={{ mb: 2, display: "flex", justifyContent: "center", color: "secondary.main" }}>
                 {getAccountTypeIcon("professional")}
               </Box>
               <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
