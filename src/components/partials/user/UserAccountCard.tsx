@@ -18,6 +18,7 @@
 
 import { Card, CardContent, Box, Typography, Stack } from "@mui/material";
 import { Button } from "@mui/material";
+import { type SxProps, type Theme } from "@mui/material";
 import { type ReactNode } from "react";
 
 import { type User, type Role } from "@/db/models";
@@ -30,7 +31,7 @@ interface UserAccountCardProps {
   editLabel: string;
   deleteLabel: string;
   getRoleDisplayName: (role: Role) => string;
-  className?: string;
+  sx?: SxProps<Theme>;
 }
 
 export default function UserAccountCard({
@@ -41,6 +42,7 @@ export default function UserAccountCard({
   editLabel,
   deleteLabel,
   getRoleDisplayName,
+  sx,
 }: UserAccountCardProps) {
   const getIconColor = (role: Role) => {
     return role === "caregiver" ? "primary.main" : "secondary.main";
@@ -51,7 +53,8 @@ export default function UserAccountCard({
       sx={{
         p: 2,
         backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "grey.800" : "grey.50"
+          theme.palette.mode === "dark" ? "grey.800" : "grey.50",
+        ...sx
       }}
     >
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>

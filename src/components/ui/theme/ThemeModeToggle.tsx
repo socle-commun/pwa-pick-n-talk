@@ -10,7 +10,7 @@ const THEME_MODES: Array<{ mode: ThemeMode; icon: typeof SunIcon }> = [
 ];
 
 interface ThemeModeToggleProps {
-  // className removed since MUI handles styling
+  
 }
 
 export default function ThemeModeToggle(_props: ThemeModeToggleProps) {

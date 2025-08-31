@@ -55,12 +55,6 @@ describe("LocaleSelector", () => {
     expect(button).toHaveTextContent("English");
   });
 
-  it("applies custom className", () => {
-    const { container } = render(<LocaleSelector  />);
-
-    expect(container.firstChild).toHaveClass("custom-class");
-  });
-
   it("renders compact variant with correct styles", () => {
     render(<LocaleSelector variant="compact" />);
 

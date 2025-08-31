@@ -189,17 +189,4 @@ describe("WelcomeStep", () => {
       expect(skipButton.closest("a")).toHaveAttribute("href", "/binders");
     });
   });
-
-  describe("customization", () => {
-    it("should apply custom className", () => {
-      const customClass = "custom-welcome-class";
-      const { container } = render(
-        <TestWrapper>
-          <WelcomeStep className={customClass} />
-        </TestWrapper>
-      );
-
-      expect(container.querySelector(".custom-welcome-class")).toBeInTheDocument();
-    });
-  });
 });

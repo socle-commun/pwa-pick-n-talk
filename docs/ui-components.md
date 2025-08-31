@@ -355,11 +355,11 @@ type Size = 'xs' | 'sm' | 'base' | 'lg' | 'xl';
 
 ### Styling
 
-All components accept `className` for custom styling and use Tailwind CSS classes:
+All components use MUI's sx prop for styling with type-safe theming:
 
 ```typescript
-<Button className="w-full mt-4">Full Width Button</Button>
-<Input className="border-red-500">Error State Input</Input>
+<Button sx={{ width: '100%', mt: 2 }}>Full Width Button</Button>
+<TextField sx={{ borderColor: 'error.main' }}>Error State Input</TextField>
 ```
 
 ## Testing
@@ -498,23 +498,42 @@ When adding new components:
 Replace raw HTML elements with their component equivalents:
 
 ```typescript
-// Before
+// Before (deprecated)
 <button onClick={handleClick} className="px-4 py-2 bg-blue-500 text-white rounded">
   Click me
 </button>
 
-// After
-<Button color="blue" onClick={handleClick}>
+// After (MUI sx approach)
+<Button 
+  onClick={handleClick}
+  sx={{ 
+    px: 2, 
+    py: 1, 
+    bgcolor: 'primary.main', 
+    color: 'primary.contrastText',
+    borderRadius: 1 
+  }}
+>
   Click me
 </Button>
 ```
 
 ```typescript
-// Before
+// Before (deprecated)
 <input type="text" className="border border-gray-300 rounded px-3 py-2" />
 
-// After
-<Input type="text" />
+// After (MUI approach)
+<TextField 
+  variant="outlined" 
+  sx={{ 
+    '& .MuiOutlinedInput-root': {
+      borderColor: 'grey.300',
+      borderRadius: 1,
+      px: 1.5,
+      py: 1
+    }
+  }} 
+/>
 ```
 
 ### Import Updates

@@ -5,7 +5,7 @@
  * Uses MUI TextField with integrated form validation and error handling.
  */
 
-import { TextField } from "@mui/material";
+import { TextField, type SxProps, type Theme } from "@mui/material";
 import React, { forwardRef } from "react";
 
 import { useFormField } from "./hooks";
@@ -17,11 +17,11 @@ type FormInputProps = {
   type?: "email" | "number" | "password" | "search" | "tel" | "text" | "url";
   required?: boolean;
   disabled?: boolean;
-  className?: string;
-} & Omit<React.ComponentProps<typeof TextField>, "name" | "label" | "type" | "required" | "disabled" | "error" | "helperText" | "value" | "onChange" | "onBlur">;
+  sx?: SxProps<Theme>;
+} & Omit<React.ComponentProps<typeof TextField>, "name" | "label" | "type" | "required" | "disabled" | "error" | "helperText" | "value" | "onChange" | "onBlur" | "sx">;
 
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
-  ({ name, label, placeholder, type = "text", required, disabled, className, ...props }, ref) => {
+  ({ name, label, placeholder, type = "text", required, disabled, sx, ...props }, ref) => {
     const { value, error, setValue, validate, isInvalid } = useFormField(name);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,9 +43,10 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     };
 
     // Prepare the label with required indicator
-    const displayLabel = label ? (
-      required ? `${label} *` : label
-    ) : undefined;
+    let displayLabel: string | undefined = label;
+    if (label && required) {
+      displayLabel = `${label} *`;
+    }
 
     return (
       <TextField
@@ -61,7 +62,6 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         helperText={error?.message}
         required={required}
         disabled={disabled}
-        className={className}
         inputProps={{
           "data-testid": `${name}-input`,
           "data-invalid": isInvalid ? true : undefined,
@@ -108,6 +108,8 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
               color: "var(--error-primary)",
             },
           },
+          // Merge with custom sx prop
+          ...sx,
         }}
         {...props}
       />

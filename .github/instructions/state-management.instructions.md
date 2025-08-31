@@ -84,9 +84,16 @@ export default function AuthManager() {
   return user ? (
     <UserProfile user={user} onLogout={userActions.logout} />
   ) : (
-    <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
+    <Box sx={{ 
+      maxWidth: '28rem', 
+      mx: 'auto', 
+      p: 3, 
+      bgcolor: 'background.paper', 
+      borderRadius: 2, 
+      boxShadow: 1 
+    }}>
       <LoginForm onLogin={userActions.login} />
-    </div>
+    </Box>
   );
 }
 ```

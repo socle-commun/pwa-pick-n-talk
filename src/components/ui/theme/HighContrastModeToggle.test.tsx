@@ -42,12 +42,6 @@ describe("HighContrastModeToggle", () => {
     expect(screen.getByText("normal")).toBeInTheDocument();
   });
 
-  it("should apply custom className when provided", () => {
-    const { container } = render(<HighContrastModeToggle  />);
-
-    expect(container.firstChild).toHaveClass("custom-class");
-  });
-
   it("should have proper accessibility attributes", () => {
     render(<HighContrastModeToggle />);
 

@@ -10,7 +10,7 @@
  * - Automatic saving to database
  */
 
-import { Button, Typography } from "@mui/material";
+import { Button, Box, Typography, type SxProps, type Theme } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -40,7 +40,7 @@ interface UserFormProps {
   role: "caregiver" | "professional";
   onSaved?: (user: User) => void;
   onCancel?: () => void;
-  className?: string;
+  sx?: SxProps<Theme>;
 }
 
 export default function UserForm({
@@ -48,7 +48,7 @@ export default function UserForm({
   role,
   onSaved,
   onCancel,
-  className,
+  sx,
 }: UserFormProps) {
   const { t } = useTranslation();
   const [isSaving, setSaving] = useState(false);
@@ -113,8 +113,8 @@ export default function UserForm({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
-      <div >
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 3, ...sx }}>
+      <Box>
         <Typography variant="h5" component="h3" sx={{ mb: 1 }}>
           {isEditing
             ? t("forms.user.edit_title", "Edit {{role}}", { role: getRoleDisplayName(role) })
@@ -129,7 +129,7 @@ export default function UserForm({
             })}
           </p>
         )}
-      </div>
+      </Box>
 
       <Form<UserFormData>
         schema={UserFormSchema}
@@ -137,7 +137,7 @@ export default function UserForm({
         onSubmit={handleSubmit}
 
       >
-        <div >
+        <Box>
           <FormInput
             name="name"
             label={t("forms.user.name", "Full Name")}
@@ -154,7 +154,7 @@ export default function UserForm({
             autoComplete="email"
             placeholder={t("forms.user.email_placeholder", "Enter email address")}
           />
-        </div>
+        </Box>
 
         <FormInput
           name="password"
@@ -211,8 +211,8 @@ export default function UserForm({
               {t("forms.user.cancel", "Cancel")}
             </Button>
           )}
-        </div>
+        </Box>
       </Form>
-    </div>
+    </Box>
   );
 }

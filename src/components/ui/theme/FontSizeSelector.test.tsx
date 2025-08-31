@@ -79,12 +79,6 @@ describe("FontSizeSelector", () => {
     expect(icon).toHaveStyle({ transform: "scale(1.25)" });
   });
 
-  it("should support custom className", () => {
-    const { container } = render(<FontSizeSelector  />);
-
-    expect(container.firstChild).toHaveClass("custom-class");
-  });
-
   it("should display extra-large font size correctly", () => {
     mockUseFontSize.mockReturnValue({
       fontSize: "extra-large",
