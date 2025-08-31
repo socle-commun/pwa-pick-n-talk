@@ -19,7 +19,7 @@ export default function ForgotPasswordPage() {
     <>
       <div >
         <div >
-          <Logo className={"size-16"} />
+          <Logo sx={{ width: 64, height: 64 }} />
           <h2 >
             {t("auth.forgot_password.title", "Reset your password")}
           </h2>

@@ -18,7 +18,7 @@ export default function SignUpPage() {
     <>
       <div >
         <div >
-          <Logo className={"size-16"} />
+          <Logo sx={{ width: 64, height: 64 }} />
           <h2 >
             {t("auth.signup.title", "Create your account")}
           </h2>

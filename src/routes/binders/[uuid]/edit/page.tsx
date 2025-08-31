@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { Form, FormInput } from "@/components/ui/forms";
@@ -21,9 +21,9 @@ export default function BinderEditPage() {
 
   return (
     <div >
-      <h1 className={"text-2xl font-bold text-zinc-900 dark:text-white"}>
+      <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", mb: 4 }}>
         {t("binder.edit.title", "Edit Binder")}
-      </h1>
+      </Typography>
 
       <div >
         <Form<BinderFormData>

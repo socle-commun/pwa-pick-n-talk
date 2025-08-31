@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import LocaleSelector from "@/components/ui/LocaleSelector";
@@ -11,9 +12,9 @@ export default function SettingsPage() {
 
   return (
     <div >
-      <h1 className={"text-2xl font-bold text-primary"}>
+      <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", color: "primary.main", mb: 4 }}>
         {t("Settings", "Settings")}
-      </h1>
+      </Typography>
 
       <div >
         <div >

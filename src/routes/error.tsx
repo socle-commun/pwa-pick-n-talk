@@ -1,33 +1,45 @@
-import { Button } from "@mui/material";
-
-import Link from "@/components/partials/navigation/Link";
+import { Button, Box, Typography } from "@mui/material";
 
 export default function ErrorPage() {
   return (
     <>
-      <main
-        className={"grid place-items-center px-6 py-24 sm:py-32 lg:px-8"}
+            <Box
+        component="main"
+        sx={{
+          display: "grid",
+          placeItems: "center",
+          px: { xs: 3, lg: 4 },
+          py: { xs: 12, sm: 16 },
+        }}
       >
-        <div className={"text-center"}>
-          <p className={"text-3xl font-semibold"}>404</p>
-          <h1 >
+        <Box sx={{ textAlign: "center" }}>
+          <Typography variant="h3" sx={{ fontWeight: "semibold" }}>
+            404
+          </Typography>
+          <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
             Page not found
-          </h1>
-          <p
-
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 4 }}>
+            Sorry, we couldn't find the page you're looking for.
+          </Typography>
+          <Box
+            sx={{
+              mt: 5,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 3,
+            }}
           >
-            Sorry, we couldn’t find the page you’re looking for.
-          </p>
-          <div className={"mt-10 flex items-center justify-center gap-x-6"}>
             <Button href="/" variant="contained" color="primary">
               Go back home
             </Button>
-            <Link href="/support" className={"text-sm font-semibold"}>
+            <Button href="/support" variant="text" sx={{ fontSize: "sm", fontWeight: "semibold" }}>
               Contact support <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </div>
-        </div>
-      </main>
+            </Button>
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 }

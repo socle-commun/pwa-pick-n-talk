@@ -19,7 +19,7 @@ export default function SignInPage() {
     <>
       <div >
         <div >
-          <Logo className={"size-16"} />
+          <Logo sx={{ width: 64, height: 64 }} />
           <h2 >
             {t("auth.signin.title", "Sign in to your account")}
           </h2>
