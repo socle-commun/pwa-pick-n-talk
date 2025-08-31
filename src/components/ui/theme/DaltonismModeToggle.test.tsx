@@ -34,8 +34,8 @@ describe("DaltonismModeToggle", () => {
       { wrapper }
     );
 
-    const button = screen.getByRole("button");
-    await user.click(button);
+    const combobox = screen.getByRole("combobox");
+    await user.click(combobox);
 
     expect(screen.getByText("accessibility.daltonism.options.protanopia.label")).toBeInTheDocument();
   });
@@ -48,8 +48,8 @@ describe("DaltonismModeToggle", () => {
       { wrapper }
     );
 
-    const button = screen.getByRole("button");
-    await user.click(button);
+    const combobox = screen.getByRole("combobox");
+    await user.click(combobox);
 
     const protanopiaOption = screen.getByText("accessibility.daltonism.options.protanopia.label");
     await user.click(protanopiaOption);

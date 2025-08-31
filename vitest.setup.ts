@@ -1,6 +1,9 @@
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
 
+// Setup fake-indexeddb for Dexie tests
+import "fake-indexeddb/auto";
+
 // Mock ResizeObserver for components that might use it
 global.ResizeObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),

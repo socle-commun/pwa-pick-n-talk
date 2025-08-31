@@ -4,8 +4,8 @@ import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-import type { User } from "@/db/models";
-import type { Binder } from "@/db/models";
+import type { User } from "../db/models";
+import type { Binder } from "../db/models";
 
 import IndexPage from "./page";
 
@@ -45,7 +45,7 @@ vi.mock("react-i18next", () => ({
 // Mock jotai
 let mockUser: User | null = null;
 vi.mock("jotai", async (importOriginal) => {
-  const actual = await importOriginal();
+  const actual = await importOriginal() as Record<string, unknown>;
   return {
     ...actual,
     useAtom: () => [mockUser, vi.fn()],
@@ -54,20 +54,20 @@ vi.mock("jotai", async (importOriginal) => {
 
 // Mock useBinders hook
 let mockBindersData: Binder[] | undefined = undefined;
-vi.mock("@/hooks/useBinders", () => ({
+vi.mock("../hooks/useBinders", () => ({
   useBinders: () => mockBindersData,
 }));
 
 // Mock useIsEmptyDatabase hook
 let mockIsEmptyDatabase: boolean | undefined = undefined;
-vi.mock("@/hooks/useIsEmptyDatabase", () => ({
+vi.mock("../hooks/useIsEmptyDatabase", () => ({
   useIsEmptyDatabase: () => mockIsEmptyDatabase,
 }));
 
 // Mock react-router
 const mockNavigate = vi.fn();
 vi.mock("react-router", async (importOriginal) => {
-  const actual = await importOriginal();
+  const actual = await importOriginal() as Record<string, unknown>;
   return {
     ...actual,
     useNavigate: () => mockNavigate,
@@ -100,7 +100,8 @@ describe("IndexPage", () => {
 
     const logo = container.querySelector("svg");
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveClass("animate-pulse");
+    // Vérifie l'animation CSS MUI au lieu de la classe Tailwind
+    expect(logo).toHaveStyle("animation: pulse 2s infinite");
   });
 
   it("renders non-authenticated user experience with hero and features", () => {
@@ -128,7 +129,14 @@ describe("IndexPage", () => {
   });
 
   it("renders authenticated user with empty state when no binders", () => {
-    mockUser = { name: "John Doe", email: "john@example.com" };
+    mockUser = {
+      id: "1",
+      name: "John Doe",
+      email: "john@example.com",
+      role: "user" as const,
+      settings: {},
+      binders: []
+    };
     mockBindersData = [];
     mockIsEmptyDatabase = false; // Database is not empty, so no redirect
 
@@ -141,10 +149,17 @@ describe("IndexPage", () => {
   });
 
   it("renders authenticated user with dashboard when binders exist", () => {
-    mockUser = { name: "Jane Doe", email: "jane@example.com" };
+    mockUser = {
+      id: "2",
+      name: "Jane Doe",
+      email: "jane@example.com",
+      role: "user" as const,
+      settings: {},
+      binders: []
+    };
     mockBindersData = [
-      { id: "1", name: "Binder 1" },
-      { id: "2", name: "Binder 2" }
+      { id: "1", author: "2", isFavorite: false },
+      { id: "2", author: "2", isFavorite: false }
     ];
     mockIsEmptyDatabase = false; // Database is not empty, so no redirect
 
@@ -168,7 +183,14 @@ describe("IndexPage", () => {
   });
 
   it("redirects to setup when authenticated user has empty database", () => {
-    mockUser = { name: "John Doe", email: "john@example.com" };
+    mockUser = {
+      id: "3",
+      name: "John Doe",
+      email: "john@example.com",
+      role: "user" as const,
+      settings: {},
+      binders: []
+    };
     mockBindersData = [];
     mockIsEmptyDatabase = true; // Database is empty, should redirect
 

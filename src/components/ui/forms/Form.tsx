@@ -2,6 +2,7 @@ import { Box, type SxProps, type Theme } from "@mui/material";
 import React from "react";
 import { z } from "zod";
 
+import { FormProvider } from "./FormProvider";
 import { useForm } from "./hooks";
 
 type FormProps<T> = {
@@ -49,12 +50,16 @@ function FormContent<T>({ children, onSubmit, sx }: {
 
 export default function Form<T extends Record<string, unknown> = Record<string, unknown>>({
   children,
+  schema,
+  initialValues,
   onSubmit,
   sx,
 }: FormProps<T>) {
   return (
-    <FormContent<T> onSubmit={onSubmit} sx={sx}>
-      {children}
-    </FormContent>
+    <FormProvider<T> schema={schema} initialValues={initialValues}>
+      <FormContent<T> onSubmit={onSubmit} sx={sx}>
+        {children}
+      </FormContent>
+    </FormProvider>
   );
 }

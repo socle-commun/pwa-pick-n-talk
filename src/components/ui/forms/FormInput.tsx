@@ -7,6 +7,7 @@
 
 import { TextField, type SxProps, type Theme } from "@mui/material";
 import React, { forwardRef } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useFormField } from "./hooks";
 
@@ -22,6 +23,7 @@ type FormInputProps = {
 
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   ({ name, label, placeholder, type = "text", required, disabled, sx, ...props }, ref) => {
+    const { t } = useTranslation();
     const { value, error, setValue, validate, isInvalid } = useFormField(name);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +50,9 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       displayLabel = `${label} *`;
     }
 
+    // Translate error message if it's a translation key
+    const translatedErrorMessage = error?.message ? t(error.message, error.message) : undefined;
+
     return (
       <TextField
         ref={ref}
@@ -59,7 +64,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         onBlur={handleBlur}
         placeholder={placeholder}
         error={isInvalid}
-        helperText={error?.message}
+        helperText={translatedErrorMessage}
         required={required}
         disabled={disabled}
         inputProps={{

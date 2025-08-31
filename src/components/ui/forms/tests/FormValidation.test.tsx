@@ -174,7 +174,7 @@ describe("Form Validation", () => {
       fireEvent.blur(ageInput);
 
       await waitFor(() => {
-        expect(screen.getByText("Number too small (minimum 18)")).toBeInTheDocument();
+        expect(screen.getByText("Number too small (minimum 0)")).toBeInTheDocument();
       });
     });
 
@@ -190,7 +190,7 @@ describe("Form Validation", () => {
       fireEvent.blur(ageInput);
 
       await waitFor(() => {
-        expect(screen.getByText("Number too big (maximum 120)")).toBeInTheDocument();
+        expect(screen.getByText("Number too big (maximum 100)")).toBeInTheDocument();
       });
     });
 

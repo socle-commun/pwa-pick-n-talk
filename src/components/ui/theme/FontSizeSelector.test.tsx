@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { vi, describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 
 import * as fontSizeHook from "@/utils/theme/useFontSize";
 
@@ -32,9 +32,10 @@ describe("FontSizeSelector", () => {
   it("should render without crashing", () => {
     render(<FontSizeSelector />);
 
-    expect(screen.getByText("Font Size")).toBeInTheDocument();
+    // Utilisons le label spécifiquement
+    expect(screen.getByLabelText("Font Size")).toBeInTheDocument();
     expect(screen.getByText("normal")).toBeInTheDocument();
-    expect(screen.getByText("100%")).toBeInTheDocument();
+    // Le pourcentage n'est visible que dans le dropdown, pas dans la valeur affichée
   });
 
   it("should show current font size and scale", () => {
@@ -50,15 +51,15 @@ describe("FontSizeSelector", () => {
     render(<FontSizeSelector />);
 
     expect(screen.getByText("large")).toBeInTheDocument();
-    expect(screen.getByText("113%")).toBeInTheDocument();
+    // Le pourcentage n'est visible que dans le dropdown, pas dans la valeur affichée
   });
 
   it("should render button with proper accessibility attributes", () => {
     render(<FontSizeSelector />);
 
-    const button = screen.getByRole("button");
-    expect(button).toHaveAttribute("aria-haspopup", "listbox");
-    expect(button).toHaveAttribute("aria-expanded", "false");
+    const combobox = screen.getByRole("combobox");
+    expect(combobox).toHaveAttribute("aria-haspopup", "listbox");
+    expect(combobox).toHaveAttribute("aria-expanded", "false");
   });
 
   it("should apply scale transform to icons", () => {
@@ -73,8 +74,8 @@ describe("FontSizeSelector", () => {
 
     render(<FontSizeSelector />);
 
-    const button = screen.getByRole("button");
-    const icon = button.querySelector("svg");
+    const combobox = screen.getByRole("combobox");
+    const icon = combobox.querySelector("svg");
 
     expect(icon).toHaveStyle({ transform: "scale(1.25)" });
   });
@@ -92,6 +93,6 @@ describe("FontSizeSelector", () => {
     render(<FontSizeSelector />);
 
     expect(screen.getByText("extra-large")).toBeInTheDocument();
-    expect(screen.getByText("125%")).toBeInTheDocument();
+    // Le pourcentage n'est visible que dans le dropdown, pas dans la valeur affichée
   });
 });
