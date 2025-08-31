@@ -1,9 +1,9 @@
 import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
+import { Divider } from "@mui/material";
 import { type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/actions";
-import { Divider } from "@/components/ui/layout";
+import { Button } from "@mui/material";
 import { db } from "@/db";
 import { type Binder } from "@/db/models";
 import { getTranslation } from "@/utils/translation";
@@ -29,8 +29,7 @@ export default function BinderCard({
     >
       <Button
         href={`/${binder.id}`}
-        plain
-        className={"flex flex-col gap-1 bg-transparent rounded-b-none"}
+        sx={{ display: 'flex', flexDirection: 'column', gap: 1, backgroundColor: 'transparent' }}
       >
         <div className={"text-2xl font-bold theme-text-primary"}>{title}</div>
         <div
@@ -46,14 +45,14 @@ export default function BinderCard({
       <div className={"flex justify-end gap-1 px-2 py-1"}>
         <Button
           href={`${binder.id}/edit`}
-          color="sky"
+          color="primary"
           className={"hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150"}
         >
           <PencilIcon className={"size-4"} />
           <span className={"sr-only"}>{t("edit")}</span>
         </Button>
         <Button
-          color="red"
+          color="error"
           onClick={(event: MouseEvent<HTMLButtonElement>) => {
             event.preventDefault();
             db.deleteBinder(binder.id);

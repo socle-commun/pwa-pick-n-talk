@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 
 import Brand from "@/components/partials/global/Brand";
-import Sidebar from "@/components/ui/navigation/sidebar/Sidebar";
-import SidebarHeader from "@/components/ui/navigation/sidebar/SidebarHeader";
-import SidebarSection from "@/components/ui/navigation/sidebar/SidebarSection";
+import Sidebar from "./sidebar/Sidebar";
+import SidebarHeader from "./sidebar/SidebarHeader";
+import SidebarSection from "./sidebar/SidebarSection";
 
 export default function NavBar() {
   return (
@@ -23,7 +23,9 @@ export default function NavBar() {
           }
         }}
       >
-        <SidebarSection></SidebarSection>
+        <SidebarSection>
+          <div>Sidebar content</div>
+        </SidebarSection>
       </Box>
     </Sidebar>
   );

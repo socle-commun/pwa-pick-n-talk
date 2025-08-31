@@ -56,7 +56,7 @@ describe("LocaleSelector", () => {
   });
 
   it("applies custom className", () => {
-    const { container } = render(<LocaleSelector className="custom-class" />);
+    const { container } = render(<LocaleSelector  />);
 
     expect(container.firstChild).toHaveClass("custom-class");
   });

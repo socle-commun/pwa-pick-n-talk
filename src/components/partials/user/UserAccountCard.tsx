@@ -1,6 +1,13 @@
 /**
- * @file src/components/ui/data-display/UserAccountCard.tsx
- * @description Reusable card component for displaying user account information.
+ * @file src/components/partials/user/UserAccountCard.tsx
+ * @descri            <Stack direction="row" spacing={1}>
+            <Button
+              variant="outlined"
+              onClick={() => onEdit(user)}
+            >     <Button
+              variant="outlined"
+              onClick={() => onEdit(user)}
+            >n Reusable card component for displaying user account information.
  *
  * This component provides:
  * - Standardized layout for user account display
@@ -12,7 +19,7 @@
 import { Card, CardContent, Box, Typography, Stack } from "@mui/material";
 import { type ReactNode } from "react";
 
-import { Button } from "@/components/ui/actions";
+import { Button } from "@mui/material";
 import { type User, type Role } from "@/db/models";
 
 interface UserAccountCardProps {
@@ -75,16 +82,16 @@ export default function UserAccountCard({
           </Stack>
           <Stack direction="row" spacing={1}>
             <Button
-              outline
+              variant="outlined"
               onClick={() => onEdit(user)}
-              className="text-sm px-3 py-1"
+              
             >
               {editLabel}
             </Button>
             <Button
-              color="red"
+              color="error"
               onClick={() => onDelete(user)}
-              className="text-sm px-3 py-1"
+              
             >
               {deleteLabel}
             </Button>

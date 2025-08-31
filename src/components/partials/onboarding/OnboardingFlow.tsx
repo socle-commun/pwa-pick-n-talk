@@ -89,18 +89,18 @@ export default function OnboardingFlow({
   return (
     <div className={`min-h-screen bg-zinc-50 dark:bg-zinc-900 ${className}`}>
       {/* Progress Indicator */}
-      <div className="bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between max-w-2xl mx-auto">
+      <div >
+        <div >
+          <div >
             {steps.map((step, index) => (
-              <div key={step.key} className="flex items-center">
+              <div key={step.key} >
                 <div className={`flex items-center justify-center size-8 rounded-full text-sm font-medium ${
                   index <= currentStepIndex
                     ? "bg-blue-600 text-white"
                     : "bg-zinc-200 dark:bg-zinc-600 text-zinc-600 dark:text-zinc-400"
                 }`}>
                   {step.completed ? (
-                    <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg  fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   ) : (
@@ -128,17 +128,17 @@ export default function OnboardingFlow({
       </div>
 
       {/* Step Content */}
-      <main className="flex-1">
+      <main >
         {renderCurrentStep()}
       </main>
 
       {/* Step Navigation (optional footer) */}
       {currentStep !== "welcome" && (
-        <div className="bg-white dark:bg-zinc-800 border-t border-zinc-200 dark:border-zinc-700 p-4">
-          <div className="container mx-auto max-w-2xl">
+        <div >
+          <div >
             <button
               onClick={handlePreviousStep}
-              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              
             >
               ← {t("onboarding.navigation.back", "Back")}
             </button>

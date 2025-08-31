@@ -15,13 +15,13 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import Logo from "@/components/partials/global/Logo";
-import { Button } from "@/components/ui/actions";
+import { Button, Typography } from "@mui/material";
 import LocaleSelector from "@/components/ui/LocaleSelector";
 import DaltonismModeToggle from "@/components/ui/theme/DaltonismModeToggle";
 import FontSizeSelector from "@/components/ui/theme/FontSizeSelector";
 import HighContrastModeToggle from "@/components/ui/theme/HighContrastModeToggle";
 import ThemeModeToggle from "@/components/ui/theme/ThemeModeToggle";
-import { Heading } from "@/components/ui/typography";
+
 import { db } from "@/db";
 import { type History, type Setting } from "@/db/models";
 
@@ -87,9 +87,9 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
       {/* Header Section */}
       <div className={"text-center py-8"}>
         <Logo className={"size-20 mx-auto mb-6"} />
-        <Heading level={1} className={"text-3xl lg:text-4xl mb-4"}>
+        <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
           {t("onboarding.welcome.title", "Welcome to Pick'n'Talk!")}
-        </Heading>
+        </Typography>
         <p className={"text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-2xl mx-auto"}>
           {t("onboarding.welcome.subtitle", "Let's get you set up with your personalized communication experience. First, let's configure your preferences.")}
         </p>
@@ -103,9 +103,9 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
               </svg>
             </div>
             <div className={"flex-1"}>
-              <Heading level={3} className={"text-lg font-semibold privacy-text mb-3"}>
+              <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
                 {t("onboarding.welcome.privacy.title", "Your Data, Your Control")}
-              </Heading>
+              </Typography>
               <div className={"privacy-text space-y-3 text-sm leading-relaxed"}>
                 <p>
                   {t("onboarding.welcome.privacy.local_storage", "All your communication binders and personal data are saved locally on your device. No information is sent to external servers without your explicit consent.")}
@@ -124,16 +124,16 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
 
       {/* Settings Configuration Section */}
       <div className={"bg-white dark:bg-zinc-900 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-800 p-6 mb-8"}>
-        <Heading level={2} className={"text-xl mb-6"}>
+        <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
           {t("onboarding.welcome.settings.title", "Your Preferences")}
-        </Heading>
+        </Typography>
 
         <div className={"grid md:grid-cols-2 gap-6"}>
           {/* Language Selection */}
           <div className={"space-y-4"}>
-            <Heading level={3} className={"text-lg font-medium"}>
+            <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
               {t("onboarding.welcome.settings.language.title", "Language")}
-            </Heading>
+            </Typography>
             <p className={"text-sm text-zinc-600 dark:text-zinc-400"}>
               {t("onboarding.welcome.settings.language.description", "Choose your preferred language for the interface.")}
             </p>
@@ -142,9 +142,9 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
 
           {/* Theme Settings */}
           <div className={"space-y-4"}>
-            <Heading level={3} className={"text-lg font-medium"}>
+            <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
               {t("onboarding.welcome.settings.theme.title", "Appearance")}
-            </Heading>
+            </Typography>
             <p className={"text-sm text-zinc-600 dark:text-zinc-400"}>
               {t("onboarding.welcome.settings.theme.description", "Customize the look and feel of the application.")}
             </p>
@@ -156,9 +156,9 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
 
           {/* Accessibility Settings */}
           <div className={"space-y-4 md:col-span-2"}>
-            <Heading level={3} className={"text-lg font-medium"}>
+            <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
               {t("onboarding.welcome.settings.accessibility.title", "Accessibility")}
-            </Heading>
+            </Typography>
             <p className={"text-sm text-zinc-600 dark:text-zinc-400"}>
               {t("onboarding.welcome.settings.accessibility.description", "Configure accessibility features to enhance your experience.")}
             </p>
@@ -178,9 +178,9 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
             </svg>
           </div>
-          <Heading level={3} className={"text-lg mb-2"}>
+          <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
             {t("onboarding.welcome.features.customize.title", "Personalized Setup")}
-          </Heading>
+          </Typography>
           <p className={"feature-primary-text"}>
             {t("onboarding.welcome.features.customize.description", "We'll guide you through creating your first communication binder with pictures and words that matter to you.")}
           </p>
@@ -192,9 +192,9 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <Heading level={3} className={"text-lg mb-2"}>
+          <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
             {t("onboarding.welcome.features.quick.title", "Quick & Easy")}
-          </Heading>
+          </Typography>
           <p className={"feature-secondary-text"}>
             {t("onboarding.welcome.features.quick.description", "Get started in just a few minutes with our intuitive setup process and helpful tutorials.")}
           </p>
@@ -208,8 +208,8 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
         </Button>
         <Button
           href="/binders"
-          outline
-          className={"px-8 py-3"}
+          variant="outlined"
+          sx={{ px: 2, py: 1 }}
         >
           {t("onboarding.welcome.cta.skip", "Skip for Now")}
         </Button>

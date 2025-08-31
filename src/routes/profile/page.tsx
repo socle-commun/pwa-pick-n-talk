@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/actions";
+import { Button } from "@mui/material";
 import { Form, FormInput } from "@/components/ui/forms";
 import { ProfileEditSchema, type ProfileEditFormData } from "@/db/models/schemas/auth";
 
@@ -20,13 +20,13 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-8">
+    <div >
       <h1 className={"text-2xl font-bold text-zinc-900 dark:text-white"}>
         {t("profile.title", "Profile")}
       </h1>
 
-      <div className="bg-zinc-50 dark:bg-zinc-800 p-6 rounded-lg">
-        <h2 className="text-lg font-semibold mb-4 text-zinc-900 dark:text-white">
+      <div >
+        <h2 >
           {t("profile.edit.title", "Edit Profile")}
         </h2>
 
@@ -34,7 +34,7 @@ export default function ProfilePage() {
           schema={ProfileEditSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          className="space-y-6"
+          
         >
           <FormInput
             name="name"
@@ -50,13 +50,13 @@ export default function ProfilePage() {
             required
           />
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <div >
+            <label >
               {t("profile.edit.role", "Role")}
             </label>
             <select
               name="role"
-              className="w-full px-3 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white"
+              
             >
               <option value="user">{t("profile.roles.user", "User")}</option>
               <option value="caregiver">{t("profile.roles.caregiver", "Caregiver")}</option>
@@ -64,11 +64,11 @@ export default function ProfilePage() {
             </select>
           </div>
 
-          <div className="flex gap-4">
-            <Button type="submit" color="sky">
+          <div >
+            <Button type="submit" color="primary">
               {t("profile.edit.save", "Save Changes")}
             </Button>
-            <Button type="button" outline>
+            <Button type="button" variant="outlined">
               {t("profile.edit.cancel", "Cancel")}
             </Button>
           </div>

@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import { type ComponentPropsWithoutRef } from "react";
 
 export default function Sidebar({
-  className,
   sx,
   ...props
 }: ComponentPropsWithoutRef<"nav"> & { sx?: any }) {
@@ -10,7 +9,6 @@ export default function Sidebar({
     <Box
       component="nav"
       {...props}
-      className={className}
       sx={{
         display: "flex",
         height: "100%",

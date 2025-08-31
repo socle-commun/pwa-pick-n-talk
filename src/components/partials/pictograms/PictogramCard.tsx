@@ -2,7 +2,7 @@ import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/actions";
+import { Button } from "@mui/material";
 import { type Pictogram } from "@/db/models";
 import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
 import { getTranslation } from "@/utils/translation";
@@ -63,7 +63,7 @@ export default function PictogramCard({
           />
         ) : (
           <div
-            className="w-full h-full bg-zinc-100 dark:bg-zinc-700 rounded-md flex items-center justify-center text-zinc-400"
+            
           >
             No Image
           </div>
@@ -82,10 +82,10 @@ export default function PictogramCard({
         <Button
           onClick={handleSpeak}
           disabled={isSpeaking || !word}
-          color="zinc"
-          className="min-w-0 rounded-full p-2 opacity-75 hover:opacity-100 transition-all duration-150 hover:scale-105 active:scale-95"
+          color="inherit"
+          
         >
-          <SpeakerWaveIcon className="size-5" />
+          <SpeakerWaveIcon  />
           <span style={{ position: "absolute", left: "-9999px" }}>
             {isSpeaking ? "Speaking..." : `Speak "${word}"`}
           </span>

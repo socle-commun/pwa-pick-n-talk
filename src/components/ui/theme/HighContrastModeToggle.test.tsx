@@ -43,7 +43,7 @@ describe("HighContrastModeToggle", () => {
   });
 
   it("should apply custom className when provided", () => {
-    const { container } = render(<HighContrastModeToggle className="custom-class" />);
+    const { container } = render(<HighContrastModeToggle  />);
 
     expect(container.firstChild).toHaveClass("custom-class");
   });

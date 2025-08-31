@@ -13,9 +13,8 @@
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/actions";
+import { Button, Typography } from "@mui/material";
 import { Form, FormInput } from "@/components/ui/forms";
-import { Heading } from "@/components/ui/typography";
 import { db } from "@/db";
 import { UserSchema, type User, type Role } from "@/db/models";
 
@@ -115,16 +114,16 @@ export default function UserForm({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
-        <Heading level={3} className="text-lg font-medium">
+      <div >
+        <Typography variant="h5" component="h3" sx={{ mb: 1 }}>
           {isEditing
             ? t("forms.user.edit_title", "Edit {{role}}", { role: getRoleDisplayName(role) })
             : t("forms.user.create_title", "Add {{role}}", { role: getRoleDisplayName(role) })
           }
-        </Heading>
+        </Typography>
 
         {lastSaved && (
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p >
             {t("forms.user.last_saved", "Last saved: {{time}}", {
               time: lastSaved.toLocaleTimeString()
             })}
@@ -136,9 +135,9 @@ export default function UserForm({
         schema={UserFormSchema}
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        className="space-y-6"
+        
       >
-        <div className="grid md:grid-cols-2 gap-6">
+        <div >
           <FormInput
             name="name"
             label={t("forms.user.name", "Full Name")}
@@ -168,28 +167,28 @@ export default function UserForm({
               : t("forms.user.password_placeholder", "Enter password (optional)")
           }
         />
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 -mt-4">
+        <p >
           {t("forms.user.password_help", "Password is optional. If not set, the user will need to create one on first sign-in.")}
         </p>
 
         {/* Role display (read-only) */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+        <div >
+          <label >
             {t("forms.user.role", "Role")}
           </label>
-          <div className="px-3 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-sm text-zinc-700 dark:text-zinc-300">
+          <div >
             {getRoleDisplayName(role)}
           </div>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          <p >
             {t("forms.user.role_help", "Role is determined by the account type being created")}
           </p>
         </div>
 
-        <div className="flex gap-4">
+        <div >
           <Button
             type="submit"
             disabled={isSaving}
-            className="flex-1 sm:flex-none"
+            
           >
             {(() => {
               if (isSaving) {
@@ -205,9 +204,9 @@ export default function UserForm({
           {onCancel && (
             <Button
               type="button"
-              outline
+              variant="outlined"
               onClick={onCancel}
-              className="flex-1 sm:flex-none"
+              
             >
               {t("forms.user.cancel", "Cancel")}
             </Button>

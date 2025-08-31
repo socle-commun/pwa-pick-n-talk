@@ -1,8 +1,9 @@
+import { Box, Typography } from "@mui/material";
+
 export interface EmptyStateProps {
   title: string;
   description?: React.ReactNode;
   icon?: React.ReactNode;
-  className?: string;
   action?: React.ReactNode;
 }
 
@@ -10,37 +11,44 @@ export function EmptyState({
   title,
   description,
   icon,
-  className,
   action
 }: EmptyStateProps) {
-  const containerBaseClasses = "flex flex-col items-center justify-center p-8";
-  const containerClasses = className ? `${containerBaseClasses} ${className}` : containerBaseClasses;
-
-  const iconClasses = "text-4xl mb-4 text-zinc-400 dark:text-zinc-500";
-  const titleClasses = "text-xl text-zinc-600 dark:text-zinc-400 mb-2 text-center";
-  const descriptionClasses = "text-sm text-zinc-500 dark:text-zinc-500 text-center";
-  const actionClasses = "mt-4";
-
   return (
-    <div className={containerClasses}>
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        alignItems: "center", 
+        justifyContent: "center", 
+        p: 4 
+      }}
+    >
       {icon && (
-        <div className={iconClasses}>
+        <Box sx={{ fontSize: "2.25rem", mb: 2, color: "text.disabled" }}>
           {icon}
-        </div>
+        </Box>
       )}
-      <div className={titleClasses}>
+      <Typography 
+        variant="h6" 
+        color="text.secondary" 
+        sx={{ mb: 1, textAlign: "center" }}
+      >
         {title}
-      </div>
+      </Typography>
       {description && (
-        <div className={descriptionClasses}>
+        <Typography 
+          variant="body2" 
+          color="text.secondary" 
+          sx={{ textAlign: "center", mb: 2 }}
+        >
           {description}
-        </div>
+        </Typography>
       )}
       {action && (
-        <div className={actionClasses}>
+        <Box sx={{ mt: 2 }}>
           {action}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }

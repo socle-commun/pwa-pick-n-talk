@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/actions";
+import { Button } from "@mui/material";
 import { Form, FormInput } from "@/components/ui/forms";
 import { BinderFormSchema, type BinderFormData } from "@/db/models/schemas/auth";
 
@@ -20,17 +20,17 @@ export default function BinderEditPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-8">
+    <div >
       <h1 className={"text-2xl font-bold text-zinc-900 dark:text-white"}>
         {t("binder.edit.title", "Edit Binder")}
       </h1>
 
-      <div className="bg-zinc-50 dark:bg-zinc-800 p-6 rounded-lg">
+      <div >
         <Form<BinderFormData>
           schema={BinderFormSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          className="space-y-6"
+          
         >
           <FormInput
             name="id"
@@ -47,26 +47,26 @@ export default function BinderEditPage() {
             required
           />
 
-          <div className="flex items-center space-x-2">
+          <div >
             <input
               type="checkbox"
               id="isFavorite"
               name="isFavorite"
-              className="rounded border-zinc-300 dark:border-zinc-600"
+              
             />
             <label
               htmlFor="isFavorite"
-              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              
             >
               {t("binder.edit.is_favorite", "Mark as favorite")}
             </label>
           </div>
 
-          <div className="flex gap-4">
-            <Button type="submit" color="sky">
+          <div >
+            <Button type="submit" color="primary">
               {t("binder.edit.save", "Save Changes")}
             </Button>
-            <Button type="button" outline>
+            <Button type="button" variant="outlined">
               {t("binder.edit.cancel", "Cancel")}
             </Button>
           </div>

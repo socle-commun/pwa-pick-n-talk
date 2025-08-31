@@ -10,29 +10,29 @@ export default function SettingsPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="space-y-8">
+    <div >
       <h1 className={"text-2xl font-bold text-primary"}>
         {t("Settings", "Settings")}
       </h1>
 
-      <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
-        <div className="space-y-6">
+      <div >
+        <div >
           <div>
-            <h2 className="text-lg font-semibold text-primary mb-4">
+            <h2 >
               {t("settings.language.title", "Language")}
             </h2>
-            <div className="max-w-md">
+            <div >
               <LocaleSelector />
             </div>
           </div>
         </div>
 
-        <div className="space-y-6">
+        <div >
           <div>
-            <h2 className="text-lg font-semibold text-primary mb-4">
+            <h2 >
               {t("settings.accessibility.title", "Accessibility")}
             </h2>
-            <div className="max-w-md space-y-4">
+            <div >
               <FontSizeSelector />
               <ThemeModeToggle />
               <HighContrastModeToggle />

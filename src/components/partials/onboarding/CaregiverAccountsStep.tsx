@@ -15,10 +15,10 @@ import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { UserForm } from "@/components/partials/forms";
-import { Button } from "@/components/ui/actions";
-import { UserAccountCard } from "@/components/ui/data-display";
-import { AccountTypeButton } from "@/components/ui/data-input";
-import { Heading } from "@/components/ui/typography";
+import { Button, Card, CardContent, Box, Typography } from "@mui/material";
+import UserAccountCard from "@/components/partials/user/UserAccountCard";
+
+
 import { db } from "@/db";
 import { type User, type Role } from "@/db/models";
 
@@ -88,11 +88,11 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
 
   const getAccountTypeIcon = (accountType: AccountType) => {
     return accountType === "caregiver" ? (
-      <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg  fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ) : (
-      <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg  fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
       </svg>
     );
@@ -101,39 +101,80 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
   return (
     <div className={`container mx-auto px-4 py-8 max-w-4xl ${className}`}>
       {/* Header Section */}
-      <div className="text-center mb-8">
-        <Heading level={1} className="text-3xl lg:text-4xl mb-4">
+      <div >
+        <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
           {t("onboarding.caregivers.title", "Setup Caregiver Accounts")}
-        </Heading>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-6 max-w-2xl mx-auto">
+        </Typography>
+        <p >
           {t("onboarding.caregivers.subtitle", "Add caregivers and professionals who will help manage communication binders.")}
         </p>
       </div>
 
       {/* Account Type Selection */}
       {!showForm && (
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <AccountTypeButton
-            title={t("onboarding.caregivers.add_caregiver", "Add Caregiver")}
-            description={t("onboarding.caregivers.caregiver_description", "Family members, friends, or support persons")}
-            icon={getAccountTypeIcon("caregiver")}
+        <div>
+          <Card 
+            sx={{ 
+              p: 3, 
+              border: '2px dashed',
+              borderColor: 'primary.main',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              '&:hover': {
+                borderColor: 'primary.dark',
+                backgroundColor: 'primary.light',
+                opacity: 0.8
+              },
+              mb: 2
+            }}
             onClick={() => handleAddUser("caregiver")}
-            variant="primary"
-          />
+          >
+            <CardContent sx={{ textAlign: 'center', p: 0, '&:last-child': { pb: 0 } }}>
+              <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center', color: 'primary.main' }}>
+                {getAccountTypeIcon("caregiver")}
+              </Box>
+              <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
+                {t("onboarding.caregivers.add_caregiver", "Add Caregiver")}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {t("onboarding.caregivers.caregiver_description", "Family members, friends, or support persons")}
+              </Typography>
+            </CardContent>
+          </Card>
 
-          <AccountTypeButton
-            title={t("onboarding.caregivers.add_professional", "Add Professional")}
-            description={t("onboarding.caregivers.professional_description", "Healthcare workers, therapists, educators")}
-            icon={getAccountTypeIcon("professional")}
+          <Card 
+            sx={{ 
+              p: 3, 
+              border: '2px dashed',
+              borderColor: 'secondary.main',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              '&:hover': {
+                borderColor: 'secondary.dark',
+                backgroundColor: 'secondary.light',
+                opacity: 0.8
+              }
+            }}
             onClick={() => handleAddUser("professional")}
-            variant="secondary"
-          />
+          >
+            <CardContent sx={{ textAlign: 'center', p: 0, '&:last-child': { pb: 0 } }}>
+              <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center', color: 'secondary.main' }}>
+                {getAccountTypeIcon("professional")}
+              </Box>
+              <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
+                {t("onboarding.caregivers.add_professional", "Add Professional")}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {t("onboarding.caregivers.professional_description", "Healthcare workers, therapists, educators")}
+              </Typography>
+            </CardContent>
+          </Card>
         </div>
       )}
 
       {/* User Form */}
       {showForm && (
-        <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-800 p-6 mb-8">
+        <div >
           <UserForm
             user={editingUser || undefined}
             role={selectedAccountType}
@@ -145,11 +186,11 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
 
       {/* Existing Users List */}
       {filteredUsers.length > 0 && !showForm && (
-        <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-800 p-6 mb-8">
-          <Heading level={2} className="text-xl mb-4">
+        <div >
+          <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
             {t("onboarding.caregivers.existing_accounts", "Created Accounts")}
-          </Heading>
-          <div className="space-y-4">
+          </Typography>
+          <div >
             {filteredUsers.map((user) => (
               <UserAccountCard
                 key={user.id}
@@ -168,8 +209,8 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
 
       {/* Continue Button */}
       {!showForm && (
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button onClick={onContinue} className="px-8 py-3">
+        <div >
+          <Button onClick={onContinue} >
             {filteredUsers.length > 0
               ? t("onboarding.caregivers.continue_with_accounts", "Continue with {{count}} account(s)", { count: filteredUsers.length })
               : t("onboarding.caregivers.skip_accounts", "Continue without accounts")

@@ -26,7 +26,6 @@ export default mergeConfig(
             // UI libraries (split by size and usage)
             "ui-mui": ["@mui/material", "@mui/icons-material"],
             "ui-emotion": ["@emotion/react", "@emotion/styled"],
-            "ui-icons": ["@heroicons/react"],
             
             // Utilities
             "utilities": [],
@@ -47,7 +46,6 @@ export default mergeConfig(
             
             // Other utilities
             "crypto": ["bcryptjs"],
-            "faker": ["@faker-js/faker"],
           },
         },
       },

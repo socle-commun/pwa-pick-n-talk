@@ -80,7 +80,7 @@ describe("FontSizeSelector", () => {
   });
 
   it("should support custom className", () => {
-    const { container } = render(<FontSizeSelector className="custom-class" />);
+    const { container } = render(<FontSizeSelector  />);
 
     expect(container.firstChild).toHaveClass("custom-class");
   });

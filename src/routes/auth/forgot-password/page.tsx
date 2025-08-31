@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 
 import Logo from "@/components/partials/global/Logo";
-import { Button } from "@/components/ui/actions";
+import { Button } from "@mui/material";
 import { Form, FormInput } from "@/components/ui/forms";
-import { Link } from "@/components/ui/navigation";
+import Link from "@/components/partials/navigation/Link";
 import { ForgotPasswordSchema, type ForgotPasswordFormData } from "@/db/models/schemas/auth";
 
 export default function ForgotPasswordPage() {
@@ -17,23 +17,23 @@ export default function ForgotPasswordPage() {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
+      <div >
+        <div >
           <Logo className={"size-16"} />
-          <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight">
+          <h2 >
             {t("auth.forgot_password.title", "Reset your password")}
           </h2>
-          <p className="mt-2 text-center text-sm text-zinc-600 dark:text-zinc-400">
+          <p >
             {t("auth.forgot_password.description", "Enter your email address and we'll send you a link to reset your password.")}
           </p>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-          <div className="bg-zinc-200 dark:bg-zinc-800 px-6 py-12 shadow-sm sm:rounded-lg sm:px-12">
+        <div >
+          <div >
             <Form<ForgotPasswordFormData>
               schema={ForgotPasswordSchema}
               onSubmit={handleSubmit}
-              className="space-y-6"
+              
             >
               <FormInput
                 name="email"
@@ -43,11 +43,11 @@ export default function ForgotPasswordPage() {
                 autoComplete="email"
               />
 
-              <Button type="submit" color="sky" className="w-full">
+              <Button type="submit" color="primary" sx={{ width: "100%" }}>
                 {t("auth.forgot_password.submit", "Send reset link")}
               </Button>
 
-              <div className="text-center">
+              <div >
                 <Link href="/auth/sign-in">
                   {t("auth.forgot_password.back_to_signin", "Back to sign in")}
                 </Link>

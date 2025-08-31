@@ -5,8 +5,6 @@ import { useTranslation } from "react-i18next";
 
 import { useDaltonismMode, type DaltonismMode } from "@/utils/theme";
 
-import { ColorPreview } from "./ColorPreview";
-
 const DALTONISM_MODES: Array<{ mode: DaltonismMode; icon: string }> = [
   { mode: "default", icon: "👁️" },
   { mode: "protanopia", icon: "🔴" },
@@ -58,7 +56,6 @@ export default function DaltonismModeToggle(_props: DaltonismModeToggleProps) {
               <span style={{ fontSize: "1rem" }}>{mode.icon}</span>
               <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
                 <span>{t(`accessibility.daltonism.options.${mode.mode === "default" ? "none" : mode.mode}.label`, mode.mode)}</span>
-                <ColorPreview daltonismType={mode.mode} />
               </Box>
             </Box>
           </MenuItem>
