@@ -1,5 +1,3 @@
-import cn from "@/utils/cn";
-
 export interface EmptyStateProps {
   title: string;
   description?: React.ReactNode;
@@ -15,23 +13,31 @@ export function EmptyState({
   className,
   action
 }: EmptyStateProps) {
+  const containerBaseClasses = "flex flex-col items-center justify-center p-8";
+  const containerClasses = className ? `${containerBaseClasses} ${className}` : containerBaseClasses;
+
+  const iconClasses = "text-4xl mb-4 text-zinc-400 dark:text-zinc-500";
+  const titleClasses = "text-xl text-zinc-600 dark:text-zinc-400 mb-2 text-center";
+  const descriptionClasses = "text-sm text-zinc-500 dark:text-zinc-500 text-center";
+  const actionClasses = "mt-4";
+
   return (
-    <div className={cn("flex flex-col items-center justify-center p-8", className)}>
+    <div className={containerClasses}>
       {icon && (
-        <div className={cn("text-4xl mb-4 text-zinc-400 dark:text-zinc-500")}>
+        <div className={iconClasses}>
           {icon}
         </div>
       )}
-      <div className={cn("text-xl text-zinc-600 dark:text-zinc-400 mb-2 text-center")}>
+      <div className={titleClasses}>
         {title}
       </div>
       {description && (
-        <div className={cn("text-sm text-zinc-500 dark:text-zinc-500 text-center")}>
+        <div className={descriptionClasses}>
           {description}
         </div>
       )}
       {action && (
-        <div className={cn("mt-4")}>
+        <div className={actionClasses}>
           {action}
         </div>
       )}

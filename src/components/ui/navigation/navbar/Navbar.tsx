@@ -1,15 +1,33 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { AppBar, Toolbar } from "@mui/material";
+import { type ReactNode } from "react";
 
-import cn from "@/utils/cn";
+interface NavbarProps {
+  children: ReactNode;
+}
 
-export default function Navbar({
-  className,
-  ...props
-}: ComponentPropsWithoutRef<"nav">) {
+export default function Navbar({ children }: NavbarProps) {
   return (
-    <nav
-      {...props}
-      className={cn(className, "flex flex-1 items-center gap-2 sm:gap-4 px-2 sm:px-4 py-2.5 min-w-0")}
-    />
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: "transparent",
+        boxShadow: "none",
+        borderBottom: 1,
+        borderColor: "divider"
+      }}
+    >
+      <Toolbar
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: { xs: 1, sm: 2 },
+          px: { xs: 1, sm: 2 },
+          py: 1.25,
+          minWidth: 0
+        }}
+      >
+        {children}
+      </Toolbar>
+    </AppBar>
   );
 }

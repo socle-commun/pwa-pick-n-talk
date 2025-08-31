@@ -1,15 +1,17 @@
-import { Box } from "@mui/material";
+import { Box, type SxProps, type Theme } from "@mui/material";
 import { type ComponentPropsWithoutRef } from "react";
 
+interface NavbarSectionProps extends Omit<ComponentPropsWithoutRef<"div">, "className"> {
+  sx?: SxProps<Theme>;
+}
+
 export default function NavbarSection({
-  className,
   sx,
   ...props
-}: ComponentPropsWithoutRef<"div"> & { sx?: any }) {
+}: NavbarSectionProps) {
   return (
     <Box
       {...props}
-      className={className}
       sx={{
         display: "flex",
         alignItems: "center",

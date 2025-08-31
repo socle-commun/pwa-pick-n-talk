@@ -1,11 +1,12 @@
 
+import { Box } from "@mui/material";
+
 import AuthManager from "@/components/partials/global/AuthManager";
 import Brand from "@/components/partials/global/Brand";
 import LocaleSelector from "@/components/ui/LocaleSelector";
 import {
   Navbar,
   NavbarSection,
-  NavbarSpacer,
   Link,
 } from "@/components/ui/navigation";
 
@@ -17,8 +18,8 @@ export default function NavBar() {
           <Brand />
         </Link>
       </NavbarSection>
-      <NavbarSpacer />
-      <NavbarSection className="flex-shrink-0">
+      <Box sx={{ flexGrow: 1 }} />
+      <NavbarSection sx={{ flexShrink: 0 }}>
         <LocaleSelector variant="compact" />
         <AuthManager />
       </NavbarSection>

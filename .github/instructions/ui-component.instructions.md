@@ -40,12 +40,15 @@ export default forwardRef(function ComponentName(props, ref: ForwardedRef<HTMLEl
 - **Design Tokens**: Use CSS custom properties: `--spacing()`, `--radius-lg`, `--btn-bg`
 - **Modular**: Split complex styling into `base`, `variants`, and `colors` objects
 
-### cn() Utility Usage
-- **Import**: `import cn from "@/utils/cn"` for all conditional class merging
-- **Pattern**: Always merge `className` prop with component defaults
+### Class Management
+- **Concatenation**: Use template literals for combining class names: `${baseClasses} ${variant}`
+- **Conditional**: Use array filtering for conditional classes:
 ```typescript
-className={cn(styles.base, variant && styles[variant], className)}
+const classes = [baseClasses, variant && variantClasses[variant], className]
+  .filter(Boolean)
+  .join(" ");
 ```
+- **Pattern**: Always merge `className` prop with component defaults
 
 ### Accessibility Requirements
 - **ARIA**: Include proper ARIA attributes, especially `aria-hidden`, `aria-label`

@@ -12,7 +12,6 @@
 import { type ReactNode } from "react";
 
 import { Heading } from "@/components/ui/typography";
-import cn from "@/utils/cn";
 
 interface AccountTypeButtonProps {
   title: string;
@@ -42,17 +41,19 @@ export default function AccountTypeButton({
     },
   };
 
+  const baseButtonClasses = "p-6 rounded-lg border-2 border-dashed border-zinc-300 dark:border-zinc-600 transition-colors duration-200 text-center group";
+  const buttonClasses = [baseButtonClasses, variantStyles[variant].button, className]
+    .filter(Boolean)
+    .join(" ");
+
+  const iconContainerClasses = `mb-4 flex justify-center ${variantStyles[variant].icon}`;
+
   return (
     <button
       onClick={onClick}
-      className={cn(
-        "p-6 rounded-lg border-2 border-dashed border-zinc-300 dark:border-zinc-600",
-        "transition-colors duration-200 text-center group",
-        variantStyles[variant].button,
-        className
-      )}
+      className={buttonClasses}
     >
-      <div className={cn("mb-4 flex justify-center", variantStyles[variant].icon)}>
+      <div className={iconContainerClasses}>
         {icon}
       </div>
       <Heading level={3} className="text-lg mb-2">

@@ -1,5 +1,3 @@
-import cn from "@/utils/cn";
-
 export interface LoadingSpinnerProps {
   message?: string;
   className?: string;
@@ -17,14 +15,18 @@ export function LoadingSpinner({
     lg: "h-6 w-6"
   };
 
+  const containerBaseClasses = "flex items-center justify-center p-8";
+  const containerClasses = className ? `${containerBaseClasses} ${className}` : containerBaseClasses;
+
+  const textClasses = "text-zinc-600 dark:text-zinc-400 flex items-center gap-2";
+  const spinnerBaseClasses = "animate-spin border-2 border-blue-600 border-t-transparent rounded-full";
+  const spinnerClasses = `${spinnerBaseClasses} ${sizeClasses[size]}`;
+
   return (
-    <div className={cn("flex items-center justify-center p-8", className)}>
-      <div className={cn("text-zinc-600 dark:text-zinc-400 flex items-center gap-2")}>
+    <div className={containerClasses}>
+      <div className={textClasses}>
         <div
-          className={cn(
-            "animate-spin border-2 border-blue-600 border-t-transparent rounded-full",
-            sizeClasses[size]
-          )}
+          className={spinnerClasses}
           role="status"
           aria-hidden="true"
         />
