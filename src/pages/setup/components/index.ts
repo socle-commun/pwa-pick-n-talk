@@ -1,6 +1,6 @@
 /**
- * @file src/components/partials/onboarding/index.ts
- * @description Barrel exports for onboarding components.
+ * @file src/pages/setup/components/index.ts
+ * @description Barrel exports for setup components.
  */
 
 export { default as WelcomeStep } from "./WelcomeStep";

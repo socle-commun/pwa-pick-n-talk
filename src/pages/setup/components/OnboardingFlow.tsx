@@ -15,7 +15,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-import { WelcomeStep, CaregiverAccountsStep } from "@/components/partials/onboarding";
+import { WelcomeStep, CaregiverAccountsStep } from "./index";
 
 type OnboardingStep = "welcome" | "caregivers" | "complete";
 

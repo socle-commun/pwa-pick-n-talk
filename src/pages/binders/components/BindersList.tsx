@@ -1,9 +1,9 @@
 import { Box, Grid } from "@mui/material";
 
-import BinderCard from "@/components/partials/binders/BinderCard";
-import EmptyBindersList from "@/components/partials/binders/EmptyBindersList";
 import { LoadingSpinner } from "@/components/ui/feedback";
 import { type Binder } from "@/db/models";
+
+import { BinderCard, EmptyBindersList } from ".";
 
 interface BindersListProps {
   binders: Binder[] | null | undefined;

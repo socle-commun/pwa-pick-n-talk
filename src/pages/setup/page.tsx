@@ -9,7 +9,7 @@
  * - Start the guided binder creation process
  */
 
-import { OnboardingFlow } from "@/components/partials/onboarding";
+import { OnboardingFlow } from "./components";
 
 export default function SetupPage() {
   return <OnboardingFlow />;

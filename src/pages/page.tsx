@@ -11,12 +11,11 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import Logo from "@/components/partials/global/Logo";
-import { CtaSection } from "@/components/partials/homepage/cta-section";
-import { FeaturesSection } from "@/components/partials/homepage/features-section";
-import { HeroSection } from "@/components/partials/homepage/hero-section";
 import { useBinders } from "@/hooks/useBinders";
 import { useIsEmptyDatabase } from "@/hooks/useIsEmptyDatabase";
 import { userAtom } from "@/utils/state/atoms";
+
+import { CtaSection, FeaturesSection, HeroSection } from "./components";
 
 
 export default function IndexPage() {

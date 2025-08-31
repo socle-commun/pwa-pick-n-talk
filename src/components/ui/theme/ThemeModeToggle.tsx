@@ -1,5 +1,6 @@
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
-import { MenuItem, Select, FormControl, InputLabel, Box, SelectChangeEvent } from "@mui/material";
+import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import { type SelectChangeEvent } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { useThemeMode, type ThemeMode } from "@/utils/theme";

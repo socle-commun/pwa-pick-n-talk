@@ -2,10 +2,11 @@ import { Box } from "@mui/material";
 import { lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 
-import { BinderHeader } from "@/components/partials/binders/BinderHeader";
 import { LoadingSpinner, ErrorFallback } from "@/components/ui/feedback";
 import { type Binder } from "@/db/models";
 import { getTranslation } from "@/utils/translation";
+
+import { BinderHeader } from ".";
 
 // Lazy load the PictogramsGrid component
 const PictogramsGrid = lazy(() => import("@/components/partials/pictograms/PictogramsGrid"));

@@ -6,20 +6,20 @@ import LazyRoute from "@/components/partials/global/LazyRoute";
 import { useFontSize, useThemeMode, useDaltonismMode } from "@/utils/theme";
 
 // Lazy-loaded route components
-const Layout = lazy(() => import("@/routes/layout"));
-const CatchAllPage = lazy(() => import("@/routes/error"));
-const IndexPage = lazy(() => import("@/routes/page"));
-const ForgotPasswordPage = lazy(() => import("@/routes/auth/forgot-password/page"));
-const SignInPage = lazy(() => import("@/routes/auth/sign-in/page"));
-const SignUpPage = lazy(() => import("@/routes/auth/sign-up/page"));
-const FeedbackPage = lazy(() => import("@/routes/feedback/page"));
-const PrivacyPage = lazy(() => import("@/routes/privacy/page"));
-const ProfilePage = lazy(() => import("@/routes/profile/page"));
-const SettingsPage = lazy(() => import("@/routes/settings/page"));
-const SetupPage = lazy(() => import("@/routes/setup/page"));
-const BindersPage = lazy(() => import("@/routes/binders/page"));
-const BinderPage = lazy(() => import("@/routes/binders/[uuid]/page"));
-const BinderEditPage = lazy(() => import("@/routes/binders/[uuid]/edit/page"));
+const Layout = lazy(() => import("@/pages/layout"));
+const CatchAllPage = lazy(() => import("@/pages/error"));
+const IndexPage = lazy(() => import("@/pages/page"));
+const ForgotPasswordPage = lazy(() => import("@/pages/auth/forgot-password/page"));
+const SignInPage = lazy(() => import("@/pages/auth/sign-in/page"));
+const SignUpPage = lazy(() => import("@/pages/auth/sign-up/page"));
+const FeedbackPage = lazy(() => import("@/pages/feedback/page"));
+const PrivacyPage = lazy(() => import("@/pages/privacy/page"));
+const ProfilePage = lazy(() => import("@/pages/profile/page"));
+const SettingsPage = lazy(() => import("@/pages/settings/page"));
+const SetupPage = lazy(() => import("@/pages/setup/page"));
+const BindersPage = lazy(() => import("@/pages/binders/page"));
+const BinderPage = lazy(() => import("@/pages/binders/[uuid]/page"));
+const BinderEditPage = lazy(() => import("@/pages/binders/[uuid]/edit/page"));
 
 function App() {
   // Initialize theme system

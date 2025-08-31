@@ -1,7 +1,8 @@
-import { BindersList } from "@/components/partials/binders/BindersList";
 import { DatabaseErrorBoundary } from "@/components/ui/errors/DatabaseErrorBoundary";
 import { ErrorFallback } from "@/components/ui/feedback";
 import { useBinders } from "@/hooks/useBinders";
+
+import { BindersList } from "./components";
 
 export default function IndexPage() {
   const binders = useBinders();

@@ -1,9 +1,10 @@
 import { useParams } from "react-router";
 
-import { BinderContent } from "@/components/partials/binders/BinderContent";
 import { DatabaseErrorBoundary } from "@/components/ui/errors/DatabaseErrorBoundary";
 import { ErrorFallback } from "@/components/ui/feedback";
 import { useBinder } from "@/hooks/useBinder";
+
+import { BinderContent } from "../components";
 
 export default function BinderPage() {
   const { uuid } = useParams<{ uuid: string }>();
