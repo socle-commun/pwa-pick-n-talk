@@ -10,7 +10,7 @@
  * - Real-time saving to users table via DexieJS
  */
 
-import { Button, Card, CardContent, Box, Typography, Container } from "@mui/material";
+import { Button, Box, Typography, Container } from "@mui/material";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
@@ -19,6 +19,8 @@ import { UserForm } from "@/components/partials/forms";
 import UserAccountCard from "@/components/partials/user/UserAccountCard";
 import { db } from "@/db";
 import { type User, type Role } from "@/db/models";
+
+import AccountTypeCard from "./AccountTypeCard";
 
 interface CaregiverAccountsStepProps {
   onContinue?: () => void;
@@ -110,62 +112,15 @@ export default function CaregiverAccountsStep({ onContinue }: CaregiverAccountsS
       {/* Account Type Selection */}
       {!showForm && (
         <div>
-          <Card
-            sx={{
-              p: 3,
-              border: "2px dashed",
-              borderColor: "primary.main",
-              cursor: "pointer",
-              transition: "all 0.2s",
-              "&:hover": {
-                borderColor: "primary.dark",
-                backgroundColor: "primary.light",
-                opacity: 0.8
-              },
-              mb: 2
-            }}
-            onClick={() => handleAddUser("caregiver")}
-          >
-            <CardContent sx={{ textAlign: "center", p: 0, "&:last-child": { pb: 0 } }}>
-              <Box sx={{ mb: 2, display: "flex", justifyContent: "center", color: "primary.main" }}>
-                {getAccountTypeIcon("caregiver")}
-              </Box>
-              <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
-                {t("onboarding.caregivers.add_caregiver", "Add Caregiver")}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {t("onboarding.caregivers.caregiver_description", "Family members, friends, or support persons")}
-              </Typography>
-            </CardContent>
-          </Card>
+          <AccountTypeCard
+            role="caregiver"
+            onSelect={() => handleAddUser("caregiver")}
+          />
 
-          <Card
-            sx={{
-              p: 3,
-              border: "2px dashed",
-              borderColor: "secondary.main",
-              cursor: "pointer",
-              transition: "all 0.2s",
-              "&:hover": {
-                borderColor: "secondary.dark",
-                backgroundColor: "secondary.light",
-                opacity: 0.8
-              }
-            }}
-            onClick={() => handleAddUser("professional")}
-          >
-            <CardContent sx={{ textAlign: "center", p: 0, "&:last-child": { pb: 0 } }}>
-              <Box sx={{ mb: 2, display: "flex", justifyContent: "center", color: "secondary.main" }}>
-                {getAccountTypeIcon("professional")}
-              </Box>
-              <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
-                {t("onboarding.caregivers.add_professional", "Add Professional")}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {t("onboarding.caregivers.professional_description", "Healthcare workers, therapists, educators")}
-              </Typography>
-            </CardContent>
-          </Card>
+          <AccountTypeCard
+            role="professional"
+            onSelect={() => handleAddUser("professional")}
+          />
         </div>
       )}
 

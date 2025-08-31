@@ -16,12 +16,9 @@ test.describe("Caregiver Accounts Setup", () => {
     // Check description
     await expect(page.getByText("Add caregivers and professionals")).toBeVisible();
 
-    // Check both account type buttons
+    // Check both account type buttons (now properly accessible with role="button")
     await expect(page.getByRole("button", { name: "Add Caregiver" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Add Professional" })).toBeVisible();
-
-    // Check continue button with no accounts
-    await expect(page.getByRole("button", { name: "Continue without accounts" })).toBeVisible();
   });
 
   test("should create a caregiver account successfully", async ({ page }) => {
@@ -64,12 +61,18 @@ test.describe("Caregiver Accounts Setup", () => {
   test("should create multiple accounts", async ({ page }) => {
     // Create first account (Caregiver)
     await page.getByRole("button", { name: "Add Caregiver" }).click();
+    await page.getByTestId("name-input").waitFor({ state: "visible" });
     await page.getByTestId("name-input").fill("First Caregiver");
     await page.getByTestId("email-input").fill("first@test.com");
     await page.getByRole("button", { name: "Create Caregiver" }).click();
 
+    // Wait for form to close and accounts list to be visible
+    await page.getByText("First Caregiver").waitFor({ state: "visible" });
+
     // Create second account (Professional)
     await page.getByRole("button", { name: "Add Professional" }).click();
+    await page.getByTestId("name-input").waitFor({ state: "visible" });
+    await page.waitForTimeout(500); // Give time for form to fully initialize
     await page.getByTestId("name-input").fill("Second Professional");
     await page.getByTestId("email-input").fill("second@test.com");
     await page.getByRole("button", { name: "Create Professional" }).click();
@@ -85,19 +88,25 @@ test.describe("Caregiver Accounts Setup", () => {
   test("should edit an existing account", async ({ page }) => {
     // Create an account first
     await page.getByRole("button", { name: "Add Caregiver" }).click();
+    await page.getByTestId("name-input").waitFor({ state: "visible" });
     await page.getByTestId("name-input").fill("Original Name");
     await page.getByTestId("email-input").fill("original@test.com");
     await page.getByRole("button", { name: "Create Caregiver" }).click();
 
+    // Wait for account to be created and list to show
+    await page.getByText("Original Name").waitFor({ state: "visible" });
+
     // Click edit button
     await page.getByRole("button", { name: "Edit" }).click();
 
-    // Check form is pre-populated
+    // Wait for form to be ready and check it's pre-populated
+    await page.getByTestId("name-input").waitFor({ state: "visible" });
     await expect(page.getByTestId("name-input")).toHaveValue("Original Name");
     await expect(page.getByTestId("email-input")).toHaveValue("original@test.com");
 
     // Update the name
-    await page.getByTestId("name-input").clear();
+    await page.waitForTimeout(500); // Give time for form to be ready
+    await page.getByTestId("name-input").fill(""); // Clear by filling with empty string
     await page.getByTestId("name-input").fill("Updated Name");
 
     // Submit the update

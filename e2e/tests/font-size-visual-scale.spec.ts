@@ -11,8 +11,8 @@ test.describe("Font Size Visual Scaling", () => {
     const heading = page.locator("h1").filter({ hasText: "Settings" });
     await expect(heading).toBeVisible();
     const initialSize = await heading.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
-    await page.locator("[role=\"combobox\"]").click();
-    await page.locator("[role=\"option\"]").filter({ hasText: "large" }).click();
+    await page.getByRole("combobox", { name: "Font Size" }).click();
+    await page.getByRole("option", { name: "large (113%)" }).click();
     const largeSize = await heading.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
     expect(largeSize).toBeGreaterThan(initialSize);
     expect(largeSize / initialSize).toBeCloseTo(1.125, 2);
