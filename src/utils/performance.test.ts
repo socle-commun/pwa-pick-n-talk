@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+
 import { performanceMonitor } from "@/utils/performance";
 
 // Mock web-vitals

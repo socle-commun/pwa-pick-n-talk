@@ -45,19 +45,27 @@ applyTo: "**"
 - Use fragments (<>...</>) to avoid unnecessary divs.
 - Use props for downward data, callbacks for upward events.
 - Always type props and state with TypeScript.
-- Always use the [`cn`](../src/utils/cn.ts) utility for class names.
+- Use MUI components (`Box`, `AppBar`, `Toolbar`, etc.) instead of custom wrapper components.
 
-## 🎨 Tailwind UI Catalyst (see https://catalyst.tailwindui.com/docs)
+## 🚫 RÈGLE CRITIQUE: INTERDICTION DES className
 
-- NO custom CSS.
-- Use only Tailwind utility classes for everything: layout, color, typography, responsive, dark mode, etc.
-- Structure Tailwind classes in order: layout → box model → typography → color → effects.
-- Use components from components/ui before creating new ones.
-- If you create a component, it must be generic, reusable, and documented.
-- See Tailwind UI Catalyst https://catalyst.tailwindui.com/docs
-- Always use the template for colors, backgrounds, and borders:
-- Never use Tailwind's color palette directly.
-- If you need more colors, you need to add them in the templates files first.
+**JAMAIS d'utilisation de `className` - ESLint l'interdit strictement**
+- ❌ `className` est une MAUVAISE PRATIQUE dans ce projet
+- ✅ Utiliser uniquement les composants MUI avec `sx` prop
+- ✅ Système de design unifié, thème automatique, dark mode
+- ✅ Responsive design avec `sx={{ display: { xs: "none", md: "block" } }}`
+- 📚 Voir `.github/instructions/no-classname-convention.instructions.md`
+
+## 🎨 MUI Design System (OBLIGATOIRE)
+
+- ✅ Utiliser UNIQUEMENT les composants MUI (Box, Typography, Button, Card, etc.)
+- ✅ Styliser avec la prop `sx` pour tout: layout, couleurs, typography, responsive, dark mode
+- ✅ Utiliser les composants de `components/ui` avant d'en créer de nouveaux
+- ✅ Si création d'un composant : générique, réutilisable, documenté
+- ✅ Responsive design avec `sx={{ display: { xs: "flex", md: "block" } }}`
+- ✅ Couleurs du thème avec `sx={{ color: "primary.main", bgcolor: "background.paper" }}`
+- ❌ JAMAIS de CSS custom ou Tailwind - INTERDIT
+- 📚 Voir [MUI System](https://mui.com/system/getting-started/the-sx-prop/)
 
 ## 🛣️ React Router (see https://reactrouter.com/home)
 

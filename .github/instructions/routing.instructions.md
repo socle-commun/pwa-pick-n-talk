@@ -67,14 +67,14 @@ export default function BinderPage() {
   }
   
   return (
-    <section className="max-w-2xl mx-auto p-6">
-      <Heading level={1} className="mb-4">Binder Details</Heading>
+    <Box component="section" sx={{ maxWidth: '32rem', mx: 'auto', p: 3 }}>
+      <Typography variant="h1" sx={{ mb: 2 }}>Binder Details</Typography>
       <BinderContent binder={binder} uuid={uuid} />
-    </section>
+    </Box>
   );
 
-// Note: Heading imported from Catalyst UI
-import { Heading } from "@/components/ui/typography";
+// Note: Typography imported from MUI
+import { Typography, Box } from "@mui/material";
 }
 ```
 
@@ -82,14 +82,15 @@ import { Heading } from "@/components/ui/typography";
 ```tsx
 // Use Link from UI components
 import { Link } from "@/components/ui/navigation";
+import { Add } from "@mui/icons-material";
 
-<Link to="/binders/new" variant="primary" className="inline-flex items-center gap-2">
-  <PlusIcon className="size-5" aria-hidden="true" />
+<Link to="/binders/new" variant="primary" sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}>
+  <Add sx={{ fontSize: '1.25rem' }} aria-hidden="true" />
   Create Binder
 </Link>
 
-// Note: PlusIcon imported from Catalyst UI icons
-import { PlusIcon } from "@/components/ui/icons";
+// Note: Add icon imported from MUI icons
+import { Add } from "@mui/icons-material";
 ```
 
 ### App Router Setup

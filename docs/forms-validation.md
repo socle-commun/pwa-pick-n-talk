@@ -55,7 +55,7 @@ function UserRegistrationForm() {
       schema={UserSchema}
       initialValues={{ name: "", email: "", password: "" }}
       onSubmit={handleSubmit}
-      className="space-y-4"
+      sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
     >
       <FormInput
         name="name"
@@ -80,9 +80,9 @@ function UserRegistrationForm() {
         required
       />
       
-      <button type="submit" className="btn-primary">
+      <Button type="submit" variant="contained" color="primary">
         Register
-      </button>
+      </Button>
     </Form>
   );
 }
@@ -171,26 +171,28 @@ export default function UserRegistrationForm({
   };
 
   return (
-    <div className="max-w-md mx-auto space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold">User Registration</h2>
-        <p className="text-gray-600">
+    <Box sx={{ maxWidth: '28rem', mx: 'auto', display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Box>
+        <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold', mb: 1 }}>
+          User Registration
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           Complete example using Zod validation system
-        </p>
-      </div>
+        </Typography>
+      </Box>
 
       <Form<UserRegistrationData>
         schema={UserRegistrationSchema}
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        className="space-y-4"
+        sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
       >
         <FormInput
           name="name"
           label="Full Name"
           placeholder="Enter your full name"
           required
-          className="w-full"
+          sx={{ width: '100%' }}
         />
         
         <FormInput
@@ -199,7 +201,7 @@ export default function UserRegistrationForm({
           type="email"
           placeholder="user@example.com"
           required
-          className="w-full"
+          sx={{ width: '100%' }}
         />
         
         <FormInput
@@ -208,7 +210,7 @@ export default function UserRegistrationForm({
           type="password"
           placeholder="Minimum 8 characters"
           required
-          className="w-full"
+          sx={{ width: '100%' }}
         />
         
         <FormInput
@@ -217,29 +219,39 @@ export default function UserRegistrationForm({
           type="password"
           placeholder="Repeat your password"
           required
-          className="w-full"
+          sx={{ width: '100%' }}
         />
         
-        <div className="flex gap-2">
-          <button 
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button 
             type="submit" 
-            className="flex-1 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 disabled:opacity-50"
+            variant="contained"
+            color="primary"
+            sx={{ 
+              flex: 1, 
+              py: 1, 
+              '&:disabled': { opacity: 0.5 }
+            }}
           >
             Register
-          </button>
-          <button 
+          </Button>
+          <Button 
             type="button" 
-            className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400"
+            variant="outlined"
+            sx={{ 
+              flex: 1,
+              py: 1
+            }}
             onClick={() => window.location.reload()}
           >
             Reset
-          </button>
-        </div>
+          </Button>
+        </Box>
       </Form>
 
-      <div className="text-sm text-gray-500 space-y-1">
-        <p><strong>Features demonstrated:</strong></p>
-        <ul className="list-disc list-inside space-y-1">
+      <Box sx={{ fontSize: '0.875rem', color: 'text.secondary', display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+        <Typography variant="body2" sx={{ fontWeight: 'bold' }}>Features demonstrated:</Typography>
+        <Box component="ul" sx={{ listStyle: 'disc', listStylePosition: 'inside', display: 'flex', flexDirection: 'column', gap: 0.5, pl: 1 }}>
           <li>Runtime validation with Zod schemas</li>
           <li>Integration with database models (using 'id' fields)</li>
           <li>Type-safe form submission</li>
@@ -247,7 +259,7 @@ export default function UserRegistrationForm({
           <li>Internationalized error messages</li>
           <li>Custom validation rules (password confirmation)</li>
           <li>Accessibility with proper ARIA attributes</li>
-        </ul>
+        </Box>
       </div>
     </div>
   );

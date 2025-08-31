@@ -1,8 +1,8 @@
 import { type PromiseExtended } from "dexie";
 
+import { type PickNTalkDB } from "@/db/index";
 import { type History } from "@/db/models";
 
-import { type PickNTalkDB } from "@/db/index";
 
 /**
  * Create a new history record

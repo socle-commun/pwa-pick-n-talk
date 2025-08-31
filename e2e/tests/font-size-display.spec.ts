@@ -8,7 +8,7 @@ test.describe("Font Size Selector Display", () => {
 
   test("should display font size selector on settings page", async ({ page }) => {
     await page.goto("/settings");
-    await expect(page.locator("text=\"Font Size\"")).toBeVisible();
-    await expect(page.locator("[role=\"combobox\"]").filter({ hasText: "normal" })).toBeVisible();
+    await expect(page.locator("label#font-size-label")).toBeVisible();
+    await expect(page.getByRole("combobox", { name: "Font Size" })).toBeVisible();
   });
 });

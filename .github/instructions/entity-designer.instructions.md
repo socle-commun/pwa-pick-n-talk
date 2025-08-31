@@ -38,11 +38,11 @@ export const validateEntityNamePartial = (data: unknown) =>
 ```
 
 
-### Form Integration (with Catalyst UI)
+### Form Integration (with MUI components)
 ```tsx
 import { Form, FormInput } from "@/components/ui/forms";
 
-<Form schema={EntityNameSchema} onSubmit={handleSubmit} className="space-y-6">
+<Form schema={EntityNameSchema} onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
   <FormInput name="name" label="Name" required />
 </Form>
 ```

@@ -10,16 +10,13 @@
  * - Automatic saving to database
  */
 
+import { Button, Box, Typography, type SxProps, type Theme } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Form, FormInput } from "@/components/ui/forms";
-import { Button } from "@/components/ui/actions";
-import { Heading } from "@/components/ui/typography";
-
-import { UserSchema, type User, type Role } from "@/db/models";
 import { db } from "@/db";
-import cn from "@/utils/cn";
+import { UserSchema, type User, type Role } from "@/db/models";
 
 // Form data schema for user creation/editing
 const UserFormSchema = UserSchema.partial({
@@ -43,7 +40,7 @@ interface UserFormProps {
   role: "caregiver" | "professional";
   onSaved?: (user: User) => void;
   onCancel?: () => void;
-  className?: string;
+  sx?: SxProps<Theme>;
 }
 
 export default function UserForm({
@@ -51,7 +48,7 @@ export default function UserForm({
   role,
   onSaved,
   onCancel,
-  className,
+  sx,
 }: UserFormProps) {
   const { t } = useTranslation();
   const [isSaving, setSaving] = useState(false);
@@ -66,28 +63,34 @@ export default function UserForm({
     role,
   };
 
+  const createUserData = useCallback(async (data: UserFormData): Promise<User> => {
+    const bcrypt = await import("bcryptjs");
+
+    return {
+      id: user?.id || crypto.randomUUID(),
+      name: data.name,
+      email: data.email,
+      hash: data.password ? await bcrypt.hash(data.password, 10) : user?.hash,
+      role: data.role,
+      settings: user?.settings || {},
+      binders: user?.binders || [],
+    };
+  }, [user]);
+
+  const persistUser = useCallback(async (userData: User) => {
+    if (isEditing) {
+      await db.updateUser(userData);
+    } else {
+      await db.createUser(userData);
+    }
+  }, [isEditing]);
+
   const saveUser = useCallback(async (data: UserFormData) => {
     setSaving(true);
 
     try {
-      const bcrypt = await import("bcryptjs");
-
-      const userData: User = {
-        id: user?.id || crypto.randomUUID(),
-        name: data.name,
-        email: data.email,
-        hash: data.password ? await bcrypt.hash(data.password, 10) : user?.hash,
-        role: data.role,
-        settings: user?.settings || {},
-        binders: user?.binders || [],
-      };
-
-      if (isEditing) {
-        await db.updateUser(userData);
-      } else {
-        await db.createUser(userData);
-      }
-
+      const userData = await createUserData(data);
+      await persistUser(userData);
       setLastSaved(new Date());
       onSaved?.(userData);
     } catch (error) {
@@ -96,7 +99,7 @@ export default function UserForm({
     } finally {
       setSaving(false);
     }
-  }, [user, isEditing, onSaved, t]);
+  }, [createUserData, persistUser, onSaved, t]);
 
   const handleSubmit = async (data: UserFormData) => {
     await saveUser(data);
@@ -116,31 +119,31 @@ export default function UserForm({
   };
 
   return (
-    <div className={cn("space-y-6", className)}>
-      <div className="flex items-center justify-between">
-        <Heading level={3} className="text-lg font-medium">
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 3, ...sx }}>
+      <Box>
+        <Typography variant="h5" component="h3" sx={{ mb: 1 }}>
           {isEditing
             ? t("forms.user.edit_title", "Edit {{role}}", { role: getRoleDisplayName(role) })
             : t("forms.user.create_title", "Add {{role}}", { role: getRoleDisplayName(role) })
           }
-        </Heading>
+        </Typography>
 
         {lastSaved && (
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p >
             {t("forms.user.last_saved", "Last saved: {{time}}", {
               time: lastSaved.toLocaleTimeString()
             })}
           </p>
         )}
-      </div>
+      </Box>
 
       <Form<UserFormData>
         schema={UserFormSchema}
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        className="space-y-6"
+
       >
-        <div className="grid md:grid-cols-2 gap-6">
+        <Box>
           <FormInput
             name="name"
             label={t("forms.user.name", "Full Name")}
@@ -157,7 +160,7 @@ export default function UserForm({
             autoComplete="email"
             placeholder={t("forms.user.email_placeholder", "Enter email address")}
           />
-        </div>
+        </Box>
 
         <FormInput
           name="password"
@@ -170,28 +173,28 @@ export default function UserForm({
               : t("forms.user.password_placeholder", "Enter password (optional)")
           }
         />
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 -mt-4">
+        <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>
           {t("forms.user.password_help", "Password is optional. If not set, the user will need to create one on first sign-in.")}
-        </p>
+        </Typography>
 
         {/* Role display (read-only) */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+        <Box>
+          <Typography component="label" variant="body2" sx={{ fontWeight: "medium", mb: 1, display: "block" }}>
             {t("forms.user.role", "Role")}
-          </label>
-          <div className="px-3 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md text-sm text-zinc-700 dark:text-zinc-300">
+          </Typography>
+          <Box sx={{ p: 1.5, border: 1, borderColor: "divider", borderRadius: 1, mb: 1 }}>
             {getRoleDisplayName(role)}
-          </div>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          </Box>
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {t("forms.user.role_help", "Role is determined by the account type being created")}
-          </p>
-        </div>
+          </Typography>
+        </Box>
 
-        <div className="flex gap-4">
+        <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
           <Button
             type="submit"
             disabled={isSaving}
-            className="flex-1 sm:flex-none"
+            variant="contained"
           >
             {(() => {
               if (isSaving) {
@@ -207,15 +210,15 @@ export default function UserForm({
           {onCancel && (
             <Button
               type="button"
-              outline
+              variant="outlined"
               onClick={onCancel}
-              className="flex-1 sm:flex-none"
+
             >
               {t("forms.user.cancel", "Cancel")}
             </Button>
           )}
-        </div>
+        </Box>
       </Form>
-    </div>
+    </Box>
   );
 }

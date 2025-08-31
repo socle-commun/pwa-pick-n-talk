@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "jotai";
 import React from "react";
+import { describe, it, expect, vi } from "vitest";
 
 import ThemeModeToggle from "./ThemeModeToggle";
 
@@ -34,8 +34,8 @@ describe("ThemeModeToggle", () => {
       { wrapper }
     );
 
-    const button = screen.getByRole("button");
-    await user.click(button);
+    const combobox = screen.getByRole("combobox");
+    await user.click(combobox);
 
     expect(screen.getByText("settings.theme.mode.dark")).toBeInTheDocument();
   });
@@ -48,8 +48,8 @@ describe("ThemeModeToggle", () => {
       { wrapper }
     );
 
-    const button = screen.getByRole("button");
-    await user.click(button);
+    const combobox = screen.getByRole("combobox");
+    await user.click(combobox);
 
     const darkOption = screen.getByText("settings.theme.mode.dark");
     await user.click(darkOption);

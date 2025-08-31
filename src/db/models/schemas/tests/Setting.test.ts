@@ -1,5 +1,6 @@
 
 import { describe, it, expect } from "vitest";
+
 import { validateSetting, validateSettingSafe, isValidSetting } from "../Setting";
 
 describe("Setting Schema Validation", () => {

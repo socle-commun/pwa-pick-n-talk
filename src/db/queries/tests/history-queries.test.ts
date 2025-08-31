@@ -2,6 +2,7 @@
  * Unit tests for history-queries.ts
  */
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+
 import "fake-indexeddb/auto";
 import { PickNTalkDB } from "../../index";
 import type { History } from "../../models";
@@ -53,9 +54,12 @@ describe("History Queries", () => {
 
       const result = await db.getHistory("binder1");
       expect(result).toHaveLength(2);
-      expect(result.find(h => h.id === "hist1")).toBeDefined();
-      expect(result.find(h => h.id === "hist2")).toBeDefined();
-      expect(result.find(h => h.id === "hist3")).toBeUndefined();
+
+      const findHistoryById = (id: string) => result.find(h => h.id === id);
+
+      expect(findHistoryById("hist1")).toBeDefined();
+      expect(findHistoryById("hist2")).toBeDefined();
+      expect(findHistoryById("hist3")).toBeUndefined();
     });
 
     it("should return empty array when no history entries exist for entity", async () => {

@@ -1,5 +1,6 @@
 
 import { vi, describe, it, expect, beforeAll, afterAll } from "vitest";
+
 // Inject fake-indexeddb before Dexie import
 import "fake-indexeddb/auto";
 import { PickNTalkDB } from "./index";

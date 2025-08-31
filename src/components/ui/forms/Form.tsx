@@ -1,6 +1,8 @@
+import { Box, type SxProps, type Theme } from "@mui/material";
 import React from "react";
 import { z } from "zod";
-import FormProvider from "./FormContext";
+
+import { FormProvider } from "./FormProvider";
 import { useForm } from "./hooks";
 
 type FormProps<T> = {
@@ -8,13 +10,13 @@ type FormProps<T> = {
   schema?: z.ZodSchema<T>;
   initialValues?: Partial<T>;
   onSubmit?: (values: T) => Promise<void> | void;
-  className?: string;
+  sx?: SxProps<Theme>;
 };
 
-function FormContent<T>({ children, onSubmit, className }: {
+function FormContent<T>({ children, onSubmit, sx }: {
   children: React.ReactNode;
   onSubmit?: (values: T) => Promise<void> | void;
-  className?: string;
+  sx?: SxProps<Theme>;
 }) {
   const { values, validateForm, setSubmitting, isSubmitting } = useForm<T>();
 
@@ -38,11 +40,11 @@ function FormContent<T>({ children, onSubmit, className }: {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={className} noValidate>
+    <Box component="form" onSubmit={handleSubmit} sx={sx} noValidate>
       <fieldset disabled={isSubmitting}>
         {children}
       </fieldset>
-    </form>
+    </Box>
   );
 }
 
@@ -51,15 +53,11 @@ export default function Form<T extends Record<string, unknown> = Record<string, 
   schema,
   initialValues,
   onSubmit,
-  className,
+  sx,
 }: FormProps<T>) {
   return (
-    <FormProvider<T>
-      schema={schema}
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-    >
-      <FormContent<T> onSubmit={onSubmit} className={className}>
+    <FormProvider<T> schema={schema} initialValues={initialValues}>
+      <FormContent<T> onSubmit={onSubmit} sx={sx}>
         {children}
       </FormContent>
     </FormProvider>

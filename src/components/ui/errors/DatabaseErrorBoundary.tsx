@@ -1,6 +1,5 @@
+import { Button, Box, Typography } from "@mui/material";
 import { Component, type ReactNode } from "react";
-import cn from "@/utils/cn";
-import { Button } from "@/components/ui";
 
 interface Props {
   children: ReactNode;
@@ -33,23 +32,39 @@ export class DatabaseErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div className={cn("flex flex-col items-center justify-center p-8")}>
-            <div className={cn("text-red-600 dark:text-red-400 text-xl mb-2")}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              p: 4
+            }}
+          >
+            <Typography
+              variant="h5"
+              color="error"
+              sx={{ mb: 1 }}
+            >
               ⚠️ Something went wrong
-            </div>
-            <div className={cn("text-zinc-600 dark:text-zinc-400 text-center")}>
+            </Typography>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ textAlign: "center", mb: 2 }}
+            >
               Failed to load data from the database.
               <br />
               Please try refreshing the page.
-            </div>
+            </Typography>
             <Button
               onClick={() => window.location.reload()}
-              color="blue"
-              className="mt-4"
+              color="primary"
+              variant="contained"
             >
               Refresh Page
             </Button>
-          </div>
+          </Box>
         )
       );
     }

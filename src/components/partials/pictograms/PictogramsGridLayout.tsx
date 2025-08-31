@@ -1,23 +1,32 @@
-import PictogramCard from "./PictogramCard";
+import { Box, Grid } from "@mui/material";
+
 import { type Pictogram } from "@/db/models";
-import cn from "@/utils/cn";
+
+import PictogramCard from "./PictogramCard";
 
 export interface PictogramsGridLayoutProps {
   pictograms: Pictogram[];
-  className?: string;
 }
 
-export function PictogramsGridLayout({ pictograms, className }: PictogramsGridLayoutProps) {
+export function PictogramsGridLayout({ pictograms }: PictogramsGridLayoutProps) {
   return (
-    <div
-      className={cn(
-        "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 p-4",
-        className
-      )}
-    >
-      {pictograms.map((pictogram: Pictogram) => (
-        <PictogramCard key={pictogram.id} pictogram={pictogram} />
-      ))}
-    </div>
+    <Box sx={{ p: 2 }}>
+      <Grid container spacing={2}>
+        {pictograms.map((pictogram: Pictogram) => (
+          <Grid
+            key={pictogram.id}
+            size={{
+              xs: 6,
+              sm: 4,
+              md: 3,
+              lg: 2.4,
+              xl: 2,
+            }}
+          >
+            <PictogramCard pictogram={pictogram} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }

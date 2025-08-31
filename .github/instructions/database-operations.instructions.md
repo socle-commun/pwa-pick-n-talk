@@ -93,9 +93,9 @@ import { Spinner } from "@/components/ui/feedback";
 import { ErrorBoundary } from "@/components/ui/feedback";
 
 if (!data) return (
-  <div className="flex items-center justify-center h-32">
+  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '8rem' }}>
     <Spinner size="lg" aria-label="Loading..." />
-  </div>
+  </Box>
 );
 if (error) return (
   <ErrorBoundary error={error} />

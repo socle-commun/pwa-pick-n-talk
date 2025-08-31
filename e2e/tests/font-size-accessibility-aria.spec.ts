@@ -8,12 +8,12 @@ test.describe("Font Size Accessibility ARIA", () => {
 
   test("should maintain accessibility with ARIA attributes", async ({ page }) => {
     await page.goto("/settings");
-    const combobox = page.locator("[role=\"combobox\"]");
+    const combobox = page.getByRole("combobox", { name: "Font Size" });
     await expect(combobox).toHaveAttribute("role", "combobox");
     await combobox.click();
-    await expect(page.locator("[role=\"option\"]").first()).toBeVisible();
-    await expect(page.locator("[role=\"option\"]").filter({ hasText: "normal" })).toBeVisible();
-    await expect(page.locator("[role=\"option\"]").filter({ hasText: "large" })).toBeVisible();
-    await expect(page.locator("[role=\"option\"]").filter({ hasText: "extra-large" })).toBeVisible();
+    await expect(page.getByRole("option").first()).toBeVisible();
+    await expect(page.getByRole("option", { name: "normal (100%)" })).toBeVisible();
+    await expect(page.getByRole("option", { name: "large (113%)" })).toBeVisible();
+    await expect(page.getByRole("option", { name: "extra-large (125%)" })).toBeVisible();
   });
 });

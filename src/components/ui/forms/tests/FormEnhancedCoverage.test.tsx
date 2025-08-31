@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi, describe, it, expect } from "vitest";
 import { z } from "zod";
+
 import { Form, FormInput } from "../index";
 
 // Mock i18next
@@ -43,13 +44,17 @@ describe("Form Enhanced Test Coverage", () => {
         "valid.email@subdomain.example.org",
       ];
 
-      for (const email of validEmails) {
+      const testValidEmail = async (email: string) => {
         fireEvent.change(emailInput, { target: { value: email } });
         fireEvent.blur(emailInput);
 
         await waitFor(() => {
           expect(screen.queryByText("Invalid email format")).not.toBeInTheDocument();
         });
+      };
+
+      for (const email of validEmails) {
+        await testValidEmail(email);
       }
     });
 
@@ -71,7 +76,7 @@ describe("Form Enhanced Test Coverage", () => {
         "",
       ];
 
-      for (const email of invalidEmails) {
+      const testInvalidEmail = async (email: string) => {
         fireEvent.change(emailInput, { target: { value: email } });
         fireEvent.blur(emailInput);
 
@@ -84,6 +89,10 @@ describe("Form Enhanced Test Coverage", () => {
         await waitFor(() => {
           expect(screen.queryByText("Invalid email format")).not.toBeInTheDocument();
         });
+      };
+
+      for (const email of invalidEmails) {
+        await testInvalidEmail(email);
       }
     });
   });

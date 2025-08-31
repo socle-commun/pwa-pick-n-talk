@@ -1,8 +1,14 @@
-import cn from "@/utils/cn";
 
-export default function Brand({ className }: { className?: string }) {
+import { Box } from "@mui/material";
+
+interface BrandProps {
+  sx?: object;
+}
+
+export default function Brand({ sx }: BrandProps) {
   return (
-    <svg
+    <Box
+      component="svg"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       aria-hidden="true"
@@ -10,7 +16,10 @@ export default function Brand({ className }: { className?: string }) {
       data-testid="logo"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 200 200"
-      className={cn(className, "fill-current")}
+      sx={{
+        fill: "currentColor",
+        ...sx,
+      }}
     >
       <path transform="translate(100 100)">
         <animate
@@ -30,6 +39,6 @@ export default function Brand({ className }: { className?: string }) {
           repeatCount="indefinite"
         />
       </path>
-    </svg>
+    </Box>
   );
 }

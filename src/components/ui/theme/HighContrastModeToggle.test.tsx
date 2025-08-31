@@ -32,8 +32,8 @@ describe("HighContrastModeToggle", () => {
   it("should render without crashing", () => {
     render(<HighContrastModeToggle />);
 
-    expect(screen.getByRole("button")).toBeInTheDocument();
-    expect(screen.getByText("High Contrast")).toBeInTheDocument();
+    expect(screen.getByRole("combobox")).toBeInTheDocument();
+    expect(screen.getByLabelText("High Contrast Mode")).toBeInTheDocument();
   });
 
   it("should display current high contrast mode", () => {
@@ -42,21 +42,15 @@ describe("HighContrastModeToggle", () => {
     expect(screen.getByText("normal")).toBeInTheDocument();
   });
 
-  it("should apply custom className when provided", () => {
-    const { container } = render(<HighContrastModeToggle className="custom-class" />);
-
-    expect(container.firstChild).toHaveClass("custom-class");
-  });
-
   it("should have proper accessibility attributes", () => {
     render(<HighContrastModeToggle />);
 
-    const label = screen.getByText("High Contrast");
-    const button = screen.getByRole("button");
+    const label = screen.getByLabelText("High Contrast Mode");
+    const combobox = screen.getByRole("combobox");
 
     expect(label).toBeInTheDocument();
-    expect(button).toHaveAttribute("aria-expanded", "false");
-    expect(button).toHaveAttribute("aria-haspopup", "listbox");
+    expect(combobox).toHaveAttribute("aria-expanded", "false");
+    expect(combobox).toHaveAttribute("aria-haspopup", "listbox");
   });
 
   it("should contain SVG icons", () => {

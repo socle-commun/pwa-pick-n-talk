@@ -1,5 +1,6 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { useTranslation } from "react-i18next";
+
 import { db } from "@/db";
 
 export function useBinder(uuid: string | undefined) {

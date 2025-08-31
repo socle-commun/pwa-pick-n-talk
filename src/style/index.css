@@ -1,10 +1,7 @@
-@import "tailwindcss";
 @import "./themes.css";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* #region Theme */
-@theme {
+:root {
   --font-logo:
     "Gloria Hallelujah", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -27,32 +24,33 @@
 /* #endregion */
 
 /* #region Base */
-@layer base {
-  :root {
-    @apply font-sans antialiased;
-    background-color: var(--theme-bg-primary);
-    color: var(--theme-text-primary);
-    font-size: calc(1rem * var(--font-size-scale));
-  }
+:root {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+  font-size: calc(1rem * var(--font-size-scale));
+}
 
-  html {
-    @apply h-full;
-    background-color: var(--theme-bg-primary);
-    color: var(--theme-text-primary);
-    font-size: calc(1rem * var(--font-size-scale));
-  }
+html {
+  height: 100%;
+  background-color: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+  font-size: calc(1rem * var(--font-size-scale));
+}
 
-  body {
-    @apply min-h-screen;
-    background-color: var(--theme-bg-primary);
-    color: var(--theme-text-primary);
-  }
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+}
 
-  #root {
-    @apply contents isolate;
-    background-color: var(--theme-bg-secondary);
-    color: var(--theme-text-secondary);
-  }
+#root {
+  background-color: var(--theme-bg-secondary);
+  color: var(--theme-text-secondary);
+  isolation: isolate;
 }
 
 /* #endregion */

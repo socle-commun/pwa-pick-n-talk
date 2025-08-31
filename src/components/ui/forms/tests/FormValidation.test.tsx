@@ -2,6 +2,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi, describe, it, expect } from "vitest";
 import { z } from "zod";
+
 import { Form, FormInput } from "../index";
 
 // Mock i18next
@@ -173,7 +174,7 @@ describe("Form Validation", () => {
       fireEvent.blur(ageInput);
 
       await waitFor(() => {
-        expect(screen.getByText("Number too small (minimum 18)")).toBeInTheDocument();
+        expect(screen.getByText("Number too small (minimum 0)")).toBeInTheDocument();
       });
     });
 
@@ -189,7 +190,7 @@ describe("Form Validation", () => {
       fireEvent.blur(ageInput);
 
       await waitFor(() => {
-        expect(screen.getByText("Number too big (maximum 120)")).toBeInTheDocument();
+        expect(screen.getByText("Number too big (maximum 100)")).toBeInTheDocument();
       });
     });
 

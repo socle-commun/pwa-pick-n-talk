@@ -1,21 +1,18 @@
+import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
+import { Card, CardMedia, Typography, IconButton, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
 
-import { Button } from "@/components/ui/actions";
 import { type Pictogram } from "@/db/models";
 import { speak, isSpeechSynthesisSupported } from "@/utils/speak";
 import { getTranslation } from "@/utils/translation";
-import cn from "@/utils/cn";
 
 export interface PictogramCardProps {
   pictogram: Pictogram;
-  className?: string;
 }
 
 export default function PictogramCard({
   pictogram,
-  className,
 }: PictogramCardProps) {
   const { i18n } = useTranslation();
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -51,60 +48,51 @@ export default function PictogramCard({
   };
 
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md hover:shadow-lg transition-shadow",
-        "border border-zinc-200 dark:border-zinc-700",
-        className
-      )}
+    <Card
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        p: 2,
+        cursor: "pointer",
+        "&:hover": {
+          elevation: 4
+        }
+      }}
     >
       {/* Pictogram Image */}
-      <div className={cn("w-24 h-24 mb-3 flex items-center justify-center")}>
+      <Box sx={{ width: 96, height: 96, mb: 1.5, display: "flex", alignItems: "center", justifyContent: "center" }}>
         {imageUrl ? (
-          <img
-            src={imageUrl}
+          <CardMedia
+            component="img"
+            image={imageUrl}
             alt={word}
-            className={cn("max-w-full max-h-full object-contain")}
+            sx={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
           />
         ) : (
-          <div
-            className={cn(
-              "w-full h-full bg-zinc-100 dark:bg-zinc-700 rounded-md",
-              "flex items-center justify-center text-zinc-400"
-            )}
-          >
-            No Image
-          </div>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", color: "text.disabled" }}>
+            <Typography variant="body2">No Image</Typography>
+          </Box>
         )}
-      </div>
+      </Box>
 
       {/* Word Label */}
-      <div
-        className={cn(
-          "text-lg font-medium text-center mb-2 text-zinc-900 dark:text-zinc-100"
-        )}
-      >
+      <Typography variant="body1" sx={{ textAlign: "center", mb: 1, fontWeight: "medium" }}>
         {word}
-      </div>
+      </Typography>
 
       {/* Speaker Button */}
       {isSpeechSynthesisSupported() && (
-        <Button
+        <IconButton
           onClick={handleSpeak}
           disabled={isSpeaking || !word}
-          className={cn(
-            "p-2 rounded-full",
-            "hover:scale-105 active:scale-95 transition-transform duration-150",
-            isSpeaking ? "opacity-50 cursor-not-allowed" : ""
-          )}
-          color="blue"
+          color="primary"
+          aria-label={isSpeaking ? "Speaking..." : `Speak "${word}"`}
+          size="small"
         >
-          <SpeakerWaveIcon className={cn("size-5")} />
-          <span className={cn("sr-only")}>
-            {isSpeaking ? "Speaking..." : `Speak "${word}"`}
-          </span>
-        </Button>
+          <SpeakerWaveIcon style={{ width: 20, height: 20 }} />
+        </IconButton>
       )}
-    </div>
+    </Card>
   );
 }

@@ -28,10 +28,10 @@ export default function EntityForm() {
   };
 
   return (
-    <Form<EntityFormData> schema={EntitySchema} onSubmit={handleSubmit} className="space-y-6">
+    <Form<EntityFormData> schema={EntitySchema} onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
       <FormInput name="email" label={t("forms.email", "Email")} type="email" required autoComplete="email" />
       <FormInput name="password" label={t("forms.password", "Password")} type="password" required />
-      <Button type="submit" className="w-full">
+      <Button type="submit" sx={{ width: '100%' }}>
         {t("forms.submit", "Submit")}
       </Button>
     </Form>

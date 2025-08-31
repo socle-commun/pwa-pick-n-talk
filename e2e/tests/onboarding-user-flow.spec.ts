@@ -2,6 +2,9 @@ import { test, expect } from "@playwright/test";
 
 test.describe("User Registration and Onboarding Flow", () => {
   test.beforeEach(async ({ page }) => {
+    // Navigate to the app first
+    await page.goto("/");
+
     // Clear application state
     await page.evaluate(() => {
       localStorage.clear();

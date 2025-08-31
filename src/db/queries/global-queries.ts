@@ -1,8 +1,8 @@
 import { type PromiseExtended } from "dexie";
 
+import { type PickNTalkDB } from "@/db/index";
 import type { Category, Pictogram } from "@/db/models";
 
-import { type PickNTalkDB } from "@/db/index";
 
 /**
  * Get categories from a collection of pictograms

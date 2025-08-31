@@ -1,16 +1,15 @@
-import { PictogramsList } from "./PictogramsList";
 import { DatabaseErrorBoundary } from "@/components/ui/errors/DatabaseErrorBoundary";
 import { ErrorFallback } from "@/components/ui/feedback";
 import { usePictograms } from "@/hooks/usePictograms";
 
+import { PictogramsList } from "./PictogramsList";
+
 export interface PictogramsGridProps {
   binderId: string;
-  className?: string;
 }
 
 export default function PictogramsGrid({
   binderId,
-  className,
 }: PictogramsGridProps) {
   const pictograms = usePictograms(binderId);
 
@@ -29,7 +28,7 @@ export default function PictogramsGrid({
         />
       }
     >
-      <PictogramsList pictograms={pictograms} className={className} />
+      <PictogramsList pictograms={pictograms} />
     </DatabaseErrorBoundary>
   );
 }

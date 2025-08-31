@@ -1,33 +1,47 @@
-import cn from "@/utils/cn";
+import { Box, Typography } from "@mui/material";
 
 export interface ErrorFallbackProps {
   title: string;
   description?: React.ReactNode;
-  className?: string;
   action?: React.ReactNode;
 }
 
 export function ErrorFallback({
   title,
   description,
-  className,
   action
 }: ErrorFallbackProps) {
   return (
-    <div className={cn("flex flex-col items-center justify-center p-8", className)}>
-      <div className={cn("text-red-600 dark:text-red-400 text-xl mb-2")}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        p: 4
+      }}
+    >
+      <Typography
+        variant="h6"
+        color="error"
+        sx={{ mb: 1, textAlign: "center" }}
+      >
         ⚠️ {title}
-      </div>
+      </Typography>
       {description && (
-        <div className={cn("text-zinc-600 dark:text-zinc-400 text-center")}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ textAlign: "center", mb: 2 }}
+        >
           {description}
-        </div>
+        </Typography>
       )}
       {action && (
-        <div className={cn("mt-4")}>
+        <Box sx={{ mt: 2 }}>
           {action}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
