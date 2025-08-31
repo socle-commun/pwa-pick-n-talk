@@ -141,8 +141,19 @@ export default tseslint.config(
       ...vitest.configs.recommended.rules,
       "vitest/no-disabled-tests": "error",
       "vitest/no-focused-tests": "error",
-      "vitest/expect-expect": "error",
+      "vitest/expect-expect": ["error", { 
+        "assertFunctionNames": ["expect", "test*", "*expect*"]
+      }],
       "max-lines": ["error", { "max": 500, "skipBlankLines": true, "skipComments": true }],
+      
+      // Relaxed complexity rules for tests
+      "complexity": ["warn", 15], // Increased from 10
+      "max-statements": ["warn", 30], // Increased from 20
+      "max-nested-callbacks": ["warn", 5], // Increased from 3 to accommodate describe > it > waitFor > expect
+      "max-depth": ["warn", 6], // Increased from 4
+      
+      // Relaxed SonarJS rules for tests
+      "sonarjs/no-nested-functions": "off", // Allow nested functions in tests (describe > it > helper functions)
     },
   },
   {

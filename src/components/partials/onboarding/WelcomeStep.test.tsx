@@ -128,12 +128,14 @@ describe("WelcomeStep", () => {
   });
 
   describe("initialization", () => {
+    const renderWelcomeStep = () => render(
+      <TestWrapper>
+        <WelcomeStep />
+      </TestWrapper>
+    );
+
     it("should create setup started history on mount", async () => {
-      render(
-        <TestWrapper>
-          <WelcomeStep />
-        </TestWrapper>
-      );
+      renderWelcomeStep();
 
       await waitFor(() => {
         expect(db.createHistory).toHaveBeenCalledWith(
@@ -148,11 +150,7 @@ describe("WelcomeStep", () => {
     });
 
     it("should initialize tutorial setting on mount", async () => {
-      render(
-        <TestWrapper>
-          <WelcomeStep />
-        </TestWrapper>
-      );
+      renderWelcomeStep();
 
       await waitFor(() => {
         expect(db.upsertSetting).toHaveBeenCalledWith({

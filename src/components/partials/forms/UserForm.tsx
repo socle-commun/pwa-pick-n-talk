@@ -63,28 +63,34 @@ export default function UserForm({
     role,
   };
 
+  const createUserData = useCallback(async (data: UserFormData): Promise<User> => {
+    const bcrypt = await import("bcryptjs");
+
+    return {
+      id: user?.id || crypto.randomUUID(),
+      name: data.name,
+      email: data.email,
+      hash: data.password ? await bcrypt.hash(data.password, 10) : user?.hash,
+      role: data.role,
+      settings: user?.settings || {},
+      binders: user?.binders || [],
+    };
+  }, [user]);
+
+  const persistUser = useCallback(async (userData: User) => {
+    if (isEditing) {
+      await db.updateUser(userData);
+    } else {
+      await db.createUser(userData);
+    }
+  }, [isEditing]);
+
   const saveUser = useCallback(async (data: UserFormData) => {
     setSaving(true);
 
     try {
-      const bcrypt = await import("bcryptjs");
-
-      const userData: User = {
-        id: user?.id || crypto.randomUUID(),
-        name: data.name,
-        email: data.email,
-        hash: data.password ? await bcrypt.hash(data.password, 10) : user?.hash,
-        role: data.role,
-        settings: user?.settings || {},
-        binders: user?.binders || [],
-      };
-
-      if (isEditing) {
-        await db.updateUser(userData);
-      } else {
-        await db.createUser(userData);
-      }
-
+      const userData = await createUserData(data);
+      await persistUser(userData);
       setLastSaved(new Date());
       onSaved?.(userData);
     } catch (error) {
@@ -93,7 +99,7 @@ export default function UserForm({
     } finally {
       setSaving(false);
     }
-  }, [user, isEditing, onSaved, t]);
+  }, [createUserData, persistUser, onSaved, t]);
 
   const handleSubmit = async (data: UserFormData) => {
     await saveUser(data);

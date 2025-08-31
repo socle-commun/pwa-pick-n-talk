@@ -31,39 +31,53 @@ describe("Category Queries", () => {
   });
 
   it("should handle all CRUD operations correctly", async () => {
-    // Test empty state
+    await testEmptyState();
+    await testCreateOperations();
+    await testReadOperations();
+    await testUpdateOperations();
+    await testDeleteOperations();
+    await testNonExistentOperations();
+  });
+
+  async function testEmptyState() {
     expect(await db.getCategories()).toEqual([]);
     expect(await db.getCategory("nonexistent")).toBeUndefined();
+  }
 
-    // Test create
+  async function testCreateOperations() {
     const category = createTestCategory("test", { name: "Animals", color: "#00FF00" });
     const id = await db.createCategory(category);
     expect(id).toBe("test");
     await expect(db.createCategory(category)).rejects.toThrow(); // Duplicate
+  }
 
-    // Test read
+  async function testReadOperations() {
+    const category = createTestCategory("test", { name: "Animals", color: "#00FF00" });
     const stored = await db.getCategory("test");
     expect(stored).toEqual(category);
     expect(await db.getCategories()).toHaveLength(1);
+  }
 
-    // Test update
+  async function testUpdateOperations() {
     const updated = createTestCategory("test", { name: "Updated Animals", color: "#0000FF", pictograms: ["pic1"] });
     await db.updateCategory(updated);
     const result = await db.getCategory("test");
     expect(result?.name).toBe("Updated Animals");
     expect(result?.color).toBe("#0000FF");
     expect(result?.pictograms).toEqual(["pic1"]);
+  }
 
-    // Test delete
+  async function testDeleteOperations() {
     await db.deleteCategory("test");
     expect(await db.getCategory("test")).toBeUndefined();
     expect(await db.getCategories()).toEqual([]);
+  }
 
-    // Test graceful handling of non-existent operations
+  async function testNonExistentOperations() {
     const nonExistent = createTestCategory("none");
     await expect(db.updateCategory(nonExistent)).resolves.not.toThrow();
     await expect(db.deleteCategory("none")).resolves.not.toThrow();
-  });
+  }
 });
 
 
