@@ -2,17 +2,13 @@ import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 export default function EmptyBindersList({
-  className,
   ...props
-}: {
-  className?: string;
-}) {
+}: object) {
   const { t } = useTranslation();
 
   return (
     <Box
       {...props}
-      className={className}
       sx={{
         display: "flex",
         flexDirection: "column",

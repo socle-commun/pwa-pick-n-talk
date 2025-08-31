@@ -22,12 +22,11 @@ import { type User, type Role } from "@/db/models";
 
 interface CaregiverAccountsStepProps {
   onContinue?: () => void;
-  className?: string;
 }
 
 type AccountType = "caregiver" | "professional";
 
-export default function CaregiverAccountsStep({ onContinue, className }: CaregiverAccountsStepProps) {
+export default function CaregiverAccountsStep({ onContinue }: CaregiverAccountsStepProps) {
   const { t } = useTranslation();
   const [showForm, setShowForm] = useState(false);
   const [selectedAccountType, setSelectedAccountType] = useState<AccountType>("caregiver");
@@ -97,7 +96,7 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }} className={className}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* Header Section */}
       <Box sx={{ mb: 4 }}>
         <Typography variant="h3" component="h1" sx={{ mb: 2 }}>

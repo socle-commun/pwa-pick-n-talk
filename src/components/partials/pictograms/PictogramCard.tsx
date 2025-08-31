@@ -9,12 +9,10 @@ import { getTranslation } from "@/utils/translation";
 
 export interface PictogramCardProps {
   pictogram: Pictogram;
-  className?: string;
 }
 
 export default function PictogramCard({
   pictogram,
-  className,
 }: PictogramCardProps) {
   const { i18n } = useTranslation();
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -51,7 +49,6 @@ export default function PictogramCard({
 
   return (
     <Card
-      className={className}
       sx={{
         display: "flex",
         flexDirection: "column",

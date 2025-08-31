@@ -6,12 +6,11 @@ import PictogramCard from "./PictogramCard";
 
 export interface PictogramsGridLayoutProps {
   pictograms: Pictogram[];
-  className?: string;
 }
 
-export function PictogramsGridLayout({ pictograms, className }: PictogramsGridLayoutProps) {
+export function PictogramsGridLayout({ pictograms }: PictogramsGridLayoutProps) {
   return (
-    <Box sx={{ p: 2 }} className={className}>
+    <Box sx={{ p: 2 }}>
       <Grid container spacing={2}>
         {pictograms.map((pictogram: Pictogram) => (
           <Grid

@@ -5,10 +5,9 @@ import { PictogramsGridLayout } from "./PictogramsGridLayout";
 
 interface PictogramsListProps {
   pictograms: Pictogram[] | null | undefined;
-  className?: string;
 }
 
-export function PictogramsList({ pictograms, className }: PictogramsListProps) {
+export function PictogramsList({ pictograms }: PictogramsListProps) {
   if (pictograms === undefined) {
     return <LoadingSpinner message="Loading pictograms..." />;
   }
@@ -22,5 +21,5 @@ export function PictogramsList({ pictograms, className }: PictogramsListProps) {
     );
   }
 
-  return <PictogramsGridLayout pictograms={pictograms} className={className} />;
+  return <PictogramsGridLayout pictograms={pictograms} />;
 }

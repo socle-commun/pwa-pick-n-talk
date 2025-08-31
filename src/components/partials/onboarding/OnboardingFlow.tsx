@@ -21,12 +21,10 @@ type OnboardingStep = "welcome" | "caregivers" | "complete";
 
 interface OnboardingFlowProps {
   initialStep?: OnboardingStep;
-  className?: string;
 }
 
 export default function OnboardingFlow({
-  initialStep = "welcome",
-  className
+  initialStep = "welcome"
 }: OnboardingFlowProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -94,7 +92,6 @@ export default function OnboardingFlow({
         minHeight: "100vh",
         bgcolor: "background.default",
       }}
-      className={className}
     >
       {/* Progress Indicator */}
       <Box

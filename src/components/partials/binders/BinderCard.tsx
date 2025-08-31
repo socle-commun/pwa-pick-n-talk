@@ -9,11 +9,9 @@ import { getTranslation } from "@/utils/translation";
 
 export default function BinderCard({
   binder,
-  className,
   ...props
 }: {
   binder: Binder;
-  className?: string;
 }) {
   const { t, i18n } = useTranslation();
 
@@ -24,7 +22,6 @@ export default function BinderCard({
   return (
     <Card
       {...props}
-      className={className}
       sx={{
         display: "flex",
         flexDirection: "column",

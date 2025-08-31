@@ -6,12 +6,10 @@ import { PictogramsList } from "./PictogramsList";
 
 export interface PictogramsGridProps {
   binderId: string;
-  className?: string;
 }
 
 export default function PictogramsGrid({
   binderId,
-  className,
 }: PictogramsGridProps) {
   const pictograms = usePictograms(binderId);
 
@@ -30,7 +28,7 @@ export default function PictogramsGrid({
         />
       }
     >
-      <PictogramsList pictograms={pictograms} className={className} />
+      <PictogramsList pictograms={pictograms} />
     </DatabaseErrorBoundary>
   );
 }

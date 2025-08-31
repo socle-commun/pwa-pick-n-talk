@@ -6,7 +6,7 @@ export default function Brand() {
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1.5, sm: 2 }, minWidth: 0 }}>
       <Box sx={{ width: { xs: 28, sm: 32 }, height: { xs: 28, sm: 32 }, flexShrink: 0 }}>
-        <Logo className="w-full h-full" />
+        <Logo sx={{ width: "100%", height: "100%" }} />
       </Box>
       <Typography
         variant="h6"
