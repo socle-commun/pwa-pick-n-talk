@@ -1,6 +1,5 @@
 import { TrashIcon, PencilIcon } from "@heroicons/react/20/solid";
-import { Divider } from "@mui/material";
-import { Button } from "@mui/material";
+import { Card, CardContent, CardActions, Divider, Typography, IconButton } from "@mui/material";
 import { type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -23,46 +22,66 @@ export default function BinderCard({
   const description = getTranslation(binder.properties, i18n.language, "description");
 
   return (
-    <div
+    <Card
       {...props}
-      className={`${className || ""} w-content h-content flex flex-col theme-bg-secondary overflow-hidden rounded-md`}
+      className={className}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        cursor: "pointer",
+        "&:hover": {
+          elevation: 4
+        }
+      }}
     >
-      <Button
+      <CardContent
+        component="a"
         href={`/${binder.id}`}
-        sx={{ display: "flex", flexDirection: "column", gap: 1, backgroundColor: "transparent" }}
+        sx={{
+          flex: 1,
+          textDecoration: "none",
+          color: "inherit",
+          "&:hover": {
+            textDecoration: "none"
+          }
+        }}
       >
-        <div className={"text-2xl font-bold theme-text-primary"}>{title}</div>
-        <div
-          className={"pl-1 text-sm italic theme-text-secondary"}
-        >
+        <Typography variant="h6" component="h3" gutterBottom>
+          {title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ fontStyle: "italic", mb: 1 }}>
           {t("by")} {binder.author}
-        </div>
-        <div className={"text-lg theme-text-primary mb-2"}>
+        </Typography>
+        <Typography variant="body1" color="text.primary">
           {description}
-        </div>
-      </Button>
-      <Divider className={"theme-border-secondary"} />
-      <div className={"flex justify-end gap-1 px-2 py-1"}>
-        <Button
+        </Typography>
+      </CardContent>
+
+      <Divider />
+
+      <CardActions sx={{ justifyContent: "flex-end", p: 1 }}>
+        <IconButton
+          component="a"
           href={`${binder.id}/edit`}
           color="primary"
-          className={"hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150"}
+          size="small"
+          aria-label={t("edit")}
         >
-          <PencilIcon className={"size-4"} />
-          <span className={"sr-only"}>{t("edit")}</span>
-        </Button>
-        <Button
+          <PencilIcon style={{ width: 16, height: 16 }} />
+        </IconButton>
+        <IconButton
           color="error"
+          size="small"
+          aria-label={t("delete")}
           onClick={(event: MouseEvent<HTMLButtonElement>) => {
             event.preventDefault();
             db.deleteBinder(binder.id);
           }}
-          className={"hover:scale-105 active:scale-95 transition-scale ease-in-out duration-150"}
         >
-          <TrashIcon className={"size-4"} />
-          <span className={"sr-only"}>{t("delete")}</span>
-        </Button>
-      </div>
-    </div>
+          <TrashIcon style={{ width: 16, height: 16 }} />
+        </IconButton>
+      </CardActions>
+    </Card>
   );
 }

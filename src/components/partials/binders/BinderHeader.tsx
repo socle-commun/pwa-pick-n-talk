@@ -1,4 +1,6 @@
 
+import { Paper, Typography } from "@mui/material";
+
 interface BinderHeaderProps {
   title: string;
   description?: string;
@@ -6,17 +8,22 @@ interface BinderHeaderProps {
 
 export function BinderHeader({ title, description }: BinderHeaderProps) {
   return (
-    <div
-      className={"bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 p-6"}
+    <Paper
+      sx={{
+        borderRadius: 0,
+        borderBottom: 1,
+        borderColor: "divider",
+        p: 3
+      }}
     >
-      <h1 className={"text-3xl font-bold text-zinc-900 dark:text-zinc-100"}>
+      <Typography variant="h3" component="h1" gutterBottom>
         {title}
-      </h1>
+      </Typography>
       {description && (
-        <p className={"mt-2 text-zinc-600 dark:text-zinc-400"}>
+        <Typography variant="body1" color="text.secondary">
           {description}
-        </p>
+        </Typography>
       )}
-    </div>
+    </Paper>
   );
 }

@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -35,11 +36,11 @@ export function BinderContent({ binder, uuid }: BinderContentProps) {
   const description = getTranslation(binder.properties, i18n.language, "description");
 
   return (
-    <div className={"min-h-full"}>
+    <Box sx={{ minHeight: "100%" }}>
       <BinderHeader title={title} description={description} />
       <Suspense fallback={<LoadingSpinner message="Loading pictograms..." />}>
         <PictogramsGrid binderId={uuid} />
       </Suspense>
-    </div>
+    </Box>
   );
 }

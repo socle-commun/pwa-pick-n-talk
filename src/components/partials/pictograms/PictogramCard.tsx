@@ -1,5 +1,5 @@
 import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
-import { Button } from "@mui/material";
+import { Card, CardMedia, Typography, IconButton, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -50,47 +50,52 @@ export default function PictogramCard({
   };
 
   return (
-    <div
-      className={`flex flex-col items-center p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-zinc-200 dark:border-zinc-700 ${className || ""}`}
+    <Card
+      className={className}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        p: 2,
+        cursor: "pointer",
+        "&:hover": {
+          elevation: 4
+        }
+      }}
     >
       {/* Pictogram Image */}
-      <div className={"w-24 h-24 mb-3 flex items-center justify-center"}>
+      <Box sx={{ width: 96, height: 96, mb: 1.5, display: "flex", alignItems: "center", justifyContent: "center" }}>
         {imageUrl ? (
-          <img
-            src={imageUrl}
+          <CardMedia
+            component="img"
+            image={imageUrl}
             alt={word}
-            className={"max-w-full max-h-full object-contain"}
+            sx={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
           />
         ) : (
-          <div
-
-          >
-            No Image
-          </div>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", color: "text.disabled" }}>
+            <Typography variant="body2">No Image</Typography>
+          </Box>
         )}
-      </div>
+      </Box>
 
       {/* Word Label */}
-      <div
-        className={"text-lg font-medium text-center mb-2 text-zinc-900 dark:text-zinc-100"}
-      >
+      <Typography variant="body1" sx={{ textAlign: "center", mb: 1, fontWeight: "medium" }}>
         {word}
-      </div>
+      </Typography>
 
       {/* Speaker Button */}
       {isSpeechSynthesisSupported() && (
-        <Button
+        <IconButton
           onClick={handleSpeak}
           disabled={isSpeaking || !word}
-          color="inherit"
-
+          color="primary"
+          aria-label={isSpeaking ? "Speaking..." : `Speak "${word}"`}
+          size="small"
         >
-          <SpeakerWaveIcon  />
-          <span style={{ position: "absolute", left: "-9999px" }}>
-            {isSpeaking ? "Speaking..." : `Speak "${word}"`}
-          </span>
-        </Button>
+          <SpeakerWaveIcon style={{ width: 20, height: 20 }} />
+        </IconButton>
       )}
-    </div>
+    </Card>
   );
 }

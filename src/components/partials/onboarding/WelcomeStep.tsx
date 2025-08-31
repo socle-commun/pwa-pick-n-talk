@@ -10,7 +10,8 @@
  * - Tutorial preparation
  */
 
-import { Button, Typography } from "@mui/material";
+import { LockClosedIcon } from "@heroicons/react/24/outline";
+import { Button, Typography, Container, Box, Paper, Alert } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
@@ -26,10 +27,9 @@ import { type History, type Setting } from "@/db/models";
 
 interface WelcomeStepProps {
   onContinue?: () => void;
-  className?: string;
 }
 
-export default function WelcomeStep({ onContinue, className }: WelcomeStepProps) {
+export default function WelcomeStep({ onContinue }: WelcomeStepProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -82,137 +82,167 @@ export default function WelcomeStep({ onContinue, className }: WelcomeStepProps)
   };
 
   return (
-    <div className={`container mx-auto px-4 py-8 max-w-4xl ${className}`}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* Header Section */}
-      <div className={"text-center py-8"}>
-        <Logo className={"size-20 mx-auto mb-6"} />
+      <Box sx={{ textAlign: "center", py: 4 }}>
+        <Box sx={{ width: 80, height: 80, mx: "auto", mb: 3 }}>
+          <Logo sx={{ width: "100%", height: "100%" }} />
+        </Box>
         <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
           {t("onboarding.welcome.title", "Welcome to Pick'n'Talk!")}
         </Typography>
-        <p className={"text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-2xl mx-auto"}>
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 4, maxWidth: "md", mx: "auto" }}>
           {t("onboarding.welcome.subtitle", "Let's get you set up with your personalized communication experience. First, let's configure your preferences.")}
-        </p>
+        </Typography>
 
         {/* Privacy and Data Information */}
-        <div className={"privacy-secondary rounded-lg p-6 mb-8 max-w-3xl mx-auto border privacy-border"}>
-          <div className={"flex items-start gap-4"}>
-            <div className={"size-10 privacy-icon-bg rounded-full flex items-center justify-center flex-shrink-0 mt-1"}>
-              <svg className={"size-5 privacy-primary"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <div className={"flex-1"}>
-              <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+        <Alert severity="info" sx={{ mb: 4, maxWidth: "md", mx: "auto" }}>
+          <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
+            <Box sx={{
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              bgcolor: "info.light",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+              mt: 0.5
+            }}>
+              <LockClosedIcon style={{ width: 20, height: 20 }} />
+            </Box>
+            <Box sx={{ flex: 1 }}>
+              <Typography variant="h6" sx={{ mb: 1 }}>
                 {t("onboarding.welcome.privacy.title", "Your Data, Your Control")}
               </Typography>
-              <div className={"privacy-text space-y-3 text-sm leading-relaxed"}>
-                <p>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                <Typography variant="body2">
                   {t("onboarding.welcome.privacy.local_storage", "All your communication binders and personal data are saved locally on your device. No information is sent to external servers without your explicit consent.")}
-                </p>
-                <p>
+                </Typography>
+                <Typography variant="body2">
                   {t("onboarding.welcome.privacy.synchronization", "You will have the option to synchronize your binders with other caregivers and professionals when you choose to enable this feature, giving you full control over data sharing.")}
-                </p>
-                <p>
+                </Typography>
+                <Typography variant="body2">
                   {t("onboarding.welcome.privacy.offline", "Pick'n'Talk works completely offline, ensuring your communication tools are always available when you need them.")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Alert>
+      </Box>
 
       {/* Settings Configuration Section */}
-      <div className={"bg-white dark:bg-zinc-900 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-800 p-6 mb-8"}>
-        <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+      <Paper sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
           {t("onboarding.welcome.settings.title", "Your Preferences")}
         </Typography>
 
-        <div className={"grid md:grid-cols-2 gap-6"}>
+        <Box sx={{ display: "grid", md: { gridTemplateColumns: "1fr 1fr" }, gap: 3 }}>
           {/* Language Selection */}
-          <div className={"space-y-4"}>
-            <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+          <Box>
+            <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
               {t("onboarding.welcome.settings.language.title", "Language")}
             </Typography>
-            <p className={"text-sm text-zinc-600 dark:text-zinc-400"}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
               {t("onboarding.welcome.settings.language.description", "Choose your preferred language for the interface.")}
-            </p>
+            </Typography>
             <LocaleSelector />
-          </div>
+          </Box>
 
           {/* Theme Settings */}
-          <div className={"space-y-4"}>
-            <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+          <Box>
+            <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
               {t("onboarding.welcome.settings.theme.title", "Appearance")}
             </Typography>
-            <p className={"text-sm text-zinc-600 dark:text-zinc-400"}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
               {t("onboarding.welcome.settings.theme.description", "Customize the look and feel of the application.")}
-            </p>
-            <div className={"space-y-4"}>
+            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
               <ThemeModeToggle />
               <FontSizeSelector />
-            </div>
-          </div>
+            </Box>
+          </Box>
 
           {/* Accessibility Settings */}
-          <div className={"space-y-4 md:col-span-2"}>
-            <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+          <Box sx={{ gridColumn: { md: "1 / -1" } }}>
+            <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
               {t("onboarding.welcome.settings.accessibility.title", "Accessibility")}
             </Typography>
-            <p className={"text-sm text-zinc-600 dark:text-zinc-400"}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
               {t("onboarding.welcome.settings.accessibility.description", "Configure accessibility features to enhance your experience.")}
-            </p>
-            <div className={"grid md:grid-cols-2 gap-4"}>
+            </Typography>
+            <Box sx={{ display: "grid", md: { gridTemplateColumns: "1fr 1fr" }, gap: 2 }}>
               <HighContrastModeToggle />
               <DaltonismModeToggle />
-            </div>
-          </div>
-        </div>
-      </div>
+            </Box>
+          </Box>
+        </Box>
+      </Paper>
 
       {/* Information Section */}
-      <div className={"grid md:grid-cols-2 gap-6 mb-8"}>
-        <div className={"text-center p-6 rounded-lg feature-primary-secondary border feature-primary-border"}>
-          <div className={"size-12 mx-auto mb-4 bg-tertiary rounded-full flex items-center justify-center"}>
-            <svg className={"size-6 feature-primary-primary"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <Box sx={{ display: "grid", md: { gridTemplateColumns: "1fr 1fr" }, gap: 3, mb: 4 }}>
+        <Paper sx={{ textAlign: "center", p: 3, bgcolor: "primary.light", color: "primary.contrastText" }}>
+          <Box sx={{
+            width: 48,
+            height: 48,
+            mx: "auto",
+            mb: 2,
+            bgcolor: "primary.main",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}>
+            <svg style={{ width: 24, height: 24 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
             </svg>
-          </div>
-          <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+          </Box>
+          <Typography variant="h6" sx={{ mb: 1 }}>
             {t("onboarding.welcome.features.customize.title", "Personalized Setup")}
           </Typography>
-          <p className={"feature-primary-text"}>
+          <Typography variant="body2">
             {t("onboarding.welcome.features.customize.description", "We'll guide you through creating your first communication binder with pictures and words that matter to you.")}
-          </p>
-        </div>
+          </Typography>
+        </Paper>
 
-        <div className={"text-center p-6 rounded-lg feature-secondary-secondary border feature-secondary-border"}>
-          <div className={"size-12 mx-auto mb-4 bg-tertiary rounded-full flex items-center justify-center"}>
-            <svg className={"size-6 feature-secondary-primary"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <Paper sx={{ textAlign: "center", p: 3, bgcolor: "secondary.light", color: "secondary.contrastText" }}>
+          <Box sx={{
+            width: 48,
+            height: 48,
+            mx: "auto",
+            mb: 2,
+            bgcolor: "secondary.main",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}>
+            <svg style={{ width: 24, height: 24 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
-          </div>
-          <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+          </Box>
+          <Typography variant="h6" sx={{ mb: 1 }}>
             {t("onboarding.welcome.features.quick.title", "Quick & Easy")}
           </Typography>
-          <p className={"feature-secondary-text"}>
+          <Typography variant="body2">
             {t("onboarding.welcome.features.quick.description", "Get started in just a few minutes with our intuitive setup process and helpful tutorials.")}
-          </p>
-        </div>
-      </div>
+          </Typography>
+        </Paper>
+      </Box>
 
       {/* Action Buttons */}
-      <div className={"flex flex-col sm:flex-row gap-4 justify-center"}>
-        <Button onClick={handleContinue} className={"px-8 py-3"}>
+      <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, justifyContent: "center" }}>
+        <Button onClick={handleContinue} variant="contained" sx={{ px: 4, py: 1.5 }}>
           {t("onboarding.welcome.cta.continue", "Continue Setup")}
         </Button>
         <Button
           href="/binders"
           variant="outlined"
-          sx={{ px: 2, py: 1 }}
+          sx={{ px: 4, py: 1.5 }}
         >
           {t("onboarding.welcome.cta.skip", "Skip for Now")}
         </Button>
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 }

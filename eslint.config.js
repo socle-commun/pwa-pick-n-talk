@@ -97,6 +97,26 @@ export default tseslint.config(
       ],
       'no-warning-comments': ['error', { terms: ['eslint-disable'], location: 'anywhere' }],
 
+      // Design System Rules - CRITICAL: No className allowed
+      "no-restricted-globals": [
+        "error",
+        {
+          name: "className",
+          message: "❌ INTERDICTION: L'utilisation de 'className' est strictement interdite. Utilisez uniquement le système MUI 'sx' prop.",
+        },
+      ],
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "JSXAttribute[name.name='className']",
+          message: "❌ INTERDICTION: L'attribut 'className' est strictement interdit. Utilisez uniquement les composants MUI avec la prop 'sx' pour le style.",
+        },
+        {
+          selector: "Property[key.name='className']",
+          message: "❌ INTERDICTION: La propriété 'className' est strictement interdite. Utilisez uniquement les composants MUI avec la prop 'sx'.",
+        },
+      ],
+
       // Code style rules 
       quotes: ["error", "double"],
       semi: ["error", "always"],

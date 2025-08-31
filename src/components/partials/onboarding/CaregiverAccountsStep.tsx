@@ -10,7 +10,7 @@
  * - Real-time saving to users table via DexieJS
  */
 
-import { Button, Card, CardContent, Box, Typography } from "@mui/material";
+import { Button, Card, CardContent, Box, Typography, Container } from "@mui/material";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
@@ -97,16 +97,16 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
   };
 
   return (
-    <div className={`container mx-auto px-4 py-8 max-w-4xl ${className}`}>
+    <Container maxWidth="lg" sx={{ py: 4 }} className={className}>
       {/* Header Section */}
-      <div >
+      <Box sx={{ mb: 4 }}>
         <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
           {t("onboarding.caregivers.title", "Setup Caregiver Accounts")}
         </Typography>
-        <p >
+        <Typography variant="body1" color="text.secondary">
           {t("onboarding.caregivers.subtitle", "Add caregivers and professionals who will help manage communication binders.")}
-        </p>
-      </div>
+        </Typography>
+      </Box>
 
       {/* Account Type Selection */}
       {!showForm && (
@@ -216,6 +216,6 @@ export default function CaregiverAccountsStep({ onContinue, className }: Caregiv
           </Button>
         </div>
       )}
-    </div>
+    </Container>
   );
 }

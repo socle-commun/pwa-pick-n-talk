@@ -9,6 +9,8 @@
  * - State management for the entire flow
  */
 
+import { CheckIcon } from "@heroicons/react/24/outline";
+import { Box, Container, Stepper, Step, StepLabel, StepIcon, Typography, Button } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
@@ -87,64 +89,84 @@ export default function OnboardingFlow({
   };
 
   return (
-    <div className={`min-h-screen bg-zinc-50 dark:bg-zinc-900 ${className}`}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        bgcolor: "background.default",
+      }}
+      className={className}
+    >
       {/* Progress Indicator */}
-      <div >
-        <div >
-          <div >
+      <Box
+        sx={{
+          py: 4,
+          borderBottom: 1,
+          borderColor: "divider",
+          bgcolor: "background.paper",
+        }}
+      >
+        <Container maxWidth="lg">
+          <Stepper activeStep={currentStepIndex} alternativeLabel>
             {steps.map((step, index) => (
-              <div key={step.key} >
-                <div className={`flex items-center justify-center size-8 rounded-full text-sm font-medium ${
-                  index <= currentStepIndex
-                    ? "bg-blue-600 text-white"
-                    : "bg-zinc-200 dark:bg-zinc-600 text-zinc-600 dark:text-zinc-400"
-                }`}>
-                  {step.completed ? (
-                    <svg  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  ) : (
-                    index + 1
+              <Step key={step.key} completed={step.completed}>
+                <StepLabel
+                  StepIconComponent={(props) => (
+                    <StepIcon
+                      {...props}
+                      icon={
+                        step.completed ? (
+                          <CheckIcon style={{ width: 16, height: 16 }} />
+                        ) : (
+                          index + 1
+                        )
+                      }
+                    />
                   )}
-                </div>
-                <span className={`ml-2 text-sm font-medium hidden sm:inline ${
-                  index <= currentStepIndex
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-zinc-600 dark:text-zinc-400"
-                }`}>
-                  {step.title}
-                </span>
-                {index < steps.length - 1 && (
-                  <div className={`hidden sm:block mx-4 h-px w-12 ${
-                    index < currentStepIndex
-                      ? "bg-blue-600"
-                      : "bg-zinc-200 dark:bg-zinc-600"
-                  }`} />
-                )}
-              </div>
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      display: { xs: "none", sm: "inline" },
+                      fontWeight: index <= currentStepIndex ? "medium" : "regular",
+                      color: index <= currentStepIndex ? "primary.main" : "text.secondary",
+                    }}
+                  >
+                    {step.title}
+                  </Typography>
+                </StepLabel>
+              </Step>
             ))}
-          </div>
-        </div>
-      </div>
+          </Stepper>
+        </Container>
+      </Box>
 
       {/* Step Content */}
-      <main >
+      <Box component="main" sx={{ flex: 1 }}>
         {renderCurrentStep()}
-      </main>
+      </Box>
 
       {/* Step Navigation (optional footer) */}
       {currentStep !== "welcome" && (
-        <div >
-          <div >
-            <button
+        <Box
+          sx={{
+            py: 2,
+            px: 4,
+            borderTop: 1,
+            borderColor: "divider",
+            bgcolor: "background.paper",
+          }}
+        >
+          <Container maxWidth="lg">
+            <Button
               onClick={handlePreviousStep}
-
+              variant="text"
+              sx={{ color: "text.secondary" }}
             >
               ← {t("onboarding.navigation.back", "Back")}
-            </button>
-          </div>
-        </div>
+            </Button>
+          </Container>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }

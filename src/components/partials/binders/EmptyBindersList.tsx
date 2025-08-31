@@ -1,5 +1,5 @@
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-
 
 export default function EmptyBindersList({
   className,
@@ -10,11 +10,24 @@ export default function EmptyBindersList({
   const { t } = useTranslation();
 
   return (
-    <div
+    <Box
       {...props}
-      className={`${className || ""} w-content h-content flex flex-col gap-2 p-4 theme-bg-tertiary theme-text-secondary overflow-hidden rounded-md`}
+      className={className}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+        p: 2,
+        bgcolor: "background.paper",
+        color: "text.secondary",
+        borderRadius: 1,
+        border: 1,
+        borderColor: "divider"
+      }}
     >
-      {t("binders.list.empty")}
-    </div>
+      <Typography variant="body2" color="text.secondary">
+        {t("binders.list.empty")}
+      </Typography>
+    </Box>
   );
 }
