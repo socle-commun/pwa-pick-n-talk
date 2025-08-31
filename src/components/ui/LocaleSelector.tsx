@@ -1,5 +1,5 @@
 
-import { MenuItem, Select, FormControl, Box } from "@mui/material";
+import { MenuItem, Select, FormControl, Box, type SelectChangeEvent } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 interface Language {
@@ -41,7 +41,7 @@ export default function LocaleSelector({
     (lang) => lang.code === i18n.language
   ) || SUPPORTED_LANGUAGES[0];
 
-  const handleLanguageChange = (event: any) => {
+  const handleLanguageChange = (event: SelectChangeEvent<string>) => {
     const selectedLanguage = SUPPORTED_LANGUAGES.find(lang => lang.code === event.target.value);
     if (selectedLanguage) {
       i18n.changeLanguage(selectedLanguage.code);

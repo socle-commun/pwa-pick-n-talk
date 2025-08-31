@@ -4,17 +4,17 @@ applyTo: "src/components/ui/**"
 
 # UI Component Development Instructions
 
-- See: https://catalyst.tailwindui.com/docs
+- See: https://mui.com/material-ui/getting-started/
 
 ---
 
 ## 🏗️ **Component Architecture**
 
-### Headless UI Integration
-- **Base**: Always extend `@headlessui/react` components for interactive elements
-- **Pattern**: Import as `HeadlessComponentName`, extend props, apply custom styling
+### MUI Integration
+- **Base**: Always extend MUI components for interactive elements
+- **Pattern**: Import MUI components, extend props, apply custom styling with sx
 ```typescript
-import { Button as HeadlessButton, type ButtonProps as HeadlessButtonProps } from "@headlessui/react";
+import { Button as MuiButton, type ButtonProps as MuiButtonProps } from "@mui/material";
 ```
 
 ### ForwardRef Usage
@@ -55,7 +55,7 @@ sx={{
 ### Accessibility Requirements
 - **ARIA**: Include proper ARIA attributes, especially `aria-hidden`, `aria-label`
 - **Focus**: Use MUI's focus management with `focusVisible` for focus patterns
-- **Touch Targets**: Wrap interactive content with `<TouchTarget>` for mobile optimization
+- **Touch Targets**: Use MUI's touch-friendly sizing for mobile optimization
 
 ---
 
@@ -90,5 +90,5 @@ sx={{
 
 ### Browser Compatibility
 - **Target**: Modern browsers with CSS custom properties support
-- **Touch**: Optimize for both pointer and touch interactions
-- **Responsive**: Design mobile-first with progressive enhancement
+- **Touch**: Optimize for both pointer and touch interactions with MUI's touch handling
+- **Responsive**: Design mobile-first with MUI's responsive breakpoints

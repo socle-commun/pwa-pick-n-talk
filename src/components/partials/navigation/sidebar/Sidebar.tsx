@@ -1,10 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, type SxProps, type Theme } from "@mui/material";
 import { type ComponentPropsWithoutRef } from "react";
 
 export default function Sidebar({
   sx,
   ...props
-}: ComponentPropsWithoutRef<"nav"> & { sx?: any }) {
+}: ComponentPropsWithoutRef<"nav"> & { sx?: SxProps<Theme> }) {
   return (
     <Box
       component="nav"

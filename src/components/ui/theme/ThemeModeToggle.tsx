@@ -1,5 +1,5 @@
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
-import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import { MenuItem, Select, FormControl, InputLabel, Box, SelectChangeEvent } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { useThemeMode, type ThemeMode } from "@/utils/theme";
@@ -10,14 +10,14 @@ const THEME_MODES: Array<{ mode: ThemeMode; icon: typeof SunIcon }> = [
 ];
 
 interface ThemeModeToggleProps {
-  
+  id?: string; // Optional id for testing or accessibility
 }
 
 export default function ThemeModeToggle(_props: ThemeModeToggleProps) {
   const { t } = useTranslation();
   const { themeMode, setThemeMode } = useThemeMode();
 
-  const handleThemeChange = (event: any) => {
+  const handleThemeChange = (event: SelectChangeEvent<string>) => {
     setThemeMode(event.target.value as ThemeMode);
   };
 

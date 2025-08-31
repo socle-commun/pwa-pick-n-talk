@@ -1,6 +1,6 @@
 # UI Components Library
 
-A comprehensive collection of headless, typed, and styled UI components built with React, TypeScript, and Tailwind CSS.
+A comprehensive collection of accessible, typed, and styled UI components built with React, TypeScript, and MUI (Material-UI).
 
 ## Overview
 
@@ -42,17 +42,17 @@ import { Form, FormInput } from "@/components/ui/forms";
 Interactive elements that trigger actions.
 
 ```typescript
-import { Button, TouchTarget } from "@/components/ui/actions";
+import { Button, IconButton } from "@/components/ui/actions";
 
 // Primary button
-<Button color="blue" onClick={handleClick}>
+<Button color="primary" onClick={handleClick}>
   Save Changes
 </Button>
 
-// Touch-friendly target
-<TouchTarget onClick={handleTouch}>
-  <Icon />
-</TouchTarget>
+// Touch-friendly icon button
+<IconButton onClick={handleTouch} aria-label="Edit">
+  <EditIcon />
+</IconButton>
 ```
 
 ### Data Input
@@ -125,7 +125,7 @@ import {
     <TableRow>
       <TableCell>John Doe</TableCell>
       <TableCell>
-        <Badge color="green">Active</Badge>
+        <Badge color="success">Active</Badge>
       </TableCell>
     </TableRow>
   </TableBody>
@@ -145,7 +145,7 @@ import {
 } from "@/components/ui/navigation";
 
 // Navigation link
-<Link href="/dashboard" color="blue">
+<Link href="/dashboard" color="primary">
   Go to Dashboard
 </Link>
 
@@ -207,7 +207,7 @@ import {
     Are you sure you want to delete this item?
   </DialogBody>
   <DialogActions>
-    <Button color="red" onClick={handleDelete}>Delete</Button>
+    <Button color="error" onClick={handleDelete}>Delete</Button>
     <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
   </DialogActions>
 </Dialog>
@@ -332,25 +332,34 @@ All components are fully typed with TypeScript. Common prop patterns:
 
 ### Color System
 
-Most components support a consistent color system:
+Components support MUI's theme-based color system:
 
 ```typescript
-type Color = 'blue' | 'red' | 'green' | 'yellow' | 'purple' | 'gray' | 'zinc';
+// Use MUI's semantic color palette
+<Button color="primary">Primary Action</Button>
+<Button color="secondary">Secondary Action</Button>
+<Button color="error">Delete</Button>
+<Button color="warning">Warning</Button>
+<Button color="info">Info</Button>
+<Button color="success">Success</Button>
 
-<Button color="blue">Primary Action</Button>
-<Badge color="green">Success</Badge>
-<Alert color="red">Error Message</Alert>
+// Custom colors via sx prop
+<Button sx={{ bgcolor: 'custom.main' }}>Custom Color</Button>
 ```
 
 ### Size Variants
 
-Many components support size variants:
+Components support MUI's standard size variants:
 
 ```typescript
-type Size = 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+// Standard MUI sizes
+<Button size="small">Small Button</Button>
+<Button size="medium">Medium Button</Button>
+<Button size="large">Large Button</Button>
 
-<Button size="lg">Large Button</Button>
-<Input size="sm">Small Input</Input>
+// TextField sizes
+<TextField size="small">Small Input</TextField>
+<TextField size="medium">Medium Input</TextField>
 ```
 
 ### Styling
@@ -428,7 +437,7 @@ function ContactForm() {
           <Label>Subscribe to newsletter</Label>
         </Checkbox>
         
-        <Button type="submit" color="blue">Send Message</Button>
+        <Button type="submit" color="primary">Send Message</Button>
       </Fieldset>
     </form>
   );
@@ -468,7 +477,7 @@ function Dashboard() {
             <NavbarItem>Welcome back!</NavbarItem>
           </NavbarSection>
           <NavbarSection>
-            <Button color="blue">New Project</Button>
+            <Button color="primary">New Project</Button>
           </NavbarSection>
         </Navbar>
         
@@ -486,7 +495,7 @@ When adding new components:
 1. Place them in the appropriate category folder
 2. Include TypeScript types
 3. Add comprehensive tests
-4. Use Tailwind CSS for styling
+4. Use MUI components and sx prop for styling
 5. Follow accessibility best practices
 6. Update the central index.ts file
 7. Add documentation examples

@@ -1,5 +1,5 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import { MenuItem, Select, FormControl, InputLabel, Box, type SelectChangeEvent } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { useHighContrastMode, type HighContrastMode } from "@/utils/theme";
@@ -13,7 +13,7 @@ export default function HighContrastModeToggle() {
   const { t } = useTranslation();
   const { highContrastMode, setHighContrastMode } = useHighContrastMode();
 
-  const handleHighContrastChange = (event: any) => {
+  const handleHighContrastChange = (event: SelectChangeEvent<string>) => {
     setHighContrastMode(event.target.value as HighContrastMode);
   };
 

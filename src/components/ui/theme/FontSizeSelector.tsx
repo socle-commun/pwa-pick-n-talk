@@ -1,5 +1,5 @@
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
-import { MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import { MenuItem, Select, FormControl, InputLabel, Box, type SelectChangeEvent } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { useFontSize, type FontSize } from "@/utils/theme";
@@ -14,7 +14,7 @@ export default function FontSizeSelector() {
   const { t } = useTranslation();
   const { fontSize, setFontSize } = useFontSize();
 
-  const handleFontSizeChange = (event: any) => {
+  const handleFontSizeChange = (event: SelectChangeEvent<string>) => {
     setFontSize(event.target.value as FontSize);
   };
 

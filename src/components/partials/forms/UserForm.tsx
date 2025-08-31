@@ -167,28 +167,28 @@ export default function UserForm({
               : t("forms.user.password_placeholder", "Enter password (optional)")
           }
         />
-        <p >
+        <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>
           {t("forms.user.password_help", "Password is optional. If not set, the user will need to create one on first sign-in.")}
-        </p>
+        </Typography>
 
         {/* Role display (read-only) */}
-        <div >
-          <label >
+        <Box>
+          <Typography component="label" variant="body2" sx={{ fontWeight: "medium", mb: 1, display: "block" }}>
             {t("forms.user.role", "Role")}
-          </label>
-          <div >
+          </Typography>
+          <Box sx={{ p: 1.5, border: 1, borderColor: "divider", borderRadius: 1, mb: 1 }}>
             {getRoleDisplayName(role)}
-          </div>
-          <p >
+          </Box>
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {t("forms.user.role_help", "Role is determined by the account type being created")}
-          </p>
-        </div>
+          </Typography>
+        </Box>
 
-        <div >
+        <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
           <Button
             type="submit"
             disabled={isSaving}
-
+            variant="contained"
           >
             {(() => {
               if (isSaving) {

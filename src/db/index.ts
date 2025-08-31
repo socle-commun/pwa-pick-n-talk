@@ -7,8 +7,6 @@ import { type Pictogram } from "@/db/models";
 import { type Setting } from "@/db/models";
 import type { User } from "@/db/models";
 import { populate } from "@/db/populate";
-
-// Import extracted methods organized by domain
 import * as binderQueries from "@/db/queries/binder-queries";
 import * as categoryQueries from "@/db/queries/category-queries";
 import * as globalQueries from "@/db/queries/global-queries";

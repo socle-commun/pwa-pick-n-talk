@@ -1,5 +1,5 @@
 import { EyeIcon } from "@heroicons/react/24/outline";
-import { MenuItem, Select, FormControl, InputLabel, Box, type SxProps, type Theme } from "@mui/material";
+import { MenuItem, Select, FormControl, InputLabel, Box, type SelectChangeEvent, type SxProps, type Theme } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -21,7 +21,7 @@ export default function DaltonismModeToggle(_props: DaltonismModeToggleProps) {
   const { daltonismMode, setDaltonismMode } = useDaltonismMode();
   const [infoVisible, setInfoVisible] = React.useState(false);
 
-  const handleDaltonismChange = (event: any) => {
+  const handleDaltonismChange = (event: SelectChangeEvent<string>) => {
     const newMode = event.target.value as DaltonismMode;
     setDaltonismMode(newMode);
     setInfoVisible(true);
